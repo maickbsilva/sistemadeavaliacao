@@ -4,15 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
 @Entity
 @Data
-public class Pergunta {
+public class Justificativa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String avaliacao;
-
+    @ManyToOne
+    private Usuario usuario;
+    @ManyToOne
+    private ItemResposta itemResposta;
+    private String texto;
 }
