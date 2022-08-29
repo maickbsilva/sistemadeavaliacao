@@ -14,8 +14,8 @@ public class ItemResposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //private Pergunta perguntaId;
-    //private Resposta respostaId;
+    @ManyToOne
+    private Resposta resposta;
     private String comentario;
     private int nivelImportancia;
     private int Satisfacao;

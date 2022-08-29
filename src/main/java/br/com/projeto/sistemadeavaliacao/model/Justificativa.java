@@ -14,7 +14,8 @@ public class Justificativa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //private usuarioid;
+    @ManyToOne
+    private Usuario usuario;
     @ManyToOne
     private ItemResposta itemResposta;
     private String texto;
