@@ -28,6 +28,18 @@ public class Usuario {
 	@Column(nullable = false, unique = true)
 	@NotEmpty
 	private String nif;
+
+	@NotEmpty
+	private String nome;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public Long getUserID() {
 		return userID;
 	}
