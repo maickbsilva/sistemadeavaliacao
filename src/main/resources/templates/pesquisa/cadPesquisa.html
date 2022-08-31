@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nova Pesquisa</h1>
+
+    <form method="post" style="border:2" action="novaPesquisa">
+
+		<input type="hidden" name="id"></input>
+		<br>
+		<div>
+			<select name="curso">
+				<label>Curso</label>
+				<option th:each="c: ${cursos}" th:text="${c.curso}"
+					th:value="${c.id}"></option>
+			</select>
+		</div>
+		<br>
+		<div>
+			turma <input type="text" name="turma"/>
+		</div>
+		<br>
+		<div>
+			data vencimento <input type="date" name="dataVencimento"/>
+		</div>	
+		<br>
+		<div>
+			justificativa <input type="text" name="justificativa"/>
+		</div>
+		<br>
+		<div>
+			<button type="submit">Cadastrar</button>
+		</div>
+	</form>
+
+</body>
+</html>
