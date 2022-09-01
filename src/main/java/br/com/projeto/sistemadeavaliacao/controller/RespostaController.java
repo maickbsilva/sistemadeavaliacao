@@ -37,13 +37,4 @@ public class RespostaController {
         respostaRepository.save(resposta);  
         return "redirect:cadastrar";
     }
-
-    /**
-     *     	@RequestMapping("cadCurso")
-	public String acessoSec(Model model) {
-		model.addAttribute("tipos",repositoryTC.findAll());
-		model.addAttribute("periodocurso", repositoryPC.findAll());
-		return "cadCurso";
-	}
-     */
 }
