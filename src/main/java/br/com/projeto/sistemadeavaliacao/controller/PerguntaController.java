@@ -17,7 +17,7 @@ public class PerguntaController {
     private PerguntaRepository repository;
 
     @RequestMapping("cadastrar")
-    public String cadPesquisa(){
+    public String cadPergunta(){
         return "pergunta/cadPergunta";
     }
 

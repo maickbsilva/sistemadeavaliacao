@@ -1,7 +1,10 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
@@ -23,13 +26,15 @@ public class RespostaController {
     private RespostaRepository respostaRepository;
 
     @RequestMapping("cadastrar")
-    public String cadPesquisa(){
+    public String cadResposta(){
         return "resposta/cadResposta";
     }
 
-    public String novaResposta(Resposta resposta){
-
-        respostaRepository.save(resposta);
+    @RequestMapping("formulario")
+    public String novaResposta(Resposta resposta, Model model){
+        Date now = new Date(System.currentTimeMillis());
+        resposta.setDataRealizacao(now);
+        respostaRepository.save(resposta);  
         return "redirect:cadastrar";
     }
 

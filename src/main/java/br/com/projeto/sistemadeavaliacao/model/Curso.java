@@ -16,6 +16,6 @@ public class Curso {
 	private Long id;
 	private String descCursos;
 	@ManyToOne
-	private TipoCurso tipo ; 
+	private TipoCurso tipo; 
 	
 }
