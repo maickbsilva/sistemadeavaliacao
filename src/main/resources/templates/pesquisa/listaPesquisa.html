@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista Pesquisas</h1>
+
+	<table class="striped">
+		<thead>
+			<th>Id</th>
+			<th>Curso</th>
+			<th>Turma</th>
+			<th>Data Vencimento</th>
+			<th>Jusitificativa</th>
+			<th>#</th>
+			<th>#</th>
+			<th>#</th>
+		</thead>
+
+		<tbody>
+			<tr th:each="ps:${pesq}">
+
+				<td th:text="${ps.id}"/>
+				<td th:text="${ps.curso}"/>
+				<td th:text="${ps.turma}"/>
+				<td th:text="${ps.dataVencimento}"/>
+				<td th:text="${ps.justificativa}"/>
+                <td><a th:href="@{#}">Alterar</a></td>
+				<td><a th:href="@{#}">Excluir </a></td>
+				<td><a th:href="@{#}">Lista de Respostas</a></td>
+
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>

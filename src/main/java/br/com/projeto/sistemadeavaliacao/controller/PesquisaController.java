@@ -45,4 +45,9 @@ public class PesquisaController {
         pesquisaRepository.save(pesquisa);
         return "redirect:cadastrar";
     }
+    @RequestMapping("listar")
+    public String listaPesquisa(Model model){
+        model.addAttribute("pesq", pesquisaRepository.findAll());
+        return "pesquisa/listaPesquisa";
+    }
 }
