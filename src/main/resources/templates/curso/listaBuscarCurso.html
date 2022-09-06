@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Lista Buscar Curso </title>
+</head>
+<body>
+
+
+	 
+	<div class="divLista">
+	<button onclick="history.go(-1);" class="btnReturn">Voltar para Cadastro de curso</button>
+	
+	    <table class="lista">
+		    <thead>
+			    <tr>
+				    <th class="aumentar">id</th>
+    			    <th class="aumentar">Descrição</th>
+                    <th class="aumentar">tipo</th>
+		    	</tr>
+		    </thead>
+	    	<tbody>
+	    		<tr th:each="c:${cursoC}" >			
+		    		<td th:text="${c?.id}" />
+			    	<td th:text="${c?.descCurso}" />	
+                    <td th:text="${c?.tipo}" />		
+			    </tr>	
+	    	</tbody>
+	    </table>
+	    
+    </div>
+
+</body>
+</html>
