@@ -3,6 +3,8 @@ package br.com.projeto.sistemadeavaliacao.controller;
 import java.sql.Date;
 import java.sql.ResultSet;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +35,7 @@ public class RespostaController {
     @Autowired
     private PerguntaRepository perguntaRepository;
 
+
     @RequestMapping("formulario")
     public String formulario(Model model, Pergunta pergunta){
         model.addAttribute("perg", perguntaRepository.findAll());
@@ -41,11 +44,35 @@ public class RespostaController {
     }
 
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
-    public String novaResposta(Resposta resposta, ItemResposta itemResposta, Model model){
+    public String novaResposta(Resposta resposta, ItemResposta itemResposta, Pergunta pergunta, Model model, HttpServletRequest request){
         Date now = new Date(System.currentTimeMillis());
         resposta.setDataRealizacao(now);
-        respostaRepository.save(resposta);
-        itemRespostaRepository.save(itemResposta);
+
+        String ipAddress = request.getHeader("X-FORWARDED-FOR");
+        if (ipAddress == null) {
+            ipAddress = request.getRemoteAddr();
+        }
+
+        resposta.setIp(ipAddress);
+
+        String respNivel = itemResposta.getNivelImportancia();
+        String[] parts = respNivel.split(",");
+       
+        String part1 = parts[0];
+
+        itemResposta.setNivelImportancia(part1);
+
+       for (int i = 0; i < parts.length; i++) {
+            String part = parts[i];
+            itemResposta.setNivelImportancia(part);
+            itemRespostaRepository.save(itemResposta);
+        }
+
+        //itemResposta.setPergunta(pergunta);
+        itemResposta.setResposta(resposta);
+        resposta.setItemResposta(itemResposta);
+        respostaRepository.save(resposta); 
+       
         return "redirect:formulario";
     }
 

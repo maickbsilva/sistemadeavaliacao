@@ -6,4 +6,5 @@ import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 
 public interface ItemRespostaRepository extends PagingAndSortingRepository<ItemResposta, Long>{
     
+    
 }
