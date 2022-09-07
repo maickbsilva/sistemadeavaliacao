@@ -7,13 +7,19 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-@Data
-@Entity
-public class TipoCurso {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String descricao;
+public enum TipoCurso {
+
+	FIC("Fic"), CURSO_REGUlARES("Curso_Regulares");
 	
+	String TipoCr;
+	TipoCurso(String string){
+		this.TipoCr = string;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 }

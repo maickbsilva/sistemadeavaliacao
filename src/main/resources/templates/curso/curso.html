@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>CADASTRO DE CURSOS</title>
+</head>
+<body>	
+
+
+	<form action="salvarCurso" method="post" >
+		<h2> Cadastro de Curso</h2>
+		<input type="hidden" name="id" th:value="${cs?.id}"/>
+		<input type="text"  name="descCurso" th:value="${cs?.descCurso}"/>
+
+		
+		
+		<select name="tipo">
+					<option
+						th:each="tipo : ${T(br.com.projeto.sistemadeavaliacao.model.TipoCurso).values()}"
+						th:value="${tipo}" 
+						th:text="${tipo}"
+						th:selected="${tipo.toString() == cs?.tipo?.toString()}"
+						></option>
+				</select>
+				
+				<button type="submit">Salvar</button>
+	</form>
+
+</body>
+</html>
