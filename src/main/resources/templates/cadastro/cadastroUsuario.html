@@ -1,0 +1,48 @@
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../css/cadastro_estilo.css" rel="stylesheet">
+<title>Página de Cadastro</title>
+</head>
+<body>
+	<div class="login-box">
+		<h2>CADASTRO</h2>
+		<form action="save" method="post">
+			<input type="hidden" name="userId" th:value="${users?.userId}" />
+			<div class="user-box">
+				<input type="text" name="nome" th:value="${users?.nome}"> <label>Nome</label>
+			</div>
+			<div class="user-box">
+				<input type="text" name="nif" th:value="${users?.nif}"> <label>NIF</label>
+			</div>
+			<div class="user-box">
+				<input type="password" name="senha" th:value="${users?.senha}">
+				<label>Senha</label>
+			</div>
+			<div class="user-box">
+                    <select name="tipo" id="cars">
+                        <option value="" disabled selected>Tipo de Hierarquia:</option>
+                        <option th:each="tipo : ${T(br.com.projeto.sistemadeavaliacao.model.TipoUsuario).values()}"
+                        th:value="${tipo}"
+                        th:text="${tipo}"
+                        th:selected="${tipo.toString() == r?.tipo?.toString()}"></option>
+                    </select>
+                </div>
+
+			<div class="user-box"></div>
+
+
+			<button type="submit" class="custom-btn btn-15">
+				<b>CADASTRAR</b>
+			</button>
+
+
+
+		</form>
+	</div>
+
+
+</body>
+</html>
