@@ -33,7 +33,6 @@ public class Pesquisa {
     @OneToMany(mappedBy = "pesquisa")
     private List<Resposta> listaResposta;
     private boolean justificativa;
-    @OneToMany
-    private List<Docente> listaDocente;
+    
     
 }

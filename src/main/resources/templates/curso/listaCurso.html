@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Lista de Cursos</title>
+</head>
+<body>
+
+	<form action="/buscarCurso">
+				<label>Buscar por data</label><br> <input type="search"
+					name="curso" class="input-buscar"> <input type="submit"
+					value="buscar" class="button-buscar">
+			</form>
+	
+	
+	<form action="/buscarC">
+				<label>Tipo Curso</label><br> <input type="search"
+					name="buscarCurso" class="input-buscar"> <input type="submit"
+					value="Buscar" class="button-buscar">
+			</form>
+		<table>
+		
+		
+	
+	
+		<thead>
+			<tr>
+				<th class="aumentar">ID</th>
+				<th class="aumentar">Descrição</th>
+				<th class="aumentar">Tipo de Curso</th>
+				
+
+
+			</tr>
+
+		</thead>
+		<tbody>
+			<tr th:each="c:${cursoC}">
+
+				<td th:text="${c.id}" />
+				<td th:text="${c.descCurso}" />
+				<td th:text="${c?.tipo}"/>
+				<td><a th:href="@{/alteraCurso(id=${c.id})}"><i class="material-icons">Alterar Curso</i> </a></td>
+				<td><a th:href="@{/exclueCurso(id=${c.id})}"> <i class="material-icons">Deletar</i> </a></td>
+				
+				
+				
+			</tr>
+
+		</tbody>
+
+
+	</table>
+	
+	
+</body>
+</html>

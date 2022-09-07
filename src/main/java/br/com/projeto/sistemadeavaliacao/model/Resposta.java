@@ -22,6 +22,4 @@ public class Resposta {
     private String ip;
     private String nomeMaquina;
     private String comentarioGeral;
-    @ManyToOne
-    private ItemResposta itemResposta;
 }

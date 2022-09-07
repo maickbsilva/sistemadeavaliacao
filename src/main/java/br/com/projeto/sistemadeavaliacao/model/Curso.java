@@ -14,8 +14,8 @@ public class Curso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String descCursos;
-	@ManyToOne
-	private TipoCurso tipo; 
+	private String descCurso;
+	private TipoCurso tipo;
+	 ; 
 	
 }
