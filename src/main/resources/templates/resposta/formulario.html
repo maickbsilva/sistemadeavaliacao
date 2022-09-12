@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Formulario</h1>
+
+    <form method="post" style="border:2" action="novoFormulario">
+
+		<input type="hidden" name="id"></input>
+		<input type="hidden" name="resposta_id"></input>
+		<input type="hidden" name="pergunta_id"></input>
+
+
+		<!--como pegar o ip da maquina-->
+
+		<!--como pegar o nome da maquina-->
+
+		<br>
+			<table border="2" style="padding: 5px;">
+				<tr>
+					<tr th:each="p:${perg}">
+						<td th:text="${p.id}"/>
+						<td>Nivel de importancia - 1 a 5 <input type="int" name="nivelImportancia"/> </td>
+						<td th:text="${p.textoPergunta}"/>
+						<td>Nivel de satisfacao - 1 a 5 <input type="int" name="satisfacao"/></td>
+						<td>Comentario <input type="text" name="comentario"/></td>
+					</tr>
+				</tr>
+			</table>	
+
+		<div>
+			Comentario Geral <input type="text" name="comentarioGeral"/>
+		</div>
+		<div>
+			<button type="submit">Cadastrar</button>
+		</div>
+	</form>
+
+</body>
+</html>

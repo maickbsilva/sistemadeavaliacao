@@ -17,8 +17,8 @@ public class ItemResposta {
     @ManyToOne
     private Resposta resposta;
     private String comentario;
-    private int nivelImportancia;
-    private int Satisfacao;
+    private String nivelImportancia;
+    private String satisfacao;
     @ManyToOne
     private Pergunta pergunta;
 

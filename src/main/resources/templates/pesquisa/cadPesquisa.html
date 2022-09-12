@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>Nova Pesquisa</h1>
+
+	<form method="post" style="border:2" action="novaPesquisa">
+
+		<input type="hidden" name="id"></input>
+
+		<div>
+			turma <input type="text" name="turma" />
+		</div>
+		<br>
+		<div>
+			<label>Curso</label>
+			<select name="curso.id">
+				<option th:each="c: ${cursos}" th:text="${c.descCursos}" th:value="${c.id}"></option>
+			</select>
+		</div>
+		<br>
+		<div>
+			<!--POSSIBILITAR SELEÇÃO DE MAIS DE UM DOCENTE -->
+			<label>Docente</label>
+			<select name="listaDocente">
+				<option th:each="d: ${docentes}" th:text="${d.nome}" th:value="${d.userID}"></option>
+			</select>
+		</div>
+
+		<br>
+		<div>
+			data vencimento <input type="date" name="dataVencimento" />
+		</div>
+		<br>
+		<!--<div>
+			<label>Respostas</label>
+			<select name="listaRespostas">
+				<option th:each="r: ${respostas}" th:text="${r.id}" th:value="${r.id}"></option>
+			</select>
+		</div>-->
+		<div>
+			<button type="submit">Cadastrar</button>
+		</div>
+	</form>
+
+</body>
+
+</html>
