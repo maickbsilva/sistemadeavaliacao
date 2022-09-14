@@ -8,17 +8,35 @@
 </head>
 <body>
     <h1>Formulario</h1>
+	<form action="/buscar">
+		<input type="search" name="id" placeholder="buscar por id">
+	</form>
+
+	<table class="striped">
+		<thead>
+			<th>Id</th>
+			<th>Curso</th>
+			<th>Turma</th>
+		</thead>
+
+		<tbody>
+			<tr th:each="ps:${pesq}">
+
+				<td th:text="${ps.id}"/>
+				<td th:text="${ps.curso}"/>
+				<td th:text="${ps.turma}"/>
+
+			</tr>
+
+		</tbody>
+	</table>
 
     <form method="post" style="border:2" action="novoFormulario">
 
 		<input type="hidden" name="id"></input>
 		<input type="hidden" name="resposta_id"></input>
-		<input type="hidden" name="pergunta_id"></input>
-
-
-		<!--como pegar o ip da maquina-->
-
-		<!--como pegar o nome da maquina-->
+		
+		<input type="number" name="pesquisa.id" placeholder="codigo da pesquisa"></input>
 
 		<br>
 			<table border="2" style="padding: 5px;">

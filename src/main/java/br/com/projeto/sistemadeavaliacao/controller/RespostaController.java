@@ -45,6 +45,8 @@ public class RespostaController {
     public String formulario(Model model, Pergunta pergunta) {
         model.addAttribute("perg", perguntaRepository.findAll());
         model.addAttribute("item", itemRespostaRepository.findAll());
+        model.addAttribute("pesq", pesquisaRepository.findAll());
+
         return "resposta/formulario";
     }
 
@@ -52,8 +54,7 @@ public class RespostaController {
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
     public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario, Model model, Pergunta pergunta,
             HttpServletRequest request) throws UnknownHostException {
-
-        model.addAttribute("perg", perguntaRepository.findAll());
+                
         List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.findAll();
         int numPerg = listaPerg.size();
         
@@ -66,7 +67,6 @@ public class RespostaController {
         InetAddress addr = InetAddress.getLocalHost();
         String hostname = addr.getHostName();
         resposta.setNomeMaquina(hostname);
-
         respostaRepository.save(resposta);
 
         String pegaNivel = nivelImportancia;
@@ -95,16 +95,11 @@ public class RespostaController {
             itemRespostaRepository.save(ir);
         }
 
-        // itemResposta.setPergunta(pergunta);
-
         return "redirect:formulario";
     }
 
-    /**
-     * @RequestMapping("listar")
-     * public String listaPergunta(Model model){
-     * model.addAttribute("perg", repository.findAll());
-     * return "pergunta/listaPergunta";
-     * }
-     */
+    // public String buscaPorRG(String rg, Model model) {
+	// 	model.addAttribute("visits", repository.findByRg(rg));
+	// 	return "listaVisitante";
+	// }
 }
