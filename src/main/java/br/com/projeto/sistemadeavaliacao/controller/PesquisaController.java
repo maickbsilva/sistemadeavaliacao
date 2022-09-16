@@ -51,7 +51,7 @@ public class PesquisaController {
 
     @RequestMapping("buscar")
     public String buscaPesquisa(Long id, Model model){
-        model.addAttribute("pesq", pesquisaRepository.findById(id));
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
         return "pesquisa/listaPesquisa";
     }
 }

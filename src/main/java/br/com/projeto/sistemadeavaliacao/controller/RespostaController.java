@@ -52,21 +52,27 @@ public class RespostaController {
 
     // insere um novo formulario preechido
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
-    public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario, Model model, Pergunta pergunta,
+    public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao,
+            String comentario, Model model, 
             HttpServletRequest request) throws UnknownHostException {
-                
+
+        // pega a lista de perguntas e seu tamanho
         List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.findAll();
         int numPerg = listaPerg.size();
-        
+
+        // pega a data atual e seta na variavel dataRealizacao
         Date now = new Date(System.currentTimeMillis());
         resposta.setDataRealizacao(now);
 
+        // pega o ip da maquina
         String ipDaMaquina = InetAddress.getLocalHost().getHostAddress();
         resposta.setIp(ipDaMaquina);
 
+        // pega o nome da maquina
         InetAddress addr = InetAddress.getLocalHost();
         String hostname = addr.getHostName();
         resposta.setNomeMaquina(hostname);
+
         respostaRepository.save(resposta);
 
         String pegaNivel = nivelImportancia;
@@ -78,7 +84,6 @@ public class RespostaController {
         String pegaSatis = satisfacao;
         String[] quebraSatis = pegaSatis.split(",");
 
-        
         for (int i = 0; i < numPerg; i++) {
             ItemResposta ir = new ItemResposta();
             ir.setResposta(resposta);
@@ -95,11 +100,19 @@ public class RespostaController {
             itemRespostaRepository.save(ir);
         }
 
-        return "redirect:formulario";
+        return "resposta/sucesso";
     }
 
-    // public String buscaPorRG(String rg, Model model) {
-	// 	model.addAttribute("visits", repository.findByRg(rg));
-	// 	return "listaVisitante";
-	// }
+    @RequestMapping("buscar")
+    public String buscaPesquisa(Long id, Model model) {
+        model.addAttribute("perg", perguntaRepository.findAll());
+        model.addAttribute("item", itemRespostaRepository.findAll());
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+        return "resposta/formulario";
+    }
+
+    @RequestMapping("codigoPesquisa")
+    public String codigoPesquisa() {
+        return "resposta/codigoPesquisa";
+    }
 }

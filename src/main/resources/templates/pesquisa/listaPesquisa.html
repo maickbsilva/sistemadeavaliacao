@@ -11,7 +11,7 @@
 
 	
 	<form action="/pesquisa/buscar">
-		<input type="search" name="id" placeholder="buscar por id">
+		<input type="number" name="id" placeholder="buscar por id">
 		<button type="submit">Buscar</button>
 	</form>
 
@@ -30,7 +30,7 @@
 		<tbody>
 			<tr th:each="ps:${pesq}">
 
-				<td th:text="${ps.id}"/>
+				<td th:text="${ps.id}"></td>
 				<td th:text="${ps.curso}"/>
 				<td th:text="${ps.turma}"/>
 				<td th:text="${ps.dataVencimento}"/>

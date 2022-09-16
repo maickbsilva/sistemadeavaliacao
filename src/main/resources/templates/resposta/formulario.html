@@ -7,25 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Formulario</h1>
-	<form action="/buscar">
-		<input type="search" name="id" placeholder="buscar por id">
-	</form>
-
+	<h1>FORMULARIO</h1>
 	<table class="striped">
 		<thead>
-			<th>Id</th>
+			<th>Código da pesquisa</th>
 			<th>Curso</th>
 			<th>Turma</th>
 		</thead>
 
 		<tbody>
-			<tr th:each="ps:${pesq}">
-
-				<td th:text="${ps.id}"/>
-				<td th:text="${ps.curso}"/>
-				<td th:text="${ps.turma}"/>
-
+			<tr>
+				<td th:text="${pesq.id}"/>
+				<td th:text="${pesq.curso.descCurso}"/>
+				<td th:text="${pesq.turma}"/>
 			</tr>
 
 		</tbody>
@@ -33,10 +27,7 @@
 
     <form method="post" style="border:2" action="novoFormulario">
 
-		<input type="hidden" name="id"></input>
-		<input type="hidden" name="resposta_id"></input>
-		
-		<input type="number" name="pesquisa.id" placeholder="codigo da pesquisa"></input>
+		<input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
 
 		<br>
 			<table border="2" style="padding: 5px;">
