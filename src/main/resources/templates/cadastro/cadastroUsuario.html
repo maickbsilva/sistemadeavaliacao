@@ -7,111 +7,10 @@
       href="../../static/css/cadastro-users/cad-users.css"
       rel="stylesheet"
     />
-    <title>Página de Cadastro</title>
-  </head>
-  <body>
-    <div class="header">
-      <div class="inner-header flex container">
-        <form action="save" method="post" class="cadForm col s12">
-          <h4>Cadastro de Usuários</h4>
-          <input type="hidden" name="userId" th:value="${users?.userId}" />
-
-          <input
-            type="text"
-            name="nome"
-            placeholder="Nome"
-            th:value="${users?.nome}"
-            class="validate"
-            required
-          />
-
-          <input
-            type="text"
-            name="nif"
-            placeholder="Nif"
-            th:value="${users?.nif}"
-            class="validate"
-            required
-          />
-
-          <input
-            type="password"
-            name="senha"
-            placeholder="Senha"
-            th:value="${users?.senha}"
-            class="validate"
-            required
-          />
-
-          <select name="tipo" id="" class="browser-default" required>
-            <option value="" disabled selected>Selecione uma Opção:</option>
-            <option
-              th:each="tipo : ${T(br.com.projeto.sistemadeavaliacao.model.TipoUsuario).values()}"
-              th:value="${tipo}"
-              th:text="${tipo}"
-              th:selected="${tipo.toString() == r?.tipo?.toString()}"
-            ></option>
-          </select>
-
-          <div class="btnCad">
-            <button>
-              <b>CADASTRAR</b>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!--Início das ondas-->
-
-      <div>
-        <svg
-          class="waves"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="0 24 150 28"
-          preserveAspectRatio="none"
-          shape-rendering="auto"
-        >
-          <defs>
-            <path
-              id="gentle-wave"
-              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-            />
-          </defs>
-          <g class="parallax">
-            <use
-              xlink:href="#gentle-wave"
-              x="48"
-              y="0"
-              fill="rgba(156,94,144,0.46)"
-            />
-            <use
-              xlink:href="#gentle-wave"
-              x="48"
-              y="3"
-              fill="rgba(150,70,144,0.46)"
-            />
-            <use
-              xlink:href="#gentle-wave"
-              x="48"
-              y="5"
-              fill="rgba(134,44,144,0.46)"
-            />
-            <use xlink:href="#gentle-wave" x="48" y="7" fill="#651890" />
-          </g>
-        </svg>
-      </div>
-    </div>
-  </body>
-</html>
-<html xmlns:th="http://thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compiled and minified CSS -->
     <link
-      href="../../static/css/cadastro-users/cad-users.css"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <title>Página de Cadastro</title>
   </head>
@@ -208,5 +107,9 @@
         </svg>
       </div>
     </div>
+	
+    <!-- JavaScript Bundle with Popper -->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
