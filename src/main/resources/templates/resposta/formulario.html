@@ -7,18 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Formulario</h1>
+	<h1>FORMULARIO</h1>
+	<table class="striped">
+		<thead>
+			<th>Código da pesquisa</th>
+			<th>Curso</th>
+			<th>Turma</th>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td th:text="${pesq.id}"/>
+				<td th:text="${pesq.curso.descCurso}"/>
+				<td th:text="${pesq.turma}"/>
+			</tr>
+
+		</tbody>
+	</table>
 
     <form method="post" style="border:2" action="novoFormulario">
 
-		<input type="hidden" name="id"></input>
-		<input type="hidden" name="resposta_id"></input>
-		<input type="hidden" name="pergunta_id"></input>
-
-
-		<!--como pegar o ip da maquina-->
-
-		<!--como pegar o nome da maquina-->
+		<input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
 
 		<br>
 			<table border="2" style="padding: 5px;">
