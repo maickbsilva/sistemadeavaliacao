@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
+import br.com.projeto.sistemadeavaliacao.annotation.DocenteAnnotation;
+import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -22,7 +25,10 @@ public class ItemRespostaController {
 
     @Autowired
     private RespostaRepository respostaRepository;
-
+    
+    @DiretorAnnotation
+    @DocenteAnnotation
+    @SecretariaAnnotation
     @RequestMapping("cadastrar")
     public String cadItem(){
         return "itemresposta/cadItem";

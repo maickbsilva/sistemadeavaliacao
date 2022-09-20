@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
@@ -41,6 +42,7 @@ public class RespostaController {
     private PerguntaRepository perguntaRepository;
 
     // convoca o formulario
+    @PublicoAnnotation
     @RequestMapping("formulario")
     public String formulario(Model model, Pergunta pergunta) {
         model.addAttribute("perg", perguntaRepository.findAll());
@@ -49,6 +51,7 @@ public class RespostaController {
     }
 
     // insere um novo formulario preechido
+    @PublicoAnnotation
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
     public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario, Model model, Pergunta pergunta,
             HttpServletRequest request) throws UnknownHostException {
@@ -101,6 +104,7 @@ public class RespostaController {
     }
 
     /**
+     * @PublicoAnnotation
      * @RequestMapping("listar")
      * public String listaPergunta(Model model){
      * model.addAttribute("perg", repository.findAll());

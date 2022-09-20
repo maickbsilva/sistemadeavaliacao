@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
+import br.com.projeto.sistemadeavaliacao.annotation.DocenteAnnotation;
+import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.Curso;
 import br.com.projeto.sistemadeavaliacao.model.TipoCurso;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
@@ -26,7 +29,8 @@ public class CursoController {
 	@Autowired
 	private CursoRepository cursoRepository;
 
-	
+	@SecretariaAnnotation
+	@DiretorAnnotation
 	@RequestMapping(value = "curso", method = RequestMethod.GET)
 	private String formCurso(Model model) {	
 		
@@ -35,6 +39,8 @@ public class CursoController {
 	}
 	
 	//salvar 
+	@SecretariaAnnotation
+	@DiretorAnnotation
 	@RequestMapping(value = "salvarCurso", method = RequestMethod.POST)
 	 public String salvar(Curso cs) {
 		 cursoRepository.save(cs);
@@ -42,6 +48,8 @@ public class CursoController {
 	 }
 	
 	//Listar tipo de curso ;
+	@SecretariaAnnotation
+	@DiretorAnnotation
 	@RequestMapping("listaCurso/{page}")
 	public String list (Model model, @PathVariable("page")int page) {
 		
@@ -67,6 +75,8 @@ public class CursoController {
 	}
 	
 	//--alterando--//
+	@SecretariaAnnotation
+	@DiretorAnnotation
 	@RequestMapping("alteraCurso")
 	public String alterare(Long id, Model model) {
 		Curso curso = cursoRepository.findById(id).get();
@@ -75,6 +85,8 @@ public class CursoController {
 	}
 	
 	//--exluindo--//
+	@SecretariaAnnotation
+	@DiretorAnnotation
 	@RequestMapping("exclueCurso")
 	public String excluir(Long id) {
 		// excluir a reserva pelo ID
@@ -88,6 +100,8 @@ public class CursoController {
 	}
 	//--Buscando--//
 	//verificar não funciona
+	@SecretariaAnnotation
+	@DiretorAnnotation
 	@RequestMapping(value = "buscarCurso", method = RequestMethod.GET)
 	public String buscar(String buscar, Model model) {
 		model.addAttribute("curso", cursoRepository.buscarCurso(buscar));
