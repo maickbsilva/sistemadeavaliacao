@@ -1,4 +1,4 @@
- package br.com.projeto.sistemadeavaliacao.controller;
+package br.com.projeto.sistemadeavaliacao.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.RespostaRepository;
+import br.com.projeto.sistemadeavaliacao.repository.UsuarioRepository;
 
 @Controller
 
@@ -30,12 +31,17 @@ public class PesquisaController {
     @Autowired
     private RespostaRepository respostaRepository;
 
-    @SecretariaAnnotation
-    @DiretorAnnotation
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+	@SecretariaAnnotation
+	@DiretorAnnotation
     @RequestMapping("cadastrar")
     public String cadPesquisa(Model model){
         model.addAttribute("cursos", cursoRepository.findAll());
         model.addAttribute("respostas", respostaRepository.findAll());
+        model.addAttribute("usuario", usuarioRepository.findAll());
         return "pesquisa/cadPesquisa";
     }
     @SecretariaAnnotation
@@ -50,6 +56,12 @@ public class PesquisaController {
     @RequestMapping("listar")
     public String listaPesquisa(Model model){
         model.addAttribute("pesq", pesquisaRepository.findAll());
+        return "pesquisa/listaPesquisa";
+    }
+
+    @RequestMapping("buscar")
+    public String buscaPesquisa(Long id, Model model){
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
         return "pesquisa/listaPesquisa";
     }
 }

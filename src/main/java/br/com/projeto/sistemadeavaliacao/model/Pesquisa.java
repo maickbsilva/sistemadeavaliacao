@@ -25,7 +25,7 @@ public class Pesquisa {
     @ManyToOne
     private Curso curso;
     private String turma;
-
+    //enum do periodo
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(columnDefinition = "DATE")
     private Date dataVencimento;
