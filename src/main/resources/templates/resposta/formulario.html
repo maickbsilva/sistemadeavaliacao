@@ -36,16 +36,16 @@
 				<tr>
 					<tr th:each="p:${perg}">
 						<td th:text="${p.id}"/>
-						<td>Nivel de importancia - 1 a 5 <input type="int" name="nivelImportancia"/> </td>
+						<td>Nivel de importancia - 1 a 5 <input type="int" name="nivelImportancia"/ required> </td>
 						<td th:text="${p.textoPergunta}"/>
-						<td>Nivel de satisfacao - 1 a 5 <input type="int" name="satisfacao"/></td>
+						<td>Nivel de satisfacao - 1 a 5 <input type="int" name="satisfacao" required/></td>
 						<td>Comentario <input type="text" name="comentario"/></td>
 					</tr>
 				</tr>
 			</table>	
 
 		<div>
-			Comentario Geral <input type="text" name="comentarioGeral"/>
+			Comentario Geral <input type="text" name="comentarioGeral" required/>
 		</div>
 		<div>
 			<button type="submit">Cadastrar</button>

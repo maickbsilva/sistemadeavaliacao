@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.RespostaRepository;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/resposta")
 public class RespostaRestController {
 	
 	@Autowired
@@ -35,4 +37,5 @@ public class RespostaRestController {
 		}
 		
 	}
+
 }

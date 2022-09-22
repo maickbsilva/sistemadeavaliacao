@@ -12,17 +12,17 @@
 		<form action="save" method="post">
 			<input type="hidden" name="userId" th:value="${users?.userId}" />
 			<div class="user-box">
-				<input type="text" name="nome" th:value="${users?.nome}"> <label>Nome</label>
+				<input type="text" name="nome" th:value="${users?.nome}" required> <label>Nome</label>
 			</div>
 			<div class="user-box">
-				<input type="text" name="nif" th:value="${users?.nif}"> <label>NIF</label>
+				<input type="text" name="nif" th:value="${users?.nif}" required> <label>NIF</label>
 			</div>
 			<div class="user-box">
-				<input type="password" name="senha" th:value="${users?.senha}">
+				<input type="password" name="senha" th:value="${users?.senha}" required>
 				<label>Senha</label>
 			</div>
 			<div class="user-box">
-                    <select name="tipo" id="cars">
+                    <select name="tipo" required>
                         <option value="" disabled selected>Tipo de Hierarquia:</option>
                         <option th:each="tipo : ${T(br.com.projeto.sistemadeavaliacao.model.TipoUsuario).values()}"
                         th:value="${tipo}"
