@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
+import br.com.projeto.sistemadeavaliacao.annotation.DocenteAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.TipoUsuario;
@@ -39,9 +40,6 @@ public class UsuarioController {
 		return "cadastro/cadastroUsuario";
 	}
 
-	/*
-	 * Salvar Usuarios
-	 */
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("save")
@@ -54,7 +52,6 @@ public class UsuarioController {
 
 		}
 
-		// verificando a senha
 		if (usuario.getSenha().equals(HashUtil.hash(""))) {
 
 			String hash = repository.findById(usuario.getUserId()).get().getSenha();
@@ -73,31 +70,24 @@ public class UsuarioController {
 		return "redirect:cadastro";
 	}
 
-	/*
-	 * Listagem dos Cadastros
-	 */
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("lista/{page}")
 	public String lista(Model model, @PathVariable("page") int page) {
-		// criar uma pageble para informar os parametros da pagina
+
 		PageRequest pageble = PageRequest.of(page - 1, 6, Sort.by(Sort.Direction.ASC, "nome"));
-		// criando lista
 
 		Page<Usuario> pagina = repository.findAll(pageble);
-		// add a model a lista
 
 		model.addAttribute("usuario", pagina.getContent());
-		// gerar total de paginas
+
 		int totalPaginas = pagina.getTotalPages();
-		// vetor para lista
+
 		List<Integer> numPaginas = new ArrayList<Integer>();
-		// prenchendo as lista
 
 		for (int i = 1; i <= totalPaginas; i++) {
 			numPaginas.add(i);
 		}
-		// fazendo a model para valores serem add
 
 		model.addAttribute("numPagina", numPaginas);
 		model.addAttribute("totalPages", totalPaginas);
@@ -107,9 +97,6 @@ public class UsuarioController {
 
 	}
 
-	/*
-	 * Alterar Usuarios
-	 */
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("alterar")
@@ -119,9 +106,6 @@ public class UsuarioController {
 		return "forward:cadastro";
 	}
 
-	/*
-	 * Excluir Usuario
-	 */
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("excluir")
@@ -131,57 +115,59 @@ public class UsuarioController {
 		return "redirect:lista/1";
 	}
 
-	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("telaInicialDiretor")
 	public String telaInicialDiretor() {
 		return "telainicial/telaInicialDiretor";
 	}
 
-	@SecretariaAnnotation
-	@DiretorAnnotation
+	@DocenteAnnotation
 	@RequestMapping("telaInicialDocencia")
 	public String telaInicialDocencia() {
 		return "telainicial/telaInicialDocencia";
 	}
 
 	@SecretariaAnnotation
-	@DiretorAnnotation
 	@RequestMapping("telaInicialSecretaria")
 	public String telaInicialSecretaria() {
 		return "telainicial/telaInicialSecretaria";
 	}
 
+	@PublicoAnnotation
+	@RequestMapping("login")
+	public String login(Usuario admLogin, RedirectAttributes attr, HttpSession session) {
+
+		Usuario user = repository.findByNifAndSenha(admLogin.getNif(), admLogin.getSenha());
+
+			if (user.getTipo() != null && user.getTipo() == TipoUsuario.DIRETOR) {
+				session.setAttribute("usuarioLogado", user);
+				session.setAttribute("nivel", user.getTipo());
+				return "redirect:/telaInicialDiretor";
+
+			} else if (user.getTipo() != null && user.getTipo() == TipoUsuario.SECRETARIA) {
+				session.setAttribute("usuarioLogado", user);
+				session.setAttribute("nivel", user.getTipo());
+				return "redirect:/telaInicialSecretaria";
+			}else if (user.getTipo() != null && user.getTipo() == TipoUsuario.DOCENCIA){
+				session.setAttribute("usuarioLogado", user);
+				session.setAttribute("nivel", user.getTipo());
+				return "redirect:/telaInicialDocencia";
+			}
+		
+		return "login/login";
+
+	}
+
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "login/login";
+
+	}
 	
-	  //Login
-	  @PublicoAnnotation
-	  @RequestMapping("login") public String login(Usuario admLogin,
-	 RedirectAttributes attr, HttpSession session) { // buscar o adm no banco
-	  System.out.println(admLogin.getNif());
-	  System.out.println(admLogin.getSenha());
-	  
-	  Usuario user = repository.findByNifAndSenha(admLogin.getNif(), admLogin.getSenha()); 
-	  //verificar se existe 
-	  if (user == null){
-	  System.out.println("usuario não existe");
-	  attr.addFlashAttribute("mensagemErro", "Login ou Senha invalida(s)"); 
-	  return "login/login";
-	  
-	  } else { System.out.println("usuario existe"); // salva o adm na sessão
-	  session.setAttribute("usuarioLogado", user);
-	  
-	  return "redirect:/lista/1"; }
-	  
+	@RequestMapping("/")
+	public String acesso() {
+		return "login/login";
 	}
-	  @RequestMapping("logout") 
-	  
-	  public String logout(HttpSession session) {
-	  //invalida a sessão 
-		  session.invalidate(); 
-	  // voltar a pagina inicial redirect pagina inical 
-	  return "login/login";
-	  
-	  }
-	  
-	  
-	}
+
+}

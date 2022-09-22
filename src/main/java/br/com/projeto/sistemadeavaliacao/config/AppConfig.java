@@ -17,18 +17,18 @@ import br.com.projeto.sistemadeavaliacao.interceptor.AppInterceptor;
 import org.springframework.orm.jpa.vendor.Database;
 
 @Configuration
-public class AppConfig implements WebMvcConfigurer{
-	
-	@Autowired
+public class AppConfig implements WebMvcConfigurer {
+
+	/*@Autowired
 	private AppInterceptor interceptor;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		// adiciona o interceptor na aplicacao
 		registry.addInterceptor(interceptor);
-	}
+		
+	}*/
 
-    @Bean
+	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
@@ -45,7 +45,7 @@ public class AppConfig implements WebMvcConfigurer{
 		adapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
 		adapter.setPrepareConnection(true);
 		adapter.setGenerateDdl(true);
-		adapter.setShowSql(true); // para aparecer no console tudo que acontece no banco
+		adapter.setShowSql(true);
 		return adapter;
 	}
 
@@ -53,5 +53,5 @@ public class AppConfig implements WebMvcConfigurer{
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**");
 	}
-    
+
 }

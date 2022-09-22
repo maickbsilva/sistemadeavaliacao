@@ -15,47 +15,47 @@ import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
 
 @RequestMapping("pergunta/")
 public class PerguntaController {
-    
-    @Autowired
-    private PerguntaRepository repository;
 
-    @SecretariaAnnotation
-    @DiretorAnnotation
-    @RequestMapping("cadastrar")
-    public String cadPergunta(){
-        return "pergunta/cadPergunta";
-    }
-    
-    @SecretariaAnnotation
-    @DiretorAnnotation
-    @RequestMapping(value = "novaPergunta", method = RequestMethod.POST)
-    public String novaPergunta(Pergunta pergunta){
-        repository.save(pergunta);
-        return "redirect:cadastrar";
-    }
+	@Autowired
+	private PerguntaRepository repository;
 
-    @SecretariaAnnotation
-    @DiretorAnnotation
-    @RequestMapping("listar")
-    public String listaPergunta(Model model){
-        model.addAttribute("perg", repository.findAll());
-        return "pergunta/listaPergunta";
-    }
+	@SecretariaAnnotation
+	@DiretorAnnotation
+	@RequestMapping("cadastrar")
+	public String cadPergunta() {
+		return "pergunta/cadPergunta";
+	}
 
-    @SecretariaAnnotation
-    @DiretorAnnotation
-    @RequestMapping("excluir")
-    public String excluir(Long id){
-        repository.deleteById(id);
-        return "redirect:listar";
-    }
+	@SecretariaAnnotation
+	@DiretorAnnotation
+	@RequestMapping(value = "novaPergunta", method = RequestMethod.POST)
+	public String novaPergunta(Pergunta pergunta) {
+		repository.save(pergunta);
+		return "redirect:cadastrar";
+	}
 
-    @SecretariaAnnotation
-    @DiretorAnnotation
-    @RequestMapping("alterar")
-    public String alterar(Long id, Model model){
-        Pergunta perg = repository.findById(id).get();
-        model.addAttribute("p", perg);
-        return "forward:cadastrar";
-    }
+	@SecretariaAnnotation
+	@DiretorAnnotation
+	@RequestMapping("listar")
+	public String listaPergunta(Model model) {
+		model.addAttribute("perg", repository.findAll());
+		return "pergunta/listaPergunta";
+	}
+
+	@SecretariaAnnotation
+	@DiretorAnnotation
+	@RequestMapping("excluir")
+	public String excluir(Long id) {
+		repository.deleteById(id);
+		return "redirect:listar";
+	}
+
+	@SecretariaAnnotation
+	@DiretorAnnotation
+	@RequestMapping("alterar")
+	public String alterar(Long id, Model model) {
+		Pergunta perg = repository.findById(id).get();
+		model.addAttribute("p", perg);
+		return "forward:cadastrar";
+	}
 }

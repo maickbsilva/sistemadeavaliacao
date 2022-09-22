@@ -17,21 +17,15 @@ import br.com.projeto.sistemadeavaliacao.model.TipoUsuario;
 
 @Component
 public class AppInterceptor implements HandlerInterceptor {
-	
-	
-@Override
+
+	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		// TODO Auto-generated method stub
-		
-		// variavel para obter a URI
+
 		String uri = request.getRequestURI();
 
-		// variavel para a sessao
 		HttpSession session = request.getSession();
-		/*HttpSession sessionDi = request.getSession();
-		HttpSession sessionD = request.getSession();*/
-		
+
 		if (uri.startsWith("/error")) {
 			System.out.println("URI");
 			return true;
@@ -39,59 +33,55 @@ public class AppInterceptor implements HandlerInterceptor {
 
 		if (handler instanceof HandlerMethod) {
 			HandlerMethod metodo = (HandlerMethod) handler;
-			System.out.println("Passou aqui 1 !");	
 			if (uri.startsWith("/")) {
-				System.out.println("Passou aqui 2 !");
-				System.out.println("Session 	" + session.getAttribute("nivel"));
-				
-			if (metodo.getMethodAnnotation(SecretariaAnnotation.class) != null){
-				System.out.println("Passou aqui 3 !");
-				if (session.getAttribute("nivel") == TipoUsuario.SECRETARIA) {
-					System.out.println("Passou aqui SECRETARIA if else !");
-					return true;
-				}
-				
-				if (TipoUsuario.SECRETARIA == null) {
-					response.sendError(HttpStatus.UNAUTHORIZED.value());
-				} else {
-					response.sendError(HttpStatus.FORBIDDEN.value());
-				}
-				return false;
-		
-			} else if (metodo.getMethodAnnotation(DocenteAnnotation.class) != null) {
-				System.out.println("Passou aqui 5 !");
-				if (session.getAttribute("nivel") == TipoUsuario.DOCENCIA) {
-					System.out.println("Passou aqui Docente if else !");
-					return true;
-				}
-				
-				if (TipoUsuario.DOCENCIA == null) {
-					response.sendError(HttpStatus.UNAUTHORIZED.value());
-				} else {
-					response.sendError(HttpStatus.FORBIDDEN.value());
-				}
-				return false;
 
-			} else if (metodo.getMethodAnnotation(DiretorAnnotation.class) != null) {
-				System.out.println("Passou aqui 5 !");
-				if (session.getAttribute("nivel") == TipoUsuario.DIRETOR) {
-					System.out.println("Passou aqui Diretor if else !");
-					return true;
-				}
-				
-				if (TipoUsuario.DIRETOR == null) {
-					response.sendError(HttpStatus.UNAUTHORIZED.value());
-				} else {
-					response.sendError(HttpStatus.FORBIDDEN.value());
-				}
-				return false;
+				if (metodo.getMethodAnnotation(SecretariaAnnotation.class) != null) {
 
-			}
-			
-			return true;
+					if (session.getAttribute("nivel") == TipoUsuario.SECRETARIA) {
+
+						return true;
+					}
+
+					if (TipoUsuario.SECRETARIA == null) {
+						response.sendError(HttpStatus.UNAUTHORIZED.value());
+					} else {
+						response.sendError(HttpStatus.FORBIDDEN.value());
+					}
+					return false;
+
+				} else if (metodo.getMethodAnnotation(DocenteAnnotation.class) != null) {
+
+					if (session.getAttribute("nivel") == TipoUsuario.DOCENCIA) {
+
+						return true;
+					}
+
+					if (TipoUsuario.DOCENCIA == null) {
+						response.sendError(HttpStatus.UNAUTHORIZED.value());
+					} else {
+						response.sendError(HttpStatus.FORBIDDEN.value());
+					}
+					return false;
+
+				} else if (metodo.getMethodAnnotation(DiretorAnnotation.class) != null) {
+
+					if (session.getAttribute("nivel") == TipoUsuario.DIRETOR) {
+
+						return true;
+					}
+
+					if (TipoUsuario.DIRETOR == null) {
+						response.sendError(HttpStatus.UNAUTHORIZED.value());
+					} else {
+						response.sendError(HttpStatus.FORBIDDEN.value());
+					}
+					return false;
+
+				}
+
+				return true;
 
 			} else {
-				System.out.println("Passou aqui !");
 
 				if (metodo.getMethodAnnotation(PublicoAnnotation.class) != null) {
 					return true;
@@ -109,4 +99,3 @@ public class AppInterceptor implements HandlerInterceptor {
 
 	}
 }
-				

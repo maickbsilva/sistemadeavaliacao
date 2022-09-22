@@ -14,67 +14,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
-import br.com.projeto.sistemadeavaliacao.annotation.DocenteAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.Curso;
-import br.com.projeto.sistemadeavaliacao.model.TipoCurso;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
-
-
-
 
 @Controller
 public class CursoController {
-	
+
 	@Autowired
 	private CursoRepository cursoRepository;
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "curso", method = RequestMethod.GET)
-	private String formCurso(Model model) {	
-		
+	private String formCurso(Model model) {
+
 		model.addAttribute("cursoR", cursoRepository.findAll());
 		return "curso/curso";
 	}
-	
-	//salvar 
+
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "salvarCurso", method = RequestMethod.POST)
-	 public String salvar(Curso cs) {
-		 cursoRepository.save(cs);
-		 return "redirect:curso";
-	 }
-	
-	//Listar tipo de curso ;
+	public String salvar(Curso cs) {
+		cursoRepository.save(cs);
+		return "redirect:curso";
+	}
+
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("listaCurso/{page}")
-	public String list (Model model, @PathVariable("page")int page) {
-		
-		//criando uma pageble
-		
-		PageRequest pageble = PageRequest.of(page-1,10, Sort.by(Sort.Direction.ASC,"descCurso"));
-		
+	public String list(Model model, @PathVariable("page") int page) {
+
+		PageRequest pageble = PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.ASC, "descCurso"));
+
 		Page<Curso> pagina = cursoRepository.findAll(pageble);
 		model.addAttribute("cursoC", pagina.getContent());
 		int totalPaginas = pagina.getTotalPages();
-		//vetor da lista 
+
 		List<Integer> numPaginas = new ArrayList<Integer>();
-		
-		//prechendo a lista 
-		
-		for (int i = 1 ; i <= totalPaginas; i++) {
+
+		for (int i = 1; i <= totalPaginas; i++) {
 			numPaginas.add(i);
 		}
-		model.addAttribute("numPagina",numPaginas);
-		model.addAttribute("totalPages",totalPaginas);
-		model.addAttribute("pagAtual",page);
+		model.addAttribute("numPagina", numPaginas);
+		model.addAttribute("totalPages", totalPaginas);
+		model.addAttribute("pagAtual", page);
 		return "curso/listaCurso";
 	}
-	
-	//--alterando--//
+
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("alteraCurso")
@@ -83,23 +71,18 @@ public class CursoController {
 		model.addAttribute("cs", curso);
 		return "forward:curso";
 	}
-	
-	//--exluindo--//
+
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("exclueCurso")
 	public String excluir(Long id) {
-		// excluir a reserva pelo ID
-		Curso  curso = cursoRepository.findById(id).get();
-		cursoRepository.delete(curso);
-		
 
-		
-		
+		Curso curso = cursoRepository.findById(id).get();
+		cursoRepository.delete(curso);
+
 		return "redirect:listaCurso/1";
 	}
-	//--Buscando--//
-	//verificar não funciona
+
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "buscarCurso", method = RequestMethod.GET)
@@ -108,7 +91,5 @@ public class CursoController {
 
 		return "curso/listaBuscarCurso";
 	}
-	//
-	
-	
+
 }
