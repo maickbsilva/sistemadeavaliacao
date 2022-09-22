@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
+import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -75,15 +76,17 @@ public class RespostaController {
 
 		String pegaSatis = satisfacao;
 		String[] quebraSatis = pegaSatis.split(",");
+                
 
-		for (int i = 0; i < numPerg; i++) {
-			ItemResposta ir = new ItemResposta();
-			ir.setResposta(resposta);
-			ir.setPergunta(listaPerg.get(i));
-
-			String nivel = quebraNivel[i];
-			String coment = quebraComent[i];
-			String satisf = quebraSatis[i];
+        for (int i = 0; i < numPerg; i++) {
+            ItemResposta ir = new ItemResposta();
+            ir.setPesquisa(resposta.getPesquisa());
+            ir.setResposta(resposta);
+            ir.setPergunta(listaPerg.get(i));
+            
+            String nivel = quebraNivel[i];
+            String coment = quebraComent[i];
+            String satisf = quebraSatis[i];
 
 			ir.setNivelImportancia(nivel);
 			ir.setComentario(coment);

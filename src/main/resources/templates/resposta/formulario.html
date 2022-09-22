@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,6 +28,8 @@
     <form method="post" style="border:2" action="novoFormulario">
 
 		<input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
+				
+		
 
 		<br>
 			<table border="2" style="padding: 5px;">

@@ -10,6 +10,8 @@ import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
+import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
+import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.RespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.UsuarioRepository;
@@ -25,11 +27,18 @@ public class PesquisaController {
 	@Autowired
 	private CursoRepository cursoRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private ItemRespostaRepository itemRepository;
+    
+    @Autowired
+    private PerguntaRepository perguntaRepository;
+    
 	@Autowired
 	private RespostaRepository respostaRepository;
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
@@ -41,9 +50,28 @@ public class PesquisaController {
 		return "pesquisa/cadPesquisa";
 	}
 
+    @RequestMapping("buscar")
+    public String buscaPesquisa(Long id, Model model){
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+        return "pesquisa/listaPesquisa";
+    }
+    
+    @RequestMapping("listarResposta")
+    public String listarRespota(Long id, Model model) {
+    	System.out.println("Pegue o Pombo"+id);
+    	model.addAttribute("pesq",pesquisaRepository.findById(id).get());
+    	model.addAttribute("perg", perguntaRepository.findAll());
+    	model.addAttribute("item", itemRepository.findAll());
+    	model.addAttribute("resposta",respostaRepository.findAll());
+    	
+    	
+		return "pesquisa/listaResposta";
+    	
+    }
+    
 	@SecretariaAnnotation
 	@DiretorAnnotation
-	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
+	@RequestMapping(value="novaPesquisa", method = RequestMethod.POST)
 	public String novaPesquisa(Pesquisa pesquisa) {
 		pesquisaRepository.save(pesquisa);
 		return "redirect:cadastrar";
@@ -57,9 +85,4 @@ public class PesquisaController {
 		return "pesquisa/listaPesquisa";
 	}
 
-	@RequestMapping("buscar")
-	public String buscaPesquisa(Long id, Model model) {
-		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-		return "pesquisa/listaPesquisa";
-	}
 }
