@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
+import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
+import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.RespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.UsuarioRepository;
@@ -29,6 +31,13 @@ public class PesquisaController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private ItemRespostaRepository itemRepository;
+    
+    @Autowired
+    private PerguntaRepository perguntaRepository;
+    
 
     @RequestMapping("cadastrar")
     public String cadPesquisa(Model model){
@@ -54,4 +63,22 @@ public class PesquisaController {
         model.addAttribute("pesq", pesquisaRepository.findById(id).get());
         return "pesquisa/listaPesquisa";
     }
+    
+    @RequestMapping("listarResposta")
+    public String listarRespota(Long id, Model model) {
+    	System.out.println("Pegue o Pombo"+id);
+    	model.addAttribute("pesq",pesquisaRepository.findById(id).get());
+    	model.addAttribute("perg", perguntaRepository.findAll());
+    	model.addAttribute("item", itemRepository.findAll());
+    	model.addAttribute("resposta",respostaRepository.findAll());
+    	
+    	
+		return "pesquisa/listaResposta";
+    	
+    	
+		
+    	
+    	
+    }
+    
 }

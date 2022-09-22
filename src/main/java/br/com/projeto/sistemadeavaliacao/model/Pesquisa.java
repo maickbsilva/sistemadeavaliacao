@@ -32,6 +32,11 @@ public class Pesquisa {
     
     @OneToMany(mappedBy = "pesquisa")
     private List<Resposta> listaResposta;
+    
+    //lista de ITEMs
+    @OneToMany(mappedBy = "pesquisa")
+    private List<ItemResposta> listaItem;
+    
     private boolean justificativa;
     
     

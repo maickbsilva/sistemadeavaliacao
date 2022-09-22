@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
+import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -49,7 +50,7 @@ public class RespostaController {
 
     // insere um novo formulario preechido
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
-    public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao,
+    public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, 
             String comentario, Model model, 
             HttpServletRequest request) throws UnknownHostException {
 
@@ -80,12 +81,14 @@ public class RespostaController {
 
         String pegaSatis = satisfacao;
         String[] quebraSatis = pegaSatis.split(",");
+                
 
         for (int i = 0; i < numPerg; i++) {
             ItemResposta ir = new ItemResposta();
+            ir.setPesquisa(resposta.getPesquisa());
             ir.setResposta(resposta);
             ir.setPergunta(listaPerg.get(i));
-
+            
             String nivel = quebraNivel[i];
             String coment = quebraComent[i];
             String satisf = quebraSatis[i];
