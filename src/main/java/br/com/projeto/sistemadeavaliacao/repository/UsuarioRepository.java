@@ -1,10 +1,6 @@
 package br.com.projeto.sistemadeavaliacao.repository;
 
-import java.util.List;
-
-import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.projeto.sistemadeavaliacao.model.Usuario;

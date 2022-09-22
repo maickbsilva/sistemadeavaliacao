@@ -1,16 +1,8 @@
 package br.com.projeto.sistemadeavaliacao.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import lombok.Data;
-
-
 public enum TipoCurso {
 
-	FIC("Fic"), CURSO_REGUlARES("Curso_Regulares");
+	FIC("Fic"), CURSO_REGULARES("Curso_Regulares");
 	
 	String TipoCr;
 	TipoCurso(String string){

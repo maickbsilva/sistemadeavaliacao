@@ -16,12 +16,12 @@
 		<input type="hidden" name="id"></input>
 
 		<div>
-			turma <input type="text" name="turma" placeholder="exemplo: Dev Noite 1200hs periodo: Noturno"/>
+			turma <input type="text" name="turma" placeholder="exemplo: Dev Noite 1200hs periodo: Noturno" required/>
 		</div>
 		<br>
 		<div>
 			<label>Curso</label>
-			<select name="curso.id">
+			<select name="curso.id" required>
 				<option th:each="c: ${cursos}" th:text="${c.descCurso}" th:value="${c.id}"></option>
 			</select>
 		</div>
@@ -29,14 +29,14 @@
 		<div>
 			<!--POSSIBILITAR SELEÇÃO DE MAIS DE UM DOCENTE -->
 			<label>Docente</label>
-			<select name="usuario.id">
+			<select name="usuario.id" required>
 				<option th:each="u:${usuario}" th:text="${u.nome}" th:value="${u.userId}"></option>
 			</select>
 		</div>
 
 		<br>
 		<div>
-			data vencimento <input type="date" name="dataVencimento" />
+			data vencimento <input type="date" name="dataVencimento" required/>
 		</div>
 		<br>
 		<!--<div>
