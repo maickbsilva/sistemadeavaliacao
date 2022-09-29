@@ -17,14 +17,7 @@
 			pergunta <input type="text" name="textoPergunta" th:value="${p?.textoPergunta}" required/>
 		</div>
 		<br>
-		<!-- <div>
-			<label>
-				<input type="checkbox" name="pesquisa.id">
-				<span>Pesquisa</span>
-			</label>
-		</div>		 -->
-
-		<select name="idpesquisa" required>
+		<select name="idpesquisa" required multiple>
 			<option th:each="p:${pesq}" th:text="${p.turma}" th:value="${p.id}"></option>
 		</select>
 		<div>

@@ -38,16 +38,25 @@ public class PerguntaController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "novaPergunta", method = RequestMethod.POST)
-	public String novaPergunta(Pergunta pergunta, Long idpesquisa) {
+	public String novaPergunta(Pergunta pergunta, String idpesquisa) {
 
 		List<Pesquisa> listaPesquisa = new ArrayList<>();
 
-		Pesquisa pesq = new Pesquisa();
+		//pega cada posicao do idpesquisa
+		String[] quebraIdPesquisa = idpesquisa.split(",");
 
-		pesq.setId(idpesquisa);
-
-		listaPesquisa.add(pesq);
-
+		//enquanto for menor do que o tamanho do array quebraIdPesquisa
+		for (int i = 0; i < quebraIdPesquisa.length; i++) {
+			//nova pesquisa
+			Pesquisa pesq = new Pesquisa();
+			//pega a posicao da quebraIdPesquisa
+			String posicaoPesq = quebraIdPesquisa[i];
+			//insere a posicao no id da nova pesquisa
+			pesq.setId(Long.parseLong(posicaoPesq));
+			//insere a pesquisa na listaPesquisa
+			listaPesquisa.add(pesq);
+		}
+		//associa cada pergunta com a lista de pesquisas
 		pergunta.setListaPesquisa(listaPesquisa);
 		
 		repository.save(pergunta);
