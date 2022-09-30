@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,53 +38,50 @@ public class RespostaController {
 	private PerguntaRepository perguntaRepository;
 
 	@PublicoAnnotation
-	@RequestMapping("formulario")
-	public String formulario(Model model, Pergunta pergunta) {
-		model.addAttribute("perg", perguntaRepository.findAll());
-		model.addAttribute("item", itemRespostaRepository.findAll());
-		model.addAttribute("pesq", pesquisaRepository.findAll());
-		return "resposta/formulario";
-	}
-
-	@PublicoAnnotation
 	@RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
 	public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
 			Model model, HttpServletRequest request) throws UnknownHostException {
 
-		List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.findAll();
+		// pega id da pesquisa
+		Long idPesquisa = resposta.getPesquisa().getId();
+
+		// passa no filtro
+		List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.filtroPerguntas(idPesquisa);
+
+		// pega o tamanho da lista
 		int numPerg = listaPerg.size();
 
+		// pega a data de hoje e seta no atributo
 		Date now = new Date(System.currentTimeMillis());
 		resposta.setDataRealizacao(now);
 
+		// pega o ip da maquina e seta no atributo
 		String ipDaMaquina = InetAddress.getLocalHost().getHostAddress();
 		resposta.setIp(ipDaMaquina);
 
+		// pega o nome da maquina e seta no atributo
 		InetAddress addr = InetAddress.getLocalHost();
 		String hostname = addr.getHostName();
 		resposta.setNomeMaquina(hostname);
 
+		// salva a resposta
 		respostaRepository.save(resposta);
 
-		String pegaNivel = nivelImportancia;
-		String[] quebraNivel = pegaNivel.split(",");
+		// pega as strings e transforma em array
+		String[] quebraNivel = nivelImportancia.split(",");
+		String[] quebraComent = comentario.split(",");
+		String[] quebraSatis = satisfacao.split(",");
 
-		String pegaComent = comentario;
-		String[] quebraComent = pegaComent.split(",");
+		// seta um item resposta para cada pergunta
+		for (int i = 0; i < numPerg; i++) {
+			ItemResposta ir = new ItemResposta();
+			ir.setPesquisa(resposta.getPesquisa());
+			ir.setResposta(resposta);
+			ir.setPergunta(listaPerg.get(i));
 
-		String pegaSatis = satisfacao;
-		String[] quebraSatis = pegaSatis.split(",");
-                
-
-        for (int i = 0; i < numPerg; i++) {
-            ItemResposta ir = new ItemResposta();
-            ir.setPesquisa(resposta.getPesquisa());
-            ir.setResposta(resposta);
-            ir.setPergunta(listaPerg.get(i));
-            
-            String nivel = quebraNivel[i];
-            String coment = quebraComent[i];
-            String satisf = quebraSatis[i];
+			String nivel = quebraNivel[i];
+			String coment = quebraComent[i];
+			String satisf = quebraSatis[i];
 
 			ir.setNivelImportancia(nivel);
 			ir.setComentario(coment);
@@ -100,9 +96,10 @@ public class RespostaController {
 	@PublicoAnnotation
 	@RequestMapping("buscar")
 	public String buscaPesquisa(Long id, Model model) {
-		model.addAttribute("perg", perguntaRepository.findAll());
-		model.addAttribute("item", itemRespostaRepository.findAll());
+		List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
 		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+		model.addAttribute("perg", perguntas);
+		model.addAttribute("item", itemRespostaRepository.findAll());
 		return "resposta/formulario";
 	}
 
