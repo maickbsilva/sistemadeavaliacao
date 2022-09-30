@@ -16,7 +16,6 @@ public class Pergunta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String textoPergunta;
-
     @ManyToMany
     private List<Pesquisa> listaPesquisa;
 

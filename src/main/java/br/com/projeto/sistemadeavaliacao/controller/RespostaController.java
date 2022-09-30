@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
+import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -37,12 +38,13 @@ public class RespostaController {
 	@Autowired
 	private PerguntaRepository perguntaRepository;
 
+
 	@PublicoAnnotation
 	@RequestMapping("formulario")
-	public String formulario(Model model, Pergunta pergunta) {
-		model.addAttribute("perg", perguntaRepository.findAll());
-		model.addAttribute("item", itemRespostaRepository.findAll());
-		model.addAttribute("pesq", pesquisaRepository.findAll());
+	public String formulario(Model model, Pergunta pergunta, Pesquisa pesquisa) {
+		//filtrar perguntas que nao tem id e as que tem o id de uma pesquisa
+		//model.addAttribute("perg", perguntaRepository.findAll());
+		
 		return "resposta/formulario";
 	}
 
@@ -99,9 +101,10 @@ public class RespostaController {
 	@PublicoAnnotation
 	@RequestMapping("buscar")
 	public String buscaPesquisa(Long id, Model model) {
-		model.addAttribute("perg", perguntaRepository.findAll());
-		model.addAttribute("item", itemRespostaRepository.findAll());
+		List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
 		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+		model.addAttribute("perg", perguntas);
+		model.addAttribute("item", itemRespostaRepository.findAll());
 		return "resposta/formulario";
 	}
 
