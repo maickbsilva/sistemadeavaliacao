@@ -17,7 +17,6 @@ import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
 
 @Controller
-
 @RequestMapping("pergunta/")
 public class PerguntaController {
 
@@ -40,26 +39,30 @@ public class PerguntaController {
 	@RequestMapping(value = "novaPergunta", method = RequestMethod.POST)
 	public String novaPergunta(Pergunta pergunta, String idpesquisa) {
 
-		List<Pesquisa> listaPesquisa = new ArrayList<>();
+		// se existir um idpesquisa salva ele nas perguntas que foram associadas
+		if (idpesquisa != null) {
+			List<Pesquisa> listaPesquisa = new ArrayList<>();
 
-		//pega cada posicao do idpesquisa
-		String[] quebraIdPesquisa = idpesquisa.split(",");
+			// pega cada posicao do idpesquisa
+			String[] quebraIdPesquisa = idpesquisa.split(",");
 
-		//enquanto for menor do que o tamanho do array quebraIdPesquisa
-		for (int i = 0; i < quebraIdPesquisa.length; i++) {
-			//nova pesquisa
-			Pesquisa pesq = new Pesquisa();
-			//pega a posicao da quebraIdPesquisa
-			String posicaoPesq = quebraIdPesquisa[i];
-			//insere a posicao no id da nova pesquisa
-			pesq.setId(Long.parseLong(posicaoPesq));
-			//insere a pesquisa na listaPesquisa
-			listaPesquisa.add(pesq);
+			// seta cada id da pesquisa em uma nova pesquisa e add na lista
+			for (int i = 0; i < quebraIdPesquisa.length; i++) {
+				Pesquisa pesq = new Pesquisa();
+				String posicaoPesq = quebraIdPesquisa[i];
+				pesq.setId(Long.parseLong(posicaoPesq));
+				listaPesquisa.add(pesq);
+			}
+
+			/*seta a lista gerada pelo FOR dentro do atributo "listaPesquisa" da pergunta, 
+			isso preenche a tabela relacional pergunta_lista_pesquisa*/
+			pergunta.setListaPesquisa(listaPesquisa);
+			repository.save(pergunta);
 		}
-		//associa cada pergunta com a lista de pesquisas
-		pergunta.setListaPesquisa(listaPesquisa);
-		
+
+		// se nao existir idpesquisa, passa somente a pergunta
 		repository.save(pergunta);
+
 		return "redirect:cadastrar";
 	}
 

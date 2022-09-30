@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
-import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -38,62 +37,58 @@ public class RespostaController {
 	@Autowired
 	private PerguntaRepository perguntaRepository;
 
-
-	@PublicoAnnotation
-	@RequestMapping("formulario")
-	public String formulario(Model model, Pergunta pergunta, Pesquisa pesquisa) {
-		//filtrar perguntas que nao tem id e as que tem o id de uma pesquisa
-		//model.addAttribute("perg", perguntaRepository.findAll());
-		
-		return "resposta/formulario";
-	}
-
 	@PublicoAnnotation
 	@RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
 	public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
 			Model model, HttpServletRequest request) throws UnknownHostException {
 
-		List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.findAll();
+		// pega id da pesquisa
+		Long idPesquisa = resposta.getPesquisa().getId();
+
+		// passa no filtro
+		List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.filtroPerguntas(idPesquisa);
+
+		// pega o tamanho da lista
 		int numPerg = listaPerg.size();
 
+		// pega a data de hoje e seta no atributo
 		Date now = new Date(System.currentTimeMillis());
 		resposta.setDataRealizacao(now);
 
+		// pega o ip da maquina e seta no atributo
 		String ipDaMaquina = InetAddress.getLocalHost().getHostAddress();
 		resposta.setIp(ipDaMaquina);
 
+		// pega o nome da maquina e seta no atributo
 		InetAddress addr = InetAddress.getLocalHost();
 		String hostname = addr.getHostName();
 		resposta.setNomeMaquina(hostname);
 
+		// salva a resposta
 		respostaRepository.save(resposta);
 
-		String pegaNivel = nivelImportancia;
-		String[] quebraNivel = pegaNivel.split(",");
+		// pega as strings e transforma em array
+		String[] quebraNivel = nivelImportancia.split(",");
+		String[] quebraComent = comentario.split(",");
+		String[] quebraSatis = satisfacao.split(",");
 
-		String pegaComent = comentario;
-		String[] quebraComent = pegaComent.split(",");
+		// seta um item resposta para cada pergunta
+		for (int i = 0; i < numPerg; i++) {
+			ItemResposta ir = new ItemResposta();
+			ir.setPesquisa(resposta.getPesquisa());
+			ir.setResposta(resposta);
+			ir.setPergunta(listaPerg.get(i));
 
-		String pegaSatis = satisfacao;
-		String[] quebraSatis = pegaSatis.split(",");
-                
-
-        for (int i = 0; i < numPerg; i++) {
-            ItemResposta ir = new ItemResposta();
-            ir.setPesquisa(resposta.getPesquisa());
-            ir.setResposta(resposta);
-            ir.setPergunta(listaPerg.get(i));
-            
-            String nivel = quebraNivel[i];
-            String coment = quebraComent[i];
-            String satisf = quebraSatis[i];
+			String nivel = quebraNivel[i];
+			String coment = quebraComent[i];
+			String satisf = quebraSatis[i];
 
 			ir.setNivelImportancia(nivel);
 			ir.setComentario(coment);
 			ir.setSatisfacao(satisf);
 
 			itemRespostaRepository.save(ir);
-		}		
+		}
 
 		return "resposta/sucesso";
 	}
