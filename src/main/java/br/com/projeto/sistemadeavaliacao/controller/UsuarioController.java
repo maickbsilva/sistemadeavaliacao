@@ -46,13 +46,7 @@ public class UsuarioController {
 			return "redirect:cadastro";
 
 		}
-		
-		
-		
-		
-		
-		
-		
+
 		// verificando a senha
 		if (usuario.getSenha().equals(HashUtil.hash(""))) {
 
@@ -79,7 +73,7 @@ public class UsuarioController {
 	@RequestMapping("lista/{page}")
 	public String lista(Model model, @PathVariable("page") int page) {
 		// criar uma pageble para informar os parametros da pagina
-		PageRequest pageble = PageRequest.of(page - 1, 6, Sort.by(Sort.Direction.ASC, "nome"));
+		PageRequest pageble = PageRequest.of(page - 1, 4, Sort.by(Sort.Direction.ASC, "nome"));
 		// criando lista
 
 		Page<Usuario> pagina = repository.findAll(pageble);
@@ -126,9 +120,6 @@ public class UsuarioController {
 		repository.delete(excluir);
 		return "redirect:lista/1";
 	}
-
-	
-	
 
 	/*
 	 * Login

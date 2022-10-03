@@ -4,23 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<link rel="stylesheet" href="../../css/pesquisa/pesquisa.css">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Nova Pergunta</title>
 </head>
 <body>
-    <h1>Cadastro de Pergunta</h1>
+	<div class="area">
+		<ul class="circles">
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		</ul>
+	  </div>
+	  <div class="container main-div">
+    <h2>Cadastro de Pergunta</h2>
 
     <form method="post" style="border:2" action="novaPergunta">
 
 		<input type="hidden" name="id" th:value="${p?.id}"></input>
 
-		<div>
-			pergunta <input type="text" name="textoPergunta" th:value="${p?.textoPergunta}"/>
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" id="floatingInput" placeholder="Nova Pergunta" name="textoPergunta" th:value="${p?.textoPergunta}"/>
+			<label for="floatingInput">Digite a Nova Pergunta</label>
+		</div>		
+		<div class="d-grid gap-2" id="liveAlertPlaceholder">
+			<button type="submit" class="btn btn-outline-primary" id="liveAlertBtn">Cadastrar</button>
 		</div>
-		<br>		
-		<div>
-			<button type="submit">Cadastrar</button>
+		
+		<div th:if="${not #strings.isEmpty(mensagemSucesso)}">
+			<span th:text="${mensagemSucesso}"></span>
 		</div>
+		
+
 	</form>
+	
+</div>
+
+	<script src="../../js/alerts/mensagem.js"></script>
+	<script
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+ crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -11,24 +11,22 @@
 	<div class="divLista">
 	<button onclick="history.go(-1);" class="btnReturn">Voltar para Cadastro de curso</button>
 	
-	    <table class="lista">
+	    <table>
 		    <thead>
 			    <tr>
 				    <th class="aumentar">id</th>
-    			    <th class="aumentar">Descrição</th>
-                    <th class="aumentar">tipo</th>
+    			    <th class="aumentar">nome</th>
+                  
 		    	</tr>
 		    </thead>
-	    	<tbody>
-	    		<tr th:each="c:${cursoC}" >			
-		    		<td th:text="${c?.id}" />
-			    	<td th:text="${c?.descCurso}" />	
-                    <td th:text="${c?.tipo}" />		
+	    	<tbody id="tba">
+	    		<tr th:each="user:${usuario}" >			
+		    		<td th:text="${user.nome}" />
 			    </tr>	
 	    	</tbody>
 	    </table>
 	    
     </div>
-
+	<script src="../../js/buscas/fetch.js"></script>
 </body>
 </html>

@@ -5,40 +5,74 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<link rel="stylesheet" href="../../css/pesquisa/pesquisa.css">
+	
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+	<title>Pesquisa</title>
 </head>
 
 <body>
+	<div class="area">
+		<ul class="circles">
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		</ul>
+	  </div>
+	<div class="container main-div">
 	<h1>Nova Pesquisa</h1>
 
-	<form method="post" style="border:2" action="novaPesquisa">
+	<form method="post" action="novaPesquisa" class="">
 
 		<input type="hidden" name="id"></input>
+			
 
-		<div>
-			turma <input type="text" name="turma" placeholder="exemplo: Dev Noite 1200hs periodo: Noturno"/>
+		<div class="mb-3">
+			<label for="" class="form-label">Turma</label>
+			<input type="text"  class="form-control" name="turma" placeholder="exemplo: Dev Noite 1200hs periodo: Noturno" required/>
 		</div>
-		<br>
-		<div>
-			<label>Curso</label>
-			<select name="curso.id">
-				<option th:each="c: ${cursos}" th:text="${c.descCurso}" th:value="${c.id}"></option>
-			</select>
-		</div>
-		<br>
-		<div>
-			<!--POSSIBILITAR SELEÇÃO DE MAIS DE UM DOCENTE -->
-			<label>Docente</label>
-			<select name="usuario.id">
-				<option th:each="u:${usuario}" th:text="${u.nome}" th:value="${u.userId}"></option>
-			</select>
-		</div>
+			<form>
+				<!-- Docentes -->
+				<div class="mb-3">
+					<label for="idSelect2">
+						Clique para selecionar um ou mais docentes:
+						</label>
+				</div>
+					<div class="mb-3">
+						<select class="select2 form-control" id="idSelect2" multiple="" tabindex="-1" style="display: none;" required>
+							<optgroup label="Docentes">
+								<option th:each="u:${usuario}" th:text="${u.nome}" th:value="${u.userId}"></option>
+							</optgroup>
+						</select>
+					</div>
 
-		<br>
-		<div>
-			data vencimento <input type="date" name="dataVencimento" />
+				 <!-- Cursos -->
+				<div class="mb-3">
+					<label>Curso</label>
+					<select class="form-select" name="curso.id" required>
+						<option disabled selected>Selecione o Curso</option>
+						<option th:each="c: ${cursos}" th:text="${c.descCurso}" th:value="${c.id}"></option>
+					</select>
+				 </div>
+
+			</form>
+
+		<div class="mb-3">
+			<label class="form-label">Data de Enceramento</label>
+			<input type="date" name="dataVencimento"/>
 		</div>
-		<br>
 		<!--<div>
 			<label>Respostas</label>
 			<select name="listaRespostas">
@@ -46,9 +80,21 @@
 			</select>
 		</div>-->
 		<div>
-			<button type="submit">Cadastrar</button>
+			<button type="submit" class="btn btn-primary" >Cadastrar</button>
 		</div>
 	</form>
+
+</div>
+
+<!-- Script criados -->
+<script src="../../js/selects/select.js"></script>
+
+<!-- imports -->
+<!-- JavaScript Bundle with Popper -->
+<script
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+ crossorigin="anonymous"></script>
+
 
 </body>
 
