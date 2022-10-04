@@ -27,9 +27,16 @@
 		</div>
 		<br>
 		<div>
-			<!--POSSIBILITAR SELEÇÃO DE MAIS DE UM DOCENTE -->
 			<label>Docente</label>
-			<select name="usuario.id" required>
+			<select name="usuarioDocente" required>
+				<option th:each="u:${usuario}" th:text="${u.nome}" th:value="${u.userId}"></option>
+			</select>
+		</div>
+		<br>
+
+		<div>
+			<label>Demais Docentes</label>
+			<select name="listaDocentes" required multiple>
 				<option th:each="u:${usuario}" th:text="${u.nome}" th:value="${u.userId}"></option>
 			</select>
 		</div>

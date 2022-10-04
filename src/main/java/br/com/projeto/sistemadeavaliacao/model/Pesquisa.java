@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -37,6 +39,12 @@ public class Pesquisa {
     private List<ItemResposta> listaItem;
     
     private boolean justificativa;
+
+    @OneToOne
+    private Usuario usuarioDocente;
+
+    @ManyToMany
+    private List<Usuario> listaDocentes;
 
     @Override
     public boolean equals(Object obj) {
