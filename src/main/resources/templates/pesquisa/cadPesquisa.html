@@ -5,24 +5,61 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<link href="../../css/cadastro-per/cad-per.css" rel="stylesheet"/>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous"
+  />
+	<title>Cadastro de Pesquesa</title>
 </head>
-
 <body>
-	<h1>Nova Pesquisa</h1>
+
+    <div class="area">
+		<ul class="circles">
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		  <li></li>
+		</ul>
+	  </div>
+	  
+	<div class="container main-div">
+    	<form  action="novaPergunta" method="post">
+			<input type="hidden" name="id" th:value="${p?.id}"/>
+
+			<div class="cad-per">
+					<h4 class="cad-per-item">Cadastrar Nova Pesquisa</h4>
 
 	<form method="post" style="border:2" action="novaPesquisa">
 
-		<input type="hidden" name="id"></input>
+		<input 
+			type="hidden" 
+			name="id"
+		/>
 
 		<div>
-			turma <input type="text" name="turma" placeholder="exemplo: Dev Noite 1200hs periodo: Noturno"/>
+			turma 
+			<input 
+				type="text" 
+				name="turma" 
+				placeholder="exemplo: Dev Noite 1200hs periodo: Noturno"/>
 		</div>
 		<br>
 		<div>
 			<label>Curso</label>
 			<select name="curso.id">
-				<option th:each="c: ${cursos}" th:text="${c.descCurso}" th:value="${c.id}"></option>
+				<option 
+					th:each="c: ${cursos}" 
+					th:text="${c.descCurso}" 
+					th:value="${c.id}"
+				/>
 			</select>
 		</div>
 		<br>
@@ -30,13 +67,18 @@
 			<!--POSSIBILITAR SELEÇÃO DE MAIS DE UM DOCENTE -->
 			<label>Docente</label>
 			<select name="usuario.id">
-				<option th:each="u:${usuario}" th:text="${u.nome}" th:value="${u.userId}"></option>
+				<option 
+					th:each="u:${usuario}" 
+					th:text="${u.nome}" 
+					th:value="${u.userId}"/>
 			</select>
 		</div>
 
 		<br>
 		<div>
-			data vencimento <input type="date" name="dataVencimento" />
+			data vencimento 
+				<input 
+				type="date" name="dataVencimento" />
 		</div>
 		<br>
 		<!--<div>

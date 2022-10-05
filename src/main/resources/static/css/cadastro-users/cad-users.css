@@ -1,174 +1,87 @@
 body {
-    margin:0;
+  background: linear-gradient(-45deg, #5989f0, #3f76ec, #23d582, #23d5ab);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 10s ease infinite;
+          animation: gradient 10s ease infinite;
+  height: 100vh;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  p {
-    font-family: 'Lato', sans-serif;
-    letter-spacing: 1px;
-    font-size:14px;
-    color: #333333;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .header {
-    position:relative;
-    text-align:center;
-    background: linear-gradient(60deg, rgb(255, 255, 255) 0%, rgb(188, 220, 224) 100%);
-    color:rgb(27, 25, 25);
+  100% {
+    background-position: 0% 50%;
   }
-  
-  /*cadstro*/
-  
-  
-  .cadForm {
-    overflow: hidden;
-    background-color: white;
-    padding: 40px 30px 30px 30px;
-    border-radius: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    -webkit-transition: -webkit-transform 300ms, box-shadow 300ms;
-    -moz-transition: -moz-transform 300ms, box-shadow 300ms;
-    transition: transform 300ms, box-shadow 300ms;
-    box-shadow: 5px 10px 10px rgba(157, 228, 76, 0.2);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
   }
-  .cadForm::before, .cadForm::after {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-top-left-radius: 40%;
-    border-top-right-radius: 45%;
-    border-bottom-left-radius: 35%;
-    border-bottom-right-radius: 40%;
-    z-index: -1;
+  50% {
+    background-position: 100% 50%;
   }
-  .cadForm::before {
-    left: 40%;
-    bottom: -130%;
-    background-color: rgba(192, 238, 119, 0.15);
-    -webkit-animation: wawes 6s infinite linear;
-    -moz-animation: wawes 6s infinite linear;
-    animation: wawes 6s infinite linear;
+  100% {
+    background-position: 0% 50%;
   }
-  
-  .cadForm > input {
-    font-family: "Asap", sans-serif;
-    display: block;
-    border-radius: 5px;
-    font-size: 16px;
-    background: white;
-    width: 100%;
-    border: 0;
-    padding: 10px 10px;
-    margin: 15px -10px;
-  }
-  .btnCad > button {
-    font-family: "Asap", sans-serif;
-    cursor: pointer;
-    color: #fff;
-    font-size: 16px;
-    text-transform: uppercase;
-    width: 110px;
-    border: 0;
-    padding: 10px 0;
-    margin-top: 10px;
-    margin-left: -5px;
-    border-radius: 5px;
-    background-color: #a8f742;
-    -webkit-transition: background-color 300ms;
-    -moz-transition: background-color 300ms;
-    transition: background-color 300ms;
-  }
-  .btnCad > button:hover {
-    background-color: #1a8128;
-  }
-  
-  
-  /*ondas*/
-  
-  .flex { /*Flexbox for containers*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .waves {
-    width: 100%;
-    margin-bottom:-7px; /*Fix for safari gap*/
-    margin-top: 32.7%;
-    
-  }
-  
-  .content {
-    position:relative;
-    height:20vh;
-    text-align:center;
-    background-color: white;
-  }
-  
-  /* Animation */
-  
-  .parallax > use {
-    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
-  }
-  .parallax > use:nth-child(1) {
-    animation-delay: -2s;
-    animation-duration: 7s;
-    
-  }
-  .parallax > use:nth-child(2) {
-    animation-delay: -3s;
-    animation-duration: 10s;
-  }
-  .parallax > use:nth-child(3) {
-    animation-delay: -4s;
-    animation-duration: 13s;
-  }
-  .parallax > use:nth-child(4) {
-    animation-delay: -5s;
-    animation-duration: 20s;
-  }
-  
-  @keyframes move-forever {
-    0% {
-     transform: translate3d(-90px,0,0);
-    }
-    100% { 
-      transform: translate3d(85px,0,0);
-    }
-  }
-  @media (max-width: 700px) {
-    .waves {
-      height:200px;
-      min-height:800px;
-    }
-   
-    h1 {
-      font-size:24px;
-    }
-  /*Shrinking for mobile*/
-  @media (max-width: 50px) {
-    .waves {
-      height:200px;
-      min-height:200px;
-    }
-    .content {
-      height:30vh;
-    }
-    h1 {
-      font-size:24px;
-    }
-    .cadForm{
-      min-width: 200px;
-      width: 250;
-    }
-  }
-  }
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.cadForm {
+  width: 500px;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: white;
+  font-family: "system-ui";
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  align-items: center;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+.seleciona {
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+h1 {
+  text-align: center;
+  font-size: xx-large;
+}
+
+.cadForm::before,
+.cadForm {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-top-left-radius: 40%;
+  border-top-right-radius: 45%;
+  border-bottom-left-radius: 35%;
+  border-bottom-right-radius: 40%;
+  z-index: -1;
+}
+
+.cadForm::before {
+  left: 40%;
+  bottom: -130%;
+  background-color: rgba(0, 0, 0, 0.24);
+  -webkit-animation: wawes 6s infinite linear;
+  animation: wawes 6s infinite linear;
+}
+
+.cadForm::after {
+  left: 35%;
+  bottom: -125%;
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-animation: wawes 7s infinite;
+  animation: wawes 7s infinite;
+}/*# sourceMappingURL=cad-users.css.map */
