@@ -46,12 +46,19 @@
 			data vencimento <input type="date" name="dataVencimento" required/>
 		</div>
 		<br>
-		<!--<div>
-			<label>Respostas</label>
-			<select name="listaRespostas">
-				<option th:each="r: ${respostas}" th:text="${r.id}" th:value="${r.id}"></option>
-			</select>
-		</div>-->
+
+		<H3>EXCLUIR PERGUNTA?</H3>
+		<tr>
+			<td>
+			  <th:block th:each="p : ${pergunta}">
+				<label th:text="${p.textoPergunta}"></label>  
+			  <input type="checkbox" name="perguntaExclusao" th:value="${p.id}"/>
+			  <br>  
+			</th:block>
+			</td>
+		</tr>
+
+
 		<div>
 			<button type="submit">Cadastrar</button>
 		</div>
