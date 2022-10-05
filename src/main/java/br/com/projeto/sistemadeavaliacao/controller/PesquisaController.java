@@ -46,7 +46,7 @@ public class PesquisaController {
 	public String cadPesquisa(Model model) {
 		model.addAttribute("cursos", cursoRepository.findAll());
 		model.addAttribute("respostas", respostaRepository.findAll());
-		model.addAttribute("usuario", usuarioRepository.findAll());
+		model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
 		return "pesquisa/cadPesquisa";
 	}
 
@@ -58,12 +58,10 @@ public class PesquisaController {
     
     @RequestMapping("listarResposta")
     public String listarRespota(Long id, Model model) {
-    	System.out.println("Pegue o Pombo"+id);
     	model.addAttribute("pesq",pesquisaRepository.findById(id).get());
     	model.addAttribute("perg", perguntaRepository.findAll());
     	model.addAttribute("item", itemRepository.findAll());
     	model.addAttribute("resposta",respostaRepository.findAll());
-    	
     	
 		return "pesquisa/listaResposta";
     	
@@ -72,7 +70,7 @@ public class PesquisaController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value="novaPesquisa", method = RequestMethod.POST)
-	public String novaPesquisa(Pesquisa pesquisa) {
+	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes) {
 		pesquisaRepository.save(pesquisa);
 		return "redirect:cadastrar";
 	}
