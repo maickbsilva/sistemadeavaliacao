@@ -9,6 +9,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Nova Pergunta</title>
 </head>
+
 <body>
 	<div class="area">
 		<ul class="circles">
@@ -25,9 +26,9 @@
 		</ul>
 	  </div>
 	  <div class="container main-div">
-    <h2>Cadastro de Pergunta</h2>
+	<h2>Cadastro de Pergunta</h2>
 
-    <form method="post" style="border:2" action="novaPergunta">
+	<form method="post" style="border:2" action="novaPergunta">
 
 		<input type="hidden" name="id" th:value="${p?.id}"></input>
 
@@ -54,4 +55,5 @@
  crossorigin="anonymous"></script>
 
 </body>
+
 </html>

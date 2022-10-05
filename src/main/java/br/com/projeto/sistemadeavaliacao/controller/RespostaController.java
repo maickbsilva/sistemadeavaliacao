@@ -6,13 +6,13 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
@@ -25,91 +25,87 @@ import br.com.projeto.sistemadeavaliacao.repository.RespostaRepository;
 @RequestMapping("resposta/")
 public class RespostaController {
 
-    @Autowired
-    private ItemRespostaRepository itemRespostaRepository;
+	@Autowired
+	private ItemRespostaRepository itemRespostaRepository;
 
-    @Autowired
-    private PesquisaRepository pesquisaRepository;
+	@Autowired
+	private PesquisaRepository pesquisaRepository;
 
-    @Autowired
-    private RespostaRepository respostaRepository;
+	@Autowired
+	private RespostaRepository respostaRepository;
 
-    @Autowired
-    private PerguntaRepository perguntaRepository;
+	@Autowired
+	private PerguntaRepository perguntaRepository;
 
-    // convoca o formulario
-    @RequestMapping("formulario")
-    public String formulario(Model model, Pergunta pergunta) {
-        model.addAttribute("perg", perguntaRepository.findAll());
-        model.addAttribute("item", itemRespostaRepository.findAll());
-        model.addAttribute("pesq", pesquisaRepository.findAll());
+	@PublicoAnnotation
+	@RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
+	public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
+			Model model, HttpServletRequest request) throws UnknownHostException {
 
-        return "resposta/formulario";
-    }
+		// pega id da pesquisa
+		Long idPesquisa = resposta.getPesquisa().getId();
 
-    // insere um novo formulario preechido
-    @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
-    public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao,
-            String comentario, Model model, 
-            HttpServletRequest request) throws UnknownHostException {
+		// passa no filtro
+		List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.filtroPerguntas(idPesquisa);
 
-        // pega a lista de perguntas e seu tamanho
-        List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.findAll();
-        int numPerg = listaPerg.size();
+		// pega o tamanho da lista
+		int numPerg = listaPerg.size();
 
-        // pega a data atual e seta na variavel dataRealizacao
-        Date now = new Date(System.currentTimeMillis());
-        resposta.setDataRealizacao(now);
+		// pega a data de hoje e seta no atributo
+		Date now = new Date(System.currentTimeMillis());
+		resposta.setDataRealizacao(now);
 
-        // pega o ip da maquina
-        String ipDaMaquina = InetAddress.getLocalHost().getHostAddress();
-        resposta.setIp(ipDaMaquina);
+		// pega o ip da maquina e seta no atributo
+		String ipDaMaquina = InetAddress.getLocalHost().getHostAddress();
+		resposta.setIp(ipDaMaquina);
 
-        // pega o nome da maquina
-        InetAddress addr = InetAddress.getLocalHost();
-        String hostname = addr.getHostName();
-        resposta.setNomeMaquina(hostname);
+		// pega o nome da maquina e seta no atributo
+		InetAddress addr = InetAddress.getLocalHost();
+		String hostname = addr.getHostName();
+		resposta.setNomeMaquina(hostname);
 
-        respostaRepository.save(resposta);
+		// salva a resposta
+		respostaRepository.save(resposta);
 
-        String pegaNivel = nivelImportancia;
-        String[] quebraNivel = pegaNivel.split(",");
+		// pega as strings e transforma em array
+		String[] quebraNivel = nivelImportancia.split(",");
+		String[] quebraComent = comentario.split(",");
+		String[] quebraSatis = satisfacao.split(",");
 
-        String pegaComent = comentario;
-        String[] quebraComent = pegaComent.split(",");
+		// seta um item resposta para cada pergunta
+		for (int i = 0; i < numPerg; i++) {
+			ItemResposta ir = new ItemResposta();
+			ir.setPesquisa(resposta.getPesquisa());
+			ir.setResposta(resposta);
+			ir.setPergunta(listaPerg.get(i));
 
-        String pegaSatis = satisfacao;
-        String[] quebraSatis = pegaSatis.split(",");
+			String nivel = quebraNivel[i];
+			String coment = quebraComent[i];
+			String satisf = quebraSatis[i];
 
-        for (int i = 0; i < numPerg; i++) {
-            ItemResposta ir = new ItemResposta();
-            ir.setResposta(resposta);
-            ir.setPergunta(listaPerg.get(i));
+			ir.setNivelImportancia(nivel);
+			ir.setComentario(coment);
+			ir.setSatisfacao(satisf);
 
-            String nivel = quebraNivel[i];
-            String coment = quebraComent[i];
-            String satisf = quebraSatis[i];
+			itemRespostaRepository.save(ir);
+		}
 
-            ir.setNivelImportancia(nivel);
-            ir.setComentario(coment);
-            ir.setSatisfacao(satisf);
+		return "resposta/sucesso";
+	}
 
-            itemRespostaRepository.save(ir);
-        }
+	@PublicoAnnotation
+	@RequestMapping("buscar")
+	public String buscaPesquisa(Long id, Model model) {
+		List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
+		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+		model.addAttribute("perg", perguntas);
+		model.addAttribute("item", itemRespostaRepository.findAll());
+		return "resposta/formulario";
+	}
 
-        return "resposta/sucesso";
-    }
-
-    @RequestMapping("buscar")
-    public String buscaPesquisa(Long id, Model model) {
-        model.addAttribute("perg", perguntaRepository.findAll());
-        model.addAttribute("item", itemRespostaRepository.findAll());
-        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-        return "resposta/formulario";
-    }
-
-    @RequestMapping("codigoPesquisa")
-    public String codigoPesquisa() {
-        return "resposta/codigoPesquisa";
-    }
+	@PublicoAnnotation
+	@RequestMapping("codigoPesquisa")
+	public String codigoPesquisa() {
+		return "resposta/codigoPesquisa";
+	}
 }

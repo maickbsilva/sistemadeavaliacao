@@ -1,54 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/teste.css" />
+    <title>Avaliação de curso</title>
 </head>
+
 <body>
-	<h1>FORMULARIO</h1>
-	<table class="striped">
-		<thead>
-			<th>Código da pesquisa</th>
-			<th>Curso</th>
-			<th>Turma</th>
-		</thead>
 
-		<tbody>
-			<tr>
-				<td th:text="${pesq.id}"/>
-				<td th:text="${pesq.curso.descCurso}"/>
-				<td th:text="${pesq.turma}"/>
-			</tr>
 
-		</tbody>
-	</table>
+    <table class="striped" border="0">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th class="pesq">CÓDIGO DA PESQUISA</th>
 
-    <form method="post" style="border:2" action="novoFormulario">
+                    <th class="pesq">CURSO</th>
 
-		<input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
+                    <th class="pesq">TURMA</th>
+                </tr>
+            </thead>
 
-		<br>
-			<table border="2" style="padding: 5px;">
-				<tr>
-					<tr th:each="p:${perg}">
-						<td th:text="${p.id}"/>
-						<td>Nivel de importancia - 1 a 5 <input type="int" name="nivelImportancia"/> </td>
-						<td th:text="${p.textoPergunta}"/>
-						<td>Nivel de satisfacao - 1 a 5 <input type="int" name="satisfacao"/></td>
-						<td>Comentario <input type="text" name="comentario"/></td>
-					</tr>
-				</tr>
-			</table>	
+            <tr>
+                <td th:text="${pesq.id}" class="pesq"/>
 
-		<div>
-			Comentario Geral <input type="text" name="comentarioGeral"/>
-		</div>
-		<div>
-			<button type="submit">Cadastrar</button>
-		</div>
-	</form>
+                <td th:text="${pesq.curso.descCurso}" class="pesq"/>
+
+                <td th:text="${pesq.turma}" class="pesq"/>
+            </tr>
+
+            <img src="imagens/Logo_KAOS.png" class="logo">
+        </table>
+    </table>
+
+    <form method="post" style="border:2" action="novoFormulario" class="principal">
+
+        <input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
+
+
+        <br>
+        <table border="0" style="padding: 5px;">
+            <tr>
+            <tr th:each="p:${perg}">
+            <tr><div class="pergunta">
+            <tr >
+                <td th:text="${p.id}" /> <br>
+                <input type="checkbox" name="naoAplicavel" id="naoAplicavel" onClick="desabilita()" >Não
+                aplicável
+
+            </tr></div>
+            <td>
+                <p id="important">Quão importante você considera esse item?</p>
+                <input type="range" min="0" max="10" step="5" list="tickmarks" name="nivelImportancia" id="myRange">
 
 </body>
-</html>
+
+<datalist id="tickmarks">
+    <option value="1" label="0%">
+    <option value="5" label="50%">
+    <option value="10" label="100%">
+</datalist>
+</td>
+</td>
+</tr>
+<tr>
+<tr>
+    <td th:text="${p.textoPergunta}" />
+</tr>
+
+<td class="emojis">
+    <p id="satisfaction">Quão satisfeito você está com isso?</p>
+
+    <input type="radio" name="satisfacao" id="i1" onClick="habilitacao()" />
+    <label for="i1"><img src="imagens/emojis/1.png" width="60" height="60" alt="" value="1"
+            onMouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6"></label>
+    <input type="radio" name="satisfacao" id="i2" onClick="habilitacao()" />
+    <label for="i2"><img src="imagens/emojis/2.png" width="60" height="60" alt="" value="2"
+            onMouseover="this.style.opacity=1" onMouseout="this.style.opacity=0.6"></label>
+    <input type="radio" name="satisfacao" id="i3" onClick="habilitacao()" />
+    <label for="i3"><img src="imagens/emojis/3.png" width="60" height="60" alt="" value="3"
+            onMouseover="this.style.opacity=1" onMouseout="this.style.opacity=0.6"></label>
+    <input type="radio" name="satisfacao" id="i4" onClick="habilitacao()" />
+    <label for="i4"><img src="imagens/emojis/4.png" width="60" height="60" alt="" value="4"
+            onMouseover="this.style.opacity=1" onMouseout="this.style.opacity=0.6"></label>
+    <input type="radio" name="satisfacao" id="i5" onClick="habilitacao()" />
+    <label for="i5"><img src="imagens/emojis/5.png" width="60" height="60" alt="" value="5"
+            onMouseover="this.style.opacity=1" onMouseout="this.style.opacity=0.6"></label>
+
+</td>
+</tr>
+<tr>
+    <script language="javascript">
+        function habilitacao() {
+            if (document.getElementById('i1').checked == true) {
+                document.getElementById("coments").style.visibility = "visible";
+            }
+
+            if (document.getElementById('i1').checked == false) {
+                document.getElementById("coments").style.visibility = "hidden";
+            }
+        }
+        function desabilita() {
+            if (document.getElementById('naoAplicavel').checked == false) {
+                document.getElementById("myRange").disabled = false;
+                document.getElementById("i1").disabled = false;
+                document.getElementById("i2").disabled = false;
+                document.getElementById("i3").disabled = false;
+                document.getElementById("i4").disabled = false;
+                document.getElementById("i5").disabled = false;
+                document.getElementById("satisfaction").style.color = "black";
+                document.getElementById("important").style.color = "black";
+
+            } else {
+                document.getElementById("myRange").disabled = true;
+                document.getElementById("i1").disabled = true;
+                document.getElementById("i2").disabled = true;
+                document.getElementById("i3").disabled = true;
+                document.getElementById("i4").disabled = true;
+                document.getElementById("i5").disabled = true;
+                document.getElementById("satisfaction").style.color = "#DCDCDC";
+                document.getElementById("important").style.color = "#DCDCDC";
+                document.getElementById("i1").style.opacity = "0.2";
+            }
+        }
+
+    </script>
+
+
+
+    <td id="coments" class="comen">
+        <p>Comentário </p>
+        <textarea name="comentario" class="comentindivi" placeholder="Explique"></textarea>
+    </td>
+</tr>
+</tr>
+
+</tr>
+
+</table>
+<div class="comentgeral">
+
+    <p>Comentário geral </p>
+    <textarea name="comentarioGeral" class="inputcoment" ></textarea>
+
+</div>
+
+<div>
+
+    <button type="submit">ENVIAR</button>
+
+</div>
+
+
+
+
+</form>
