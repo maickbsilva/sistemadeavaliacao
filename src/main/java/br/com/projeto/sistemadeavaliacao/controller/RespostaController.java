@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
+import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -47,6 +48,14 @@ public class RespostaController {
 
 		// passa no filtro
 		List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.filtroPerguntas(idPesquisa);
+
+		//verifica se o id da pergunta tem uma pergunta para excluir
+		//se tiver, remove essa pergunta da lista de perguntas
+		// List<Pesquisa> listaExclusao = pesquisaRepository.listaExclusao();
+		// for (int i = 0; i < listaPerg.size(); i++) {
+		// 	//se o id da pergunta for igual o id da lista de exclusao, remove
+		// 	if(listaPerg.get(i).equals(listaExclusao.get(i)))
+		// }
 
 		// pega o tamanho da lista
 		int numPerg = listaPerg.size();
