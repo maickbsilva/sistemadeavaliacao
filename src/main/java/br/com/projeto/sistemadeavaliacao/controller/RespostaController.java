@@ -49,12 +49,15 @@ public class RespostaController {
 		// passa no filtro
 		List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.filtroPerguntas(idPesquisa);
 
-		//verifica se o id da pergunta tem uma pergunta para excluir
-		//se tiver, remove essa pergunta da lista de perguntas
+		// //verifica se o id da pergunta tem uma pergunta para excluir
+		// //se tiver, remove essa pergunta da lista de perguntas
 		// List<Pesquisa> listaExclusao = pesquisaRepository.listaExclusao();
-		// for (int i = 0; i < listaPerg.size(); i++) {
+
+		// for (int i = 0; i < listaExclusao.size(); i++) {
 		// 	//se o id da pergunta for igual o id da lista de exclusao, remove
-		// 	if(listaPerg.get(i).equals(listaExclusao.get(i)))
+		// 	if(listaExclusao.get(i).getId().equals(listaPerg.get(i).getId())){
+		// 		listaPerg.remove(listaPerg.get(i));
+		// 	}
 		// }
 
 		// pega o tamanho da lista
@@ -105,10 +108,31 @@ public class RespostaController {
 	@PublicoAnnotation
 	@RequestMapping("buscar")
 	public String buscaPesquisa(Long id, Model model) {
+
 		List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
+
+		//verifica se o id da pergunta tem uma pergunta para excluir
+		//se tiver, remove essa pergunta da lista de perguntas
+		List<Pergunta> listaExclusao = pesquisaRepository.listaExclusao(id);
+
+		// for (int i = 0; i < listaExclusao.get(i).getPerguntaExclusao().size(); i++) {
+		// 	//se o id da pergunta for igual o id da lista de exclusao, remove
+
+		// 	//para cada pergunta da listaExclusao, remove ela da perguntas
+		// 	// if (listaExclusao.get(i).equals(perguntas.contains())) {
+				
+		// 	// }
+				
+		// if (perguntas.contains(listaExclusao.get(i).getPerguntaExclusao().get(i))) {
+		// 	perguntas.remove(perguntas.get(i));
+		// 	}
+		// }
+
+
 		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
 		model.addAttribute("perg", perguntas);
 		model.addAttribute("item", itemRespostaRepository.findAll());
+
 		return "resposta/formulario";
 	}
 
