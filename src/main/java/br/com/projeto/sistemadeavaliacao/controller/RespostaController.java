@@ -108,7 +108,7 @@ public class RespostaController {
             });
         }
 
-        //outra forma de fazer
+        //outra forma de fazer o for
         //perguntas.stream().filter(iten -> {
         //return !pesquisa.getPerguntaExclusao().contains(iten);
         //});

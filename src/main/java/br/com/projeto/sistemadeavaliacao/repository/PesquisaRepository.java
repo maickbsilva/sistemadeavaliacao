@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface PesquisaRepository extends CrudRepository<Pesquisa, Long> {
+    //busca as perguntas das pesquisas que tem perguntas a serem excluidas
     @Query("SELECT l FROM Pesquisa l INNER JOIN l.perguntaExclusao li where l.id = :id")
     public Pesquisa filtroExclusao(@Param("id") Long idPesquisa);
 
