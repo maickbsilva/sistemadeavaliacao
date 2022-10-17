@@ -1,12 +1,11 @@
 package br.com.projeto.sistemadeavaliacao.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
-public interface PesquisaRepository extends CrudRepository<Pesquisa, Long>{
-
-    /*@Query("SELECT p FROM Pergunta p LEFT JOIN p.listaPesquisa pe where size(p.listaPesquisa) = 0 OR pe.id = :id")
-    public List<Pergunta> filtroPerguntas(@Param("id") Long idPesquisa); */
-    
+public interface PesquisaRepository extends CrudRepository<Pesquisa, Long> {
+    @Query("SELECT l FROM Pesquisa l INNER JOIN l.perguntaExclusao li where l.id = :id")
+    public Pesquisa filtroExclusao(@Param("id") Long idPesquisa);
 }
