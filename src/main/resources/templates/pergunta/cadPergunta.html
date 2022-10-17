@@ -1,59 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../../css/pesquisa/pesquisa.css">
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Nova Pergunta</title>
+	<!-- JQuery -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<title>Nova Pergunta</title>
 </head>
 
 <body>
 	<div class="area">
 		<ul class="circles">
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
 		</ul>
-	  </div>
-	  <div class="container main-div">
-	<h2>Cadastro de Pergunta</h2>
+	</div>
+	<div class="container main-div">
+		<h2>Cadastro de Pergunta</h2>
 
-	<form method="post" style="border:2" action="novaPergunta">
+		<form method="post" style="border:2" action="novaPergunta">
 
-		<input type="hidden" name="id" th:value="${p?.id}"></input>
+			<input type="hidden" name="id" th:value="${p?.id}"></input>
 
-		<div class="form-floating mb-3">
-			<input type="text" class="form-control" id="floatingInput" placeholder="Nova Pergunta" name="textoPergunta" th:value="${p?.textoPergunta}"/>
-			<label for="floatingInput">Digite a Nova Pergunta</label>
-		</div>		
-		<div class="d-grid gap-2" id="liveAlertPlaceholder">
-			<button type="submit" class="btn btn-outline-primary" id="liveAlertBtn">Cadastrar</button>
-		</div>
-		
-		<div th:if="${not #strings.isEmpty(mensagemSucesso)}">
-			<span th:text="${mensagemSucesso}"></span>
-		</div>
-		
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="floatingInput" placeholder="Nova Pergunta"
+					name="textoPergunta" th:value="${p?.textoPergunta}" />
+				<label for="floatingInput">Digite a Nova Pergunta</label>
+			</div>
 
-	</form>
+			
+
+			<div class="d-grid gap-2" >
+				<button type="submit" class="btn btn-outline-primary">Cadastrar</button>
+				<span ><div th:replace="fragments/mensagem" ></div></span>	
+			</div>
+
+
+		</form>
+
+	</div>
+
+
 	
-</div>
 
-	<script src="../../js/alerts/mensagem.js"></script>
-	<script
- src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
- crossorigin="anonymous"></script>
+	<!--Bootstrap-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"></script>
+
 
 </body>
+
+<style>
+	select {
+		width: 100%;
+	}
+</style>
 
 </html>

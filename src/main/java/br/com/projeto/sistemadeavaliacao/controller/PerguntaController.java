@@ -55,12 +55,16 @@ public class PerguntaController {
 				listaPesquisa.add(pesq);
 			}
 
-			/*seta a lista gerada pelo FOR dentro do atributo "listaPesquisa" da pergunta, 
-			isso preenche a tabela relacional pergunta_lista_pesquisa*/
+			/*
+			 * seta a lista gerada pelo FOR dentro do atributo "listaPesquisa" da pergunta,
+			 * isso preenche a tabela relacional pergunta_lista_pesquisa
+			 */
 			pergunta.setListaPesquisa(listaPesquisa);
+			
 			repository.save(pergunta);
-		}
 
+		}
+		
 		// se nao existir idpesquisa, passa somente a pergunta
 		repository.save(pergunta);
 
