@@ -27,7 +27,6 @@ public class Pergunta {
         Pergunta pergunta = (Pergunta) o;
         return id.equals(pergunta.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);
