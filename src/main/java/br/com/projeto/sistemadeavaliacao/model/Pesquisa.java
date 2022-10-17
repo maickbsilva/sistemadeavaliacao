@@ -46,6 +46,9 @@ public class Pesquisa {
     @ManyToMany
     private List<Usuario> listaDocentes;
 
+    @ManyToMany
+    private List<Pergunta> perguntaExclusao;
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

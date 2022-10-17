@@ -15,8 +15,7 @@ public class UsuarioRestController {
 	
 	
 	@RequestMapping(value = "listaUsuario", method = RequestMethod.GET)
-	public Iterable<Usuario> getUsuario(){
-		
+	public Iterable<Usuario> getUsuario(){	
 		return usuarioRepository.findAll();
 	}
 	

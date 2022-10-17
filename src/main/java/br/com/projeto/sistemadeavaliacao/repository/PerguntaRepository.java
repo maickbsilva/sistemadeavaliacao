@@ -11,4 +11,8 @@ public interface PerguntaRepository extends PagingAndSortingRepository<Pergunta,
     //busca as perguntas especificas e as perguntas gerais
     @Query("SELECT p FROM Pergunta p LEFT JOIN p.listaPesquisa pe where size(p.listaPesquisa) = 0 OR pe.id = :id")
     public List<Pergunta> filtroPerguntas(@Param("id") Long idPesquisa);
+
+    //busca somente as perguntas gerais
+    @Query("SELECT p FROM Pergunta p LEFT JOIN p.listaPesquisa pe where size(p.listaPesquisa) = 0")
+    public List<Pergunta> perguntasGerais();
 }
