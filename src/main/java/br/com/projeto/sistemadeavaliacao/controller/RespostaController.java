@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
+import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -25,87 +27,102 @@ import br.com.projeto.sistemadeavaliacao.repository.RespostaRepository;
 @RequestMapping("resposta/")
 public class RespostaController {
 
-	@Autowired
-	private ItemRespostaRepository itemRespostaRepository;
+    @Autowired
+    private ItemRespostaRepository itemRespostaRepository;
 
-	@Autowired
-	private PesquisaRepository pesquisaRepository;
+    @Autowired
+    private PesquisaRepository pesquisaRepository;
 
-	@Autowired
-	private RespostaRepository respostaRepository;
+    @Autowired
+    private RespostaRepository respostaRepository;
 
-	@Autowired
-	private PerguntaRepository perguntaRepository;
+    @Autowired
+    private PerguntaRepository perguntaRepository;
 
-	@PublicoAnnotation
-	@RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
-	public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
-			Model model, HttpServletRequest request) throws UnknownHostException {
+    @PublicoAnnotation
+    @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
+    public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
+                               Model model, HttpServletRequest request) throws UnknownHostException {
 
-		// pega id da pesquisa
-		Long idPesquisa = resposta.getPesquisa().getId();
+        // pega id da pesquisa
+        Long idPesquisa = resposta.getPesquisa().getId();
 
-		// passa no filtro
-		List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.filtroPerguntas(idPesquisa);
+        // passa no filtro
+        List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.filtroPerguntas(idPesquisa);
 
-		// pega o tamanho da lista
-		int numPerg = listaPerg.size();
+        // pega o tamanho da lista
+        int numPerg = listaPerg.size();
 
-		// pega a data de hoje e seta no atributo
-		Date now = new Date(System.currentTimeMillis());
-		resposta.setDataRealizacao(now);
+        // pega a data de hoje e seta no atributo
+        Date now = new Date(System.currentTimeMillis());
+        resposta.setDataRealizacao(now);
 
-		// pega o ip da maquina e seta no atributo
-		String ipDaMaquina = InetAddress.getLocalHost().getHostAddress();
-		resposta.setIp(ipDaMaquina);
+        // pega o ip da maquina e seta no atributo
+        String ipDaMaquina = InetAddress.getLocalHost().getHostAddress();
+        resposta.setIp(ipDaMaquina);
 
-		// pega o nome da maquina e seta no atributo
-		InetAddress addr = InetAddress.getLocalHost();
-		String hostname = addr.getHostName();
-		resposta.setNomeMaquina(hostname);
+        // pega o nome da maquina e seta no atributo
+        InetAddress addr = InetAddress.getLocalHost();
+        String hostname = addr.getHostName();
+        resposta.setNomeMaquina(hostname);
 
-		// salva a resposta
-		respostaRepository.save(resposta);
+        // salva a resposta
+        respostaRepository.save(resposta);
 
-		// pega as strings e transforma em array
-		String[] quebraNivel = nivelImportancia.split(",");
-		String[] quebraComent = comentario.split(",");
-		String[] quebraSatis = satisfacao.split(",");
+        // pega as strings e transforma em array
+        String[] quebraNivel = nivelImportancia.split(",");
+        String[] quebraComent = comentario.split(",");
+        String[] quebraSatis = satisfacao.split(",");
 
-		// seta um item resposta para cada pergunta
-		for (int i = 0; i < numPerg; i++) {
-			ItemResposta ir = new ItemResposta();
-			ir.setPesquisa(resposta.getPesquisa());
-			ir.setResposta(resposta);
-			ir.setPergunta(listaPerg.get(i));
+        // seta um item resposta para cada pergunta
+        for (int i = 0; i < numPerg; i++) {
+            ItemResposta ir = new ItemResposta();
+            ir.setPesquisa(resposta.getPesquisa());
+            ir.setResposta(resposta);
+            ir.setPergunta(listaPerg.get(i));
 
-			String nivel = quebraNivel[i];
-			String coment = quebraComent[i];
-			String satisf = quebraSatis[i];
+            String nivel = quebraNivel[i];
+            String coment = quebraComent[i];
+            String satisf = quebraSatis[i];
 
-			ir.setNivelImportancia(nivel);
-			ir.setComentario(coment);
-			ir.setSatisfacao(satisf);
+            ir.setNivelImportancia(nivel);
+            ir.setComentario(coment);
+            ir.setSatisfacao(satisf);
 
-			itemRespostaRepository.save(ir);
-		}
+            itemRespostaRepository.save(ir);
+        }
 
-		return "resposta/sucesso";
-	}
+        return "resposta/sucesso";
+    }
 
-	@PublicoAnnotation
-	@RequestMapping("buscar")
-	public String buscaPesquisa(Long id, Model model) {
-		List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
-		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-		model.addAttribute("perg", perguntas);
-		model.addAttribute("item", itemRespostaRepository.findAll());
-		return "resposta/formulario";
-	}
+    @PublicoAnnotation
+    @RequestMapping("buscar")
+    public String buscaPesquisa(Long id, Model model) {
+        List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
+        Pesquisa pesquisa = pesquisaRepository.filtroExclusao(id);
 
-	@PublicoAnnotation
-	@RequestMapping("codigoPesquisa")
-	public String codigoPesquisa() {
-		return "resposta/codigoPesquisa";
-	}
+        //se existir pergunta a se excluida, exclui da lista
+        if (pesquisa != null) {
+            pesquisa.getPerguntaExclusao().forEach(iten -> {
+                perguntas.remove(iten);
+            });
+        }
+
+        //outra forma de fazer o for
+        //perguntas.stream().filter(iten -> {
+        //return !pesquisa.getPerguntaExclusao().contains(iten);
+        //});
+
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+        model.addAttribute("perg", perguntas);
+        model.addAttribute("item", itemRespostaRepository.findAll());
+
+        return "resposta/formulario";
+    }
+
+    @PublicoAnnotation
+    @RequestMapping("codigoPesquisa")
+    public String codigoPesquisa() {
+        return "resposta/codigoPesquisa";
+    }
 }

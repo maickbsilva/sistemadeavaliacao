@@ -1,6 +1,7 @@
 package br.com.projeto.sistemadeavaliacao.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,4 +20,15 @@ public class Pergunta {
     @ManyToMany
     private List<Pesquisa> listaPesquisa;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pergunta pergunta = (Pergunta) o;
+        return id.equals(pergunta.id);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

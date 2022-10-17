@@ -47,6 +47,7 @@ public class PesquisaController {
 		model.addAttribute("cursos", cursoRepository.findAll());
 		model.addAttribute("respostas", respostaRepository.findAll());
 		model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
+		model.addAttribute("pergunta", perguntaRepository.perguntasGerais());
 		return "pesquisa/cadPesquisa";
 	}
 
