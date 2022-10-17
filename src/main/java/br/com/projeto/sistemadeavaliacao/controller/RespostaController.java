@@ -109,9 +109,9 @@ public class RespostaController {
         }
 
         //outra forma de fazer
-//		perguntas.stream().filter(iten -> {
-//			return !pesquisa.getPerguntaExclusao().contains(iten);
-//		});
+        //perguntas.stream().filter(iten -> {
+        //return !pesquisa.getPerguntaExclusao().contains(iten);
+        //});
 
         model.addAttribute("pesq", pesquisaRepository.findById(id).get());
         model.addAttribute("perg", perguntas);
