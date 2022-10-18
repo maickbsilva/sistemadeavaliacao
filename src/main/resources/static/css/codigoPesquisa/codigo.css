@@ -88,7 +88,7 @@ div::before {
   content: "";
   z-index: -10;
   animation: shadowRotate 5s linear infinite;
-}+ 
+} 
 
 @keyframes shadowRotate {
   to {
@@ -96,11 +96,13 @@ div::before {
   }
 }
 
-.tudo{
-}
+
 /*input e button*/
 .inbt{
     
+}
+.bt:active{
+  transform: translateY(4px);
 }
 
 /*input */
