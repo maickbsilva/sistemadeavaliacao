@@ -7,8 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import br.com.projeto.sistemadeavaliacao.model.Curso;
-import br.com.projeto.sistemadeavaliacao.model.TipoCurso;
-
 
 public interface CursoRepository extends PagingAndSortingRepository<Curso, Long>{
 	
