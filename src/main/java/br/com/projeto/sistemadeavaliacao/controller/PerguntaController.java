@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
@@ -55,16 +54,12 @@ public class PerguntaController {
 				listaPesquisa.add(pesq);
 			}
 
-			/*
-			 * seta a lista gerada pelo FOR dentro do atributo "listaPesquisa" da pergunta,
-			 * isso preenche a tabela relacional pergunta_lista_pesquisa
-			 */
+			/*seta a lista gerada pelo FOR dentro do atributo "listaPesquisa" da pergunta, 
+			isso preenche a tabela relacional pergunta_lista_pesquisa*/
 			pergunta.setListaPesquisa(listaPesquisa);
-			
 			repository.save(pergunta);
-
 		}
-		
+
 		// se nao existir idpesquisa, passa somente a pergunta
 		repository.save(pergunta);
 
