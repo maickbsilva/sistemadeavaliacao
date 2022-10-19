@@ -9,8 +9,6 @@
 <br>
 <table border="2" style="padding: 5px;">
     <thead>
-    <th>Id Resposta</th>
-    <th>Nivel Importancia</th>
     <th>Pergunta</th>
     <th>Satisfacao</th>
     <th>Comentario</th>
@@ -18,9 +16,10 @@
     </thead>
 
     <tbody>
+    <tr th:if="${pesq.listaItem.empty}">
+        <td colspan="2"> No Books Available </td>
+    </tr>
     <tr th:each="it:${pesq.listaItem}">
-        <td th:text="${it.resposta.id}" />
-        <td th:text="${it.nivelImportancia}" />
         <td th:text="${it.pergunta.textoPergunta}" />
         <td th:text="${it.satisfacao}" />
         <td th:text="${it.comentario}" />
