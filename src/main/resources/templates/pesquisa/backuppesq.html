@@ -27,7 +27,6 @@
     />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
-    <link rel="stylesheet" href="../../css/alert.css">
     <title>Pesquisa</title>
   </head>
 
@@ -134,28 +133,28 @@
           </select>
         </div>
 
-  
+        <br />
         <div>
-          <label> data vencimento</label>
-          <input type="date" name="dataVencimento" required />
+          data vencimento <input type="date" name="dataVencimento" required />
         </div>
-        
+        <br />
         <!--<div>
-          <label>Respostas</label>
-          <select name="listaRespostas">
-            <option th:each="r: ${respostas}" th:text="${r.id}" th:value="${r.id}"></option>
-          </select>
-		    </div>-->
+			<label>Respostas</label>
+			<select name="listaRespostas">
+				<option th:each="r: ${respostas}" th:text="${r.id}" th:value="${r.id}"></option>
+			</select>
+		</div>-->
         <div>
           <button type="submit" class="btn btn-primary">Cadastrar</button>
         </div>
       </form>
     </div>
-    
+    <div class="d-grid gap-2">
+      <span><div th:replace="fragments/mensagem"></div></span>
+    </div>
 
     <!-- Script criados -->
     <script src="../../js/selects/select.js"></script>
-    <script src="../../js/alerts/mensagem,js"></script>
 
     <!-- imports -->
     <!-- JavaScript Bundle with Popper -->
