@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Listar Respotas</title>
 </head>
 <body>
 
-TESTE
+<br>
+<table border="2" style="padding: 5px;">
+    <thead>
+    <th>Id Resposta</th>
+    <th>Nivel Importancia</th>
+    <th>Pergunta</th>
+    <th>Satisfacao</th>
+    <th>Comentario</th>
+    <th>Comentario Geral</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="it:${pesq.listaItem}">
+        <td th:text="${it.resposta.id}" />
+        <td th:text="${it.nivelImportancia}" />
+        <td th:text="${it.pergunta.textoPergunta}" />
+        <td th:text="${it.satisfacao}" />
+        <td th:text="${it.comentario}" />
+        <td th:text="${it.resposta.comentarioGeral}" />
+    </tr>
+
+    </tbody>
+
+
+</table>
+
+
+
+
+
 
 </body>
 </html>

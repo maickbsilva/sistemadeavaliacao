@@ -1,5 +1,6 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
+import br.com.projeto.sistemadeavaliacao.model.Pergunta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.RespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.UsuarioRepository;
+
+import java.util.List;
 
 @Controller
 
@@ -39,6 +42,9 @@ public class PesquisaController {
 	@Autowired
 	private RespostaRepository respostaRepository;
 
+	@Autowired
+	private ItemRespostaRepository itemRespostaRepository;
+
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
@@ -61,7 +67,7 @@ public class PesquisaController {
     public String listarRespota(Long id, Model model) {
     	model.addAttribute("pesq",pesquisaRepository.findById(id).get());
     	model.addAttribute("perg", perguntaRepository.findAll());
-    	model.addAttribute("item", itemRepository.findAll());
+		model.addAttribute("item", itemRepository.findAll());
     	model.addAttribute("resposta",respostaRepository.findAll());
     	
 		return "pesquisa/listaResposta";
@@ -86,8 +92,23 @@ public class PesquisaController {
 
 	@RequestMapping("media")
 	public String mediaeComentario(Long id, Model model) {
-		model.addAttribute("pesq",pesquisaRepository.findById(id).get());
-		
+
+		List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
+		Pesquisa pesquisa = pesquisaRepository.filtroExclusao(id);
+
+		//se existir pergunta a se excluida, exclui da lista
+		if (pesquisa != null) {
+			pesquisa.getPerguntaExclusao().forEach(iten -> {
+				perguntas.remove(iten);
+			});
+		}
+
+		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+		model.addAttribute("perg", perguntas);
+		model.addAttribute("item", itemRespostaRepository.findAll());
+
+		//coletar media de satisfacao - esta no item resposta
+
 		return "pesquisa/mediaecomentario";
 	}
 
