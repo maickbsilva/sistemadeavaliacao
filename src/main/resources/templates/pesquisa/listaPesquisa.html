@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,9 +20,10 @@
 			<th>Id</th>
 			<th>Curso</th>
 			<th>Turma</th>
+			<th>Tipo de curso</th>
 			<th>Data Vencimento</th>
 			<th>Jusitificativa</th>
-			<th>#</th>
+			<th>Docente</th>
 			<th>#</th>
 			<th>#</th>
 		</thead>
@@ -31,11 +32,14 @@
 			<tr th:each="ps:${pesq}">
 
 				<td th:text="${ps.id}"></td>
-				<td th:text="${ps.curso}"/>
-				<td th:text="${ps.turma}"/>
-				<td th:text="${ps.dataVencimento}"/>
-				<td th:text="${ps.justificativa}"/>
+				<td th:text="${ps.curso.descCurso}"></td>
+				<td th:text="${ps.turma}"></td>
+				<td th:text="${ps.curso?.tipo}"></td>
+				<td th:text="${ps.dataVencimento}"></td>
+				<td th:text="${ps.justificativa}"></td>
+				<td th:text="${ps.usuarioDocente?.nome}"></td>
 				<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}">Lista de Respostas</a></td>
+				<td><a th:href="@{/pesquisa/media(id=${ps.id})}">Médias e comentários</a></td>
 
 			</tr>
 

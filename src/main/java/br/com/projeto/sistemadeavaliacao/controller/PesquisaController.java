@@ -84,4 +84,11 @@ public class PesquisaController {
 		return "pesquisa/listaPesquisa";
 	}
 
+	@RequestMapping("media")
+	public String mediaeComentario(Long id, Model model) {
+		model.addAttribute("pesq",pesquisaRepository.findById(id).get());
+		
+		return "pesquisa/mediaecomentario";
+	}
+
 }
