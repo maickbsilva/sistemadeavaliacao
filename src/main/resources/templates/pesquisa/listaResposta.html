@@ -10,7 +10,9 @@
 <table border="2" style="padding: 5px;">
     <thead>
     <th>Id Resposta</th>
-    <th>Id idem</th>
+    <th>Pergunta</th>
+    <th>Satisfacao</th>
+    <th>Nivel Importancia</th>
     </thead>
 
     <tbody>
@@ -24,13 +26,15 @@
     <!--		</tr>-->
     <th:block th:each="li:${pesq.listaResposta}">
         <tr>
-            <td th:text="${li.id}">
-                <span>separa resposta</span>
-        <tr th:each="it:${li.listaItem}">
-            <td th:text="${it.id}"/>
+            <td th:text="${li.id}"/>
+                <tr th:each="it:${li.listaItem}">
+                    <td>------------------------</td>
+                    <td th:text="${it.pergunta.textoPergunta}"/>
+                    <td th:text="${it.satisfacao}"/>
+                    <td th:text="${it.nivelImportancia}"/>
+                </tr>
         </tr>
-        </td>
-        </tr>
+
     </th:block>
 
     </tbody>

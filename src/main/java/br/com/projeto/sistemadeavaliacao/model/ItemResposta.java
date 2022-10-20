@@ -21,6 +21,7 @@ public class ItemResposta {
     private String satisfacao;
     @ManyToOne
     private Pergunta pergunta;
+    //ISSO DEVE SER EXCLUIDO
     @ManyToOne
     private Pesquisa pesquisa;
 }
