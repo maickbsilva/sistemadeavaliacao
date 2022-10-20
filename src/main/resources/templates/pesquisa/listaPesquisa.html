@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
 <body>
-    <h1>Lista Pesquisas</h1>
+<h1>Lista Pesquisas</h1>
 
-	
-	<form action="/pesquisa/buscar">
-		<input type="number" name="id" placeholder="buscar por id">
-		<button type="submit">Buscar</button>
-	</form>
 
-	<table class="striped">
-		<thead>
-			<th>Id</th>
-			<th>Curso</th>
-			<th>Turma</th>
-			<th>Tipo de curso</th>
-			<th>Data Vencimento</th>
-			<th>Jusitificativa</th>
-			<th>Docente</th>
-			<th>#</th>
-			<th>#</th>
-		</thead>
+<form action="/pesquisa/buscar">
+	<input type="number" name="id" placeholder="buscar por id">
+	<button type="submit">Buscar</button>
+</form>
 
-		<tbody>
-			<tr th:each="ps:${pesq}">
+<table class="striped">
+	<thead>
+	<th>Id</th>
+	<th>Curso</th>
+	<th>Turma</th>
+	<th>Tipo de curso</th>
+	<th>Data Vencimento</th>
+	<th>Jusitificativa</th>
+	<th>Docente</th>
+	<th>#</th>
+	<th>#</th>
+	</thead>
 
-				<td th:text="${ps.id}"></td>
-				<td th:text="${ps.curso.descCurso}"></td>
-				<td th:text="${ps.turma}"></td>
-				<td th:text="${ps.curso?.tipo}"></td>
-				<td th:text="${ps.dataVencimento}"></td>
-				<td th:text="${ps.justificativa}"></td>
-				<td th:text="${ps.usuarioDocente?.nome}"></td>
-				<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}">Lista de Respostas</a></td>
-				<td><a th:href="@{/pesquisa/media(id=${ps.id})}">Médias e comentários</a></td>
+	<tbody>
+	<tr th:each="ps:${pesq}">
 
-			</tr>
+		<td th:text="${ps.id}"></td>
+		<td th:text="${ps.curso.descCurso}"></td>
+		<td th:text="${ps.turma}"></td>
+		<td th:text="${ps.curso?.tipo}"></td>
+		<td th:text="${ps.dataVencimento}"></td>
+		<td th:text="${ps.justificativa}"></td>
+		<td th:text="${ps.usuarioDocente?.nome}"></td>
+		<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}">Lista de Respostas</a></td>
+		<td><a th:href="@{/pesquisa/media(id=${ps.id})}">Médias e comentários</a></td>
 
-		</tbody>
-	</table>
+	</tr>
+
+	</tbody>
+</table>
 </body>
 </html>

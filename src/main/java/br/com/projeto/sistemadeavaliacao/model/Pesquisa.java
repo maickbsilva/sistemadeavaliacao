@@ -34,10 +34,6 @@ public class Pesquisa {
     @OneToMany(mappedBy = "pesquisa")
     private List<Resposta> listaResposta;
     
-    //ISSO DEVE SER EXCLUIDO
-    @OneToMany(mappedBy = "pesquisa")
-    private List<ItemResposta> listaItem;
-    
     private boolean justificativa;
 
     @OneToOne
