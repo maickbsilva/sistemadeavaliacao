@@ -7,17 +7,9 @@
     <title>Listar Respotas</title>
   </head>
   <body>
-    <select id="select-list" name="select-lis">
-      <option value="">Selecione</option>
-      <option value="div1">Div1</option>
-      <option value="div2">Div2</option>
-    </select>
-    <div id="daddy">
-      <div id="div1">qlqlqlqlqlqlq</div>
-      <div id="div2">ldldldldld</div>
-    </div>
-    <br />
-    <table border="2" style="padding: 5px">
+   
+    <button type="button" onclick="Mudarestado('minhaDiv')">Mostrar / Esconder</button>
+    <table border="2" id="minhaDiv" style="display:none">
       <thead>
         <th>Id Resposta</th>
         <th>Nivel Importancia</th>
