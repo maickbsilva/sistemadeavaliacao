@@ -2,9 +2,20 @@
 <html xmlns:th="http://thymeleaf.org">
   <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../css/select-resp">
+    <script src="jquery-2.1.4.min.js"></script>
     <title>Listar Respotas</title>
   </head>
   <body>
+    <select id="select-list" name="select-lis">
+      <option value="">Selecione</option>
+      <option value="div1">Div1</option>
+      <option value="div2">Div2</option>
+    </select>
+    <div id="daddy">
+      <div id="div1">qlqlqlqlqlqlq</div>
+      <div id="div2">ldldldldld</div>
+    </div>
     <br />
     <table border="2" style="padding: 5px">
       <thead>
@@ -27,5 +38,7 @@
         </tr>
       </tbody>
     </table>
+
+    <script src="../../js/selects/select-resposta.js"></script>
   </body>
 </html>
