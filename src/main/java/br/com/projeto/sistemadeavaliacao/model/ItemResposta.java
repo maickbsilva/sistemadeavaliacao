@@ -21,6 +21,4 @@ public class ItemResposta {
     private String satisfacao;
     @ManyToOne
     private Pergunta pergunta;
-    @ManyToOne
-    private Pesquisa pesquisa;
 }
