@@ -85,7 +85,6 @@ public class RespostaController {
         // seta um item resposta para cada pergunta
         for (int i = 0; i < numPerg; i++) {
             ItemResposta ir = new ItemResposta();
-            ir.setPesquisa(resposta.getPesquisa());
             ir.setResposta(resposta);
             ir.setPergunta(perguntas.get(i));
 
