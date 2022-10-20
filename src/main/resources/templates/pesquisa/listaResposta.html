@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<title>Listar Respotas</title>
+    <meta charset="utf-8">
+    <title>Listar Respotas</title>
 </head>
 <body>
 
-	<br>
-	<table border="2" style="padding: 5px;">
-		<thead>
-			<th>Id Resposta</th>
-			<th>Nivel Importancia</th>
-			<th>Pergunta</th>
-			<th>Satisfacao</th>
-			<th>Comentario</th>
-			<th>Comentario Geral</th>
-		</thead>
+<br>
+<table border="2" style="padding: 5px;">
+    <thead>
+    <th>Id Resposta</th>
+    <th>Id idem</th>
+    </thead>
 
-		<tbody>
-			<tr th:each="it:${pesq.listaItem}">
-				<td th:text="${it.resposta.id}" />
-				<td th:text="${it.nivelImportancia}" />
-				<td th:text="${it.pergunta.textoPergunta}" />
-				<td th:text="${it.satisfacao}" />
-				<td th:text="${it.comentario}" />
-				<td th:text="${it.resposta.comentarioGeral}" />
-			</tr>
+    <tbody>
+    <!--		<tr th:each="it:${pesq.listaItem}">-->
+    <!--			<td th:text="${it.resposta.id}" />-->
+    <!--			<td th:text="${it.nivelImportancia}" />-->
+    <!--			<td th:text="${it.pergunta.textoPergunta}" />-->
+    <!--			<td th:text="${it.satisfacao}" />-->
+    <!--			<td th:text="${it.comentario}" />-->
+    <!--			<td th:text="${it.resposta.comentarioGeral}" />-->
+    <!--		</tr>-->
+    <th:block th:each="li:${pesq.listaResposta}">
+        <tr>
+            <td th:text="${li.id}">
+                <span>separa resposta</span>
+        <tr th:each="it:${li.listaItem}">
+            <td th:text="${it.id}"/>
+        </tr>
+        </td>
+        </tr>
+    </th:block>
 
-		</tbody>
+    </tbody>
 
-
-	</table>
-
-
-
-
+</table>
 
 
 </body>

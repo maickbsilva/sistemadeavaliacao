@@ -31,6 +31,21 @@
 
 </table>
 
+<table border="2" style="padding: 5px;">
+    <thead>
+    <th>Pergunta</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="p:${perg}">
+        <td th:text="${p.textoPergunta}" />
+    </tr>
+
+    </tbody>
+
+
+</table>
+
 
 
 
