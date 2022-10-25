@@ -11,7 +11,8 @@
     <thead>
     <th>Id Resposta</th>
     <th>Pergunta</th>
-    <th>Media de Satisfacao</th>
+    <th>Comentario</th>
+    <th>Justificativa</th>
     </thead>
 
     <tbody>
@@ -21,8 +22,10 @@
         <tr th:each="it:${li.listaItem}">
             <td>------------------------</td>
             <td th:text="${it.pergunta.textoPergunta}"/>
-            <td th:text="${it.satisfacao}"/>
-        </tr>
+            <td th:text="${it.comentario}"/>
+            <td><a th:href="@{#}">Solicitar Justificativa</a></td>
+
+    </tr>
         </tr>
 
     </th:block>
