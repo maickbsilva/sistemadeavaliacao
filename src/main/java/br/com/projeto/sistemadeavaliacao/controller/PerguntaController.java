@@ -30,7 +30,7 @@ public class PerguntaController {
 	@DiretorAnnotation
 	@RequestMapping("cadastrar")
 	public String cadPergunta(Model model) {
-		model.addAttribute("pesq", pesquisaRepository.findAll());
+		model.addAttribute("pesq", pesquisaRepository.filtroNaoVencidos());
 		return "pergunta/cadPergunta";
 	}
 

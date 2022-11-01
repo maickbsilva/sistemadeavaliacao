@@ -5,9 +5,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface PesquisaRepository extends CrudRepository<Pesquisa, Long> {
     //busca as perguntas das pesquisas que tem perguntas a serem excluidas
     @Query("SELECT l FROM Pesquisa l INNER JOIN l.perguntaExclusao li where l.id = :id")
     public Pesquisa filtroExclusao(@Param("id") Long idPesquisa);
+
+    @Query("SELECT l FROM Pesquisa l where l.dataVencimento > CURRENT_DATE order by l.id DESC")
+    public List<Pesquisa> filtroNaoVencidos();
 
 }
