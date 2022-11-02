@@ -40,7 +40,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Lista Pesquisa</title>
+    <title>Lista Resposta</title>
   </head>
   <body>
     <h1>Lista de Respostas</h1>
@@ -50,7 +50,8 @@
     </button>
 
     <form action="itemresposta/buscaResp">
-      <select onChange="myFunction(this.value)" >
+      <input id="demo" type="text" name="search" placeholder="Search...">
+      <select id="respostas">
         <option
           th:each="li:${pesq.listaResposta}"
           th:value="${li.id}"
@@ -59,7 +60,6 @@
       </select>
     </form>
     
-
 
     <div id="minhaDiv">
       <table id="customers">
@@ -70,10 +70,10 @@
           <th>Nivel Importancia</th>
         </thead>
 
-        <tbody>
+        <tbody id="list">
           <th:block th:each="li:${pesq.listaResposta}">
-            <tr>
-              <td th:text="${li.id}" />
+            <tr >
+              <td th:text="${li.id}"/>
               <tr th:each="it:${li.listaItem}">
                 <td></td>
                 <td th:text="${it.pergunta.textoPergunta}" />

@@ -43,12 +43,8 @@
 		
 		<h1>Lista da Pesquisa</h1>
 
-			
-		<ul class="dropdown-menu"></ul>
-		<form action="/pesquisa/buscar">
-			<input type="search" name="id" placeholder="buscar por id">
-			<button type="submit">Buscar</button>
-		</form>
+	
+		
 
 	<table id="customers">
 		<thead>
@@ -68,7 +64,7 @@
 			<tr th:each="ps:${pesq}">
 
 				<td th:text="${ps.id}"></td>
-				<td th:text="${ps.curso}"/>
+				<td th:text="${ps.curso?.descCurso}"/>
 				<td th:text="${ps.turma}"/>
 				<td th:text="${ps.dataVencimento}"/>
 				<td th:text="${ps.justificativa}"/>
