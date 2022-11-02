@@ -20,6 +20,12 @@ INPUT_BUSCA.addEventListener('keyup', () => {
 })
 
 /*
+[funções anteriores que não funcionaram mas até o momento
+mas talvez seja pacivel de reestruturar]
+
+[Sujestão do Arthur para ajudar seria utilizar metodo filter 
+mas não consegui utilizar estou vendo videos para entender]
+------------------------------------------------------------------------------------------------
 function search_id() {
   let input = document.getElementById('searchbar').value
   input=input.toLowerCase();
@@ -35,7 +41,7 @@ function search_id() {
       }
   }
 }
-----------------------------------------------------------
+----------------------------------------------------------------------------
 $(document).ready(function(){
     escolas.forEach(function(item){
         $('select.lista-escola').append('<option>' + item + '</option>');
@@ -50,8 +56,8 @@ $(document).ready(function(){
         }
     });
 });
-
-
+----------------------------------------------------------------------------
+[outro jeito de fazer porém não sei como fazer]
+onChange requerid back pedindo lista dql resposta 
 
 */
-//onChange requerid back pedindo lista dql resposta 
