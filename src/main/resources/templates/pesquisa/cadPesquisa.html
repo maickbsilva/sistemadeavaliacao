@@ -68,8 +68,8 @@
           <label>Selecione o Docente Responsavel:</label>
         </div>
         <div class="mb-3">
-          <select name="usuarioDocente" class="form-select">
-            <option disabled selected>Selecione...</option>
+          <select name="usuarioDocente" class="form-select" required>
+           <option  > </option>
             <option
               th:each="u:${usuario}"
               th:text="${u.nome}"
@@ -125,7 +125,7 @@
         <div class="mb-3">
           <label>Curso:</label>
           <select class="form-select" name="curso.id" required>
-            <option disabled selected>Selecione o Curso...</option>
+           <option></option>
             <option
               th:each="c: ${cursos}"
               th:text="${c.descCurso}"

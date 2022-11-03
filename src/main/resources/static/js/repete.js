@@ -1,1 +1,0 @@
-$.datepicker.formatDate('dd/mm/yy', new Date());

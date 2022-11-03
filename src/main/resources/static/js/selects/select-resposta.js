@@ -1,9 +1,7 @@
-$(document).ready(function(){
-
-    $('#select-list').on('change', function(){
-
-        var selectValor = $(this).val();
-        $('#daddy').childrens('div').hide();
-    })
-
-})
+function Mudarestado(el) {
+    var display = document.getElementById(el).style.display;
+    if (display == "none")
+      document.getElementById(el).style.display = 'block';
+    else
+      document.getElementById(el).style.display = 'none';
+  }
