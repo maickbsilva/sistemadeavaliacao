@@ -18,14 +18,6 @@
 		</thead>
 
 		<tbody>
-			<!--		<tr th:each="it:${pesq.listaItem}">-->
-			<!--			<td th:text="${it.resposta.id}" />-->
-			<!--			<td th:text="${it.nivelImportancia}" />-->
-			<!--			<td th:text="${it.pergunta.textoPergunta}" />-->
-			<!--			<td th:text="${it.satisfacao}" />-->
-			<!--			<td th:text="${it.comentario}" />-->
-			<!--			<td th:text="${it.resposta.comentarioGeral}" />-->
-			<!--		</tr>-->
 			<th:block th:each="li:${pesq.listaResposta}">
 				<tr>
 					<td th:text="${li.id}" />
@@ -45,7 +37,6 @@
 		</tbody>
 
 	</table>
-
 
 </body>
 

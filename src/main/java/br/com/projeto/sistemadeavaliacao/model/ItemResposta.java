@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 @Entity
 @Data
@@ -21,4 +22,14 @@ public class ItemResposta {
     private String satisfacao;
     @ManyToOne
     private Pergunta pergunta;
+    public void setComentario(String comentario) {
+        BasicTextEncryptor encryptor = new BasicTextEncryptor();
+        encryptor.setPasswordCharArray("crypto".toCharArray());
+        this.comentario = encryptor.encrypt(comentario);
+    }
+    public String getComentario() {
+        BasicTextEncryptor encryptor = new BasicTextEncryptor();
+        encryptor.setPasswordCharArray("crypto".toCharArray());
+        return encryptor.decrypt(comentario);
+    }
 }

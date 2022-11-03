@@ -27,82 +27,63 @@ import br.com.projeto.sistemadeavaliacao.repository.UsuarioRepository;
 @RequestMapping("pesquisa/")
 public class PesquisaController {
 
-	@Autowired
-	private PesquisaRepository pesquisaRepository;
+    @Autowired
+    private PesquisaRepository pesquisaRepository;
 
-	@Autowired
-	private CursoRepository cursoRepository;
+    @Autowired
+    private CursoRepository cursoRepository;
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-	@Autowired
-	private ItemRespostaRepository itemRepository;
+    @Autowired
+    private ItemRespostaRepository itemRepository;
 
-	@Autowired
-	private PerguntaRepository perguntaRepository;
+    @Autowired
+    private PerguntaRepository perguntaRepository;
 
-	@Autowired
-	private RespostaRepository respostaRepository;
+    @Autowired
+    private RespostaRepository respostaRepository;
 
-	@SecretariaAnnotation
-	@DiretorAnnotation
-	@RequestMapping("cadastrar")
-	public String cadPesquisa(Model model) {
-		model.addAttribute("cursos", cursoRepository.findAll());
-		model.addAttribute("respostas", respostaRepository.findAll());
-		model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
-		model.addAttribute("pergunta", perguntaRepository.perguntasGerais());
-		return "pesquisa/cadPesquisa";
-	}
+    @SecretariaAnnotation
+    @DiretorAnnotation
+    @RequestMapping("cadastrar")
+    public String cadPesquisa(Model model) {
+        model.addAttribute("cursos", cursoRepository.findAll());
+        model.addAttribute("respostas", respostaRepository.findAll());
+        model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
+        model.addAttribute("pergunta", perguntaRepository.perguntasGerais());
+        return "pesquisa/cadPesquisa";
+    }
 
-	@RequestMapping("buscar")
-	public String buscaPesquisa(Long id, Model model) {
-		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-		return "pesquisa/listaPesquisa";
-	}
+    @RequestMapping("buscar")
+    public String buscaPesquisa(Long id, Model model) {
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+        return "pesquisa/listaPesquisa";
+    }
 
-	@RequestMapping("listarResposta")
-	public String listarRespota(Long id, Model model) {
+    @RequestMapping("listarResposta")
+    public String listarRespota(Long id, Model model) {
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+        model.addAttribute("perg", perguntaRepository.findAll());
+        model.addAttribute("resposta", respostaRepository.findAll());
+        return "pesquisa/listaResposta";
+    }
 
-		// chama a criptografia
-		BasicTextEncryptor encryptor = new BasicTextEncryptor();
+    @SecretariaAnnotation
+    @DiretorAnnotation
+    @RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
+    public String novaPesquisa(Pesquisa pesquisa, String listaDocentes) {
+        pesquisaRepository.save(pesquisa);
+        return "redirect:cadastrar";
+    }
 
-		//String comentarioCrypt = encryptor.decrypt(comentarioGeral);
-
-		Resposta comentarioGeral = respostaRepository.comentarioGeral();
-		String quebra[] = comentarioGeral.toString().split(",");
-
-		for (int i = 0; i < quebra.length; i++) {
-			String coment = quebra[i];
-			String descrip = encryptor.decrypt(coment);
-			//salva isso dentro de uma lista para chamar a lista dentro da model
-		}
-
-	
-		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-		model.addAttribute("perg", perguntaRepository.findAll());
-		model.addAttribute("item", itemRepository.findAll());
-		model.addAttribute("resposta", respostaRepository.findAll());
-
-		return "pesquisa/listaResposta";
-
-	}
-
-	@SecretariaAnnotation
-	@DiretorAnnotation
-	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
-	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes) {
-		pesquisaRepository.save(pesquisa);
-		return "redirect:cadastrar";
-	}
-
-	@SecretariaAnnotation
-	@DiretorAnnotation
-	@RequestMapping("listar")
-	public String listaPesquisa(Model model) {
-		model.addAttribute("pesq", pesquisaRepository.findAll());
-		return "pesquisa/listaPesquisa";
-	}
+    @SecretariaAnnotation
+    @DiretorAnnotation
+    @RequestMapping("listar")
+    public String listaPesquisa(Model model) {
+        model.addAttribute("pesq", pesquisaRepository.findAll());
+        return "pesquisa/listaPesquisa";
+    }
 
 }

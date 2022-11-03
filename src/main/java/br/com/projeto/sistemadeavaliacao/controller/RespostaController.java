@@ -43,12 +43,7 @@ public class RespostaController {
     @PublicoAnnotation
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
     public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
-            String comentarioGeral,
             Model model, HttpServletRequest request) throws UnknownHostException {
-
-        //cria a criptografia
-        BasicTextEncryptor encryptor = new BasicTextEncryptor();
-        encryptor.setPasswordCharArray("crypto".toCharArray());
 
         // pega id da pesquisa
         Long idPesquisa = resposta.getPesquisa().getId();
@@ -80,10 +75,6 @@ public class RespostaController {
         String hostname = addr.getHostName();
         resposta.setNomeMaquina(hostname);
 
-        //criptografa o comentario geral
-        String comentGeralCrypt = encryptor.encrypt(comentarioGeral);
-        resposta.setComentarioGeral(comentGeralCrypt);
-
         // salva a resposta
         respostaRepository.save(resposta);
 
@@ -103,10 +94,7 @@ public class RespostaController {
             String satisf = quebraSatis[i];
 
             ir.setNivelImportancia(nivel);
-
-            String comentarioCrypt = encryptor.encrypt(coment);
-            ir.setComentario(comentarioCrypt);
-
+            ir.setComentario(coment);
             ir.setSatisfacao(satisf);
 
             itemRespostaRepository.save(ir);
