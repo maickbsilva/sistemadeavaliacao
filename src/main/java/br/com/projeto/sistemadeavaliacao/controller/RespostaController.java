@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,12 @@ public class RespostaController {
     @PublicoAnnotation
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
     public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
-                               Model model, HttpServletRequest request) throws UnknownHostException {
+            String comentarioGeral,
+            Model model, HttpServletRequest request) throws UnknownHostException {
+
+        //cria a criptografia
+        BasicTextEncryptor encryptor = new BasicTextEncryptor();
+        encryptor.setPasswordCharArray("crypto".toCharArray());
 
         // pega id da pesquisa
         Long idPesquisa = resposta.getPesquisa().getId();
@@ -51,7 +57,7 @@ public class RespostaController {
         List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(idPesquisa);
         Pesquisa pesquisa = pesquisaRepository.filtroExclusao(idPesquisa);
 
-        //se existir pergunta a se excluida, exclui da lista
+        // se existir pergunta a se excluida, exclui da lista
         if (pesquisa != null) {
             pesquisa.getPerguntaExclusao().forEach(iten -> {
                 perguntas.remove(iten);
@@ -74,6 +80,10 @@ public class RespostaController {
         String hostname = addr.getHostName();
         resposta.setNomeMaquina(hostname);
 
+        //criptografa o comentario geral
+        String comentGeralCrypt = encryptor.encrypt(comentarioGeral);
+        resposta.setComentarioGeral(comentGeralCrypt);
+
         // salva a resposta
         respostaRepository.save(resposta);
 
@@ -93,7 +103,10 @@ public class RespostaController {
             String satisf = quebraSatis[i];
 
             ir.setNivelImportancia(nivel);
-            ir.setComentario(coment);
+
+            String comentarioCrypt = encryptor.encrypt(coment);
+            ir.setComentario(comentarioCrypt);
+
             ir.setSatisfacao(satisf);
 
             itemRespostaRepository.save(ir);
@@ -108,17 +121,17 @@ public class RespostaController {
         List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
         Pesquisa pesquisa = pesquisaRepository.filtroExclusao(id);
 
-        //se existir pergunta a se excluida, exclui da lista
+        // se existir pergunta a se excluida, exclui da lista
         if (pesquisa != null) {
             pesquisa.getPerguntaExclusao().forEach(iten -> {
                 perguntas.remove(iten);
             });
         }
 
-        //outra forma de fazer o for
-        //perguntas.stream().filter(iten -> {
-        //return !pesquisa.getPerguntaExclusao().contains(iten);
-        //});
+        // outra forma de fazer o for
+        // perguntas.stream().filter(iten -> {
+        // return !pesquisa.getPerguntaExclusao().contains(iten);
+        // });
 
         model.addAttribute("pesq", pesquisaRepository.findById(id).get());
         model.addAttribute("perg", perguntas);
