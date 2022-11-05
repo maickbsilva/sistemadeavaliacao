@@ -1,6 +1,7 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
 import br.com.projeto.sistemadeavaliacao.model.Pergunta;
+import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import br.com.projeto.sistemadeavaliacao.repository.RespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.UsuarioRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 
@@ -69,7 +71,7 @@ public class PesquisaController {
     	model.addAttribute("perg", perguntaRepository.findAll());
 		model.addAttribute("item", itemRepository.findAll());
     	model.addAttribute("resposta",respostaRepository.findAll());
-    	
+
 		return "pesquisa/listaResposta";
     	
     }
@@ -77,7 +79,7 @@ public class PesquisaController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value="novaPesquisa", method = RequestMethod.POST)
-	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes) {
+	public String novaPesquisa(Pesquisa pesquisa) {
 		pesquisaRepository.save(pesquisa);
 		return "redirect:cadastrar";
 	}
@@ -108,6 +110,8 @@ public class PesquisaController {
 		model.addAttribute("item", itemRespostaRepository.findAll());
 
 		//coletar media de satisfacao - esta no item resposta
+		Optional<Resposta> idresp = respostaRepository.findById(Long.valueOf(29));
+		System.out.println(itemRespostaRepository.totalSatisfacaoPorResposta(idresp));
 
 		return "pesquisa/mediaecomentario";
 	}
