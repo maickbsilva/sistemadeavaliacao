@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface ItemRespostaRepository extends PagingAndSortingRepository<ItemResposta, Long>{
-    //soma as satisfacoes
+    //soma as satisfacoes.
     @Query("SELECT SUM(i.satisfacao) FROM ItemResposta i where i.resposta = :id")
     public String totalSatisfacaoPorResposta(@Param("id") Optional<Resposta> idResposta);
 }
