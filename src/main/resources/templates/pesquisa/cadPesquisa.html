@@ -1,115 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/pesquisa/pesquisa.css" />
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="../../css/poppups/poppup.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
+      rel="stylesheet"
+    />
 
-	<link href="../../css/cadastro-cursos/cad-curso.css" rel="stylesheet"/>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-	crossorigin="anonymous"
-  />
-	<title>Cadastro de Pesquesa</title>
-</head>
-<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    <link rel="stylesheet" href="../../css/alert.css">
+    <title>Pesquisa</title>
+  </head>
 
+  <body>
     <div class="area">
-		<ul class="circles">
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		</ul>
-	  </div>
-	  
-	<div class="container main-div">
-    	<form  action="novaPergunta" method="post">
-			<input type="hidden" name="id" th:value="${p?.id}"/>
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="container main-div">
+      <h1>Nova Pesquisa</h1>
 
-			<div class="cad-per">
-					<h4 class="cad-per-item">Cadastrar Nova Pesquisa</h4>
+      <form method="post" action="novaPesquisa">
+        <input type="hidden" name="id" />
 
-	<form method="post" style="border:2" action="novaPesquisa">
+        <div class="mb-3">
+          <label class="form-label">Turma:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="turma"
+            placeholder="exemplo: Dev Noite 1200hs periodo: Noturno"
+            required
+          />
+        </div>
 
-		<input 
-			type="hidden" 
-			name="id"
-		/>
+        <!-- Docentes -->
+        <div class="mb-3">
+          <label>Selecione o Docente Responsavel:</label>
+        </div>
+        <div class="mb-3">
+          <select name="usuarioDocente" class="form-select" required>
+           <option  > </option>
+            <option
+              th:each="u:${usuario}"
+              th:text="${u.nome}"
+              th:value="${u.userId}"
+            ></option>
+          </select>
+        </div>
 
-		<div>
-			turma 
-			<input 
-				type="text" 
-				name="turma" 
-				placeholder="exemplo: Dev Noite 1200hs periodo: Noturno"/>
-		</div>
-		<br>
-		<div>
-			<label>Curso</label>
-			<select name="curso.id">
-				<option 
-					th:each="c: ${cursos}" 
-					th:text="${c.descCurso}" 
-					th:value="${c.id}"
-				/>
-			</select>
-		</div>
-		<br>
-		<div>
-			<label>Docente</label>
-			<select name="usuario.id">
-				<option 
-					th:each="u:${usuario}" 
-					th:text="${u.nome}" 
-					th:value="${u.userId}"/>
-			</select>
-		</div>
+        <div class="mb-3">
+          <label for="idSelect2">
+            Caso Tenha Mais Docentes Selecione Aqui:
+          </label>
+        </div>
+        <div class="mb-3">
+          <select
+            name="listaDocentes"
+            class="select2 form-control js-example-responsive"
+            id="idSelect2"
 
-		<br>
-		<div>
-			data vencimento 
-				<input 
-				type="date" name="dataVencimento" />
-		</div>
-		<br>
+            multiple
+          >
+          <option disabled="disabled">Docentes...</option>
+            <option
+              th:each="u:${usuario}"
+              th:text="${u.nome}"
+              th:value="${u.userId}"
+            ></option>
+          </select>
+        </div>
 
-		<H3>EXCLUIR PERGUNTA?</H3>
-		<tr>
-			<td>
-			  <th:block th:each="p : ${pergunta}">
-				<label th:text="${p.textoPergunta}"></label>  
-			  <input type="checkbox" name="perguntaExclusao" th:value="${p.id}"/>
-			  <br>  
-			</th:block>
-			</td>
-		</tr>
+        <!-- Retirar pergunta-->
 
+        <div class="mb-3">
+          <label>Retirar pergunta caso necessario:</label>
+          <select
+            name="perguntaExclusao"
+            class="select2 form-control"
+            id="idSelect2"
+            multiple
+          
+          >
+            <option
+              type="checkbox"
+              th:each="p:${pergunta}"
+              th:text="${p.textoPergunta}"
+              th:value="${p.id}"
+              id="select"
+            ></option>
+          </select>
+        </div>
 
-		<div>
-			<button type="submit">Cadastrar</button>
-		</div>
-	</form>
+        <!-- Cursos -->
+        <div class="mb-3">
+          <label>Curso:</label>
+          <select class="form-select" name="curso.id" required>
+           <option></option>
+            <option
+              th:each="c: ${cursos}"
+              th:text="${c.descCurso}"
+              th:value="${c.id}"
+            ></option>
+          </select>
+        </div>
 
-	<script th:inline="javascript">
-		window.addEventListener("load", () => {
-		const id = /*[[${idpesq}]]*/
-		if(id) return alert("Pesquisa criada com sucesso! Seu código é: " + id)
-	})
-	</script>
+  
+        <div>
+          <label> data vencimento</label>
+          <input type="date" name="dataVencimento" required />
+        </div>
+        
+        <!--<div>
+          <label>Respostas</label>
+          <select name="listaRespostas">
+            <option th:each="r: ${respostas}" th:text="${r.id}" th:value="${r.id}"></option>
+          </select>
+		    </div>-->
+        <div>
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+    
 
-</body>
+    <!-- Script criados -->
+    <script src="../../js/selects/select.js"></script>
 
+    <!-- imports -->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

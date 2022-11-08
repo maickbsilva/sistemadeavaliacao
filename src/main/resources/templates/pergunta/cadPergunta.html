@@ -1,71 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <!-- Favicon -->
-		<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-	<link href="../../css/cadastro-per/cad-per.css"rel="stylesheet"/>
-  <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
-    <title>Cadastro de Pergunta</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../../css/pesquisa/pesquisa.css">
+	<!-- JQuery -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
+		rel="stylesheet"
+	  />
+	  <!-- JQuery -->
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   
+	  <link
+		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
+		rel="stylesheet"
+	  />
+  
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+	<title>Nova Pergunta</title>
 </head>
 
 <body>
-
-    <div class="area">
+	<div class="area">
 		<ul class="circles">
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
-		  <li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
 		</ul>
-	  </div>
-
+	</div>
 	<div class="container main-div">
-    	<form  action="novaPergunta" method="post">
-				<input type="hidden" name="id" th:value="${p?.id}"/>
+		<h2>Cadastro de Pergunta</h2>
 
-				<div class="cad-per">
-					<h4 class="cad-per-item" >Cadastro de Pergunta</h4>	
+		<form method="post" style="border:2" action="novaPergunta">
 
-					<input 
-						placeholder="Pergunta"
-						class="form-control per"
-						type="text" 
-						name="textoPergunta" 
-						th:value="${p?.textoPergunta}"
-					/>
-				</div>
-				<br>		
-				<div>
-					<button 
-						type="submit"
-						class="btn btn-primary">
-						<b>CADASTRAR</b>
-					</button>
-				</div>
+			<input type="hidden" name="id" th:value="${p?.id}"></input>
+
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="floatingInput" placeholder="Nova Pergunta"
+					name="textoPergunta" th:value="${p?.textoPergunta}" required/>
+				<label for="floatingInput">Digite a Nova Pergunta</label>
+			</div>
+
+		
+			
+				<div class="mb-3">
+					<label>Deseja atrelar em uma pesquisa especifica(opcional)?</label>
+					<select
+					  name="perguntaExclusao"
+					  class="select2 form-control"
+					  id="idSelect2"
+					  multiple
+					
+					>
+					<option th:each="p:${pesq}" th:text="${p?.turma}" th:value="${p?.id}"></option>
+					</select>
+				  </div>
+				
+			 
+
+			<div class="d-grid gap-2" >
+			<div style="text-align:center!important;">
+				<button type="submit" class="btn btn-outline-primary" style="width: 120px" >Cadastrar</button>
+			</div>
+			</div>
+
+
 		</form>
 
-		<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+	</div>
+
+
+	
+	<script src="../../js/selects/select.js"></script>
+	<!--Bootstrap-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-		crossorigin="anonymous"
-	  ></script>
+		crossorigin="anonymous"></script>
+		<link href="path/to/select2.min.css" rel="stylesheet"/>
+<script src="path/to/select2.min.js"></script>
+
+
 </body>
+
+<style>
+	select {
+		width: 100%;
+	}
+
+</style>
 
 </html>

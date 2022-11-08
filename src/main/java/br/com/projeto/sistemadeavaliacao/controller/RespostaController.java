@@ -48,10 +48,18 @@ public class RespostaController {
         Long idPesquisa = resposta.getPesquisa().getId();
 
         // passa no filtro
-        List<Pergunta> listaPerg = (List<Pergunta>) perguntaRepository.filtroPerguntas(idPesquisa);
+        List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(idPesquisa);
+        Pesquisa pesquisa = pesquisaRepository.filtroExclusao(idPesquisa);
+
+        //se existir pergunta a se excluida, exclui da lista
+        if (pesquisa != null) {
+            pesquisa.getPerguntaExclusao().forEach(iten -> {
+                perguntas.remove(iten);
+            });
+        }
 
         // pega o tamanho da lista
-        int numPerg = listaPerg.size();
+        int numPerg = perguntas.size();
 
         // pega a data de hoje e seta no atributo
         Date now = new Date(System.currentTimeMillis());
@@ -77,9 +85,8 @@ public class RespostaController {
         // seta um item resposta para cada pergunta
         for (int i = 0; i < numPerg; i++) {
             ItemResposta ir = new ItemResposta();
-            ir.setPesquisa(resposta.getPesquisa());
             ir.setResposta(resposta);
-            ir.setPergunta(listaPerg.get(i));
+            ir.setPergunta(perguntas.get(i));
 
             String nivel = quebraNivel[i];
             String coment = quebraComent[i];

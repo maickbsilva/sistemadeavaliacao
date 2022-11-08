@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-<meta charset="utf-8">
-<title>Listar Respotas</title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../css/select-resp">
+    <script src="jquery-2.1.4.min.js"></script>
+    <title>Listar Respotas</title>
+  </head>
+  <body>
+    <select id="select-list" name="select-lis">
+      <option value="">Selecione</option>
+      <option value="div1">Div1</option>
+      <option value="div2">Div2</option>
+    </select>
+    <div id="daddy">
+      <div id="div1">qlqlqlqlqlqlq</div>
+      <div id="div2">ldldldldld</div>
+    </div>
+    <br />
+    <table border="2" style="padding: 5px">
+      <thead>
+        <th>Id Resposta</th>
+        <th>Nivel Importancia</th>
+        <th>Pergunta</th>
+        <th>Satisfacao</th>
+        <th>Comentario</th>
+        <th>Comentario Geral</th>
+      </thead>
 
-	<br>
-	<table border="2" style="padding: 5px;">
-		<thead>
-			<th>Id Resposta</th>
-			<th>Nivel Importancia</th>
-			<th>Pergunta</th>
-			<th>Satisfacao</th>
-			<th>Comentario</th>
-			<th>Comentario Geral</th>
-		</thead>
+      <tbody>
+        <tr th:each="it:${pesq.listaItem}">
+          <td th:text="${it.resposta.id}" />
+          <td th:text="${it.nivelImportancia}" />
+          <td th:text="${it.pergunta.textoPergunta}" />
+          <td th:text="${it.satisfacao}" />
+          <td th:text="${it.comentario}" />
+          <td th:text="${it.resposta.comentarioGeral}" />
+        </tr>
+      </tbody>
+    </table>
 
-		<tbody>
-			<tr th:each="it:${pesq.listaItem}">
-				<td th:text="${it.resposta.id}" />
-				<td th:text="${it.nivelImportancia}" />
-				<td th:text="${it.pergunta.textoPergunta}" />
-				<td th:text="${it.satisfacao}" />
-				<td th:text="${it.comentario}" />
-				<td th:text="${it.resposta.comentarioGeral}" />
-			</tr>
-
-		</tbody>
-
-
-	</table>
-
-
-
-
-
-
-</body>
+    <script src="../../js/selects/select-resposta.js"></script>
+  </body>
 </html>
