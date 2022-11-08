@@ -8,11 +8,17 @@
         <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
     <link rel="stylesheet" href="../../css/login/login.css" />
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>  
+  </body>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+
   </head>
   <body>
+    
     <section class="login" id="fundo">
       <div class="head">
-        <img class="img" src="../../static/img/kaozgreat.png" />
+        <img class="img" src="../../img/kaozgreat.png" /> 
       </div>
 
       <p class="msg">Bem vindo de volta</p>
@@ -23,20 +29,25 @@
             type="text"
             placeholder="NIF"
             class="text"
-            id="username"
+            id="login"
             required
           /><br />
           <input
             type="password"
             placeholder="••••••••••••••"
             class="password"
+            id="senha"
           /><br />
-          <a href="#" class="btn-login" id="do-login">Login</a>
-          <a href="#" class="forgot" id="do-forgot">Esqueceu a senha ?</a>
+
+          <button class="btn-login"> Logar </button>
+
+
+           
         </form>
+        
       </div>
     </section>
-
+    
     <script src="../../js/login/login.js"></script>
-  </body>
-</html>
+
+    </html>

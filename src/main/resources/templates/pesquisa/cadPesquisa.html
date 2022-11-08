@@ -103,6 +103,13 @@
 		</div>
 	</form>
 
+	<script th:inline="javascript">
+		window.addEventListener("load", () => {
+		const id = /*[[${idpesq}]]*/
+		if(id) return alert("Pesquisa criada com sucesso! Seu código é: " + id)
+	})
+	</script>
+
 </body>
 
 </html>
