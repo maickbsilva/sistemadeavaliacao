@@ -90,12 +90,12 @@ public class PesquisaController {
 		return "pesquisa/listaPesquisa";
 	}
 
-	@PostMapping("*/pesquisarid")
+	@PostMapping("pesquisarid")
 	public ModelAndView pesquisar(@RequestParam("idpesquisa") Long idpesquisa){
 		ModelAndView modelAndView = new ModelAndView("pesquisa/listaPesquisa");
 		modelAndView.addObject("listaResposta", respostaRepository.findById(idpesquisa));
 		modelAndView.addObject("listaItem", itemRepository.findById(idpesquisa));
-		modelAndView.addObject("listaResposta", new Pesquisa());
+		modelAndView.addObject("listaResposta", new Resposta());
 		return modelAndView;
 
 	}
