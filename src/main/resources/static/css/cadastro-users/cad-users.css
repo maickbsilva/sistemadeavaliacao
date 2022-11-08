@@ -81,13 +81,13 @@ body {
     margin-top: 10px;
     margin-left: -5px;
     border-radius: 5px;
-    background-color: #a8f742;
+    background-color: rgb(0, 128, 255);
     -webkit-transition: background-color 300ms;
     -moz-transition: background-color 300ms;
     transition: background-color 300ms;
   }
   .btnCad > button:hover {
-    background-color: #1a8128;
+    background-color: rgb(128, 128, 255);
   }
   
   

@@ -24,7 +24,11 @@
 			  <div class="offcanvas-header">
 				<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-			  </div>          
+			  </div>
+			  <form action="/buscarUser" class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" name="buscar" id="pesqui" placeholder="Search" aria-label="Search" data-bs-toggle="dropdown">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>          
 			  </div>
 			  
 			</div>
@@ -33,16 +37,13 @@
 		
 		<h1>Lista de Usuários</h1>
 
-		<div class="dropend">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			  Pesquise
-			</button>
+		
 			<ul class="dropdown-menu">
 
 				  <form action="/buscarUser">
 					<label>Buscar Usuario</label><br> <input type="search"
 						name="buscar" class="input-buscar" id="pesqui">
-						<button type="submit">search</button>
+						<button class="btn btn-outline-success" type="submit">Search</button>
 					 <!-- <input type="submit"
 						value="buscar" class="button-buscar"> -->
 				</form>
