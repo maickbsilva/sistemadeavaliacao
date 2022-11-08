@@ -45,21 +45,50 @@
   <body>
     <h1>Lista de Respostas</h1>
 
-  <!--  <button type="button" onclick="Mudarestado('minhaDiv')">
+    <!--  <button type="button" onclick="Mudarestado('minhaDiv')">
       Mostrar / Esconder
     </button> -->
 
-    <form action="itemresposta/buscaResp">
-      <input id="demo" type="text" name="search" placeholder="Search...">
-      <select id="respostas">
-        <option
-          th:each="li:${pesq.listaResposta}"
-          th:value="${li.id}"
-          th:text="${li.id}"
-        ></option>
-      </select>
+    <form action="pesquisarid" class="search-res" method="post">
+      <input
+        id="demo"
+        placeholder="Search..."
+        name="idpesquisa"
+      />
+      <input type="submit" value="Buscar">
     </form>
-    
+    <!--
+     <div>
+      <div>
+        <label>ID da Resposta</label>
+        <input th:value="$">
+        
+        </tr>
+      </div>
+      <div>
+        <label>Satisfação</label>
+        <label>Perguntas</label>
+        <label>Nivel de Importancia</label>
+      </div>
+      <div>
+        <table>
+          <tbody>
+            <th:block>
+            <tr>
+              <td th:text="${li.id}" class="trid" />
+              <tr th:each="it:${li.listaItem}">
+                <td></td>
+                <td th:text="${it.pergunta.textoPergunta}" />
+                <td th:text="${it.satisfacao}" />
+                <td th:text="${it.nivelImportancia}" />
+              </tr>
+            </tr>
+          </th:block>
+          </tbody>
+        </table>
+      </div>
+    </div>
+   -->
 
     <div id="minhaDiv">
       <table id="customers">
@@ -72,22 +101,25 @@
 
         <tbody id="list">
           <th:block th:each="li:${pesq.listaResposta}">
-            <tr >
-              <td th:text="${li.id}"/>
-              <tr th:each="it:${li.listaItem}">
-                <td></td>
-                <td th:text="${it.pergunta.textoPergunta}" />
-                <td th:text="${it.satisfacao}" />
-                <td th:text="${it.nivelImportancia}" />
-              </tr>
-            </tr>
-          </th:block>
+		<tr>
+			<td th:text="${li.id}"/>
+		<tr th:each="it:${li.listaItem}">
+			<td>------------------------</td>
+			<td th:text="${it.pergunta.textoPergunta}"/>
+			<td th:text="${it.satisfacao}"/>
+			<td th:text="${it.nivelImportancia}"/>
+		</tr>
+		</tr>
+
+	</th:block>
+
         </tbody>
       </table>
     </div>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="../../js/liresp.js"></script>
+    <script src="../../js/focus.js"></script>
     <!--
       <script src="../../js/selects/select-resposta.js"></script>
      -->
