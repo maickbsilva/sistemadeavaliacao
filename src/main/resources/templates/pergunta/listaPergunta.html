@@ -20,34 +20,26 @@
 
 	<nav class="navbar navbar-dark bg-dark fixed-top">
 		<div class="container-fluid">
-    		<a class="navbar-brand" href="#">Lista de Perguntas</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-				<span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-				<div class="offcanvas-header">
-				  <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Pesquisar</h5>
-				  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-				</div>          
-				</div>
-				
-			  </div>
+		  <a class="navbar-brand" href="#">Lista de Pesquisa</a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+			<span class="navbar-toggler-icon"></span>Menu
+		  </button>
+		  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+			<div class="offcanvas-header">
+			  <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Pesquise</h5>
+			  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
-		  </nav>
-
+	
+			  <form  class="d-flex form-pesquisa" role="search">
+				<input  class="form-control me-2" type="search" name="id"  aria-label="Search" id="input-busca">
+				<button class="btn btn-outline-success" type="submit">Pesquisar</button>
+			</form>
+			</div>
+		  </div>
+		</div>
+	  </nav>
 		  <h1>Lista de Perguntas</h1>
 
-		  <div class="dropend">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			  Pesquise
-			</button>
-			<ul class="dropdown-menu">
-				<form class="d-flex form-pesquisa" role="search">
-					<input name="Funcionario" class="form-control me-2" type="search"  aria-label="Search" id="input-busca">
-					<button class="btn btn-outline-success" type="submit">Pesquisar</button>
-				  </form> 
-			</ul>
-		  </div>
 
 
 	<table id="customers" class="lista">
