@@ -2,7 +2,6 @@
 *:not(head, script, svg, svg *)::before,
 *:not(head, script, svg, svg *)::after {
   all: unset;
-  box-sizing: border-box;
   font-family: sans-serif;
 }
 
@@ -53,7 +52,6 @@ div p {
 }
 
 div a {
-  font-size: 3vmin;
   background-color: navy;
   color: white;
   font-weight: 500;
@@ -97,7 +95,7 @@ div::before {
 }
 /*input e button*/
 .inbt{
-    
+  
 }
 .bt:active{
     transform: translateY(4px);
@@ -113,7 +111,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 input{
   width: 100px;
-  height: 50px;
+  height: 40px;
   display: flex;
     margin:5px;
     border: 1px solid;
