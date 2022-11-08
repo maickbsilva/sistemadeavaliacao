@@ -1,5 +1,6 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
@@ -156,6 +158,13 @@ public class UsuarioController {
 		
 		return "login/login";
 
+	}
+
+	
+	@RequestMapping(value = "buscarUser", method = RequestMethod.GET)
+	public String buscar(String buscar, Model model){
+		model.addAttribute("users", repository.Buscar(buscar));
+		return "listas/listaBuscaUsuario";
 	}
 
 	@RequestMapping("logout")

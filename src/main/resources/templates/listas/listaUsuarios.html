@@ -1,66 +1,102 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Lista de Usuarios</title>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"
-	media="screen,projection" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../css/listas/lista.css" />  
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<!-- CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+		<title>Lista de Usuario</title>
+	  </head>
+	  <body>
+	
+		
+		<nav class="navbar navbar-dark bg-dark fixed-top">
+		  <div class="container-fluid">
+			<a class="navbar-brand" href="#">Lista de Usuários</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+			  <div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			  </div>
+			  <form action="/buscarUser" class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" name="buscar" id="pesqui" placeholder="Search" aria-label="Search" data-bs-toggle="dropdown">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>          
+			  </div>
+			  
+			</div>
+		  </div>
+		</nav>
+		
+		<h1>Lista de Usuários</h1>
 
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-</head>
-<body>
-	<table>
+		
+			<ul class="dropdown-menu">
+
+				  <form action="/buscarUser">
+					<label>Buscar Usuario</label><br> <input type="search"
+						name="buscar" class="input-buscar" id="pesqui">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					 <!-- <input type="submit"
+						value="buscar" class="button-buscar"> -->
+				</form>
+				
+			</ul>
+		  </div>
+
+
+		<table id="customers">
+			
 		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Nome</th>
-				<th>nif</th>
-				<th>Tipo</th>
-				<th>Alterar</th>
-				<th>Excluir</th>
-
-			</tr>
-
+		  <tr>
+			<th class="id">ID</th>
+			<th>Nome</th>
+			<th class="th-height">NIF</th>
+			<th class="th-height">Tipo</th>
+			<th class="th-height">Alterar</th>
+			<th class="th-height">Excluir</th>
+			
+		  </tr>
 		</thead>
-		<tbody>
+		<tbody id="tb-user">
 			<tr th:each="user:${usuario}">
 
 				<td th:text="${user.userId}" />
 				<td th:text="${user.nome}" />
 				<td th:text="${user.nif}" />
 				<td th:text="${user.tipo}" />
-
-				<td><a th:href="@{/alterar(userId=${user.userId})}"><i
-						class="material-icons">create</i> </a></td>
-				<td><a th:href="@{/excluir(userId=${user.userId})}"> <i
-						class="material-icons">delete_forever</i>
-				</a></td>
-
-			</tr>
-
+				
+			 <td><a th:href="@{/alterar(userId=${user.userId})}">
+			  <span class="material-symbols-outlined">
+				settings
+				</span> </a></td>
+			 <td><a th:href="@{/exclueCurso(id=${user.userId})}"><span class="material-symbols-outlined">
+			  delete
+			  </span></a></td>
+		 </tr>
+		 
 		</tbody>
+		</table>
+		
+		<nav class="pagination">
+			<ul class="pagination">
+			  <li class="page-item" th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a class="page-link" th:href="${pagAtual > 1 ? pagAtual - 1 : '#' }">Anterior</a></li>
+			  <li class="page-item" th:class="${pagAtual == p ? 'active purple' : 'waves-effect'}" th:each="p:${numPag}"><a class="page-link" th:href="${p}"><span th:text="${p}"></span></a></li>
+			  <li class="page-item" th:class="${pagAtual == totalPages ? 'disabled' : 'waves-effect'}"><a class="page-link" th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}">Próximo</a></li>
+			</ul>
+		  </nav>
 
-
-	</table>
-
-	<ul class="pagination">
-		<li th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect'}"><a
-			th:href="${pagAtual > 1 ? pagAtual - 1 : '#'}"><i
-				class="material-icons">chevron_left</i></a></li>
-		<li th:class="${pagAtual == p ? 'active purple' : 'waves-effect'}"
-			th:each="p:${numPag}"><a th:href="${p}"><span th:text="${p}"></span></a></li>
-
-		<li th:class="${pagAtual == totalPages ? 'disabled' : 'waves-effect'}"><a
-			th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}"><i
-				class="material-icons">chevron_right</i></a></li>
-
-	</ul>
-
-</body>
-</html>
+	
+		<!-- JavaScript Bundle with Popper -->
+		  
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	  </body>
+	</html>

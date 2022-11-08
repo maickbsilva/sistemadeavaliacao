@@ -1,0 +1,76 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  background: black;
+}
+.st0 {
+  font-family: "FootlightMTLight";
+}
+.st1 {
+  font-size: 83.0285px;
+}
+.st2 {
+  fill: gray;
+}
+
+svg {
+  width: 500px;
+  height: 400px;
+  text-align: center;
+  fill: red;
+}
+path#XMLID_5_ {
+  fill: #16a085;
+  filter: url(#blurFilter4);
+}
+path#XMLID_11_,
+path#XMLID_2_ {
+  fill: white;
+}
+.circle {
+  animation: out 2s infinite ease-out;
+  fill: white;
+}
+
+#container {
+  text-align: center;
+}
+.bot {
+  color: red;
+  background-color: #fc0000e5;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 12px;
+}
+.message {
+  color: white;
+}
+.message:after {
+  content: "]";
+}
+.message:before {
+  content: "[";
+}
+
+.message:after,
+.message:before {
+  color: red;
+  font-size: 20px;
+  -webkit-animation-name: opacity;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: opacity;
+  animation-name: opacity;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  margin: 0 50px;
+}
