@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Lista Buscar Usuario </title>
+</head>
+<body>
+
+
+	 
+	<div class="divLista">
+	<button onclick="history.go(-1);" class="btnReturn">Voltar para Lista de usuarios</button>
+	
+	    <table>
+		    <thead>
+			    <tr>
+				    <th class="aumentar">id</th>
+    			    <th class="aumentar">nome</th>
+                  
+		    	</tr>
+		    </thead>
+	    	<tbody id="tba">
+	    		<tr th:each="user:${users}" >	
+					<td th:text="${user.userId}" />		
+		    		<td th:text="${user.nome}" />
+			    </tr>	
+	    	</tbody>
+	    </table>
+	    
+    </div>
+</body>
+</html>

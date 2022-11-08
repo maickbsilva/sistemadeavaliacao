@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+}
+
+p {
+    font-size: .8em;  
+    background-image: none;  
+    background-color: transparent;
+    color: #ffa7ad;
+}
+.principal {
+    background-color: black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.superior {
+    line-height: 0ch;
+    text-align: right;
+    
+}
+
+.pergunta1 {
+    background-color: blue;
+    line-height: 0ch;
+    
+}
+
+.emojisp {
+    background-image: none;  
+    background-color: rgb(10, 131, 85);
+    line-height: 0ch;
+    text-align: center;
+}
+
+.avaliacaop {
+
+    background-color: rgb(201, 99, 16);
+    line-height: 0ch;
+}
+
+.emojis {
+    background-image: none;  
+    background-color: rgb(155, 18, 63);
+    line-height: 0ch;
+    background-color: transparent;
+}
+
+footer {
+    background-color: rgb(223, 43, 223);
+    line-height: 0ch;
+}
+
+.logo {
+    width: 100%;
+    
+}
+
+section {
+    box-sizing: border-box;
+    width: 100%;
+}
+.emocoes{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    line-height: 0ch;
+    position: absolute;
+ 		top: 45%;
+		left: 30%;
+        background-color: transparent;
+        
+}
+.emocoes1{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    line-height: 0ch;
+    position: absolute;
+ 		top: 109%;
+		left: 30%;
+    background-color: transparent;
+        
+}
+button{
+    background-color: transparent;
+    border: 0ch;
+    cursor: pointer;
+}
+.kaos{
+    position: absolute;
+        top: -5%;
+		right: 7%;
+}
+h1{
+    color: white;
+}
+.striped{
+    position: absolute;
+    top: 3%;
+    left: 10%;
+}
+
+/*range*/
+.range{
+    position: absolute;
+    top: 28%;
+	left: 25%;
+    width: 100%;
+}
+  input[type=range] {
+    background-color: transparent;
+    height: 38px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 50%;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #ec0a0a;
+    border-radius: 5px;
+    border: 0px solid #010101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    border: 1px solid #00001E;
+    height: 26px;
+    width: 26px;
+    border-radius: 15px;
+    background: #FFFFFF;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8px;
+  }
+  /*fim da range*/
