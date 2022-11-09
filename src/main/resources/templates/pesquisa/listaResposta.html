@@ -33,6 +33,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
     />
     <link rel="stylesheet" href="../../css/sections.css" />
+    <link rel="stylesheet" href="../../css/dpw.css" />
     <!-- CSS only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
@@ -45,14 +46,11 @@
   </head>
   <body>
     <h1>Lista de Respostas</h1>
-    <button id="btnExibir">Exibir</button>
+    <button id="exb" type="button">Exibir</button>
 
-      <section>
+      <section id="stc" class="slc">
         <h2>Clique no numero da resposta para exibir</h2>
-        <form action="pesquisarid" class="search-res" method="post">
-          <input id="demo" placeholder="Search..." name="idpesquisa" />
-          <input type="submit" value="Buscar" />
-        </form>
+        
         <details th:each="li:${pesq.listaResposta}" open>
           <summary th:text="${li.id}"></summary>
           <div id="minhaDiv">
