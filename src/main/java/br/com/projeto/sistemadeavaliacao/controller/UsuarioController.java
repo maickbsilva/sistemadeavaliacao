@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,6 +35,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository repository;
+
+	@Autowired
+	private PesquisaRepository pesquisaRepository;
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
@@ -125,7 +129,9 @@ public class UsuarioController {
 
 	@DocenteAnnotation
 	@RequestMapping("telaInicialDocencia")
-	public String telaInicialDocencia() {
+	public String telaInicialDocencia(Model model, Usuario usuario) {
+		Long id = usuario.getUserId();
+		model.addAttribute("pesq", pesquisaRepository.listaPesquisaPorDocente(id));
 		return "telainicial/telaInicialDocencia";
 	}
 
