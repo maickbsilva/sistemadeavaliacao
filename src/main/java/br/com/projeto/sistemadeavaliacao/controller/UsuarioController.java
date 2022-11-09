@@ -129,9 +129,11 @@ public class UsuarioController {
 
 	@DocenteAnnotation
 	@RequestMapping("telaInicialDocencia")
-	public String telaInicialDocencia(Model model, Usuario usuario) {
-		Long id = usuario.getUserId();
-		model.addAttribute("pesq", pesquisaRepository.listaPesquisaPorDocente(id));
+	public String telaInicialDocencia(Model model, HttpSession session) {
+//		Usuario u;
+//
+//		System.out.println(id);
+//		model.addAttribute("pesq", pesquisaRepository.listaPesquisaPorDocente(id));
 		return "telainicial/telaInicialDocencia";
 	}
 
