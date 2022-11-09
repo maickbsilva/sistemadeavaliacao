@@ -1,53 +1,54 @@
 <html>
-  <head>
+<head>
     <title>Formulário</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-    <link rel="stylesheet" href="../../css/login/login.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+    <link rel="stylesheet" href="../../css/login/login.css"/>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>  
-  </body>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    </body>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 
-  </head>
-  <body>
-    
-    <section class="login" id="fundo">
-      <div class="head">
-        <img class="img" src="../../img/kaozgreat.png" /> 
-      </div>
+</head>
+<body>
 
-      <p class="msg">Bem vindo de volta</p>
+<section class="login" id="fundo">
+    <div class="head">
+        <img class="img" src="../../img/kaozgreat.png"/>
+    </div>
 
-      <div class="form">
-        <form>
-          <input
-            type="text"
-            placeholder="NIF"
-            class="text"
-            id="login"
-            required
-          /><br />
-          <input
-            type="password"
-            placeholder="••••••••••••••"
-            class="password"
-            id="senha"
-          /><br />
+    <p class="msg">Bem vindo de volta</p>
 
-          <button class="btn-login" type="submit"> Logar </button>
+    <div class="form">
+        <form action="save">
+            <input
+                    type="text"
+                    placeholder="NIF"
+                    class="text"
+                    id="login"
+                    name="nif"
+                    required
+            /><br/>
+            <input
+                    type="password"
+                    placeholder="••••••••••••••"
+                    class="password"
+                    id="senha"
+                    name="senha"
+            /><br/>
+
+            <button class="btn-login" type="submit"> Logar</button>
 
 
-           
         </form>
-        
-      </div>
-    </section>
-    
-    <script src="../../js/login/login.js"></script>
 
-    </html>
+    </div>
+</section>
+
+<script src="../../js/login/login.js"></script>
+
+</html>

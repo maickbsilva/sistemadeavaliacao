@@ -48,7 +48,7 @@ public class UsuarioController {
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
-	@RequestMapping("save")
+	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String salvarUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr,
 			TipoUsuario tipo) {
 
