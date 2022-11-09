@@ -2,7 +2,11 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../../css/listas/lista.css" />  
+<link rel="stylesheet" href="../../css/listas/lista.css" /> 
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png"> 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <!-- CSS only -->
@@ -12,27 +16,27 @@
 <body>
 
 
-<nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-	<a class="navbar-brand" href="#">Lista de Cursos Senai</a>
-	<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-	  <span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-	  <div class="offcanvas-header">
-		<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Pesquisar</h5>
-		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-	  </div>          
-		<form class="d-flex" role="search" action="/buscarCurso">
-		  <input name="curso" class="form-control me-2" type="search" placeholder="Pesquisar curso" aria-label="Search">
-		  <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-		</form>
-	  </div>
-	  
-	</div>
-  </div>
-</nav>
-
+	<nav class="navbar navbar-dark bg-dark fixed-top">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#">Lista de Pesquisa</a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+			<span class="navbar-toggler-icon"></span>Menu
+		  </button>
+		  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+			<div class="offcanvas-header">
+			  <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Pesquise</h5>
+			  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+	
+			  <form  class="d-flex form-pesquisa" role="search">
+				<input  class="form-control me-2" type="search" name="id"  aria-label="Search" id="input-busca">
+				<button class="btn btn-outline-success" type="submit">Pesquisar</button>
+			</form>
+			</div>
+		  </div>
+		</div>
+	  </nav>
+		
 <h1>Lista de Curso</h1>
 <table id="customers">
 <thead>
