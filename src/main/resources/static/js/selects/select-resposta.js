@@ -5,3 +5,4 @@ function Mudarestado(el) {
     else
       document.getElementById(el).style.display = 'none';
   }
+  

@@ -19,8 +19,6 @@
 </head>
 <body>
 
-
-		
 	<nav class="navbar navbar-dark bg-dark fixed-top">
 		<div class="container-fluid">
 		  <a class="navbar-brand" href="#">Lista de Pesquisa</a>
@@ -42,9 +40,11 @@
 		</div>
 	  </nav>
 		
+		
 		<h1>Lista da Pesquisa</h1>
 
-		
+
+
 	<table id="customers">
 		<thead>
 			<tr>
@@ -52,9 +52,9 @@
 				<th class="id">Id</th>
 				<th class="th-height">Curso</th>
 				<th class="th-height">Turma</th>
-				<th class="th-height">Vencimento</th>
+				<th class="th-height">Data Vencimento</th>
 				<th class="th-height">Jusitificativa</th>
-				
+ 
 				<th class="">Respostas</th>
 			</tr>
 		</thead>
@@ -67,7 +67,7 @@
 				<td th:text="${ps.turma}"/>
 				<td th:text="${ps.dataVencimento}"/>
 				<td th:text="${ps.justificativa}"/>
-                
+                 
 				<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}">Lista de Respostas</a></td>
 
 	</tr>

@@ -1,0 +1,120 @@
+input[type="radio"] {
+    visibility: hidden;
+}
+
+label {
+    display: block;
+    border: 4px solid rgb(255, 255, 255);
+    width: 60px;
+    float: left;
+}
+
+input[type="radio"]:checked+label {
+    border-color: #ccf;
+    border-radius: 30px;
+    opacity: 1;
+}
+
+img {
+    height: 50px;
+    opacity: 0.5;
+}
+
+.comen {
+    visibility: hidden;
+}
+
+.coment{
+    visibility: visible;
+    display: block;
+}
+
+.striped {
+    display: flex;
+    background-repeat: no-repeat;
+    height: 100px;
+    background-position: center;
+    background-size: 100%;
+    box-sizing: border-box;
+    position: relative;
+    padding-top: 12%;
+}
+
+.logo {
+    float: right;
+    max-width: 20%;
+    height: auto;
+    position: absolute;
+    top: 2%;
+    right: 15%;
+}
+
+.pesq {
+    width: 20%;
+}
+
+.principal {
+    width: 100%;
+}
+
+button {
+    margin-top: 50px;
+    margin-left: 10%;
+}
+
+.pergunta {
+    padding-top: 50px;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.comentgeral {
+    padding-top: 20px;
+    margin-left: 5%;
+}
+
+.comentindivi {
+    width: 80%;
+    height: 80px;
+    resize: none;
+}
+
+.inputcoment {
+    width: 80%;
+    height: 100px;
+    resize: none;
+}
+
+.interno {
+    position: absolute;
+    top: 2%;
+    right: 45%;
+    left: 10%;
+    font-size: small;
+}
+
+.imagemvazia,
+footer,
+.emojis {
+    background-repeat: no-repeat;
+    height: 150px;
+    background-position: center;
+    background-size: 100%;
+}
+.imagem2 {
+    background-repeat: no-repeat;
+    height: 250px;
+    background-position: center;
+    background-size: 100%;
+}
+.licacao {
+    line-height: 0;
+
+}
+.javas {
+    width: 100px;
+    height: 100px;
+
+}

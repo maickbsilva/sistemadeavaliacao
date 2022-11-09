@@ -53,7 +53,7 @@ public class UsuarioController {
 			TipoUsuario tipo) {
 
 		if (result.hasErrors()) {
-			attr.addFlashAttribute("mensagemErro", "verificar os campos nvoamente...");
+			attr.addFlashAttribute("mensagemErro", "verificar os campos novamente...");
 			return "redirect:cadastro";
 
 		}
