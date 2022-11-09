@@ -75,11 +75,11 @@ public class PesquisaController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
-	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr) {
-		
+	public String novaPesquisa(Pesquisa pesquisa, Model model) {
 		pesquisaRepository.save(pesquisa);
-		attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
-		return "redirect:cadastrar";
+		Long id = pesquisa.getId();
+		model.addAttribute("idpesq", id);
+		return "forward:cadastrar";
 	}
 
 	@SecretariaAnnotation
