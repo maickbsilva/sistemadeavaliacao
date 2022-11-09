@@ -1,5 +1,8 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,11 +78,19 @@ public class PesquisaController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
-	public String novaPesquisa(Pesquisa pesquisa, Model model) {
-		pesquisaRepository.save(pesquisa);
-		Long id = pesquisa.getId();
-		model.addAttribute("idpesq", id);
-		return "forward:cadastrar";
+	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
+
+		Date data = new Date();
+		
+
+		if (pesquisa.getDataVencimento().before(data)) {
+
+		} else {
+			pesquisaRepository.save(pesquisa);
+			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
+		}
+
+		return "redirect:cadastrar";
 	}
 
 	@SecretariaAnnotation
