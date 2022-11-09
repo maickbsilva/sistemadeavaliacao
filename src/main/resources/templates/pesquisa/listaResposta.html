@@ -46,16 +46,13 @@
   <body>
     <h1>Lista de Respostas</h1>
 
-    <form action="pesquisarid" class="search-res" method="post">
-      <input id="demo" placeholder="Search..." name="idpesquisa" />
-      <input type="submit" value="Buscar" />
-    </form>
-
-  
-    <section>
+    <section >
       <h2>Clique no numero da resposta para exibir</h2>
-
-      <details th:each="li:${pesq.listaResposta}" >
+      <form action="pesquisarid" class="search-res" method="post">
+        <input id="demo" placeholder="Search..." name="idpesquisa" />
+        <input type="submit" value="Buscar" />
+      </form>
+      <details th:each="li:${pesq.listaResposta}" open>
         <summary th:text="${li.id}"></summary>
         <div id="minhaDiv">
           <table th:each="it:${li.listaItem}" id="customers">
@@ -73,8 +70,6 @@
         </div>
       </details>
     </section>
-
-
 
     <!-- JavaScript Bundle with Popper -->
     <script src="../../js/liresp.js"></script>
