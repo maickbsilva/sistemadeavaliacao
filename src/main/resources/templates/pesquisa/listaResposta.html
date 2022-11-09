@@ -45,31 +45,33 @@
   </head>
   <body>
     <h1>Lista de Respostas</h1>
+    <button id="btnExibir">Exibir</button>
 
-    <section >
-      <h2>Clique no numero da resposta para exibir</h2>
-      <form action="pesquisarid" class="search-res" method="post">
-        <input id="demo" placeholder="Search..." name="idpesquisa" />
-        <input type="submit" value="Buscar" />
-      </form>
-      <details th:each="li:${pesq.listaResposta}" open>
-        <summary th:text="${li.id}"></summary>
-        <div id="minhaDiv">
-          <table th:each="it:${li.listaItem}" id="customers">
+      <section>
+        <h2>Clique no numero da resposta para exibir</h2>
+        <form action="pesquisarid" class="search-res" method="post">
+          <input id="demo" placeholder="Search..." name="idpesquisa" />
+          <input type="submit" value="Buscar" />
+        </form>
+        <details th:each="li:${pesq.listaResposta}" open>
+          <summary th:text="${li.id}"></summary>
+          <div id="minhaDiv">
+          <table id="customers" th:each="it:${li.listaItem}">
             <thead>
               <th>Pergunta</th>
               <th>Satisfacao</th>
               <th>Nivel Importancia</th>
             </thead>
-            <tbody>
+            <tbody >
               <td th:text="${it.pergunta.textoPergunta}"></td>
               <td th:text="${it.satisfacao}"></td>
               <td th:text="${it.nivelImportancia}"></td>
             </tbody>
           </table>
-        </div>
-      </details>
-    </section>
+          </div>
+        </details>
+      </section>
+    </div>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="../../js/liresp.js"></script>
