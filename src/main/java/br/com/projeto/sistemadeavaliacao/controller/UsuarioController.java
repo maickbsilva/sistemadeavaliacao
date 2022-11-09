@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -129,11 +130,11 @@ public class UsuarioController {
 
 	@DocenteAnnotation
 	@RequestMapping("telaInicialDocencia")
-	public String telaInicialDocencia(Model model, HttpSession session) {
-//		Usuario u;
-//
-//		System.out.println(id);
-//		model.addAttribute("pesq", pesquisaRepository.listaPesquisaPorDocente(id));
+	public String telaInicialDocencia(Model model, HttpSession session, HttpServletRequest request) {
+
+		Usuario u = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		Long id = u.getUserId();
+		model.addAttribute("pesq", pesquisaRepository.listaPesquisaPorDocente(id));
 		return "telainicial/telaInicialDocencia";
 	}
 

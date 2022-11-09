@@ -15,7 +15,7 @@ public interface PesquisaRepository extends CrudRepository<Pesquisa, Long> {
     @Query("SELECT l FROM Pesquisa l where l.dataVencimento > CURRENT_DATE order by l.id DESC")
     public List<Pesquisa> filtroNaoVencidos();
 
-    @Query("SELECT l FROM Pesquisa l where l.usuarioDocente = :user order by l.id DESC")
+    @Query("SELECT l FROM Pesquisa l join l.listaDocentes ld where l.usuarioDocente.userId = :user OR ld.userId = :user  order by l.id DESC")
     public List<Pesquisa> listaPesquisaPorDocente(@Param("user") Long user);
 
 }
