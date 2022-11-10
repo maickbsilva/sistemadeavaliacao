@@ -146,9 +146,26 @@ public class UsuarioController {
 
 	@PublicoAnnotation
 	@RequestMapping("login")
-	public String login(Usuario admLogin, RedirectAttributes attr, HttpSession session) {
+	public String login(Usuario admLogin, RedirectAttributes attr, HttpSession session, Model model) {
 
 		Usuario user = repository.findByNifAndSenha(admLogin.getNif(), admLogin.getSenha());
+
+		if (user == null) {
+			
+
+			/*!Mensagem de erro de Usuario NULO
+			!
+			!
+			*/
+			attr.addFlashAttribute("mensagemErro", "verificar os campos novamente...");	
+			return "redirect:/";	
+		} else {
+			//trocando a senha caso usuario esteja com a senha padrao
+			if (user.getSenha().equals(HashUtil.hash("sistema"))) {
+				model.addAttribute("usuario", user);
+				return "util/Model";
+
+			}
 
 			if (user.getTipo() != null && user.getTipo() == TipoUsuario.DIRETOR) {
 				session.setAttribute("usuarioLogado", user);
@@ -164,7 +181,7 @@ public class UsuarioController {
 				session.setAttribute("nivel", user.getTipo());
 				return "redirect:/telaInicialDocencia";
 			}
-		
+		}
 		return "login/login";
 
 	}
@@ -187,5 +204,33 @@ public class UsuarioController {
 	public String acesso() {
 		return "login/login";
 	}
+	
+	@SecretariaAnnotation
+	@RequestMapping("reseta")
+	public String reseta(Long userId, Model model) {
+		Usuario usuario = repository.findById(userId).get();
+		String sistema = "sistema";
+		usuario.setSenha(sistema);
+		repository.save(usuario);
+		System.out.println(usuario.getSenha() + "Senha alterada");
+		// alert senha redefinida...
+
+		// redirecionar mensagem senha de usuario alterada
+		return "redirect:lista/1";
+	}
+	
+	// --//--//
+	@RequestMapping(value = "alteraSenha", method = RequestMethod.POST)
+	private String formularioSenha(Long userId, String senha) {
+		System.out.println(userId + senha);
+
+		Usuario oldUsuario = repository.findById(userId).get(); // Erro id Null
+
+		oldUsuario.setSenha(senha);
+
+		repository.save(oldUsuario);
+		return "login/login";
+	}
+
 
 }
