@@ -130,8 +130,7 @@ public class UsuarioController {
 
 	@DocenteAnnotation
 	@RequestMapping("telaInicialDocencia")
-	public String telaInicialDocencia(Model model, HttpSession session, HttpServletRequest request) {
-
+	public String telaInicialDocencia(Model model, HttpServletRequest request) {
 		Usuario u = (Usuario) request.getSession().getAttribute("usuarioLogado");
 		Long id = u.getUserId();
 		model.addAttribute("pesq", pesquisaRepository.listaPesquisaPorDocente(id));
