@@ -1,4 +1,4 @@
-function myFunction(valor){
-  //alert(valor);
-}
-//onChange requerid back pedindo lista dql resposta 
+const $div= document.querySelector('.divObjeto')
+const stringJSONDoHTML = $div.dataset.objeto
+
+const objeto = JSON.parse(stringJSONDoHtml)

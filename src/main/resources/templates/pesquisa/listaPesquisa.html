@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -43,7 +43,8 @@
 		
 		<h1>Lista da Pesquisa</h1>
 
-
+	
+		
 
 	<table id="customers">
 		<thead>
@@ -63,7 +64,7 @@
 			<tr th:each="ps:${pesq}">
 
 				<td th:text="${ps.id}"></td>
-				<td th:text="${ps.curso.descCurso}"/>
+				<td th:text="${ps.curso?.descCurso}"/>
 				<td th:text="${ps.turma}"/>
 				<td th:text="${ps.dataVencimento}"/>
 				<td th:text="${ps.justificativa}"/>
