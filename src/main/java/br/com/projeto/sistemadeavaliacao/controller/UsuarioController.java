@@ -4,9 +4,11 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,6 +37,9 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository repository;
 
+	@Autowired
+	private PesquisaRepository pesquisaRepository;
+
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("cadastro")
@@ -44,7 +49,7 @@ public class UsuarioController {
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
-	@RequestMapping("save")
+	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String salvarUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr,
 			TipoUsuario tipo) {
 
@@ -125,7 +130,10 @@ public class UsuarioController {
 
 	@DocenteAnnotation
 	@RequestMapping("telaInicialDocencia")
-	public String telaInicialDocencia() {
+	public String telaInicialDocencia(Model model, HttpServletRequest request) {
+		Usuario u = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		Long id = u.getUserId();
+		model.addAttribute("pesq", pesquisaRepository.listaPesquisaPorDocente(id));
 		return "telainicial/telaInicialDocencia";
 	}
 
