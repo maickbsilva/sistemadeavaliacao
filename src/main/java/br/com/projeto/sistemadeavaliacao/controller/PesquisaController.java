@@ -71,11 +71,8 @@ public class PesquisaController {
 		model.addAttribute("perg", perguntaRepository.findAll());
 		model.addAttribute("item", itemRepository.findAll());
 		model.addAttribute("resposta", respostaRepository.findAll());
-
-		List<Resposta> listaResposta = (List<Resposta>) respostaRepository.findAll();
-		int sizeResp = listaResposta.size();
-		System.out.println(sizeResp);
-
+		Long contagem = respostaRepository.contaResposta(id);
+		model.addAttribute("contagem", contagem);
 		return "pesquisa/listaResposta";
 
 	}
