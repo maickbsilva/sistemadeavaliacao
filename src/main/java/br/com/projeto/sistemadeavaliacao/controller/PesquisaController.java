@@ -2,6 +2,7 @@ package br.com.projeto.sistemadeavaliacao.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,6 +71,10 @@ public class PesquisaController {
 		model.addAttribute("perg", perguntaRepository.findAll());
 		model.addAttribute("item", itemRepository.findAll());
 		model.addAttribute("resposta", respostaRepository.findAll());
+
+		List<Resposta> listaResposta = (List<Resposta>) respostaRepository.findAll();
+		int sizeResp = listaResposta.size();
+		System.out.println(sizeResp);
 
 		return "pesquisa/listaResposta";
 
