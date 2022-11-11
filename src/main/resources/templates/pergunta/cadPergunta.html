@@ -47,9 +47,9 @@
 		<form method="post" style="border:2" action="novaPergunta">
 
 			<input type="hidden" name="id" th:value="${p?.id}"></input>
-
+			<p>
 			<div class="mb-3">
-				<label class="lb-legend">Digite a Nova Pergunta</label>
+				<label class="lb-legend">Nova Pergunta</label>
 				<input type="text" class="form-control ipt-pergunta"
 					name="textoPergunta" th:value="${p?.textoPergunta}" required />
 				
@@ -58,7 +58,7 @@
 		
 			
 				<div class="mb-3">
-					<label class="lb-legend">Atrelar a uma Pesquisa ?(opcional)</label>
+					<label class="lb-legend">Atrelar a uma Pesquisa? (opcional) </label>
 					<select
 					  name="perguntaExclusao"
 					  class="select2 form-control"

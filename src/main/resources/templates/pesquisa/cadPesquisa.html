@@ -45,20 +45,20 @@
 		</ul>
 	</div>
 	<div class="container main-div">
-		<h1>Nova Pesquisa</h1>
+		<h1 style="text-align:center">Nova Pesquisa</h1>
 
 		<form method="post" action="novaPesquisa">
 			<input type="hidden" name="id" />
 
 			<div class="mb-3">
-				<label class="form-label">Turma:</label> <input type="text"
+				<label class="form-label">Turma</label> <input type="text"
 					class="form-control" name="turma"
 					placeholder="exemplo: Dev Noite 1200hs periodo: Noturno" required />
 			</div>
 
 			<!-- Docentes -->
 			<div class="mb-3">
-				<label>Selecione o Docente Responsavel:</label>
+				<label>Docente Responsavel</label>
 			</div>
 			<div class="mb-3">
 				<select name="usuarioDocente" class="form-select" required>
@@ -69,8 +69,7 @@
 			</div>
 
 			<div class="mb-3">
-				<label for="idSelect2"> Caso Tenha Mais Docentes Selecione
-					Aqui: </label>
+				<label for="idSelect2"> Docentes Complementares <i>(opcional)</i> </label>
 			</div>
 			<div class="mb-3">
 				<select name="listaDocentes"
@@ -85,7 +84,7 @@
 			<!-- Retirar pergunta-->
 
 			<div class="mb-3">
-				<label>Retirar pergunta caso necessario:</label> <select
+				<label>Retirar Pergunta Padrão <i>(opcional)</i></label> <select
 					name="perguntaExclusao" class="select2 form-control" id="idSelect2"
 					multiple>
 					<option type="checkbox" th:each="p:${pergunta}"
@@ -95,7 +94,7 @@
 
 			<!-- Cursos -->
 			<div class="mb-3">
-				<label>Curso:</label> <select class="form-select" name="curso.id"
+				<label>Curso</label> <select class="form-select" name="curso.id"
 					required>
 					<option></option>
 					<option th:each="c: ${cursos}" th:text="${c.descCurso}"
@@ -105,7 +104,7 @@
 
 
 			<div>
-				<label> data vencimento</label> <input type="date"
+				<label> Data de Vencimento</label> <input type="date"
 					name="dataVencimento" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required />
 			</div>
 
@@ -115,6 +114,7 @@
             <option th:each="r: ${respostas}" th:text="${r.id}" th:value="${r.id}"></option>
           </select>
 		    </div>-->
+			<p>
 			<div>
 				<button type="submit" class="btn btn-primary">Cadastrar</button>
 			</div>
