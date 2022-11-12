@@ -27,17 +27,27 @@
   }
 .navbar{
   background-color: #360568;
+  /* background: rgb(2,62,138);
+background: linear-gradient(90deg, rgba(2,62,138,1) 8%, rgba(0,119,182,1) 24%, rgba(0,150,199,1) 40%, rgba(0,150,199,1) 54%, rgba(0,119,182,1) 72%, rgba(2,62,138,1) 89%); */
+
 }
 .navbar-toggler {
   color: #fff !important;
+  
 
 }
+  .material-icons{
+  color: #360568;
+
+  }
+
 
 .container-fluid{
 
 }
 .navbar-brand {
   width: 60% !important;
+  
 }
 
   .id {
