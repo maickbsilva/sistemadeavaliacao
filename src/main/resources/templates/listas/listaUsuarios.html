@@ -23,7 +23,8 @@
 				<th>nif</th>
 				<th>Tipo</th>
 				<th>Alterar</th>
-				<th>Excluir</th>
+				<th>Redifina Senha</th>
+				<th>Desativar Usuario</th>
 
 			</tr>
 
@@ -38,7 +39,11 @@
 
 				<td><a th:href="@{/alterar(userId=${user.userId})}"><i
 						class="material-icons">create</i> </a></td>
-				<td><a th:href="@{/excluir(userId=${user.userId})}"> <i
+				<td><a th:href="@{/reseta(userId=${user.userId})}"> <i
+						class="material-icons">##</i>
+				</a></td>		
+						
+				<td><a th:href="@{/desativar(userId=${user.userId})}"> <i
 						class="material-icons">delete_forever</i>
 				</a></td>
 

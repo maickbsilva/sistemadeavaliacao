@@ -7,50 +7,64 @@
     <title>Document</title>
 </head>
 <body>
-	<h1>FORMULARIO</h1>
-	<table class="striped">
-		<thead>
-			<th>Código da pesquisa</th>
-			<th>Curso</th>
-			<th>Turma</th>
-		</thead>
+<h1>FORMULARIO</h1>
+<table class="striped">
+    <thead>
+    <th>Código da pesquisa</th>
+    <th>Curso</th>
+    <th>Turma</th>
+    </thead>
 
-		<tbody>
-			<tr>
-				<td th:text="${pesq.id}"/>
-				<td th:text="${pesq.curso.descCurso}"/>
-				<td th:text="${pesq.turma}"/>
-			</tr>
 
-		</tbody>
-	</table>
 
-    <form method="post" style="border:2" action="novoFormulario">
+    <tbody>
+    <tr>
+        <td th:text="${pesq.id}"/>
+        <td th:text="${pesq.curso.descCurso}"/>
+        <td th:text="${pesq.turma}"/>
+    </tr>
 
-		<input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
-				
-		
 
-		<br>
-			<table border="2" style="padding: 5px;">
-				<tr>
-					<tr th:each="p:${perg}">
-						<td th:text="${p.id}"/>
-						<td>Nivel de importancia - 1 a 5 <input type="int" name="nivelImportancia"/ required> </td>
-						<td th:text="${p.textoPergunta}"/>
-						<td>Nivel de satisfacao - 1 a 5 <input type="int" name="satisfacao" required/></td>
-						<td>Comentario <input type="text" name="comentario"/></td>
-					</tr>
-				</tr>
-			</table>	
 
-		<div>
-			Comentario Geral <input type="text" name="comentarioGeral" required/>
-		</div>
-		<div>
-			<button type="submit">Cadastrar</button>
-		</div>
-	</form>
+    </tbody>
+</table>
+
+
+
+<form method="post" style="border:2" action="novoFormulario">
+
+
+
+    <input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
+
+
+
+
+
+    <br>
+    <table border="2" style="padding: 5px;">
+        <tr>
+        <tr th:each="p:${perg}">
+            <td th:text="${p.id}"/>
+            <td>Nivel de importancia - 1 a 5 <input type="int" name="nivelImportancia"/ required> </td>
+            <td th:text="${p.textoPergunta}"/>
+            <td>Nivel de satisfacao - 1 a 5 <input type="int" name="satisfacao" required/></td>
+            <td>Comentario <input type="text" name="comentario"/></td>
+        </tr>
+        </tr>
+    </table>
+
+
+
+    <div>
+        Comentario Geral <input type="text" name="comentarioGeral" required/>
+    </div>
+    <div>
+        <button type="submit">Cadastrar</button>
+    </div>
+</form>
+
+
 
 </body>
 </html>

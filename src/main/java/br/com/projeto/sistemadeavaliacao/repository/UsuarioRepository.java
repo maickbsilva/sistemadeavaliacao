@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.projeto.sistemadeavaliacao.model.Usuario;
@@ -19,10 +20,10 @@ import br.com.projeto.sistemadeavaliacao.model.Usuario;
 public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, Long> {
 
 	
-	public Usuario findByNifAndSenha(String nif, String senha);
+	public Usuario findByNifAndSenhaAndAtivo(String nif, String senha, boolean ativo);
 	
-	//@Query("SELECT c FROM Usuario c WHERE c.nome LIKE %:t% OR c.nif LIKE %:t% OR c.tipo LIKE %:t% ")
-	//public List<Usuario> Buscar(@Param("t") String tudo);
+	@Query("SELECT c FROM Usuario c WHERE c.nome LIKE %:t%")
+	public List<Usuario> Buscar(@Param("t") String tudo);
 
 	@Query("SELECT u FROM Usuario u WHERE u.tipo = 1")
 	public List<Usuario> BuscarDocentes();

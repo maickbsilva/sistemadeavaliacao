@@ -1,0 +1,105 @@
+body {
+    margin: 0px;
+	align-items: center;
+	background-color: var(--white);
+	background: url("https://res.cloudinary.com/dci1eujqw/image/upload/v1616769558/Codepen/waldemar-brandt-aThdSdgx0YM-unsplash_cnq4sb.jpg");
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: grid;
+	height: 100vh;
+	place-items: center;}
+
+.conteiner {
+    height: 70vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background-color: rgba(255,255,255, 0.7);
+    width: 900px;
+    height: 500px;
+    border-radius: 15px;
+    box-shadow: #fff 0px 40px 40px -20px;
+
+}
+
+.curso {
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.curso-text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.box-cursos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.itens-curso {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgba(255,255,255, 0.7);
+
+
+    border-radius: 15px;
+    width: 900px;
+    height: 430px;
+    box-shadow: #fff 0px 40px 40px -20px;
+
+}
+
+.item{
+
+    border-radius: 15px;
+    width: 250px;
+    height: 110px;
+    left: 0px;
+    top: 0px;
+    margin:15px;
+
+    background: #fff;
+}
+.text-item {
+    text-decoration: none;
+    color: #000;
+    font-family: 'Inter';
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+
+}
+
+a.text-item:hover {
+	text-decoration: none;
+	color: #c0c0c0
+	}
+a.text-item:active {
+	text-decoration: none
+	}
+
+
+
+    

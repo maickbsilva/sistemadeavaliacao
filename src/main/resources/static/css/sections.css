@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Karla|Space+Mono");
+
+:root {
+  --contentHeight: 30vh;
+  --sectionWidth: 700px;
+}
+
+* {
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+}
+
+section {
+  max-width: var(--sectionWidth);
+  margin: 40px auto;
+  width: 97%;
+  
+}
+
+summary {
+  display: block;
+  cursor: pointer;
+  padding: 10px;
+  font-family: "Space Mono", monospace;
+  font-size: 22px;
+  transition: .3s;
+  border-bottom: 2px solid;
+  user-select: none;
+}
+
+details > div {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: 100%;
+  user-select: none;
+  padding: 0 20px;
+  font-family: "Karla", sans-serif;
+  line-height: 1.5;
+}
+
+details[open] > summary {
+   color: red;
+}
+
+@media (min-width: 768px) {
+  details[open] > div > p {
+    opacity: 0;
+    animation-name: showContent;
+    animation-duration: 0.6s;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  details[open] > div {
+    animation-name: slideDown;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  details[open] > div > img {
+    opacity: 0;
+    height: 100%;
+    margin: 0;
+    animation-name: showImage;
+    animation-duration: 0.3s;
+    animation-delay: 0.15s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+  }
+
+  to {
+    opacity: 1;
+    height: var(--contentHeight);
+    padding: 20px;
+  }
+}
+
+
+@keyframes showContent {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

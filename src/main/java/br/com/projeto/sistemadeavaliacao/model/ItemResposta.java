@@ -1,10 +1,6 @@
 package br.com.projeto.sistemadeavaliacao.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -16,6 +12,7 @@ public class ItemResposta {
     private Long id;
     @ManyToOne
     private Resposta resposta;
+    @Column(columnDefinition = "TEXT")
     private String comentario;
     private String nivelImportancia;
     private String satisfacao;
