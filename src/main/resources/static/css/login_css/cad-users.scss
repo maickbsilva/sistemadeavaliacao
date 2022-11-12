@@ -1,0 +1,75 @@
+body {
+  background: linear-gradient(-45deg, #5989f0, #3f76ec, #23d582, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.cadForm {
+  width: 500px;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: white;
+  font-family: "system-ui";
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  align-items: center;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+.seleciona {
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+h1 {
+  text-align: center;
+  font-size: xx-large;
+}
+
+.cadForm::before,
+.cadForm {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-top-left-radius: 40%;
+  border-top-right-radius: 45%;
+  border-bottom-left-radius: 35%;
+  border-bottom-right-radius: 40%;
+  z-index: -1;
+}
+
+.cadForm::before {
+  left: 40%;
+  bottom: -130%;
+  background-color: rgba(0, 0, 0, 0.24);
+  -webkit-animation: wawes 6s infinite linear;
+  -moz-animation: wawes 6s infinite linear;
+  animation: wawes 6s infinite linear;
+}
+
+.cadForm::after {
+  left: 35%;
+  bottom: -125%;
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-animation: wawes 7s infinite;
+  -moz-animation: wawes 7s infinite;
+  animation: wawes 7s infinite;
+}
