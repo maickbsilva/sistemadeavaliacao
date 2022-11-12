@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
-  <head> </head>
+<html xmlns:th="http://tymeleaf.org">
+<body>
+<div class="erro"
+     th:if="${not #strings.isEmpty(mensagemErro)}">
+    <span th:text="${mensagemErro}"></span>
 
-  <body>
-    <table>
-      <div class="msgSucess" th:if="${not #strings.isEmpty(msgSucess)}">
-        <span th:text="${msgSucess}" id="liveAlertPlaceholder"></span>
-      </div>
-    </table>
-  </body>
+</div>
+</body>
+
+<style>
+.erro{
+	color: red;
+	text-align: center;
+	margin-bottom: 10dp;
+	border-radius: 5em;
+	margin-top: 8%;
+	font-size: 20px;
+}
+</style>
 </html>

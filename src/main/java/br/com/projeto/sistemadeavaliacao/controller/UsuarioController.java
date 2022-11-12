@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -51,13 +52,10 @@ public class UsuarioController {
     @DiretorAnnotation
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String salvarUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr,
-                                TipoUsuario tipo) {
+                                TipoUsuario tipo, Model model) {
 
-        if (result.hasErrors()) {
-            attr.addFlashAttribute("mensagemErro", "verificar os campos novamente...");
-            return "redirect:cadastro";
-
-        }
+        String nome = usuario.getNome();
+        model.addAttribute("nomeUsuario", nome);
 
         if (usuario.getSenha().equals(HashUtil.hash(""))) {
 
@@ -67,10 +65,9 @@ public class UsuarioController {
 
         try {
             repository.save(usuario);
-            attr.addFlashAttribute("mensagemSucesso", "Administrador cadastrado com sucesso ID:" + usuario.getUserId());
+//            attr.addFlashAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");
         } catch (Exception e) {
-            System.out.println("erro ao cadastrar");
-            attr.addFlashAttribute("mensagemErro", "Verificar os campos novamente, Este Nif já existe");
+            attr.addFlashAttribute("mensagemErro", "NIF já existente, tente outro.");
         }
         return "redirect:cadastro";
     }
@@ -143,13 +140,13 @@ public class UsuarioController {
     }
 
     @PublicoAnnotation
-    @RequestMapping("login")
+    @PostMapping("login")
     public String login(Usuario admLogin, RedirectAttributes attr, HttpSession session, Model model) {
 
         Usuario user = repository.findByNifAndSenhaAndAtivo(admLogin.getNif(), admLogin.getSenha(), true);
 
         if (user == null) {
-            attr.addFlashAttribute("mensagemErro", "verificar os campos novamente...");
+            attr.addFlashAttribute("mensagemErro", "NIF e/ou senha incorreto(s).");
             return "redirect:/";
         } else {
             //trocando a senha caso usuario esteja com a senha padrao
