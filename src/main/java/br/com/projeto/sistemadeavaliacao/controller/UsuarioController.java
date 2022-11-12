@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -143,13 +144,13 @@ public class UsuarioController {
     }
 
     @PublicoAnnotation
-    @RequestMapping("login")
+    @PostMapping("login")
     public String login(Usuario admLogin, RedirectAttributes attr, HttpSession session, Model model) {
 
         Usuario user = repository.findByNifAndSenhaAndAtivo(admLogin.getNif(), admLogin.getSenha(), true);
 
         if (user == null) {
-            attr.addFlashAttribute("mensagemErro", "verificar os campos novamente...");
+            attr.addFlashAttribute("mensagemErro", "NIF e/ou senha incorreto(s).");
             return "redirect:/";
         } else {
             //trocando a senha caso usuario esteja com a senha padrao
