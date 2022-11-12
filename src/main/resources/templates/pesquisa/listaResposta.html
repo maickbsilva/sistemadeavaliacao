@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Favicon -->
+  
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -33,7 +33,8 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
     />
     <link rel="stylesheet" href="../../css/sections.css" />
-    <!-- CSS only -->
+    <link rel="stylesheet" href="../../css/dpw.css" />
+   
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -44,65 +45,35 @@
     <title>Lista Resposta</title>
   </head>
   <body>
-    <h1>Lista de Respostas</h1>
-
-    <form action="pesquisarid" class="search-res" method="post">
-      <input id="demo" placeholder="Search..." name="idpesquisa" />
-      <input type="submit" value="Buscar" />
-    </form>
-
-  
-    <section>
-      <details th:each="li:${pesq.listaResposta}" open>
-        <summary th:text="${li.id}"></summary>
-        <div id="minhaDIv">
-        <table th:each="it:${li.listaItem}">
-          <thead>
-            <th>Pergunta</th>
-            <th>Satisfacao</th>
-            <th>Nivel Importancia</th>
-          </thead>
-          <tbody>
-            <td th:text="${it.pergunta.textoPergunta}"></td>
-            <td th:text="${it.satisfacao}"></td>
-            <td th:text="${it.nivelImportancia}"></td>
-          </tbody>
-        </table>
-        </div>
-      </details>
-    </section>
-
-    <div id="minhaDiv">
-      <table id="customers">
-        <thead>
-          <th>Id Resposta</th>
-          <th>Pergunta</th>
-          <th>Satisfacao</th>
-          <th>Nivel Importancia</th>
-        </thead>
-
-        <tbody id="list">
-          <th:block th:each="li:${pesq.listaResposta}">
-            <tr>
-              <td th:text="${li.id}" />
-              <tr th:each="it:${li.listaItem}">
-                <td>------------------------</td>
-                <td th:text="${it.pergunta.textoPergunta}" />
-                <td th:text="${it.satisfacao}" />
-                <td th:text="${it.nivelImportancia}" />
-              </tr>
-            </tr>
-          </th:block>
-        </tbody>
-      </table>
+    <h1 style="text-align:center">Lista de Respostas</h1>
+    <h4>Avaliações computadas</h4>
+    <input th:value="${contagem}" disabled>
+      <section  class="slc">
+        <h2></h2>
+        
+        <details th:each="li:${pesq.listaResposta}" id="minhaDiv" open>
+          <summary th:text="${li.id}" ></summary>
+          <div id="">
+          <table class="table" th:each="it:${li.listaItem}">
+            <thead>
+              <th>Pergunta</th>
+              <th>Satisfacao</th>
+              <th>Nivel Importancia</th>
+            </thead>
+            <tbody class="table-group-divider">
+              <td th:text="${it.pergunta.textoPergunta}"></td>
+              <td th:text="${it.satisfacao}"></td>
+              <td th:text="${it.nivelImportancia}"></td>
+            </tbody>
+          </table>
+          </div>
+        </details>
+      </section>
     </div>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="../../js/liresp.js"></script>
     <script src="../../js/focus.js"></script>
-    <!--
-      <script src="../../js/selects/select-resposta.js"></script>
-     -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

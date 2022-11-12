@@ -66,16 +66,19 @@
 				<td th:text="${user.nome}" />
 				<td th:text="${user.nif}" />
 				<td th:text="${user.tipo}" />
-				
-			 <td><a th:href="@{/alterar(userId=${user.userId})}">
-			  <span class="material-symbols-outlined">
-				settings
-				</span> </a></td>
-			 <td><a th:href="@{/exclueCurso(id=${user.userId})}"><span class="material-symbols-outlined">
-			  delete
-			  </span></a></td>
-		 </tr>
-		 
+
+				<td><a th:href="@{/alterar(userId=${user.userId})}"><i
+						class="material-icons">create</i> </a></td>
+				<td><a th:href="@{/reseta(userId=${user.userId})}"> <i
+						class="material-icons">##</i>
+				</a></td>		
+						
+				<td><a th:href="@{/desativar(userId=${user.userId})}"> <i
+						class="material-icons">delete_forever</i>
+				</a></td>
+
+			</tr>
+
 		</tbody>
 		</table>
 		
