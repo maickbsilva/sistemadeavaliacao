@@ -52,13 +52,10 @@ public class UsuarioController {
     @DiretorAnnotation
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String salvarUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr,
-                                TipoUsuario tipo) {
+                                TipoUsuario tipo, Model model) {
 
-        if (result.hasErrors()) {
-            attr.addFlashAttribute("mensagemErro", "verificar os campos novamente...");
-            return "redirect:cadastro";
-
-        }
+        String nome = usuario.getNome();
+        model.addAttribute("nomeUsuario", nome);
 
         if (usuario.getSenha().equals(HashUtil.hash(""))) {
 
@@ -68,10 +65,9 @@ public class UsuarioController {
 
         try {
             repository.save(usuario);
-            attr.addFlashAttribute("mensagemSucesso", "Administrador cadastrado com sucesso ID:" + usuario.getUserId());
+//            attr.addFlashAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");
         } catch (Exception e) {
-            System.out.println("erro ao cadastrar");
-            attr.addFlashAttribute("mensagemErro", "Verificar os campos novamente, Este Nif já existe");
+            attr.addFlashAttribute("mensagemErro", "NIF já existente, tente outro.");
         }
         return "redirect:cadastro";
     }
