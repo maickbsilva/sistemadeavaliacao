@@ -28,30 +28,32 @@
 
         <div class="inner-header flex container">
           <form class="cadForm col s12">
-      <h4 class="msg">Bem vindo de volta</h4>
+      <h4 class="msg">Bem-vindo!</h4>
 
       <div class="form">
-        <form>
+        <form action="login" method="post">
           <input
+            style="text-align:center"
+            name="nif"
             type="text"
             placeholder="NIF"
             class="validate"
-            name="nif"
             id="login"
             required
           /><br />
           <input
+            style="text-align:center"
+            name="senha"
             type="password"
             placeholder="••••••••••••••"
             class="password validate"
-            name="senha"
             id="senha"
+            required
           /><br />
 
           <div class="btnCad">
             <button class="btn-login" type="submit"> Logar </button>
           </div>
-
 
         </form>
         
