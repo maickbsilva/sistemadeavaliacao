@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../../css/pesquisa/pesquisa.css">
+	<link rel="stylesheet" href="../../css/cads.css">
 	<!-- JQuery -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -41,22 +42,23 @@
 		</ul>
 	</div>
 	<div class="container main-div">
-		<h2>Cadastro de Pergunta</h2>
+		<h2 class="titleh2">Cadastro de Pergunta</h2>
 
 		<form method="post" style="border:2" action="novaPergunta">
 
 			<input type="hidden" name="id" th:value="${p?.id}"></input>
-
-			<div class="form-floating mb-3">
-				<input type="text" class="form-control" id="floatingInput" placeholder="Nova Pergunta"
-					name="textoPergunta" th:value="${p?.textoPergunta}" required/>
-				<label for="floatingInput">Digite a Nova Pergunta</label>
+			<p>
+			<div class="mb-3">
+				<label class="lb-legend">Nova Pergunta</label>
+				<input type="text" class="form-control ipt-pergunta"
+					name="textoPergunta" th:value="${p?.textoPergunta}" required />
+				
 			</div>
 
 		
 			
 				<div class="mb-3">
-					<label>Deseja atrelar em uma pesquisa especifica(opcional)?</label>
+					<label class="lb-legend">Atrelar a uma Pesquisa? (opcional) </label>
 					<select
 					  name="perguntaExclusao"
 					  class="select2 form-control"
@@ -90,7 +92,6 @@
 		crossorigin="anonymous"></script>
 		<link href="path/to/select2.min.css" rel="stylesheet"/>
 <script src="path/to/select2.min.js"></script>
-
 
 </body>
 

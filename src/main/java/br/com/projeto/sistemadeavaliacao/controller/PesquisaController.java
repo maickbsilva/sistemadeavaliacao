@@ -1,15 +1,23 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
+import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -63,7 +71,8 @@ public class PesquisaController {
 		model.addAttribute("perg", perguntaRepository.findAll());
 		model.addAttribute("item", itemRepository.findAll());
 		model.addAttribute("resposta", respostaRepository.findAll());
-
+		Long contagem = respostaRepository.contaResposta(id);
+		model.addAttribute("contagem", contagem);
 		return "pesquisa/listaResposta";
 
 	}
@@ -71,10 +80,18 @@ public class PesquisaController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
-	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr) {
+	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
+
+		Date data = new Date();
 		
-		pesquisaRepository.save(pesquisa);
-		attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
+
+		if (pesquisa.getDataVencimento().before(data)) {
+
+		} else {
+			pesquisaRepository.save(pesquisa);
+			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
+		}
+
 		return "redirect:cadastrar";
 	}
 
@@ -85,5 +102,8 @@ public class PesquisaController {
 		model.addAttribute("pesq", pesquisaRepository.findAll());
 		return "pesquisa/listaPesquisa";
 	}
+
+	
+	
 
 }

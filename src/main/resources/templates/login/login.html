@@ -1,37 +1,55 @@
 <html>
-  <head>
+<head>
     <title>Formulário</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../css/login/login.css" />
-  </head>
-  <body>
-    <section class="login" id="fundo">
-      <div class="head">
-        <img class="img" src="../../img/kaozgreat.png" />
-      </div>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+    <link rel="stylesheet" href="../../css/login/login.css"/>
 
-      <p class="msg">Bem vindo de volta</p>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 
-      <div class="form">
-        <form>
-          <input
-            type="text"
-            placeholder="NIF"
-            class="text"
-            id="username"
-            required
-          />
-          <input
-            type="password"
-            placeholder="••••••••••••••"
-            class="password"
-          />
-          <a href="#" class="btn-login" id="do-login">Login</a>
+</head>
+<body>
+
+<section class="login" id="fundo">
+    <div class="head">
+        <img class="img" src="../../img/kaozgreat.png"/>
+    </div>
+
+    <p class="msg">Bem vindo de volta</p>
+
+    <div class="form">
+        <form action="login">
+            <input
+                    type="text"
+                    placeholder="NIF"
+                    class="text"
+                    id="login"
+                    name="nif"
+                    required
+            /><br/>
+            <input
+                    type="password"
+                    placeholder="••••••••••••••"
+                    class="password"
+                    id="senha"
+                    name="senha"
+                    required
+            /><br/>
+
+            <button class="btn-login" type="submit"> Logar</button>
+
+
         </form>
-      </div>
-    </section>
 
-    <script src="../../js/login/login.js"></script>
-  </body>
+    </div>
+</section>
+
+<script src="../../js/login/login.js"></script>
+
 </html>

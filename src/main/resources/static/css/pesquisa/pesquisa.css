@@ -49,7 +49,15 @@ body{
     font-size: 50px;
    
 }
+.btnCad{
+  width: 120px;
+  display: flex;
+  justify-content: center;
+}
 
+.ipt-pergunta{
+    text-align: center;
+}
 
 .area{
     background: #0c0133;  
@@ -172,5 +180,4 @@ body{
         opacity: 0;
         border-radius: 50%;
     }
-
 }
