@@ -1,56 +1,187 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../css/pesquisa/style.css" />
+<title>Avaliação de curso</title>
 </head>
+
 <body>
-	<h1>FORMULARIO</h1>
-	<table class="striped">
-		<thead>
-			<th>Código da pesquisa</th>
-			<th>Curso</th>
-			<th>Turma</th>
-		</thead>
 
-		<tbody>
-			<tr>
-				<td th:text="${pesq.id}"/>
-				<td th:text="${pesq.curso.descCurso}"/>
-				<td th:text="${pesq.turma}"/>
+	<div class="topo" style="background-image: url('../../img/new/out.png');">
+		<table class="striped">
+			<tr class="interno">
+			<thead>
+				<th class="pesq">CÓDIGO DA PESQUISA</th>
+				<th class="pesq">CURSO</th>
+				<th class="pesq">TURMA</th>
+			</thead>
 			</tr>
+			<tr>
+				<tbody>
+					<td th:text="${pesq.id}" class="pesq" />
+					<td th:text="${pesq.curso.descCurso}" class="pesq" />
+					<td th:text="${pesq.turma}" class="pesq" />
+				</tbody>
+			</tr>
+		</table>
+		<img src="../../img/Logo_KAOS.png" class="logo">
+	</div>
 
-		</tbody>
-	</table>
+	<script language="javascript">
+		function habilitacao(id) {
 
-    <form method="post" style="border:2" action="novoFormulario">
+			if (document.getElementById(id + 'a').checked
+					|| document.getElementById(id + 'b').checked) {
+				document.getElementById(id + 'z').style.visibility = "visible";
+				//document.getElementById("scoments").style.visibility = "hidden";
+				//document.getElementById("scoments").style.display = "none";
+				document.getElementById(id + 'z').style.display = "block";
+			}
 
-		<input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
+			else {
+				document.getElementById(id + 'z').style.visibility = "hidden";
+				//document.getElementById("scoments").style.visibility = "visible";
+				//document.getElementById("scoments").style.display = "block";
+				document.getElementById(id + 'z').style.display = "none";
+			}
+		}/*
+		 function desabilita(id) {
+            if (document.getElementById('naoAplicavel').checked == false) {
+                document.getElementById("myRange").disabled = false;
+                document.getElementById("1a").disabled = false;
+                document.getElementById(id + 'b').disabled = false;
+                document.getElementById(id + 'c').disabled = false;
+                document.getElementById(id + 'd').disabled = false;
+                document.getElementById(id + 'e').disabled = false;
+                document.getElementById("satisfaction").style.color = "black";
+               // document.getElementById("important").style.color = "black";
+
+            } else {
+                document.getElementById("myRange").disabled = true;
+                document.getElementById('1a').disabled = true;
+                document.getElementById(id + 'b').disabled = true;
+                document.getElementById(id + 'c').disabled = true;
+                document.getElementById(id + 'd').disabled = true;
+                document.getElementById(id + 'e').disabled = true;
+                document.getElementById("satisfaction").style.color = "#DCDCDC";
+             //   document.getElementById("important").style.color = "#DCDCDC";
+              //  document.getElementById("i1").style.opacity = "0.2";
+            }*/
+	</script>
+
+	<form method="post" style="border: 0" action="novoFormulario" class="principal">
+		<div class="background" style="background-image: url('../../img/new/liso.png');">
+			<input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
+			<br>
+		<!--  <input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>-->
+
+
+		<table border="0" style="padding: 0px;" class="perguntaid">
+			<tr> 
+			<tr th:each="p, iter:${perg}" class="perguntas">
+				<!--   <td th:text="${p.id}" />-->
+				<td th:text="${p.textoPergunta}" />
+				<td>
 				
+				<input type="checkbox" name="naoAplicavel" id="naoAplicavel" onClick="desabilita()" />
+				Não aplicável
+						<div class="img1" style="background-image: url('../../img/new/pergunta.png');" id="satisfaction">Quão importante você considera esse item?
+						</div> 
 		
+				
+				<input type="range" min="0" max="10" step="5" list="tickmarks" name="nivelImportancia" id="myRange" required /> 
+					<datalist id="tickmarks">
+						<option value="1" label="0%">
+						<option value="5" label="50%">
+						<option value="10" label="100%">
+					</datalist>
 
-		<br>
-			<table border="2" style="padding: 5px;">
-				<tr>
-					<tr th:each="p:${perg}">
-						<td th:text="${p.id}"/>
-						<td>Nivel de importancia - 1 a 5 <input type="int" name="nivelImportancia"/ required> </td>
-						<td th:text="${p.textoPergunta}"/>
-						<td>Nivel de satisfacao - 1 a 5 <input type="int" name="satisfacao" required/></td>
-						<td>Comentario <input type="text" name="comentario"/></td>
-					</tr>
-				</tr>
-			</table>	
 
-		<div>
-			Comentario Geral <input type="text" name="comentarioGeral" required/>
+				</td>
+				
+				
+				<td><div id="satisfaction" class="img1" style="background-image: url('../../img/new/pergunta.png');">
+						Quão satisfeito você está com isso?</div>
+				<td class="emojis"
+					style="background-image: url('../../img/Branco_051.png');"><input
+					type="radio" th:name="'satisfacao['+${iter.index}+']'" th:id="${p.id} + a"
+					th:onClick="habilitacao([[${p.id}]])" value="1" /> <label
+					th:for="${p.id} + a"> <img src="../../img/emojis/1.png"
+						width="60" height="60" alt="" onMouseover="this.style.opacity=1"
+						onMouseout="this.style.opacity=0.6">
+				</label> <input type="radio" th:name="'satisfacao['+${iter.index}+']'" th:id="${p.id} + b"
+					th:onClick="habilitacao([[${p.id}]])" value="2" /> <label
+					th:for="${p.id} + b"> <img src="../../img/emojis/2.png"
+						width="60" height="60" alt="" onMouseover="this.style.opacity=1"
+						onMouseout="this.style.opacity=0.6">
+				</label> <input type="radio" th:name="'satisfacao['+${iter.index}+']'" th:id="${p.id} + c"
+					th:onClick="habilitacao([[${p.id}]])" value="3" /> <label
+					th:for="${p.id} + c"> <img src="../../img/emojis/3.png"
+						width="60" height="60" alt="" onMouseover="this.style.opacity=1"
+						onMouseout="this.style.opacity=0.6">
+				</label> <input type="radio" th:name="'satisfacao['+${iter.index}+']'" th:id="${p.id} + d"
+					th:onClick="habilitacao([[${p.id}]])" value="4" /> <label
+					th:for="${p.id} + d"> <img src="../../img/emojis/4.png"
+						width="60" height="60" alt="" onMouseover="this.style.opacity=1"
+						onMouseout="this.style.opacity=0.6">
+				</label> <input type="radio" th:name="'satisfacao['+${iter.index}+']'" th:id="${p.id} + e"
+					th:onClick="habilitacao([[${p.id}]])" value="5" /> <label
+					th:for="${p.id} + e"> <img src="../../img/emojis/5.png"
+						width="60" height="60" alt="" onMouseover="this.style.opacity=1"
+						onMouseout="this.style.opacity=0.6">
+				</label>
+				</td>
+				</td>
+
+				<td class="comen" id="coments" >
+						<div th:id="${p.id} + z" style="display:none">
+							<p>Comentário</p> <textarea name="comentario" class="comentindivi" placeholder="Explique"></textarea>
+						</div>
+				</td>
+				
+			</tr>
+			</tr>
+		</table>
+	<!--  	<div class="inferior"></div>-->
+		<div class="maior" style="background-image: url('../../img/new/geral.png');">
+				<div class="comentgeral">
+					<p>Comentário geral</p>
+					<textarea name="comentarioGeral" class="inputcoment" required></textarea>
+					<p>
+						<button type="submit">ENVIAR</button>
+				</div>
 		</div>
-		<div>
-			<button type="submit">Cadastrar</button>
-		</div>
+	</div>
+	
+	<!--  <script>
+				function desabilita(id) {
+		            if (document.getElementById('naoAplicavel').checked == false) {
+		                document.getElementById("myRange").disabled = false;
+		                document.getElementById("1a").disabled = false;
+		                document.getElementById(id + 'b').disabled = false;
+		                document.getElementById(id + 'c').disabled = false;
+		                document.getElementById(id + 'd').disabled = false;
+		                document.getElementById(id + 'e').disabled = false;
+		                document.getElementById("satisfaction").style.color = "black";
+		               // document.getElementById("important").style.color = "black";
+
+		            } else {
+		                document.getElementById("myRange").disabled = true;
+		                document.getElementById('1a').disabled = true;
+		                document.getElementById(id + 'b').disabled = true;
+		                document.getElementById(id + 'c').disabled = true;
+		                document.getElementById(id + 'd').disabled = true;
+		                document.getElementById(id + 'e').disabled = true;
+		                document.getElementById("satisfaction").style.color = "#DCDCDC";
+		             //   document.getElementById("important").style.color = "#DCDCDC";
+		              //  document.getElementById("i1").style.opacity = "0.2";
+		            }
+				</script>-->
 	</form>
+
 
 </body>
 </html>

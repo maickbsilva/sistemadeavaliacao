@@ -1,0 +1,301 @@
+* {
+	padding: 0;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.striped, .topo {
+	display: inline;
+	height: 250px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	float: left;
+	width: 100%;
+}
+
+.striped {
+	padding: 2%;
+	width: 60%;
+	margin-top: 4%;
+	margin-left: 3%;
+}
+
+.topo {
+	margin-top: -1%;
+	text-align: center;
+}
+
+.logo {
+	float: right;
+	max-width: 20%;
+	height: auto;
+	position: absolute;
+	top: 5%;
+	right: 15%;
+}
+
+.pesq {
+	width: 20%;
+}
+
+.img1 {
+	background-size: 100%;
+	height: 40px;
+	font-size: 25px;
+	padding-top: 8px;
+	background-repeat: no-repeat;
+}
+
+.background {
+	display: inline;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	float: left;
+	width: 100%;
+}
+
+.principal {
+	width: 100%;
+}
+
+body {
+	background-repeat: round;
+	background-size: 100%;
+	font-weight: bold;
+	font-family: 'Courier New', Courier, monospace;
+	resize: both;
+	overflow: auto;
+	border: 0px;
+}
+
+.interno {
+	position: absolute;
+	top: 4%;
+	right: 45%;
+	left: 10%;
+	font-size: small;
+}
+
+.comentgeral {
+	margin-left: 5%;
+	width: 100%;
+	padding-top: 700px;
+}
+
+.inputcoment {
+	width: 80%;
+	height: 100px;
+	resize: none;
+}
+
+.perguntaid {
+	width: 80%;
+}
+
+.inferior {
+	height: 100px;
+}
+
+.maior {
+	background-repeat: round;
+	background-size: 100%;
+	height: 1100px;
+}
+
+.comentindivi {
+	width: 80%;
+	height: 80px;
+	resize: none;
+}
+
+.emojis, .imagem2 {
+	background-repeat: no-repeat;
+	height: 250px;
+	background-position: center;
+	width: 100%;
+	display: inline;
+	background-size: 100%;
+}
+
+input[type="radio"] {
+	visibility: hidden;
+}
+
+label {
+	display: block;
+	border: 4px solid rgb(255, 255, 255);
+	width: 60px;
+	float: left;
+}
+
+input[type="radio"]:checked+label {
+	border-color: #ccf;
+	border-radius: 30px;
+	opacity: 1;
+}
+
+img {
+	height: 50px;
+	opacity: 0.5;
+}
+
+.perguntas {
+	display: flex;
+	flex-direction: column;
+	padding: 3%;
+}
+
+td {
+	padding: 2%;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.striped, .topo {
+	display: inline;
+	height: 250px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	float: left;
+	width: 100%;
+}
+
+.striped {
+	padding: 2%;
+	width: 60%;
+	margin-top: 4%;
+	margin-left: 3%;
+}
+
+.topo {
+	margin-top: -1%;
+	text-align: center;
+}
+
+.logo {
+	float: right;
+	max-width: 20%;
+	height: auto;
+	position: absolute;
+	top: 5%;
+	right: 15%;
+}
+
+.pesq {
+	width: 20%;
+}
+
+.img1 {
+	background-size: 100%;
+	height: 40px;
+	font-size: 25px;
+	padding-top: 8px;
+	background-repeat: no-repeat;
+}
+
+.background {
+	display: inline;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	float: left;
+	width: 100%;
+}
+
+.principal {
+	width: 100%;
+}
+
+body {
+	background-repeat: round;
+	background-size: 100%;
+	font-weight: bold;
+	font-family: 'Courier New', Courier, monospace;
+	resize: both;
+	overflow: auto;
+	border: 0px;
+}
+
+.interno {
+	position: absolute;
+	top: 4%;
+	right: 45%;
+	left: 10%;
+	font-size: small;
+}
+
+.comentgeral {
+	margin-left: 5%;
+	width: 100%;
+	padding-top: 700px;
+}
+
+.inputcoment {
+	width: 80%;
+	height: 100px;
+	resize: none;
+}
+
+.perguntaid {
+	width: 80%;
+}
+
+.inferior {
+	height: 100px;
+}
+
+.maior {
+	background-repeat: round;
+	background-size: 100%;
+	height: 1100px;
+}
+
+.comentindivi {
+	width: 80%;
+	height: 80px;
+	resize: none;
+}
+
+.emojis, .imagem2 {
+	background-repeat: no-repeat;
+	height: 250px;
+	background-position: center;
+	width: 100%;
+	display: inline;
+	background-size: 100%;
+}
+
+input[type="radio"] {
+	visibility: hidden;
+}
+
+label {
+	display: block;
+	border: 4px solid rgb(255, 255, 255);
+	width: 60px;
+	float: left;
+}
+
+input[type="radio"]:checked+label {
+	border-color: #ccf;
+	border-radius: 30px;
+	opacity: 1;
+}
+
+img {
+	height: 50px;
+	opacity: 0.5;
+}
+
+.perguntas {
+	display: flex;
+	flex-direction: column;
+	padding: 3%;
+}
+
+td {
+	padding: 2%;
+}
