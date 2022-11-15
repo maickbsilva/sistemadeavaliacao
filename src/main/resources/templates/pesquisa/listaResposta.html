@@ -59,11 +59,17 @@
               <th>Pergunta</th>
               <th>Satisfacao</th>
               <th>Nivel Importancia</th>
+              <th>Comentário</th>
+              <th>Justificativa</th>
+
             </thead>
             <tbody class="table-group-divider">
               <td th:text="${it.pergunta.textoPergunta}"></td>
               <td th:text="${it.satisfacao}"></td>
               <td th:text="${it.nivelImportancia}"></td>
+              <td th:text="${it.comentario}"></td>
+              <td><a th:href="@{/pesquisa/justificaItem(id=${it.id})}">Solicitar</a></td>
+
             </tbody>
           </table>
           </div>

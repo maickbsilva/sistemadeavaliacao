@@ -55,7 +55,6 @@
 				<th class="th-height">Turma</th>
 				<th class="th-height">Data Vencimento</th>
 				<th class="th-height">Jusitificativa</th>
- 
 				<th class="">Respostas</th>
 			</tr>
 		</thead>
@@ -68,10 +67,10 @@
 				<td th:text="${ps.turma}"/>
 				<td th:text="${ps.dataVencimento}"/>
 				<td th:text="${ps.justificativa}"/>
-                 
 				<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}">Lista de Respostas</a></td>
 
-	</tr>
+
+			</tr>
 
 		</tbody>
 	</table>

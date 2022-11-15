@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
+import br.com.projeto.sistemadeavaliacao.model.JustificativaItemResposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,7 +105,18 @@ public class PesquisaController {
 		return "pesquisa/listaPesquisa";
 	}
 
-	
-	
-
+	@RequestMapping("justificaItem")
+	public String justificaItem(ItemResposta itemResposta) {
+	Long idItem = itemResposta.getId();
+		System.out.println(idItem);
+	return "redirect:listar";
+	}
+//
+//	@RequestMapping(value = "novaJustificativaItem", method = RequestMethod.POST)
+//	public String novaJustificativaItem(ItemResposta itemResposta, JustificativaItemResposta justificativaItemResposta) {
+//
+////		Date data = new Date();
+//
+//	return "justificaItem";
+//	}
 }
