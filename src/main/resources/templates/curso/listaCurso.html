@@ -65,6 +65,15 @@
 </tbody>
 </table>
 
+	<nav class="pagination">
+		<ul class="pagination">
+			<li class="page-item" th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a class="page-link" th:href="${pagAtual > 1 ? pagAtual - 1 : '#' }">Anterior</a></li>
+			<li class="page-item" th:class="${pagAtual == p ? 'active purple' : 'waves-effect'}" th:each="p:${numPag}"><a class="page-link" th:href="${p}"><span th:text="${p}"></span></a></li>
+
+			<li class="page-item" th:class="${pagAtual == totalPages ? 'disabled' : 'waves-effect'}"><a class="page-link" th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}">Próximo</a></li>
+		</ul>
+	</nav>
+
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

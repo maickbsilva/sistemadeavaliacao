@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -68,9 +72,27 @@ public class PerguntaController {
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
-	@RequestMapping("listar")
-	public String listaPergunta(Model model) {
-		model.addAttribute("perg", repository.findAll());
+	@RequestMapping("listar/{page}")
+	public String listaPergunta(Model model, @PathVariable("page") int page) {
+
+		PageRequest pageable = PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "id"));
+
+		Page<Pergunta> pagina = repository.findAll(pageable);
+
+		model.addAttribute("perg", pagina.getContent());
+
+		int totalPages = pagina.getTotalPages();
+
+		List<Integer> numPaginas = new ArrayList<Integer>();
+
+		for (int i = 1; i <= totalPages; i++) {
+			numPaginas.add(i);
+		}
+		model.addAttribute("numPaginas", numPaginas);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("pagAtual", page);
+
+//		model.addAttribute("perg", repository.findAll());
 		return "pergunta/listaPergunta";
 	}
 
