@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,8 +19,6 @@
 </head>
 <body>
 
-
-		
 	<nav class="navbar navbar-dark bg-dark fixed-top">
 		<div class="container-fluid">
 		  <a class="navbar-brand" href="#">Lista de Pesquisa</a>
@@ -42,19 +40,22 @@
 		</div>
 	  </nav>
 		
+		
 		<h1>Lista da Pesquisa</h1>
 
+	
 		
-	<table id="customers">
+
+	<table id="customers" >
 		<thead>
 			<tr>
 
 				<th class="id">Id</th>
 				<th class="th-height">Curso</th>
 				<th class="th-height">Turma</th>
-				<th class="th-height">Vencimento</th>
+				<th class="th-height">Data Vencimento</th>
 				<th class="th-height">Jusitificativa</th>
-				
+ 
 				<th class="">Respostas</th>
 			</tr>
 		</thead>
@@ -63,11 +64,11 @@
 			<tr th:each="ps:${pesq}">
 
 				<td th:text="${ps.id}"></td>
-				<td th:text="${ps.curso.descCurso}"/>
+				<td th:text="${ps.curso?.descCurso}"/>
 				<td th:text="${ps.turma}"/>
 				<td th:text="${ps.dataVencimento}"/>
 				<td th:text="${ps.justificativa}"/>
-                
+                 
 				<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}">Lista de Respostas</a></td>
 
 	</tr>
@@ -75,7 +76,7 @@
 		</tbody>
 	</table>
 
-	
+
 	<nav class="pagination">
 		<ul class="pagination">
 		  <li class="page-item" th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a class="page-link" th:href="${pagAtual > 1 ? pagAtual - 1 : '#' }">Anterior</a></li>

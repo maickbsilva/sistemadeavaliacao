@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+  <head> </head>
+
+  <body>
+    <table>
+      <div class="msgSucess" th:if="${not #strings.isEmpty(msgSucess)}">
+        <span th:text="${msgSucess}" id="liveAlertPlaceholder"></span>
+      </div>
+    </table>
+  </body>
+</html>

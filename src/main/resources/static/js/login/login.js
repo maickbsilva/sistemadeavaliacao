@@ -1,16 +1,28 @@
-var btnLogin = document.getElementById('do-login');
-/* Section Change */
-var fundoSection = document.getElementById('fundo');
 
-var forgot = document.getElementById('do-forgot')
-var idforgot = document.getElementById('forgot');
+// function logar() {
+//   var login = document.getElementById('login').value;
+//   var senha = document.getElementById('senha').value;
+  
 
-var username = document.getElementById('username');
-/* New Listener */
-btnLogin.addEventListener('click',function () {
-  fundoSection.innerHTML = '<p> Estamos felizes em vê-lo novamente </p><br><a href="index.html">Voltar</a><h1>' +username.value+ '</h1>';
-})
-/* New Listener */
-forgot.addEventListener('click',function () {
-  fundoSection.innerHTML = '<p> Esqueceu a senha ? </p><br><a href="index.html">Voltar</a><h1>' +username.value+ '</h1>';
-})
+//   if(login == "admin" && senha == "admin") {
+//     alert('Sucesso, bem vindo de volta ');
+//   }else{
+//     alert('Usuario ou senha incorretos');
+//   }showAlert
+
+
+  
+//}
+$('button').click(function(){
+    $('.alert').removeClass("hide");
+    $('.alert').addClass("show");
+    $('.alert').addClass("showAlert");
+    setTimeout(function(){
+      $('.alert').addClass("hide");
+      $('.alert').removeClass("show");
+    },3000); // hide alert automatically after 5sec
+  });
+  $('close-btn').click(function(){
+    $('.alert').addClass("hide");
+    $('.alert').removeClass("show");
+  });

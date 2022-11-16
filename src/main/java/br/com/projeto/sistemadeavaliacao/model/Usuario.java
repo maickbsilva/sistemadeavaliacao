@@ -37,6 +37,7 @@ public class Usuario implements Serializable {
 	@NotEmpty
 	private String nome;
 	private TipoUsuario tipo;
+	private boolean ativo = true;
 
 	public void setSenha(String senha) {
 		this.senha = HashUtil.hash(senha);
