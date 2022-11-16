@@ -1,0 +1,11 @@
+#pass {
+  padding-right: 20px;
+}
+
+.olho {
+  cursor: pointer;
+  left: 90%;
+  top: 5%;
+  position: absolute;
+  width: 40px;
+}
