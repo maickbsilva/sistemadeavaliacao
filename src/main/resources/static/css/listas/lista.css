@@ -22,13 +22,96 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #011969;
-    color: white;
+  
+    color: black;
   }
+.navbar{
+  background-color: #360568;
+  /* background: rgb(2,62,138);
+background: linear-gradient(90deg, rgba(2,62,138,1) 8%, rgba(0,119,182,1) 24%, rgba(0,150,199,1) 40%, rgba(0,150,199,1) 54%, rgba(0,119,182,1) 72%, rgba(2,62,138,1) 89%); */
+
+}
+.navbar-toggler {
+  color: #fff !important;
+  
+
+}
+  .material-icons{
+  color: #360568;
+
+  }
+
+
+.container-fluid{
+
+}
+.navbar-brand {
+  width: 60% !important;
+  
+}
+
   .id {
       width:5%;
   }
   .th-height {
     width: 20%;
   }
+  .table{
+    margin:4% ;
+    width:92% !important;
+  }
+  .pagination{
+    margin-left: auto;
+    margin-right: auto; 
+  }
+  .Logo_kaos{
+    max-width: 200px !important;
+  }
+
+  .kaos{
+    max-width:35px !important;
+  }
+
+  .card{
+    border:--bs-card-border-color: var(--bs-border-color-translucent) !important;
+  }
+  .card-body {
+    background-color: #360568 !important;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    height: 75px; 
+  }
+  .card-text{
+    color: white !important;
+  }
+
+  .content {
+    position:relative;
+    height:20vh;
+    text-align:center;
+    background-color: white;    
+  }
+
+  .flex { /*Flexbox for containers*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  p {
+    letter-spacing: 1px;
+    font-size:14px;
+    color: #333333;
   
+  }
+  .material-symbols-outlined {
+    color: #360568;
+  }
+  
+  .page-link {
+    color: black !important;
+
+
+  }
