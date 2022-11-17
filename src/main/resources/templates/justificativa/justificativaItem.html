@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Justifica Item</title>
+</head>
+<body>
+<h1>JUSTIFICATIVA ITEM</h1>
+
+<form method="post" style="border:2" action="novaJustiItem">
+
+    <input type="hidden" name="id"/>
+
+    <div>
+        pergunta <input type="text" th:value="${pergunta.textoPergunta}" disabled>
+    </div>
+    <br>
+    <div>
+        comentario <input type="text" th:value="${item?.comentario}" disabled>
+    </div>
+    <br>
+    <div>
+        justifique-se: <input type="text" name="texto">
+    </div>
+    <br>
+    <div>
+        <button type="submit">Cadastrar</button>
+    </div>
+</form>
+</body>
+</html>
