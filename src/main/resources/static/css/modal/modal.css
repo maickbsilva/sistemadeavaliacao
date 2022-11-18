@@ -1,3 +1,8 @@
+.container{
+  width: 400px;
+  margin-top: 18%;
+  margin-left: 39%;
+}
 #pass {
   padding-right: 20px;
 }
@@ -8,4 +13,10 @@
   top: 5%;
   position: absolute;
   width: 40px;
+}
+
+.btn-mod{
+  border-radius: 13px;
+  font-size: 20px;
+  margin-left: 15%;
 }

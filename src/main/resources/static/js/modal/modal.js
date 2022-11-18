@@ -10,3 +10,8 @@ document.getElementById('olho').addEventListener('mousedown', function() {
   document.getElementById('olho').addEventListener('mousemove', function() {
     document.getElementById('pass').type = 'password';
   });
+
+  $(document).ready(function() {
+    $('#myModal').modal('show');
+    const md = document.getElementById('#myModal');
+})
