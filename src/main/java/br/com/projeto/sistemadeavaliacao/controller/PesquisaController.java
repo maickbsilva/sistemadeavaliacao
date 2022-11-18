@@ -31,93 +31,92 @@ import br.com.projeto.sistemadeavaliacao.repository.UsuarioRepository;
 @RequestMapping("pesquisa/")
 public class PesquisaController {
 
-    @Autowired
-    private PesquisaRepository pesquisaRepository;
+	@Autowired
+	private PesquisaRepository pesquisaRepository;
 
-    @Autowired
-    private CursoRepository cursoRepository;
+	@Autowired
+	private CursoRepository cursoRepository;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private ItemRespostaRepository itemRepository;
+	@Autowired
+	private ItemRespostaRepository itemRepository;
 
-    @Autowired
-    private PerguntaRepository perguntaRepository;
+	@Autowired
+	private PerguntaRepository perguntaRepository;
 
-    @Autowired
-    private RespostaRepository respostaRepository;
+	@Autowired
+	private RespostaRepository respostaRepository;
 
-    @SecretariaAnnotation
-    @DiretorAnnotation
-    @RequestMapping("cadastrar")
-    public String cadPesquisa(Model model) {
-        model.addAttribute("cursos", cursoRepository.findAll());
-        model.addAttribute("respostas", respostaRepository.findAll());
-        model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
-        model.addAttribute("pergunta", perguntaRepository.perguntasGerais());
-        return "pesquisa/cadPesquisa";
-    }
+	@SecretariaAnnotation
+	@DiretorAnnotation
+	@RequestMapping("cadastrar")
+	public String cadPesquisa(Model model) {
+		model.addAttribute("cursos", cursoRepository.findAll());
+		model.addAttribute("respostas", respostaRepository.findAll());
+		model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
+		model.addAttribute("pergunta", perguntaRepository.perguntasGerais());
+		return "pesquisa/cadPesquisa";
+	}
 
-    @RequestMapping("buscar")
-    public String buscaPesquisa(Long id, Model model) {
-        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-        return "pesquisa/listaPesquisa";
-    }
+	@RequestMapping("buscar")
+	public String buscaPesquisa(Long id, Model model) {
+		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+		return "pesquisa/listaPesquisa";
+	}
 
-    @RequestMapping("listarResposta")
-    public String listarRespota(Long id, Model model) {
-        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-        model.addAttribute("perg", perguntaRepository.findAll());
-        model.addAttribute("item", itemRepository.findAll());
-        model.addAttribute("resposta", respostaRepository.findAll());
-        Long contagem = respostaRepository.contaResposta(id);
-        model.addAttribute("contagem", contagem);
-        return "pesquisa/listaResposta";
+	@RequestMapping("listarResposta")
+	public String listarRespota(Long id, Model model) {
+		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+		model.addAttribute("perg", perguntaRepository.findAll());
+		model.addAttribute("item", itemRepository.findAll());
+		model.addAttribute("resposta", respostaRepository.findAll());
+		Long contagem = respostaRepository.contaResposta(id);
+		model.addAttribute("contagem", contagem);
+		return "pesquisa/listaResposta";
 
-    }
+	}
 
-    @SecretariaAnnotation
-    @DiretorAnnotation
-    @RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
-    public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
+	@SecretariaAnnotation
+	@DiretorAnnotation
+	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
+	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
 
-        Date data = new Date();
+		Date data = new Date();
 
+		if (pesquisa.getDataVencimento().before(data)) {
 
-        if (pesquisa.getDataVencimento().before(data)) {
+		} else {
+			pesquisaRepository.save(pesquisa);
+			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
+		}
 
-        } else {
-            pesquisaRepository.save(pesquisa);
-            attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
-        }
+		return "redirect:cadastrar";
+	}
 
-        return "redirect:cadastrar";
-    }
+	@SecretariaAnnotation
+	@DiretorAnnotation
+	@RequestMapping("listar/{page}")
+	public String listaPesquisa(Model model, @PathVariable("page") int page) {
 
-    @SecretariaAnnotation
-    @DiretorAnnotation
-    @RequestMapping("listar/{page}")
-    public String listaPesquisa(Model model, @PathVariable("page") int page) {
+		PageRequest pageable = PageRequest.of(page - 1, 15, Sort.by(Sort.Direction.DESC, "id"));
 
-        PageRequest pageable = PageRequest.of(page - 1, 15, Sort.by(Sort.Direction.DESC, "id"));
+		Page<Pesquisa> pagina = pesquisaRepository.findAll(pageable);
 
-        Page<Pesquisa> pagina = pesquisaRepository.findAll(pageable);
+		model.addAttribute("pesq", pagina.getContent());
 
-        model.addAttribute("pesq", pagina.getContent());
+		int totalPages = pagina.getTotalPages();
 
-        int totalPages = pagina.getTotalPages();
+		List<Integer> numPaginas = new ArrayList<Integer>();
 
-        List<Integer> numPaginas = new ArrayList<Integer>();
+		for (int i = 1; i <= totalPages; i++) {
+			numPaginas.add(i);
+		}
+		model.addAttribute("numPaginas", numPaginas);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("pagAtual", page);
 
-        for (int i = 1; i <= totalPages; i++) {
-            numPaginas.add(i);
-        }
-        model.addAttribute("numPaginas", numPaginas);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("pagAtual", page);
-
-        return "pesquisa/listaPesquisa";
-    }
+		return "pesquisa/listaPesquisa";
+	}
 }
