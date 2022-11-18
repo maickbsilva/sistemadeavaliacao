@@ -12,6 +12,13 @@
     <input type="hidden" name="id"/>
 
     <div>
+        id do item
+        <input type="text" name="itemResposta" th:value="${item?.id}" disabled/>
+    </div>
+    <br>
+
+
+    <div>
         pergunta <input type="text" th:value="${pergunta.textoPergunta}" disabled>
     </div>
     <br>
