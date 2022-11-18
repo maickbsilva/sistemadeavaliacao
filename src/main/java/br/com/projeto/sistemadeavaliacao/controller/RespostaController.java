@@ -42,7 +42,7 @@ public class RespostaController {
     @PublicoAnnotation
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
     public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
-                               Model model, HttpServletRequest request) throws UnknownHostException {
+            Model model, HttpServletRequest request) throws UnknownHostException {
 
         // pega id da pesquisa
         Long idPesquisa = resposta.getPesquisa().getId();
@@ -51,7 +51,7 @@ public class RespostaController {
         List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(idPesquisa);
         Pesquisa pesquisa = pesquisaRepository.filtroExclusao(idPesquisa);
 
-        //se existir pergunta a se excluida, exclui da lista
+        // se existir pergunta a se excluida, exclui da lista
         if (pesquisa != null) {
             pesquisa.getPerguntaExclusao().forEach(iten -> {
                 perguntas.remove(iten);
@@ -63,6 +63,7 @@ public class RespostaController {
 
         // pega a data de hoje e seta no atributo
         Date now = new Date(System.currentTimeMillis());
+
         resposta.setDataRealizacao(now);
 
         // pega o ip da maquina e seta no atributo
@@ -108,17 +109,17 @@ public class RespostaController {
         List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
         Pesquisa pesquisa = pesquisaRepository.filtroExclusao(id);
 
-        //se existir pergunta a se excluida, exclui da lista
+        // se existir pergunta a se excluida, exclui da lista
         if (pesquisa != null) {
             pesquisa.getPerguntaExclusao().forEach(iten -> {
                 perguntas.remove(iten);
             });
         }
 
-        //outra forma de fazer o for
-        //perguntas.stream().filter(iten -> {
-        //return !pesquisa.getPerguntaExclusao().contains(iten);
-        //});
+        // outra forma de fazer o for
+        // perguntas.stream().filter(iten -> {
+        // return !pesquisa.getPerguntaExclusao().contains(iten);
+        // });
 
         model.addAttribute("pesq", pesquisaRepository.findById(id).get());
         model.addAttribute("perg", perguntas);
