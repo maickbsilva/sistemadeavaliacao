@@ -63,6 +63,7 @@
                     th:value="${users?.nome}"
                     class="form-control"
                     required
+                    style="text-transform:uppercase"
             />
         </div>
         <div class="mb-3">
@@ -71,6 +72,7 @@
                     name="nif"
                     th:value="${users?.nif}"
                     class="form-control"
+                    style="text-transform:uppercase"
                     required
 
                     oninput="javascript: if (this.value.length > this.maxLength)

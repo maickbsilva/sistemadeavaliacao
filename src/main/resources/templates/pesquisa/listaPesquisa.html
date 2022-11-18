@@ -66,7 +66,7 @@
 				<td th:text="${ps.id}"></td>
 				<td th:text="${ps.curso?.descCurso}"/>
 				<td th:text="${ps.turma}"/>
-				<td th:text="${ps.dataVencimento}"/>
+				<td th:text="${#dates.format(ps.dataVencimento, 'dd/MM/yyyy')}"></td>
 				<td th:text="${ps.justificativa}"/>
                  
 				<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}">Lista de Respostas</a></td>
