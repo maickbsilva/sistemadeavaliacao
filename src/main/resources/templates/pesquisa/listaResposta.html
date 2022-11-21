@@ -53,8 +53,8 @@
         
         <details th:each="li:${pesq.listaResposta}" id="minhaDiv" open>
           
-          <summary th:text="${li.ip}"></summary>
-          <div>
+          <summary th:text="${li.ip} + '|' + ${li.nomeMaquina} + '|' + ${li.dataRealizacao}"></summary>
+          <div >
           <table class="table" th:each="it:${li.listaItem}">
             <thead>
               <th>Pergunta</th>

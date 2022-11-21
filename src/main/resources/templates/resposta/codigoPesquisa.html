@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/codigoPesquisa/codigo.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/codigoPesquisa/codigo.css" />
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../img/favicon-16x16.png"
+    />
 
     <title>Código do formulário</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="tudo">
-    
-            <form action="/resposta/buscar">
-                <div class="inbt">
-                    <h2>Digite o código do formulário</h2>
-                    <input type="number" name="id"  value="" style="text-align:center"
-                    style="text-transform:uppercase"
-                     required> 
-                    
-                    <button class="bt" >
-                        <a  type="submit">Buscar</a>
-                    </button>
-                </div>
-            </form>
+      <form action="/resposta/buscar">
+        <div class="inbt">
+          <h2>Digite o código do formulário</h2>
+          <input
+            type="number"
+            name="id"
+            value=""
+            style="text-align: center"
+            required
+          />
+
+          <button class="bt">
+            <a type="submit">Buscar</a>
+          </button>
+        </div>
+      </form>
     </div>
 
-<script>
-
-$('input[type=number]').on('mousewheel', function(e) {
-    $(e.target).blur();
-  });
-
-</script>
-</body>
+    <script>
+      $("input[type=number]").on("mousewheel", function (e) {
+        $(e.target).blur();
+      });
+    </script>
+  </body>
 </html>
