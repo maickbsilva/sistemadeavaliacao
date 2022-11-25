@@ -14,11 +14,15 @@ body {
   background-color: #000;
 }
 
+.divsec{
+  margin-right: 230px;
+}
+
+
 section {
   max-width: var(--sectionWidth);
   margin: 40px auto;
   width: 97%;
-  
 }
 
 summary {
@@ -28,7 +32,7 @@ summary {
   padding: 10px;
   font-family: "Space Mono", monospace;
   font-size: 19px;
-  transition: .3s;
+  transition: 0.3s;
   border-bottom: 2px solid;
   user-select: none;
 }
@@ -46,7 +50,7 @@ details > div {
 }
 
 details[open] > summary {
-   color: red;
+  color: red;
 }
 
 @media (min-width: 768px) {
@@ -90,7 +94,6 @@ details[open] > summary {
     padding: 20px;
   }
 }
-
 
 @keyframes showContent {
   from {
