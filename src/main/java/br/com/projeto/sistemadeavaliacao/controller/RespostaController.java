@@ -106,6 +106,12 @@ public class RespostaController {
     @PublicoAnnotation
     @RequestMapping("buscar")
     public String buscaPesquisa(Long id, Model model) {
+
+        if (!pesquisaRepository.findById(id).isPresent()){
+            return "resposta/pesquisaNaoExiste";
+        }
+
+
         List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
         Pesquisa pesquisa = pesquisaRepository.filtroExclusao(id);
 
