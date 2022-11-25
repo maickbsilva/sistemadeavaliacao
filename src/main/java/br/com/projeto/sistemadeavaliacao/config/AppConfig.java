@@ -21,11 +21,12 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	
 	
-	  @Autowired private AppInterceptor interceptor;
-	  
-	  @Override public void addInterceptors(InterceptorRegistry registry) {
-	  registry.addInterceptor(interceptor); }
-	 
+	/*
+	 * @Autowired private AppInterceptor interceptor;
+	 * 
+	 * @Override public void addInterceptors(InterceptorRegistry registry) {
+	 * registry.addInterceptor(interceptor); }
+	 */
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
