@@ -8,6 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ItemRespostaRepository extends PagingAndSortingRepository<ItemResposta, Long>{
@@ -17,4 +18,6 @@ public interface ItemRespostaRepository extends PagingAndSortingRepository<ItemR
 
     @Query("SELECT i.pergunta FROM ItemResposta i where i.id = :id")
     public Pergunta findPergunta(@Param("id") Long idItem);
+    @Query("SELECT ir.resposta FROM ItemResposta ir WHERE ir.id = :i")
+    Resposta buscaResposta(@Param("i") Long idItem);
 }

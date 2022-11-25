@@ -61,14 +61,20 @@
               <th>Satisfacao</th>
               <th>Nivel Importancia</th>
               <th>Comentário</th>
-              <th>Jutificativa</th>
+              <th th:if="${session.docenciaLogado}">Jutifica</th>
+              <th th:if="${session.diretoriaLogado}">Solicita Justificativa</th>
+
+
             </thead>
             <tbody class="table-group-divider">
               <td th:text="${it.pergunta.textoPergunta}"></td>
               <td th:text="${it.satisfacao}"></td>
               <td th:text="${it.nivelImportancia}"></td>
               <td th:text="${it.comentario}"></td>
-              <td><a th:href="@{/itemResposta/justificativa(id=${it.id})}">Solicitar</a></td>
+              <td><a th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a></td>
+              <td><a th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}">Solicitar</a></td>
+
+
             </tbody>
           </table>
           </div>

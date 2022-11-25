@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("itemResposta/")
@@ -19,12 +20,17 @@ public class ItemRespostaController {
     private PerguntaRepository perguntaRepository;
 
     @Autowired
-    private JustificativaItemRespostaRepository repository;
+    private JustificativaItemRespostaRepository justificativaItemRespostaRepository;
+
+    @Autowired
+    private RespostaRepository respostaRepository;
+
+    @Autowired
+    private PesquisaRepository pesquisaRepository;
 
     @RequestMapping("justificativa")
     public String justificativaItem(ItemResposta itemResposta, Model model) {
 		Long id = itemResposta.getId();
-		System.out.println(id);
         model.addAttribute("itemResposta", id);
         Pergunta idPerg = itemRespostaRepository.findPergunta(id);
         model.addAttribute("item", itemRespostaRepository.findById(id).get());
@@ -41,14 +47,32 @@ public class ItemRespostaController {
         justificativaItemResposta.setData(data);
 
         //pega o usuario da sessao e insere ele na justificativa
-        Usuario u = (Usuario) request.getSession().getAttribute("usuarioLogado");
+        Usuario u = (Usuario) request.getSession().getAttribute("docenciaLogado");
         justificativaItemResposta.setUsuario(u);
 
-        //pega o itemResposta que esta sendo usado e insere na justificativa
+        justificativaItemRespostaRepository.save(justificativaItemResposta);
 
-        repository.save(justificativaItemResposta);
+        Long idItem = justificativaItemResposta.getItemResposta().getId();
+        Resposta r = (Resposta) itemRespostaRepository.buscaResposta(idItem);
+        Pesquisa p = respostaRepository.buscaPesquisa(r.getId());
+        p.setJustificativa(false);
+        pesquisaRepository.save(p);
 
         return "redirect:/";
+    }
+
+    @RequestMapping("solicitaJustificativa")
+    public String solicitaJustificativa(Long id, HttpServletRequest request) {
+        Resposta r = (Resposta) itemRespostaRepository.buscaResposta(id);
+        Pesquisa p = respostaRepository.buscaPesquisa(r.getId());
+        p.setJustificativa(true);
+        pesquisaRepository.save(p);
+        System.out.println("pesquisa: " + p.getId() + ", status justificativa: " + p.isJustificativa());
+
+        //redireciona para a pag anterior
+        String referer = request.getHeader("Referer");
+
+        return "redirect:"+referer;
     }
 
 }
