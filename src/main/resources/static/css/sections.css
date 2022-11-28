@@ -14,20 +14,25 @@ body {
   background-color: #000;
 }
 
+.divsec{
+  margin-right: 230px;
+}
+
+
 section {
   max-width: var(--sectionWidth);
   margin: 40px auto;
   width: 97%;
-  
 }
 
 summary {
   display: block;
   cursor: pointer;
+  width: 150%;
   padding: 10px;
   font-family: "Space Mono", monospace;
-  font-size: 22px;
-  transition: .3s;
+  font-size: 19px;
+  transition: 0.3s;
   border-bottom: 2px solid;
   user-select: none;
 }
@@ -37,6 +42,7 @@ details > div {
   flex-wrap: wrap;
   overflow: auto;
   height: 100%;
+  width: 150%;
   user-select: none;
   padding: 0 20px;
   font-family: "Karla", sans-serif;
@@ -44,7 +50,7 @@ details > div {
 }
 
 details[open] > summary {
-   color: red;
+  color: red;
 }
 
 @media (min-width: 768px) {
@@ -66,7 +72,7 @@ details[open] > summary {
 
   details[open] > div > img {
     opacity: 0;
-    height: 100%;
+    height: 00%;
     margin: 0;
     animation-name: showImage;
     animation-duration: 0.3s;
@@ -88,7 +94,6 @@ details[open] > summary {
     padding: 20px;
   }
 }
-
 
 @keyframes showContent {
   from {
