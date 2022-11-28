@@ -8,6 +8,9 @@ body {
     margin-top: -250px;
     margin-left: -400px;
   }
+  .h1{
+    font-size: 50px!important;
+  }
   .message-box {
     height: 200px;
     width: 380px;
