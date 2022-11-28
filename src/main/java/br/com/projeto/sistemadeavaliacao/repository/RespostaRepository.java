@@ -12,4 +12,6 @@ import java.util.List;
 public interface RespostaRepository extends PagingAndSortingRepository<Resposta, Long> {
     @Query("SELECT COUNT(r.id) FROM Resposta r where r.pesquisa.id = :id")
     public Long contaResposta(@Param("id") Long idPesquisa);
+    @Query("SELECT r.pesquisa FROM Resposta r WHERE r.id = :i")
+    Pesquisa buscaPesquisa(@Param("i") Long idResp);
 }

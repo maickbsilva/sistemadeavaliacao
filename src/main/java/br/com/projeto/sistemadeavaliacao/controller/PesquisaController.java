@@ -91,8 +91,10 @@ public class PesquisaController {
 			pesquisaRepository.save(pesquisa);
 			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
 		}
+		Long id = pesquisa.getId();
+		model.addAttribute("idpesq", id);
 
-		return "redirect:cadastrar";
+		return "forward:cadastrar";
 	}
 
 	@SecretariaAnnotation
