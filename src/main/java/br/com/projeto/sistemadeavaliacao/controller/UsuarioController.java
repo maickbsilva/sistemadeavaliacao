@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import br.com.projeto.sistemadeavaliacao.repository.JustificativaItemRespostaRepository;
+import br.com.projeto.sistemadeavaliacao.repository.JustificativaRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +42,12 @@ public class UsuarioController {
 
 	@Autowired
 	private PesquisaRepository pesquisaRepository;
+
+	@Autowired
+	private JustificativaItemRespostaRepository justificativaItemRespostaRepository;
+
+	@Autowired
+	private JustificativaRespostaRepository justificativaRespostaRepository;
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
@@ -120,14 +128,16 @@ public class UsuarioController {
 
 	@DiretorAnnotation
 	@RequestMapping("telaInicialDiretor")
-	public String telaInicialDiretor() {
+	public String telaInicialDiretor(Model model) {
+		model.addAttribute("justItem", justificativaItemRespostaRepository.findAllByOrderByIdDesc());
+		model.addAttribute("justResp", justificativaRespostaRepository.findAllByOrderByIdDesc());
 		return "telainicial/telaInicialDiretor";
 	}
 
 	@DocenteAnnotation
 	@RequestMapping("telaInicialDocencia")
 	public String telaInicialDocencia(Model model, HttpServletRequest request) {
-		Usuario u = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		Usuario u = (Usuario) request.getSession().getAttribute("docenciaLogado");
 		Long id = u.getUserId();
 		model.addAttribute("pesq", pesquisaRepository.listaPesquisaPorDocente(id));
 		return "telainicial/telaInicialDocencia";
@@ -163,17 +173,17 @@ public class UsuarioController {
             }
 
             if (user.getTipo() != null && user.getTipo() == TipoUsuario.DIRETOR) {
-                session.setAttribute("usuarioLogado", user);
+                session.setAttribute("diretoriaLogado", user);
                 session.setAttribute("nivel", user.getTipo());
                 return "redirect:/telaInicialDiretor";
 
             } else if (user.getTipo() != null && user.getTipo() == TipoUsuario.SECRETARIA) {
-                session.setAttribute("usuarioLogado", user);
+                session.setAttribute("secretariaLogado", user);
                 session.setAttribute("nivel", user.getTipo());
                 return "redirect:/telaInicialSecretaria";
 
             } else if (user.getTipo() != null && user.getTipo() == TipoUsuario.DOCENCIA) {
-                session.setAttribute("usuarioLogado", user);
+                session.setAttribute("docenciaLogado", user);
                 session.setAttribute("nivel", user.getTipo());
                 return "redirect:/telaInicialDocencia";
             }

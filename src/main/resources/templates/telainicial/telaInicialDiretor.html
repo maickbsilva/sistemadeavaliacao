@@ -36,7 +36,7 @@
 		</div>
 
 	<table class="striped" border="1">
-		ULTIMAS JUSTIFICATIVAS RESPONDIDAS
+		ULTIMOS COMENTARIOS JUSTIFICADOS
 	    <thead>
 		<th>Data</th>
 	    <th>Pergunta</th>
@@ -56,6 +56,29 @@
 		</tr>
 
 	    </tbody>
+	</table>
+
+	<br>
+	<br>
+	<table class="striped" border="1">
+		ULTIMOS COMENTARIOS GERAL JUSTIFICADOS
+		<thead>
+		<th>Data</th>
+		<th>Comentario geral</th>
+		<th>Resposta Comentario</th>
+		<th>Docente</th>
+
+		</thead>
+
+		<tbody>
+		<tr th:each="jr:${justResp}">
+			<td th:text="${#dates.format(jr?.data, 'dd/MM/yyyy')}"/>
+			<td th:text="${jr?.resposta?.comentarioGeral}" />
+			<td th:text="${jr?.texto}" />
+			<td th:text="${jr?.usuario?.nome}" />
+		</tr>
+
+		</tbody>
 	</table>
 </body>
 </html>

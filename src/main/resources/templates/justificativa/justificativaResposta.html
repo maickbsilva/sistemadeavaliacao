@@ -2,27 +2,22 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Justifica Item</title>
+    <title>Justifica RESPOSTA</title>
 </head>
 <body>
-<h1>JUSTIFICATIVA ITEM</h1>
+<h1>JUSTIFICATIVA RESPOSTA</h1>
 
-<form method="post" style="border:2" action="novaJustiItem">
+<form method="post" style="border:2" action="novaJustiResp">
 
     <input type="hidden" name="id"/>
     <div>
-        id do item
-        <input type="text" th:name="itemResposta.id" th:value="${item?.id}" />
+        id da resposta
+        <input type="text" th:name="resposta.id" th:value="${resposta?.id}" />
     </div>
     <br>
 
-
     <div>
-        pergunta <input type="text" th:value="${pergunta.textoPergunta}" disabled>
-    </div>
-    <br>
-    <div>
-        comentario <input type="text" th:value="${item?.comentario}" disabled>
+        comentario geral <input type="text" th:value="${resposta?.comentarioGeral}" disabled>
     </div>
     <br>
     <div>
@@ -33,11 +28,11 @@
         <button type="submit" onclick="enviaJust()">Cadastrar</button>
     </div>
 </form>
-
 <script>
     function enviaJust() {
 alert("Justificativa respondida com sucesso!!");
 }
 </script>
+
 </body>
 </html>
