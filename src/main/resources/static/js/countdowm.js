@@ -23,6 +23,6 @@ function relogio() {
     }
 }
 
-/*setTimeout(() => {
+setTimeout(() => {
     window.location.href = "/resposta/codigoPesquisa";
-}, 3000);*/
+}, 3000);
