@@ -34,7 +34,7 @@ public class Pesquisa {
     @OneToMany(mappedBy = "pesquisa")
     private List<Resposta> listaResposta;
     
-    private boolean justificativa;
+    private boolean justificativa = false;
 
     @OneToOne
     private Usuario usuarioDocente;
