@@ -161,5 +161,6 @@ p {
 }
 
 p a {
-	color: cyan;
+	color: black;
+	cursor: pointer;
 }
