@@ -2,6 +2,8 @@ package br.com.projeto.sistemadeavaliacao.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -28,5 +30,8 @@ public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, L
 	@Query("SELECT u FROM Usuario u WHERE u.tipo = 1")
 	public List<Usuario> BuscarDocentes();
 		
-
+	@Query("SELECT c FROM Usuario c ORDER BY c.ativo")
+	public Page<Usuario> ListarOrdem(PageRequest pageble);
+	
+	public Page<Usuario> findByOrderByAtivo(PageRequest pageble);
 }
