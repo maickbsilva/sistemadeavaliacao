@@ -52,6 +52,11 @@ details > div {
 details[open] > summary {
   color: red;
 }
+td{
+  word-break: normal;
+  width: 150px;
+  white-space: pre-line;
+}
 
 @media (min-width: 768px) {
   details[open] > div > p {
