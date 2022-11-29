@@ -35,6 +35,7 @@ summary {
   transition: 0.3s;
   border-bottom: 2px solid;
   user-select: none;
+  margin-left: -183px;
 }
 
 details > div {
@@ -47,15 +48,17 @@ details > div {
   padding: 0 20px;
   font-family: "Karla", sans-serif;
   line-height: 1.5;
+  margin-left: -183px;
 }
 
 details[open] > summary {
   color: red;
 }
 td{
-  word-break: normal;
-  width: 150px;
-  white-space: pre-line;
+  word-break: keep-all;
+  width: 150px!important;
+  white-space: normal;
+  
 }
 
 @media (min-width: 768px) {
