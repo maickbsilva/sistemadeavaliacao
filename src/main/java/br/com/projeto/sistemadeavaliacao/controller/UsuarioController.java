@@ -85,7 +85,7 @@ public class UsuarioController {
 	@RequestMapping("lista/{page}")
 	public String lista(Model model, @PathVariable("page") int page) {
 
-		PageRequest pageble = PageRequest.of(page - 1, 12, Sort.by(Sort.Direction.ASC, "nome"));
+		PageRequest pageble = PageRequest.of(page - 1, 12, Sort.by(Sort.Direction.DESC, "ativo"));
 
 		Page<Usuario> pagina = repository.findAll(pageble);
 
