@@ -162,4 +162,5 @@ p {
 
 p a {
 	color: cyan;
+	cursor: pointer;
 }
