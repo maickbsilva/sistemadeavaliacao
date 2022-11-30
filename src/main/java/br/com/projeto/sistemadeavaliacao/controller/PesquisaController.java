@@ -1,6 +1,6 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,13 +12,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
-import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
