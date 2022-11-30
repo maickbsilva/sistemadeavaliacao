@@ -12,12 +12,19 @@
 
 body {
   background-color: #000;
+  max-width: 1200px;
 }
 
 .divsec{
   margin-right: 230px;
 }
 
+.stquest{
+  width: 39%;
+}
+.thquest{
+  width: 39%;
+}
 
 section {
   max-width: var(--sectionWidth);
@@ -28,14 +35,12 @@ section {
 summary {
   display: block;
   cursor: pointer;
-  width: 150%;
-  padding: 10px;
+  width: 200%;
   font-family: "Space Mono", monospace;
   font-size: 19px;
   transition: 0.3s;
   border-bottom: 2px solid;
-  user-select: none;
-  margin-left: -183px;
+  user-select: none;;
 }
 
 details > div {
@@ -43,12 +48,10 @@ details > div {
   flex-wrap: wrap;
   overflow: auto;
   height: 100%;
-  width: 150%;
+  width: 200%;
   user-select: none;
-  padding: 0 20px;
   font-family: "Karla", sans-serif;
   line-height: 1.5;
-  margin-left: -183px;
 }
 
 details[open] > summary {
