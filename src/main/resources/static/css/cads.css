@@ -5,6 +5,22 @@
 }
 .lb-legend{
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
+
 }
+.btn-outline-primary{
+    color: #fff !important;
+    box-shadow: inset 100px 0 0 0 #0c0133;
+    -bs-btn-border-color: #0c0133 !important; 
+    --bs-btn-border-width: 0px !important;
+    background-color: #0c0133 !important;
+    
+}
+
+.btn-outline-primary:hover {
+    box-shadow: inset 100px 0 0 0 #fff;
+    color:var(--bs-indigo) !important;
+    color: var(--bs-indigo) !important;
+    background-color: #fff !important;
+    border: 1px solid var(--bs-indigo) !important;;  
+
+  }

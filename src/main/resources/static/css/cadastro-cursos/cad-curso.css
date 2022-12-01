@@ -23,8 +23,50 @@
   text-align: center;
 }
 .container{
-  width: 400px!important;
+    width: 600px!important;
+    --bs-gutter-x: 15rem !important;
+  }
+  
+  .material-symbols-outlined {
+      left: 85% !important;
+      font-size: 35px !important;
+      position: absolute;
+      color: #fff ;
+  }
+  
+  .link-home{
+      text-decoration: none !important;
+      color: #fff ;
+      border-radius: 7px;  
+      box-shadow: inset 100px 0 0 0 #0c0133;
+      border: transparent;
+  }
+  
+  button:hover {
+    box-shadow: inset 100px 0 0 0 #fff;
+    color: #0c0133;
+    color: var(--bs-indigo) !important;
+    border: transparent;
+  }
+  .btn-primary{
+    color: #fff ;
+    box-shadow: inset 100px 0 0 0 #0c0133;
+    -bs-btn-border-color: #0c0133 !important; 
+    --bs-btn-border-width: 0px !important;
+    background-color: #0c0133 !important;
+    
 }
+
+.btn-primary:hover {
+    box-shadow: inset 100px 0 0 0 #fff;
+    color:var(--bs-indigo) !important;
+    color: var(--bs-indigo) !important;
+    background-color: #fff !important;
+    border: 1px solid var(--bs-indigo) !important;;  
+
+  }
+
+  
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 *{
@@ -52,7 +94,7 @@ body{
 
 
 .area{
-    background: #002855;  
+    background: #0c0133;  
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
     width: 100%;
     height:100vh;

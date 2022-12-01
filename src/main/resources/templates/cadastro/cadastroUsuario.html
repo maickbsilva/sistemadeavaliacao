@@ -29,8 +29,12 @@
             integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
             crossorigin="anonymous"
     />
-    <!-- Compiled and minified CSS -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 
+    />
+    <!-- Compiled and minified CSS -->
     <title>Cadastro de Usuário</title>
 </head>
 <body>
@@ -49,6 +53,9 @@
     </ul>
 </div>
 <div class="container main-div">
+    <span class="material-symbols-outlined" >
+        <button class="link-home" onclick='history.go(-1)'> home</button>
+    </span>
     <form action="save" method="post" class="cadForm col s12">
         <h4>Cadastro de Usuários</h4>
         <input type="hidden" name="userId" th:value="${users?.userId}"/>

@@ -21,8 +21,13 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
 		rel="stylesheet"
 	  />
+	  <link
+	  rel="stylesheet"
+	  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  />
   
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
 	<title>Cadastro de Pergunta</title>
 </head>
 
@@ -42,8 +47,10 @@
 		</ul>
 	</div>
 	<div class="container main-div">
+		<span class="material-symbols-outlined" >
+			<button class="link-home" onclick='history.go(-1)'> home</button>
+		</span>
 		<h2 class="titleh2">Cadastro de Pergunta</h2>
-
 		<form method="post" style="border:2" action="novaPergunta">
 
 			<input type="hidden" name="id" th:value="${p?.id}"></input>
