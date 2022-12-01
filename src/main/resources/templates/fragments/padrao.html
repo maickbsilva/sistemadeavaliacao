@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://tymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:fragment="cabecalho">		
+            <nav class="navbar navbar-dark  fixed-top">
+                <div class="container-fluid">
+                    
+                    <div>
+                        <img class="Logo_kaos "src="../img/Logo_KAOS.png" alt="">
+                      </div>
+                      
+                  <p class="navbar-brand" style="color: white; font-size:xx-large;" >Lista de Usuário</p>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <span class="navbar-toggler-icon"></span>Menu
+                  </button>
+                  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                
+                      <form  class="d-flex form-pesquisa" role="search">
+                        <input  class="form-control me-2" type="search" name="id"  aria-label="Search" id="input-busca">
+                        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+			
+	</header>
+
+    <footer th:fragment="rodape" class="card-body ">
+   <!--<div class="card text-center" style="text-align: center;">  -->       
+            <img class="kaos "src="../img/android-chrome-512x512.png" alt="">
+          <p class="card-text">By KAOS</p>
+    
+     <!-- </div> -->
+    </footer>
+
+</body>
+</html>

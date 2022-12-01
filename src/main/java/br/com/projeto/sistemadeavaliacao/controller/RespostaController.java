@@ -103,7 +103,7 @@ public class RespostaController {
             itemRespostaRepository.save(ir);
         }
 
-        return "resposta/sucesso";
+        return "resposta/codigoPesquisa";
     }
 
     @PublicoAnnotation
