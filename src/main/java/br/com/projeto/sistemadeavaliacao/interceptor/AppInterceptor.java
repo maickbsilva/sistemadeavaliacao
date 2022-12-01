@@ -31,6 +31,13 @@ public class AppInterceptor implements HandlerInterceptor {
 			return true;
 		}
 
+		
+		/* if para Funcionalidade geral com interceptor */
+		if (uri.endsWith("loginForm") || uri.endsWith("efetuaLogin") || uri.endsWith(".css") || uri.endsWith(".png")
+				|| uri.endsWith(".gif") || uri.endsWith(".jpg")) {
+			return true;
+		}
+		
 		if (handler instanceof HandlerMethod) {
 			HandlerMethod metodo = (HandlerMethod) handler;
 			if (uri.startsWith("/")) {
