@@ -1,23 +1,21 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
-import java.text.SimpleDateFormat;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
-import br.com.projeto.sistemadeavaliacao.model.Resposta;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
 import br.com.projeto.sistemadeavaliacao.repository.ItemRespostaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
@@ -83,7 +81,6 @@ public class PesquisaController {
 	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
 
 		Date data = new Date();
-		
 
 		if (pesquisa.getDataVencimento().before(data)) {
 
@@ -91,19 +88,34 @@ public class PesquisaController {
 			pesquisaRepository.save(pesquisa);
 			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
 		}
-
+		Long id = pesquisa.getId();
+		//model.addAttribute("idpesq", id);
+		attr.addFlashAttribute("idpesq", id);
 		return "redirect:cadastrar";
 	}
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
-	@RequestMapping("listar")
-	public String listaPesquisa(Model model) {
-		model.addAttribute("pesq", pesquisaRepository.findAll());
+	@RequestMapping("listar/{page}")
+	public String listaPesquisa(Model model, @PathVariable("page") int page) {
+
+		PageRequest pageable = PageRequest.of(page - 1, 15, Sort.by(Sort.Direction.DESC, "id"));
+
+		Page<Pesquisa> pagina = pesquisaRepository.findAll(pageable);
+
+		model.addAttribute("pesq", pagina.getContent());
+
+		int totalPages = pagina.getTotalPages();
+
+		List<Integer> numPaginas = new ArrayList<Integer>();
+
+		for (int i = 1; i <= totalPages; i++) {
+			numPaginas.add(i);
+		}
+		model.addAttribute("numPaginas", numPaginas);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("pagAtual", page);
+
 		return "pesquisa/listaPesquisa";
 	}
-
-	
-	
-
 }

@@ -1,110 +1,145 @@
 <html xmlns:th="http://thymeleaf.org">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Favicon -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../img/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="../img/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../img/favicon-16x16.png"
-    />
     <link rel="stylesheet" href="../../css/pesquisa/pesquisa.css" />
+
     <!-- CSS only -->
+
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <!-- Compiled and minified CSS -->
-
-    <title>Cadastro de Usuários</title>
-  </head>
-  <body>
-    <div class="area">
-      <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
-    <div class="container main-div">
-      <form action="save" method="post" class="cadForm col s12">
-        <h4>Cadastro de Usuários</h4>
-        <input type="hidden" name="userId" th:value="${users?.userId}" />
-
-        <div class="mb-3">
-          <label class="form-label">Nome</label>
-          <input
-            type="text"
-            name="nome"
-            th:value="${users?.nome}"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">NIF</label>
-          <input
-            type="text"
-            name="nif"
-            th:value="${users?.nif}"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Senha</label>
-          <input
-            type="password"
-            name="senha"
-            th:value="${users?.senha}"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Tipo de Usuário</label>
-          <select name="tipo" class="form-select" required>
-            <option value="" disabled selected>Selecione uma Opção:</option>
-            <option
-              th:each="tipo : ${T(br.com.projeto.sistemadeavaliacao.model.TipoUsuario).values()}"
-              th:value="${tipo}"
-              th:text="${tipo}"
-              th:selected="${tipo.toString() == r?.tipo?.toString()}"
-            ></option>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <button type="submit" class="btn btn-primary btnCad">Cadastrar</button>
-        </div>
-      </form>
-    </div>
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous" />
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
+            rel="stylesheet" />
+    <!-- JQuery -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
+            rel="stylesheet" />
+
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+<div class="area">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="container main-div">
+
+    <div class="alert alert-success collapse" role="alert" id="myAlert">
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+        <h4 class="alert-heading">Cadastro realizado com sucesso!</h4>
+    </div>
+
+    <form action="save" method="post" class="cadForm col s12">
+        <h4>Cadastro de Usuários</h4>
+        <input type="hidden" name="userId" th:value="${users?.userId}"/>
+
+        <div th:replace="fragments/mensagem"/>
+
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input
+                    type="text"
+                    name="nome"
+                    th:value="${users?.nome}"
+                    class="form-control"
+                    required
+                    style="text-transform:uppercase"
+            />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">NIF</label>
+            <input
+                    name="nif"
+                    th:value="${users?.nif}"
+                    class="form-control"
+                    style="text-transform:uppercase"
+                    required
+
+                    oninput="javascript: if (this.value.length > this.maxLength)
+                    this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "10"
+            />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Senha</label>
+            <input
+                    type="password"
+                    name="senha"
+                    th:value="${users?.senha}"
+                    class="form-control"
+                    required
+            />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tipo de Usuário</label>
+            <select name="tipo" class="form-select" required>
+                <option value="" disabled selected>Selecione uma Opção:</option>
+                <option
+                        th:each="tipo : ${T(br.com.projeto.sistemadeavaliacao.model.TipoUsuario).values()}"
+                        th:value="${tipo}"
+                        th:text="${tipo}"
+                        th:selected="${tipo.toString() == r?.tipo?.toString()}"
+                ></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary btnCad">Cadastrar</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	var iduser = [[${iduser}]];
+	if(iduser){
+		$('#myAlert').show('fade');
+	}
+});
+</script>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous">
+
+</script>
+<style>
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
+</body>
 </html>

@@ -1,123 +1,157 @@
 #customers {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  #customers td,
-  #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #customers tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  #customers tr:hover {
-    background-color: #ddd;
-  }
-  
-  #customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-  
-    color: black;
-  }
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+
+  color: black;
+}
 .navbar{
-  background: rgb(149,29,179);
+background: rgb(149,29,179);
 background: linear-gradient(90deg, rgba(149,29,179,1) 0%, rgba(123,22,195,1) 36%, rgba(56,56,187,1) 65%, rgba(8,1,125,1) 93%);
-  /* background-color: #360568; */
-  /* background: rgb(2,62,138);
+/* background-color: #360568; */
+/* background: rgb(2,62,138);
 background: linear-gradient(90deg, rgba(2,62,138,1) 8%, rgba(0,119,182,1) 24%, rgba(0,150,199,1) 40%, rgba(0,150,199,1) 54%, rgba(0,119,182,1) 72%, rgba(2,62,138,1) 89%); */
 
 }
 .navbar-toggler {
-  color: #fff !important;
-  
+color: #fff !important;
+
 
 }
-  .material-icons{
-  color: #360568;
+.material-icons{
+color: #360568;
 
-  }
+}
 
 
 .container-fluid{
 
 }
 .navbar-brand {
-  width: 23% !important;
-  
+width: 17% !important;
+
 }
 
-  .id {
-      width:5%;
-  }
-  .th-height {
-    width: 20%;
-  }
-  .table{
-    margin:80px ;
-    padding-bottom: 80px;
-    width:92% !important;
-  }
+.id {
+    width:5%;
+}
+.th-height {
+  width: 30%;
+}
 
-  .Logo_kaos{
-    max-width: 200px !important;
-  }
+.table{
+  margin:70px ;
+  padding-bottom: 80px;
+  width:92% !important;
+ 
+}
 
-  .kaos{
-    max-width:35px !important;
-    padding-top: 10px;
-  }
 
-  .card{
-    border:--bs-card-border-color var(--bs-border-color-translucent) !important;
-  }
+.pagination{
+  margin-left: 45.5%;
+  margin-right: 70%; 
+  padding: 35px;
+  
+  
+}
+.Logo_kaos{
+  max-width: 200px !important;
+}
 
-  .card-body {
-    background: rgb(149,29,179);
+.kaos{
+  max-width:35px !important;
+  padding-top: 10px;
+}
+
+.card{
+  border:--bs-card-border-color var(--bs-border-color-translucent) !important;
+}
+
+.card-body {
+  background: rgb(149,29,179);
 background: linear-gradient(90deg, rgba(149,29,179,1) 0%, rgba(123,22,195,1) 36%, rgba(56,56,187,1) 65%, rgba(8,1,125,1) 93%)!important;
-    bottom: 0;
-    position: fixed;
-    width: 100%;
-    text-align: center;
-    height: 80px; 
-  }
-  .card-text{
-    color: white !important;
-  }
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  height: 80px; 
+}
+.card-text{
+  color: white !important;
+}
 
-  .content {
-    position:relative;
-    height:20vh;
-    text-align:center;
-    background-color: white;    
-  }
+.content {
+  position:relative;
+  height:20vh;
+  text-align:center;
+  background-color: white;    
+}
 
-  .flex { /*Flexbox for containers*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  p {
-    letter-spacing: 1px;
-    font-size:14px;
-    color: #333333;
+.flex { /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+p {
+  letter-spacing: 1px;
+  font-size:14px;
+  color: #333333;
+
+}
+.material-symbols-outlined {
+  color: #360568;
+}
+
+.page-link {
+  color: black !important;
+}
+
+
+.resultado{
+
+display: flex;
+  position: absolute;
+  top: 10%;
+  left: 80%;
+      font-family: 'Playfair Display', serif;
   
-  }
-  .material-symbols-outlined {
-    color: #360568;
-  }
+}
+.resultado-item{
+  margin-left:60px;
+}
+
+.item-ok{
+  border-left: 30px solid blue;
   
-  .page-link {
-    color: black !important;
+}
+.item-pendente{
+  border-left: 30px solid orange;
+}
 
-
-  }
- .pagination{
-  	margin-left: 45.5%;
-  }
+.item-ativo{
+  border-left: 30px solid green;
+}
+.item-inativo{
+  border-left: 30px solid red;
+}

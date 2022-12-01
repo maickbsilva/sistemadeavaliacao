@@ -1,13 +1,21 @@
-<html>
+<html xmlns:th="http://tymeleaf.org">
 <head>
-    <title>Formulário</title>
+    <title>Página de Login</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-    <link rel="stylesheet" href="../../css/login/login.css"/>
+    <link
+            href="../../css/login_css/login.css"
+            rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     </body>
@@ -15,41 +23,90 @@
 
 </head>
 <body>
+<div class="header">
+    <section class="login" id="fundo">
 
-<section class="login" id="fundo">
-    <div class="head">
-        <img class="img" src="../../img/kaozgreat.png"/>
+        <div class="inner-header flex container">
+            <form class="cadForm col s12" action="login" method="post">
+                <h4 class="msg">Bem-vindo!</h4>
+
+                <div th:replace="fragments/mensagem"></div>
+
+                <div class="form">
+                    <input
+                            style="text-align:center"
+                            name="nif"
+                            type="text"
+                            placeholder="NIF"
+                            class="validate"
+                            id="login"
+                            required
+                    /><br/>
+                    <input
+                            style="text-align:center"
+                            name="senha"
+                            type="password"
+                            placeholder="••••••••••••••"
+                            class="password validate"
+                            id="senha"
+                            required
+                    /><br/>
+                    <div class="btnCad">
+                        <button class="btn-login" type="submit"> Logar</button>
+                    </div>
+
+            </form>
+
+        </div>
+        
+    </section>
+    
+
+    <!--Início das ondas-->
+
+    <div>
+        <svg
+                class="waves"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28"
+                preserveAspectRatio="none"
+                shape-rendering="auto"
+        >
+            <defs>
+                <path
+                        id="gentle-wave"
+                        d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+                />
+            </defs>
+            <g class="parallax">
+                <use
+                        xlink:href="#gentle-wave"
+                        x="48"
+                        y="0"
+                        fill="rgba(156,94,144,0.46)"
+                />
+                <use
+                        xlink:href="#gentle-wave"
+                        x="48"
+                        y="3"
+                        fill="rgba(150,70,144,0.46)"
+                />
+                <use
+                        xlink:href="#gentle-wave"
+                        x="48"
+                        y="5"
+                        fill="rgba(134,44,144,0.46)"
+                />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#651890"/>
+            </g>
+        </svg>
     </div>
+</div>
 
-    <p class="msg">Bem vindo de volta</p>
-
-    <div class="form">
-        <form action="login">
-            <input
-                    type="text"
-                    placeholder="NIF"
-                    class="text"
-                    id="login"
-                    name="nif"
-                    required
-            /><br/>
-            <input
-                    type="password"
-                    placeholder="••••••••••••••"
-                    class="password"
-                    id="senha"
-                    name="senha"
-                    required
-            /><br/>
-
-            <button class="btn-login" type="submit"> Logar</button>
-
-
-        </form>
-
-    </div>
-</section>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../js/login/login.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 
 </html>

@@ -17,6 +17,9 @@ import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.Curso;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CursoController {
@@ -36,9 +39,13 @@ public class CursoController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "salvarCurso", method = RequestMethod.POST)
-	public String salvar(Curso cs) {
+	public String salvar(Curso cs, RedirectAttributes attr, HttpServletRequest request) {
 		cursoRepository.save(cs);
-		return "redirect:curso";
+		Long id = cs.getId();
+		attr.addFlashAttribute("idCurso", id);
+		String referer = request.getHeader("Referer");
+
+		return "redirect:"+referer;
 	}
 
 	@SecretariaAnnotation
