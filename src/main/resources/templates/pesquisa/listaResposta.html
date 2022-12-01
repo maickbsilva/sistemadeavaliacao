@@ -48,18 +48,17 @@
 <body>
         <nav class="navbar navbar-dark  fixed-top">
 		<div class="container-fluid">
-			
 			<div>
 				<img class="Logo_kaos "src="../../img/Logo_KAOS.png" alt="">
-			  </div>
-			  
+            </div>
+
 		  <p class="navbar-brand" style="color: white; font-size:xx-large;" >Lista de Resposta</p>
 		  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
 			<span class="navbar-toggler-icon"></span>Menu
 		  </button>
 
 		  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-			<div class="offcanvas-header">
+              <div class="offcanvas-header">
 			  <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
 			  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
@@ -107,6 +106,10 @@
                 <button class="btn btn-primary" onclick="pdf()">PDF</button> 
                 </div>    
         <div class="input-group ipt-cont">
+                <div class="alert alert-success collapse" style="top:50%; text-align:center;" role="alert" id="myAlert">
+                        <button class="btn-close" data-bs-dismiss="alert"></button>
+                        <h4 class="alert-heading">Solicitação de justificativa enviada com sucesso!</h4>
+                    </div>
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="">Avaliações Respondidas</span>
                 </div>
@@ -187,14 +190,15 @@
 <script th:inline="javascript">
       //esse metodo troca a cor do background quando uma justificativa eh solicitada, porem acho que o css volta ao normal quando da refresh
 
-      function solicitaJust() {
-        const input = document.getElementById("cor");
-        input.style.background = "black";
-        alert("Justificativa solicitada com sucesso!!");
-}
-
+<!--</script>-->
+  <script type="text/javascript">
+$(document).ready(function () {
+	var idVerifica = [[${idVerifica}]];
+	if(idVerifica){
+		$('#myAlert').show('fade');
+	}
+});
 </script>
-
 
 <!-- JavaScript Bundle with Popper -->
 <script src="../../js/ip.js"></script>
