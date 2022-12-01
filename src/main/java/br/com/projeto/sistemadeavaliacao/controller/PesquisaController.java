@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.projeto.sistemadeavaliacao.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -81,13 +82,20 @@ public class PesquisaController {
 	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
 
 		Date data = new Date();
+		List<Usuario> l = pesquisa.getListaDocentes();
 
 		if (pesquisa.getDataVencimento().before(data)) {
 
 		} else {
+			for (int i = 0; i < pesquisa.getListaDocentes().size(); i++) {
+				if (l.get(i).getUserId() == pesquisa.getUsuarioDocente().getUserId()){
+					l.remove(i);
+				}
+			}
 			pesquisaRepository.save(pesquisa);
 			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
 		}
+
 		Long id = pesquisa.getId();
 		String nome = String.valueOf(pesquisa.getUsuarioDocente().getNome());
 		attr.addFlashAttribute("idpesq", id);
