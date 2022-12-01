@@ -46,6 +46,61 @@
     <title>Lista de Respostas</title>
 </head>
 <body>
+        <nav class="navbar navbar-dark  fixed-top">
+		<div class="container-fluid">
+			
+			<div>
+				<img class="Logo_kaos "src="../../img/Logo_KAOS.png" alt="">
+			  </div>
+			  
+		  <p class="navbar-brand" style="color: white; font-size:xx-large;" >Lista de Resposta</p>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+			<span class="navbar-toggler-icon"></span>Menu
+		  </button>
+
+		  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+			<div class="offcanvas-header">
+			  <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+			  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+			  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+				<li class="nav-item" th:if="${session.docenciaLogado == null} ">
+				  <a class="nav-link" href="/cadastro">Cadastrar Usuário</a>
+				</li>
+				<li class="nav-item" th:if="${session.docenciaLogado == null} ">
+					<a class="nav-link" href="/lista/1">Listar Usuário</a>
+				  </li>
+				<li class="nav-item" th:if="${session.docenciaLogado == null} ">
+				  <a class="nav-link" href="/curso">Cadastrar Curso</a>
+				</li>
+				<li class="nav-item" th:if="${session.docenciaLogado == null} ">
+					<a class="nav-link" href="/listaCurso/1">Listar Curso</a>
+				  </li>
+				<li class="nav-item" th:if="${session.docenciaLogado == null} ">
+				  <a class="nav-link" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a>
+				</li>
+				<li class="nav-item" th:if="${session.docenciaLogado == null} ">
+					<a class="nav-link" href="/pergunta/listar/1">Listar Pergunta</a>
+				  </li>
+				<li class="nav-item" th:if="${session.docenciaLogado == null} ">
+				  <a class="nav-link" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a>
+				</li>
+        		<li class="nav-item" th:if="${session.docenciaLogado == null} ">
+				  <a class="nav-link" href="/pesquisa/listar/1">Listar Pesquisa</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
+				</li>
+			  </ul>
+			</div>
+		  </div>
+		</div>
+	  </nav>
         <h1 style="text-align:center">Lista de Respostas</h1>
         <section class="slc"> 
                 <div class="mb-3">
@@ -128,7 +183,7 @@
 </div>
 
 
-
+<footer th:replace="fragments/padrao :: rodape"></footer>
 <script th:inline="javascript">
       //esse metodo troca a cor do background quando uma justificativa eh solicitada, porem acho que o css volta ao normal quando da refresh
 
