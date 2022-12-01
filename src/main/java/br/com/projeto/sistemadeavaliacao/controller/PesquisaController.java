@@ -89,8 +89,9 @@ public class PesquisaController {
 			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
 		}
 		Long id = pesquisa.getId();
-		//model.addAttribute("idpesq", id);
+		String nome = String.valueOf(pesquisa.getUsuarioDocente().getNome());
 		attr.addFlashAttribute("idpesq", id);
+		attr.addFlashAttribute("nomeDocente", nome);
 		return "redirect:cadastrar";
 	}
 
