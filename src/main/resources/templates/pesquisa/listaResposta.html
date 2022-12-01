@@ -103,7 +103,7 @@
         <h1 style="text-align:center">Lista de Respostas</h1>
         <section class="slc"> 
                 <div class="mb-3">
-                <button class="btn btn-primary" onclick="pdf()">PDF</button> 
+                <button class="btn btn-primary" onclick="pdf()"> <img src+="../../img/pdf.png"> PDF</button> 
                 </div>    
         <div class="input-group ipt-cont">
                 <div class="alert alert-success collapse" style="top:50%; text-align:center;" role="alert" id="myAlert">
@@ -139,8 +139,7 @@
 
             <table class="table table-striped" th:each="it:${li.listaItem}">
                 <thead>
-                <th class="thquest">Pergunta</th>
-                
+                <th class="thquest">Pergunta</th>              
                 <th>Satisfacao</th>
                 <th>Nivel Importancia</th>
                 <th class="stquest">Comentário</th>
@@ -168,9 +167,10 @@
                         <span th:case="'5'">importancia alta</span>
                 </td>
                 <td th:text="${it.comentario}"></td>
+                <td><a th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}">Solicitar</a></td>
                 <td><a th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
-                <td><a th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}">Solicitar</a></td>
+                
 
 
                 </tbody>

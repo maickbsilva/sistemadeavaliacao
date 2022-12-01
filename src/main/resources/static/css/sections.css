@@ -12,18 +12,6 @@
 
 body {
   background-color: #000;
-  max-width: 1200px;
-}
-
-.divsec{
-  margin-right: 230px;
-}
-
-.stquest{
-  width: 25%;
-}
-.thquest{
-  width: 25%;
 }
 
 section {
@@ -35,32 +23,24 @@ section {
 summary {
   display: block;
   cursor: pointer;
-  width: 180%;
+  padding: 10px;
   font-family: "Space Mono", monospace;
-  font-size: 19px;
-  transition: 0.3s;
+  font-size: 22px;
+  transition: .3s;
   border-bottom: 2px solid;
-  user-select: none;;
+  user-select: none;
 }
 
 details > div {
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
+  overflow-x: hidden;
   height: 100%;
-  width: 180%;
   user-select: none;
+  padding: 0 20px;
   font-family: "Karla", sans-serif;
   line-height: 1.5;
-}
-.ipt-cont{
-  margin: 38px 450px;
-  width: 337px!important;
-  text-align: center;
-}
-
-details[open] > summary {
-  color: red;
 }
 td{
   word-break: keep-all;
@@ -69,13 +49,29 @@ td{
   
 }
 
+.stquest{
+  width: 25%;
+}
+.thquest{
+  width: 25%;
+}
+
+
+
+details[open] > summary {
+   color: red;
+}
+
 @media (min-width: 768px) {
+
   details[open] > div {
     animation-name: slideDown;
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
+    border-left: 1px solid red;
   }
-}
+
+
 
 @keyframes slideDown {
   from {
@@ -86,8 +82,8 @@ td{
 
   to {
     opacity: 1;
-    height: var(--contentHeight);
-    padding: 20px;
+    height: var(--sectionWidth);
+    padding: 10px;
   }
 }
 
