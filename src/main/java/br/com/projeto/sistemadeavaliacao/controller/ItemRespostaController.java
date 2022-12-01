@@ -121,7 +121,7 @@ public class ItemRespostaController {
     }
 
     @RequestMapping("solicitaJustificativaResposta")
-    public String solicitaJustificativaResposta(Long id, HttpServletRequest request) {
+    public String solicitaJustificativaResposta(Long id, HttpServletRequest request, RedirectAttributes attr, Model model) {
         Pesquisa p = respostaRepository.buscaPesquisa(id);
         p.setJustificativa(true);
         pesquisaRepository.save(p);
@@ -129,6 +129,8 @@ public class ItemRespostaController {
 
         //redireciona para a pag anterior
         String referer = request.getHeader("Referer");
+
+        attr.addFlashAttribute("idVerifica", id);
 
         return "redirect:"+referer;
     }
