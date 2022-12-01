@@ -19,6 +19,9 @@ import br.com.projeto.sistemadeavaliacao.model.Pergunta;
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.repository.PerguntaRepository;
 import br.com.projeto.sistemadeavaliacao.repository.PesquisaRepository;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("pergunta/")
@@ -41,7 +44,7 @@ public class PerguntaController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "novaPergunta", method = RequestMethod.POST)
-	public String novaPergunta(Pergunta pergunta, String idpesquisa) {
+	public String novaPergunta(Pergunta pergunta, String idpesquisa, RedirectAttributes attr, HttpServletRequest request) {
 
 		// se existir um idpesquisa salva ele nas perguntas que foram associadas
 		if (idpesquisa != null) {
@@ -67,7 +70,12 @@ public class PerguntaController {
 		// se nao existir idpesquisa, passa somente a pergunta
 		repository.save(pergunta);
 
-		return "redirect:cadastrar";
+		Long id = pergunta.getId();
+		attr.addFlashAttribute("idPerg", id);
+
+		String referer = request.getHeader("Referer");
+
+		return "redirect:"+referer;
 	}
 
 	@SecretariaAnnotation
