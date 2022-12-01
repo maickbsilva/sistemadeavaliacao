@@ -40,6 +40,7 @@ public class ItemRespostaController {
         Pergunta idPerg = itemRespostaRepository.findPergunta(id);
         model.addAttribute("item", itemRespostaRepository.findById(id).get());
         model.addAttribute("pergunta", perguntaRepository.findById(idPerg.getId()).get());
+
         return "justificativa/justificativaItem";
     }
 
@@ -65,21 +66,18 @@ public class ItemRespostaController {
 
         Long id = justificativaItemResposta.getId();
         attr.addFlashAttribute("idjust", id);
-
         String referer = request.getHeader("Referer");
 
         return "redirect:"+referer;
     }
 
     @RequestMapping("solicitaJustificativa")
-    public String solicitaJustificativa(Long id, HttpServletRequest request) {
+    public String solicitaJustificativa(Long id, HttpServletRequest request, RedirectAttributes attr) {
         Resposta r = (Resposta) itemRespostaRepository.buscaResposta(id);
         Pesquisa p = respostaRepository.buscaPesquisa(r.getId());
         p.setJustificativa(true);
         pesquisaRepository.save(p);
-        System.out.println("pesquisa: " + p.getId() + ", status justificativa item: " + p.isJustificativa());
-
-        //redireciona para a pag anterior
+        attr.addFlashAttribute("idVerifica", id);
         String referer = request.getHeader("Referer");
 
         return "redirect:"+referer;
@@ -90,6 +88,7 @@ public class ItemRespostaController {
         Long id = resposta.getId();
         model.addAttribute("idResposta", id);
         model.addAttribute("resposta", respostaRepository.findById(id).get());
+
         return "justificativa/justificativaResposta";
     }
 
@@ -114,7 +113,6 @@ public class ItemRespostaController {
 
         Long id = justificativaResposta.getId();
         attr.addFlashAttribute("idjust", id);
-
         String referer = request.getHeader("Referer");
 
         return "redirect:"+referer;
@@ -125,12 +123,8 @@ public class ItemRespostaController {
         Pesquisa p = respostaRepository.buscaPesquisa(id);
         p.setJustificativa(true);
         pesquisaRepository.save(p);
-        System.out.println("pesquisa: " + p.getId() + ", status justificativa resposta: " + p.isJustificativa());
-
-        //redireciona para a pag anterior
-        String referer = request.getHeader("Referer");
-
         attr.addFlashAttribute("idVerifica", id);
+        String referer = request.getHeader("Referer");
 
         return "redirect:"+referer;
     }
