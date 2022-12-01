@@ -1,6 +1,5 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,6 +71,18 @@ public class PesquisaController {
 		Long contagem = respostaRepository.contaResposta(id);
 		model.addAttribute("contagem", contagem);
 		return "pesquisa/listaResposta";
+
+	}
+
+	@RequestMapping("imprecao")
+	public String imprecao(Long id, Model model) {
+		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+		model.addAttribute("perg", perguntaRepository.findAll());
+		model.addAttribute("item", itemRepository.findAll());
+		model.addAttribute("resposta", respostaRepository.findAll());
+		Long contagem = respostaRepository.contaResposta(id);
+		model.addAttribute("contagem", contagem);
+		return "pesquisa/imprecao";
 
 	}
 
