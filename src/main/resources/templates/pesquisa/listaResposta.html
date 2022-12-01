@@ -151,7 +151,7 @@
                 <td><a th:href="@{/itemResposta/justificativaResposta(id=${li.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
                 <td><a th:href="@{/itemResposta/solicitaJustificativaResposta(id=${li.id})}"
-                       th:if="${session.diretoriaLogado}" onclick="solicitaJust()">Solicitar</a></td>
+                       th:if="${session.diretoriaLogado}">Solicitar</a></td>
 
                 </tbody>
             </table>
@@ -174,7 +174,7 @@
                 <td th:text="${it.comentario}"></td>
                 <td><a th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
-                <td><a th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}" id="solicita">Solicitar</a></td>
+                <td><a th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}">Solicitar</a></td>
 
 
                 </tbody>
@@ -189,17 +189,7 @@
 
 <footer th:replace="fragments/padrao :: rodape"></footer>
 
-<!--<script th:inline="javascript">-->
-<!--      //esse metodo troca a cor do background quando uma justificativa eh solicitada, porem acho que o css volta ao normal quando da refresh-->
-
-<!--      function solicitaJust() {-->
-<!--        const input = document.getElementById("cor");-->
-<!--        input.style.background = "black";-->
-<!--        alert("Justificativa solicitada com sucesso!!");-->
-<!--}-->
-
-<!--</script>-->
-  <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function () {
 	var idVerifica = [[${idVerifica}]];
 	if(idVerifica){
