@@ -74,18 +74,6 @@ public class PesquisaController {
 
 	}
 
-	@RequestMapping("imprecao")
-	public String imprecao(Long id, Model model) {
-		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-		model.addAttribute("perg", perguntaRepository.findAll());
-		model.addAttribute("item", itemRepository.findAll());
-		model.addAttribute("resposta", respostaRepository.findAll());
-		Long contagem = respostaRepository.contaResposta(id);
-		model.addAttribute("contagem", contagem);
-		return "pesquisa/imprecao";
-
-	}
-
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
@@ -100,7 +88,7 @@ public class PesquisaController {
 			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
 		}
 		Long id = pesquisa.getId();
-		//model.addAttribute("idpesq", id);
+		// model.addAttribute("idpesq", id);
 		attr.addFlashAttribute("idpesq", id);
 		return "redirect:cadastrar";
 	}
