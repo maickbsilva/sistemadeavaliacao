@@ -28,10 +28,7 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
     />
-    <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="../../css/sections.css"/>
 
     <link
@@ -40,7 +37,8 @@
             integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
             crossorigin="anonymous"
     />
-
+    <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
     <title>Lista de Respostas</title>
@@ -100,23 +98,28 @@
 		  </div>
 		</div>
 	  </nav>
+    <p></p>
         <h1 style="text-align:center">Lista de Respostas</h1>
-        <section class="slc"> 
-                <div class="mb-3">
-                <button class="btn btn-primary" onclick="pdf()"> <img src+="../../img/pdf.png"> PDF</button> 
-                </div>    
-        <div class="input-group ipt-cont">
-                <div class="alert alert-success collapse" style="top:50%; text-align:center;" role="alert" id="myAlert">
-                        <button class="btn-close" data-bs-dismiss="alert"></button>
-                        <h4 class="alert-heading">Solicitação de justificativa enviada com sucesso!</h4>
-                    </div>
+        
+        <div class="alert alert-success collapse" style="top:50%; text-align:center;" role="alert" id="myAlert">
+          <button class="btn-close" data-bs-dismiss="alert"></button>
+          <h4 class="alert-heading">Solicitação de justificativa enviada com sucesso!</h4>
+      </div>
+        <div class="mb-3 pdf">
+          <button class="btn btn-primary bt-export" onclick="pdf()">Download PDF</button> 
+         </div> 
+
+         
+        <section class="slc">
+          
+        <div class="input-group ipt-cont">         
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="">Avaliações Respondidas</span>
                 </div>
                 <input th:value="${contagem}" disabled class="form-control">
               </div>
     <details th:each="li:${pesq.listaResposta}" id="minhaDiv" open>
-
+      
         <summary th:text="${li.ip} +  '|' + ${li.nomeMaquina} + '|' + ${#dates.format(li.dataRealizacao, 'dd/MM/yyyy hh:mm:ss')}" id="maintable"></summary>
         <div id="tabela">
             <table class="table table-striped">
@@ -185,14 +188,7 @@
 
 <footer th:replace="fragments/padrao :: rodape"></footer>
 
-<script type="text/javascript">
-$(document).ready(function () {
-	var idVerifica = [[${idVerifica}]];
-	if(idVerifica){
-		$('#myAlert').show('fade');
-	}
-});
-</script>
+
 
 <!-- JavaScript Bundle with Popper -->
 <script src="../../js/ip.js"></script>
@@ -203,6 +199,15 @@ $(document).ready(function () {
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"
 ></script>
+<script type="text/javascript">
+  $(document).ready(function (){
+    var idVerifica = [[${idVerifica}]];
+    if(idVerifica){
+      $('#myAlert').show('fade');
+    }
+  });
+  </script>
+
 <script>
         function pdf(){
         window.print()

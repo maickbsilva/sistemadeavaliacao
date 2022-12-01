@@ -20,6 +20,19 @@ section {
   width: 97%;
 }
 
+.pdf{
+  margin-top: 62px;
+  margin-left: 35%;
+  position: absolute;
+}
+
+.ipt-cont{
+  margin: 30px 300px;
+  margin-top: 10%;
+  width: 330px!important;
+  text-align: center;
+}
+
 summary {
   display: block;
   cursor: pointer;
