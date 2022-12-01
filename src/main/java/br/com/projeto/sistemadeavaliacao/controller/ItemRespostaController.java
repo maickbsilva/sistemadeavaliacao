@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Optional;
@@ -43,7 +45,7 @@ public class ItemRespostaController {
 
 
     @PostMapping("novaJustiItem")
-    public String novaJustificativa(JustificativaItemResposta justificativaItemResposta, HttpServletRequest request) {
+    public String novaJustificativa(JustificativaItemResposta justificativaItemResposta, HttpServletRequest request, RedirectAttributes attr) {
 
         //pega a data de hoje e insere ela na justificativa
         Date data = new Date();
@@ -61,7 +63,12 @@ public class ItemRespostaController {
         p.setJustificativa(false);
         pesquisaRepository.save(p);
 
-        return "telainicial/telaInicialDocencia";
+        Long id = justificativaItemResposta.getId();
+        attr.addFlashAttribute("idjust", id);
+
+        String referer = request.getHeader("Referer");
+
+        return "redirect:"+referer;
     }
 
     @RequestMapping("solicitaJustificativa")
@@ -87,7 +94,7 @@ public class ItemRespostaController {
     }
 
     @PostMapping("novaJustiResp")
-    public String novaJustificativaResposta(JustificativaResposta justificativaResposta, HttpServletRequest request) {
+    public String novaJustificativaResposta(JustificativaResposta justificativaResposta, HttpServletRequest request, RedirectAttributes attr) {
 
         //pega a data de hoje e insere ela na justificativa
         Date data = new Date();
@@ -105,11 +112,16 @@ public class ItemRespostaController {
         p.setJustificativa(false);
         pesquisaRepository.save(p);
 
-        return "telainicial/telaInicialDocencia";
+        Long id = justificativaResposta.getId();
+        attr.addFlashAttribute("idjust", id);
+
+        String referer = request.getHeader("Referer");
+
+        return "redirect:"+referer;
     }
 
     @RequestMapping("solicitaJustificativaResposta")
-    public String solicitaJustificativaResposta(Long id, HttpServletRequest request) {
+    public String solicitaJustificativaResposta(Long id, HttpServletRequest request, RedirectAttributes attr, Model model) {
         Pesquisa p = respostaRepository.buscaPesquisa(id);
         p.setJustificativa(true);
         pesquisaRepository.save(p);
@@ -117,6 +129,8 @@ public class ItemRespostaController {
 
         //redireciona para a pag anterior
         String referer = request.getHeader("Referer");
+
+        attr.addFlashAttribute("idVerifica", id);
 
         return "redirect:"+referer;
     }
