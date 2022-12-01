@@ -40,6 +40,7 @@
 <body>
 <h1>JUSTIFICATIVA RESPOSTA</h1>
 
+<div class="container">
 <form method="post" style="border:2" action="novaJustiResp">
 
     <div class="alert alert-success collapse" role="alert" id="myAlert">
@@ -48,24 +49,25 @@
     </div>
 
     <input type="hidden" name="id"/>
-    <div>
-        id da resposta
+    <div class="mb3">
+        <label>Resposta</label>
         <input type="text" th:name="resposta.id" th:value="${resposta?.id}" />
     </div>
     <br>
 
-    <div>
+    <div class="mb-3">
         comentario geral <input type="text" th:value="${resposta?.comentarioGeral}" disabled>
     </div>
     <br>
-    <div>
+    <div class="mb-3">
         justifique-se: <input type="text" name="texto">
     </div>
     <br>
-    <div>
-        <button type="submit">Cadastrar</button>
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
     </div>
 </form>
+</div>
 <!--<script>-->
 <!--    function enviaJust() {-->
 <!--alert("Justificativa respondida com sucesso!!");-->
