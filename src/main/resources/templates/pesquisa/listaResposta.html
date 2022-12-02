@@ -149,9 +149,9 @@
                 </thead>
                 <tbody>
                 <td th:text="${li.comentarioGeral}"></td>
-                <td><a th:href="@{/itemResposta/justificativaResposta(id=${li.id})}" th:if="${session.docenciaLogado}">Justificar</a>
+                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/justificativaResposta(id=${li.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
-                <td><a th:href="@{/itemResposta/solicitaJustificativaResposta(id=${li.id})}"
+                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/solicitaJustificativaResposta(id=${li.id})}"
                        th:if="${session.diretoriaLogado}">Solicitar</a></td>
 
                 </tbody>
@@ -187,8 +187,11 @@
                         <span th:case="'5'">importancia alta</span>
                 </td>
                 <td th:text="${it.comentario}"></td>
-                <td><a th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}">Solicitar</a></td>
-                <td><a th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a>
+
+
+
+                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}">Solicitar</a></td>
+                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
                 
 
