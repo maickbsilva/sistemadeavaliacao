@@ -95,6 +95,7 @@
 						} else {
 							document.getElementById(id + 'z').style.visibility = "hidden";
 							document.getElementById(id + 'z').style.display = "none";
+							document.getElementById(id + 'h').required  = false;
 						}
 						if (document.getElementById(id + 'a').checked) {
 							document.getElementById(id + 'm').style.opacity = "1.0";
@@ -124,7 +125,7 @@
 					}
 					function desabilita(id, iter) {
 						if(vetor.indexOf(iter) >= 0){
-							vetor.pop(iter);
+							vetor = arrayRemove(vetor, iter);
 						}else{
 							vetor.push(iter);
 						}
@@ -171,6 +172,14 @@
 						}
 						return true;
 					}
+					
+					function arrayRemove(arr, value) { 
+					    
+				        return arr.filter(function(ele){ 
+				            return ele != value; 
+				        });
+				    }
+				    
 					
 					
 					function enviadado() {						
