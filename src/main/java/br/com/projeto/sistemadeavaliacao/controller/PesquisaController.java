@@ -1,6 +1,5 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -88,7 +87,7 @@ public class PesquisaController {
 
 		} else {
 			for (int i = 0; i < pesquisa.getListaDocentes().size(); i++) {
-				if (l.get(i).getUserId() == pesquisa.getUsuarioDocente().getUserId()){
+				if (l.get(i).getUserId() == pesquisa.getUsuarioDocente().getUserId()) {
 					l.remove(i);
 				}
 			}
