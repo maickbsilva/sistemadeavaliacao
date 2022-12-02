@@ -71,8 +71,11 @@
     <br>
 
     <div class="mb-3">
-        <label>Comentario Geral</label>
-        <input type="text" th:value="${resposta?.comentarioGeral}" disabled>
+        <label>Comentario Geral </label>
+        <textarea class="form-control" style="height: 100px" th:text="${resposta?.comentarioGeral}" disabled></textarea>
+        <!--
+            <input type="text" th:value="${resposta?.comentarioGeral}" disabled>
+        -->
     </div>
     <br>
     <div class="mb-3 form-floating">
