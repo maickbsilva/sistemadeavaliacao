@@ -101,6 +101,9 @@ public class RespostaController {
             ir.setComentario(coment);
             ir.setSatisfacao(satisf);
 
+            if (satisf == null){
+                ir.setNivelImportancia(null);
+            }
             itemRespostaRepository.save(ir);
         }
 
