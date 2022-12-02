@@ -87,6 +87,13 @@ button:hover {
   .element.style {
     text-align: left !important;
 }
+a:hover {
+    box-shadow: inset 100px 0 0 0 #fff;
+    color: #0c0133;
+    color: var(--bs-indigo) !important;
+  }
+
+
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 *{

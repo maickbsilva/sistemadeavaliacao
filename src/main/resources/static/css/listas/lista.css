@@ -79,7 +79,7 @@ width: 17% !important;
 }
 
 .kaos{
-  max-width:35px !important;
+  max-width:25px !important;
   padding-top: 10px;
 }
 
@@ -95,6 +95,7 @@ background: linear-gradient(90deg, rgba(149,29,179,1) 0%, rgba(123,22,195,1) 36%
   width: 100%;
   text-align: center;
   height: 80px; 
+  
 }
 .card-text{
   color: white !important;
@@ -133,7 +134,8 @@ p {
 display: flex;
   position: absolute;
   top: 10%;
-  left: 80%;
+  left: 41%;
+  font-family: Arial, Helvetica, sans-serif;
   
 }
 .resultado-item{
@@ -141,16 +143,19 @@ display: flex;
 }
 
 .item-ok{
-  border-left: 30px solid blue;
+  border-left: 30px solid #3745a4;
   
 }
 .item-pendente{
-  border-left: 30px solid orange;
+  border-left: 30px solid #d55d92;
 }
 
 .item-ativo{
-  border-left: 30px solid green;
+  border-left: 30px solid #3745a4;
 }
 .item-inativo{
-  border-left: 30px solid red;
+  border-left: 30px solid #d55d92;
+}
+#italico {
+  font-style: italic;
 }

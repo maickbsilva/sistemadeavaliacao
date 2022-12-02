@@ -39,36 +39,55 @@
 				<div class="offcanvas-body">
 				  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-					<li class="nav-item">
-					  <a class="nav-link active" aria-current="page" href="../telaInicialSecretaria">Home</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="/cadastro">Cadastrar Usuário</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="/curso">Cadastrar Curso</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="/listaCurso/1">Listar Curso</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="/pergunta/listar/1">Listar Pergunta</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="/pesquisa/listar/1">Listar Pesquisa</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
-					</li>
+					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+					
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  Usuário
+						</a>
+						<ul class="dropdown-menu">
+						  <li><a class="dropdown-item" href="/cadastro">Cadastrar Usuário</a></li>
+						</ul>
+					  </li>
+
+					  <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+					  
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  Curso
+						</a>
+						<ul class="dropdown-menu">
+						  <li><a class="dropdown-item" href="/curso">Cadastrar Curso</a></li>
+						  <li><a class="dropdown-item"  href="/listaCurso/1">Listar Curso</a></li>
+						</ul>
+					  </li>
+
+					  <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+					 
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  Pergunta
+						</a>
+						<ul class="dropdown-menu">
+						  <li><a class="dropdown-item" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a></li>
+						  <li><a class="dropdown-item" href="/pergunta/listar/1">Listar Pergunta</a></li>
+						</ul>
+					  </li>
+
+					  <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+					  
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  Pesquisa
+						</a>
+						<ul class="dropdown-menu">
+						  <li><a class="dropdown-item" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a></li>
+						  <li><a class="dropdown-item" href="/pesquisa/listar/1">Listar Pesquisa</a></li>
+						</ul>
+					  </li>
+
+					  <li class="nav-item">
+						<a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
+					  </li>
 				  </ul>
 				</div>
 			  </div>
@@ -77,14 +96,17 @@
 		  	  			<div class="resultado">
 			  
 				  	<div class="resultado-item">
-				  		<p class="item-ativo"> = Ativo</p>	
+				  		<p class="item-ativo"> &ensp; Ativo</p>
+							
 				  	</div>
 				  	
 				  	<div class="resultado-item">
-				  		<p class="item-inativo"> = Inativo</p>	
+				  		<p class="item-inativo"> &ensp; Inativo</p>	
 				  	</div>	  	
 	
 			  </div>
+
+			  
 		<h1>Lista</h1>
 		<table class="table">
 			
@@ -120,14 +142,14 @@
 					</button></td>
 
 				<td
-					th:style="${user.isAtivo} ? 'background-color: green' : 'background-color: red'" />
+					th:style="${user.isAtivo} ? 'background-color: #3745a4' : 'background-color: #d55d92'" />
 
 			</tr>
 
 		</tbody>
 		
 		</table>
-	
+
 		<nav class="pagination">
 			<ul class="pagination">
 			  <li class="page-item" th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a class="page-link" th:href="${pagAtual > 1 ? pagAtual - 1 : '#' }">Anterior</a></li>
