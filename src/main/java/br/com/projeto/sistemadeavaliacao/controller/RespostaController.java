@@ -3,6 +3,7 @@ package br.com.projeto.sistemadeavaliacao.controller;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projeto.sistemadeavaliacao.annotation.PublicoAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.ItemResposta;
@@ -41,9 +44,14 @@ public class RespostaController {
 
     @PublicoAnnotation
     @RequestMapping(value = "novoFormulario", method = RequestMethod.POST)
-    public String novaResposta(Resposta resposta, String nivelImportancia, String satisfacao, String comentario,
-            Model model, HttpServletRequest request) throws UnknownHostException {
-
+    public String novaResposta(Resposta resposta, String[] nivelImportancia, @RequestParam() HashMap<String, String> satisfacao, String[] comentario,
+                               Model model, HttpServletRequest request) throws UnknownHostException {
+    	
+    	
+    	System.out.println(comentario.length);
+    	System.out.println(nivelImportancia.length);
+    	System.out.println(">>>>>>>>>>>>>>>>>>>>>"+satisfacao);
+    	
         // pega id da pesquisa
         Long idPesquisa = resposta.getPesquisa().getId();
 
@@ -78,10 +86,6 @@ public class RespostaController {
         // salva a resposta
         respostaRepository.save(resposta);
 
-        // pega as strings e transforma em array
-        String[] quebraNivel = nivelImportancia.split(",");
-        String[] quebraComent = comentario.split(",");
-        String[] quebraSatis = satisfacao.split(",");
 
         // seta um item resposta para cada pergunta
         for (int i = 0; i < numPerg; i++) {
@@ -89,18 +93,21 @@ public class RespostaController {
             ir.setResposta(resposta);
             ir.setPergunta(perguntas.get(i));
 
-            String nivel = quebraNivel[i];
-            String coment = quebraComent[i];
-            String satisf = quebraSatis[i];
+            String nivel = nivelImportancia[i];
+            String coment = comentario[i];
+            String satisf = satisfacao.get("satisfacao["+i+"]");
 
             ir.setNivelImportancia(nivel);
             ir.setComentario(coment);
             ir.setSatisfacao(satisf);
 
+            if (satisf == null){
+                ir.setNivelImportancia(null);
+            }
             itemRespostaRepository.save(ir);
         }
 
-        return "resposta/sucesso";
+        return "resposta/codigoPesquisa";
     }
 
     @PublicoAnnotation

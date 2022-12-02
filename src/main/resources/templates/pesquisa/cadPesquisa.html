@@ -31,7 +31,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 
-<title>Cadastro de Pesquisa</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+		  rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+		  crossorigin="anonymous">
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+	<title>Cadastro de Pesquisa</title>
 
 </head>
 
@@ -51,6 +59,13 @@
 		</ul>
 	</div>
 	<div class="container main-div">
+		<div class="alert alert-success collapse" role="alert" id="myAlert">
+			<button class="btn-close" data-bs-dismiss="alert"></button>
+			<h4 class="alert-heading">Pesquisa cadastrada com sucesso!</h4>
+			<hr>
+			<h6 class="mb-0" style="text-align: center;">O código é: </h6><h6 style="background-color: white; text-align: center;">[[${idpesq}]].</h6>
+			<h6 class="mb-0" style="text-align: center;">Informe ao docente: </h6><h6 style="background-color: white; text-align: center;">[[${nomeDocente}]].</h6>
+		</div>
 		<h1 style="text-align:center">Nova Pesquisa</h1>
 		<span class="material-symbols-outlined" >
 			<button class="link-home" onclick='history.go(-1)'> home</button>
@@ -60,9 +75,8 @@
 			<input type="hidden" name="id" id="idpesq" />
 
 			<div class="mb-3">
-				<label class="form-label">Turma</label> <input type="text"
-					class="form-control" name="turma"
-					placeholder="exemplo: Dev Noite 1200hs periodo: Noturno" required
+				<label class="form-label">Turma</label>
+				<input type="text" class="form-control" name="turma" placeholder="EX: EXCEL AVANÇADO (EANOITE)" required
 					style="text-transform:uppercase" />
 			</div>
 
@@ -72,9 +86,8 @@
 			</div>
 			<div class="mb-3">
 				<select name="usuarioDocente" class="form-select" required>
-					<option></option>
-					<option th:each="u:${usuario}" th:text="${u.nome}"
-						th:value="${u.userId}"></option>
+					<option disabled="disabled" selected hidden value="">Selecione um docente</option>
+					<option th:each="u:${usuario}" th:text="${u.nome}" th:value="${u.userId}"/>
 				</select>
 			</div>
 
@@ -83,32 +96,29 @@
 			</div>
 			<div class="mb-3">
 				<select name="listaDocentes"
-					class="select2 form-control js-example-responsive" id="idSelect2"
-					multiple>
-					<option disabled="disabled">Docentes...</option>
+					class="select2 form-control js-example-responsive" multiple>
+					<option disabled="disabled">Selecione um ou mais docentes</option>
 					<option th:each="u:${usuario}" th:text="${u.nome}"
-						th:value="${u.userId}"></option>
+						th:value="${u.userId}"/>
 				</select>
 			</div>
 
 			<!-- Retirar pergunta-->
-
 			<div class="mb-3">
-				<label>Retirar Pergunta Padrão <i>(opcional)</i></label> <select
-					name="perguntaExclusao" class="select2 form-control" id="idSelect2"
-					multiple>
-					<option type="checkbox" th:each="p:${pergunta}"
-						th:text="${p.textoPergunta}" th:value="${p.id}" id="select"></option>
+				<label>Retirar Pergunta Padrão <i>(opcional)</i></label>
+				<select name="perguntaExclusao" class="select2 form-control" id="idSelect2" multiple>
+					<option disabled="disabled">Selecione uma ou mais perguntas</option>
+					<option type="checkbox" th:each="p:${pergunta}" th:text="${p.textoPergunta}"
+							th:value="${p.id}" id="select"/>
 				</select>
 			</div>
 
 			<!-- Cursos -->
 			<div class="mb-3">
-				<label>Curso</label> <select class="form-select" name="curso.id"
-					required>
-					<option></option>
-					<option th:each="c: ${cursos}" th:text="${c.descCurso}"
-						th:value="${c.id}"></option>
+				<label>Curso</label>
+				<select class="form-select" name="curso.id" required>
+					<option disabled selected hidden value="">Selecione um curso</option>
+					<option th:each="c: ${cursos}" th:text="${c.descCurso}" th:value="${c.id}"/>
 				</select>
 			</div>
 
@@ -117,25 +127,23 @@
 				<label> Data de Vencimento</label> <input type="date"
 					name="dataVencimento" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required />
 			</div>
-
-			<!--<div>
-          <label>Respostas</label>
-          <select name="listaRespostas">
-            <option th:each="r: ${respostas}" th:text="${r.id}" th:value="${r.id}"></option>
-          </select>
-		    </div>-->
 			<p>
 			<div>
-				<button type="submit" class="btn btn-outline-primary">Cadastrar</button>
+				<button class="btn btn-outline-primary" type="submit">Cadastrar</button>
 			</div>
+
 		</form>
 	</div>
 
-    <script th:inline="javascript">window.addEventListener("load", () => {
-    const id = /*[[${idpesq}]]*/
-    if(id) return alert("Pesquisa criada com sucesso! Seu código é: " + id)
-    })
-    </script>
+<script type="text/javascript">
+$(document).ready(function () {
+	var idpesq = [[${idpesq}]];
+	if(idpesq){
+		$('#myAlert').show('fade');
+	}
+});
+</script>
+
 
 	<!-- Script criados -->
 	<script src="../../js/selects/select.js"></script>

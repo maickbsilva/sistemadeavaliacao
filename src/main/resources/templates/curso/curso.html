@@ -45,6 +45,12 @@
 			<button class="link-home" onclick='history.go(-1)'> home</button>
   </span>
 		<form action="salvarCurso" method="post">
+
+			<div class="alert alert-success collapse" role="alert" id="myAlert">
+				<button class="btn-close" data-bs-dismiss="alert"></button>
+				<h4 class="alert-heading">Curso cadastrado com sucesso!</h4>
+			</div>
+
 		  <input type="hidden" name="id" th:value="${cs?.id}" />
 		  <div class="mb-3">
 			<h4>Cadastro de Cursos</h4>
@@ -84,5 +90,20 @@
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
+	<script type="text/javascript">
+$(document).ready(function () {
+	var idCurso = [[${idCurso}]];
+	if(idCurso){
+		$('#myAlert').show('fade');
+	}
+});
+</script>
+
+	<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+			crossorigin="anonymous">
+
+	</script>
   </body>
 </html>
