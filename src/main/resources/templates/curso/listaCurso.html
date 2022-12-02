@@ -22,7 +22,7 @@
 		<div class="container-fluid">
 			
 			<div>
-				<img class="Logo_kaos "src="../../img/Logo_KAOS.png" alt="">
+				<img class="Logo_kaos "src="../../img/logo-claro.png" alt="">
 			  </div>
 			  
 		  <p class="navbar-brand" style="color: white; font-size:xx-large;" >Lista de Curso</p>
@@ -36,36 +36,56 @@
 			  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
 			<div class="offcanvas-body">
-			  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-
-				<li class="nav-item">
-				  <a class="nav-link" href="/cadastro">Cadastrar Usuário</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/lista/1">Listar Usuário</a>
-				  </li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/curso">Cadastrar Curso</a>
-				</li>
-				
-				<li class="nav-item">
-				  <a class="nav-link" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/pergunta/listar/1">Listar Pergunta</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/pesquisa/listar/1">Listar Pesquisa</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
-				</li>
+				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+				<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+				  
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Usuário
+					  </a>
+					  <ul class="dropdown-menu">
+						  <li><a class="dropdown-item" href="/cadastro">Cadastrar Usuário</a></li>
+						  <li><a class="dropdown-item" href="/lista/1">Listar Usuário</a></li>
+					  </ul>
+					</li>
+					
+					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+  
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Curso
+					  </a>
+					  <ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/curso">Cadastrar Curso</a></li>
+					  </ul>
+					</li>
+  
+					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+  
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Pergunta
+					  </a>
+					  <ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a></li>
+						<li><a class="dropdown-item" href="/pergunta/listar/1">Listar Pergunta</a></li>
+					  </ul>
+					</li>
+  
+					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+  
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Pesquisa
+					  </a>
+					  <ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a></li>
+						<li><a class="dropdown-item" href="/pesquisa/listar/1">Listar Pesquisa</a></li>
+					  </ul>
+					</li>
+  
+					<li class="nav-item">
+					  <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
+					</li>
 			  </ul>
 			</div>
 		  </div>
