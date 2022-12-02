@@ -39,39 +39,59 @@
     <title>Justificativa</title>
 </head>
 <body>
-<h1>JUSTIFICATIVA ITEM</h1>
+    <div class="area">
+		<ul class="circles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
 
-<form method="post" style="border:2" action="novaJustiItem">
+    <div class="container main-div">
+    <h4>JUSTIFICATIVA ITEM</h4  >
+
+    <form method="post" style="border:2" action="novaJustiItem">
     <div class="alert alert-success collapse" role="alert" id="myAlert">
         <button class="btn-close" data-bs-dismiss="alert"></button>
         <h4 class="alert-heading">Justificativa registrada com sucesso!</h4>
     </div>
 
     <input type="hidden" name="id" id="idjust"/>
-    <div>
-        id do item
-        <input type="text" th:name="itemResposta.id" th:value="${item?.id}" />
+    <div class="mb-3">
+        <input type="hidden" th:name="itemResposta.id" th:value="${item?.id}" />
     </div>
-    <br>
-
-
-    <div>
-        pergunta <input type="text" th:value="${pergunta.textoPergunta}" disabled>
-    </div>
-    <br>
-    <div>
-        comentario <input type="text" th:value="${item?.comentario}" disabled>
+    
+    <div class="mb-3">
+        <label>Pergunta</label>
+        <textarea class="form-control" style="height: 100px" th:text="${pergunta.textoPergunta}" disabled></textarea>
+        <!--
+        <input type="text" th:value="${pergunta.textoPergunta}" disabled>
+        -->
     </div>
     <br>
     <div>
-        justifique-se: <input type="text" name="texto">
+        <label>Comentario</label>
+        <textarea class="form-control" style="height: 100px;" th:text="${item?.comentario}" disabled></textarea>
+         <!-- <input type="text" th:value="${item?.comentario}" disabled> -->
     </div>
     <br>
     <div>
-        <button type="submit">Cadastrar</button>
+        <label>justifique-se</label>
+        <textarea class="form-control" style="height: 100px;" name="texto"></textarea>
+    </div>
+    <br>
+    <div>
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
     </div>
 </form>
-
+</div>
 <!--<script>-->
 <!--    function enviaJust() {-->
 <!--alert("Justificativa respondida com sucesso!!");-->
