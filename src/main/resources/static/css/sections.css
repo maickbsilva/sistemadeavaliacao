@@ -86,8 +86,7 @@ details[open] > summary {
     border-bottom: 1px solid red;
   }
 
-
-
+}
 @keyframes slideDown {
   from {
     opacity: 0;
