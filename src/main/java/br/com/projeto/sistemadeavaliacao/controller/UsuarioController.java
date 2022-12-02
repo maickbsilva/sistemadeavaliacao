@@ -76,7 +76,13 @@ public class UsuarioController {
 		} catch (Exception e) {
 			attr.addFlashAttribute("mensagemErro", "NIF já existente, tente outro.");
 		}
+
+		Long id = usuario.getUserId();
+		attr.addFlashAttribute("iduser", id);
+
 		return "redirect:cadastro";
+
+
 	}
 
 	@SecretariaAnnotation

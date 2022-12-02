@@ -1,70 +1,361 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/pesquisa/style.css" />
+<title>Avaliação de curso</title>
+<style>
+.header {
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	background-color: #f1f1f1;
+}
+
+.header h2 {
+	text-align: center;
+}
+
+.progress-container {
+	width: 100%;
+	height: 8px;
+	background: #ccc;
+}
+
+.progress-bar {
+	height: 15px;
+	background: #5900ff;
+	width: 0%;
+}
+
+.content {
+	margin: 50px auto 0 auto;
+	width: 80%;
+}
+</style>
+
 </head>
+
 <body>
-<h1>FORMULARIO</h1>
-<table class="striped">
-    <thead>
-    <th>Código da pesquisa</th>
-    <th>Curso</th>
-    <th>Turma</th>
-    </thead>
+	<div class="header">
+		<div class="progress-container">
+			<div class="progress-bar" id="myBar"></div>
+		</div>
+	</div>
+
+	<div class="content">
+
+		<section class="form-section">
+
+			<div class="form-wrapper">
+				<div class="topo">
+					<table class="striped">
+						<tr class="interno">
+						<thead>
+							<th class="pesq">CÓDIGO DA PESQUISA</th>
+							<th class="pesq">CURSO</th>
+							<th class="pesq">TURMA</th>
+						</thead>
+						</tr>
+						<tr>
+						<tbody>
+							<td th:text="${pesq.id}" class="pesq1" />
+							<td th:text="${pesq.curso.descCurso}" class="pesq1" />
+							<td th:text="${pesq.turma}" class="pesq1" />
+						</tbody>
+						</tr>
+					</table>
+					<section class="carrossel">
+						<div class="div1">
+							<img src="../../imagens/senai-logo.png" class="logo" alt="">
+						</div>
+						<div class="div2">
+							<img src="../../imagens/Logo_KAOS.png" class="logo" alt="">
+						</div>
+					</section>
+				</div>
 
 
+				<script language="javascript">
+					var vetor = [];
+				
+					function habilitacao(id) {
+						
 
-    <tbody>
-    <tr>
-        <td th:text="${pesq.id}"/>
-        <td th:text="${pesq.curso.descCurso}"/>
-        <td th:text="${pesq.turma}"/>
-    </tr>
+						if (document.getElementById(id + 'a').checked
+								|| document.getElementById(id + 'b').checked) {
+							document.getElementById(id + 'z').style.visibility = "visible";
+							document.getElementById(id + 'z').style.display = "block";
+							document.getElementById(id + 'h').required  = true;
+						} else {
+							document.getElementById(id + 'z').style.visibility = "hidden";
+							document.getElementById(id + 'z').style.display = "none";
+							document.getElementById(id + 'h').required  = false;
+						}
+						if (document.getElementById(id + 'a').checked) {
+							document.getElementById(id + 'm').style.opacity = "1.0";
+						} else {
+							document.getElementById(id + 'm').style.opacity = "0.6";
+						}
+						if (document.getElementById(id + 'b').checked) {
+							document.getElementById(id + 'n').style.opacity = "1.0";
+						} else {
+							document.getElementById(id + 'n').style.opacity = "0.6";
+						}
+						if (document.getElementById(id + 'c').checked) {
+							document.getElementById(id + 'o').style.opacity = "1.0";
+						} else {
+							document.getElementById(id + 'o').style.opacity = "0.6";
+						}
+						if (document.getElementById(id + 'd').checked) {
+							document.getElementById(id + 'p').style.opacity = "1.0";
+						} else {
+							document.getElementById(id + 'p').style.opacity = "0.6";
+						}
+						if (document.getElementById(id + 'e').checked) {
+							document.getElementById(id + 'q').style.opacity = "1.0";
+						} else {
+							document.getElementById(id + 'q').style.opacity = "0.6";
+						}
+					}
+					function desabilita(id, iter) {
+						if(vetor.indexOf(iter) >= 0){
+							vetor = arrayRemove(vetor, iter);
+						}else{
+							vetor.push(iter);
+						}
+						
+						console.log(iter);
+						if (document.getElementById(id + 'l').checked) {
+							document.getElementById(id + 's').style.visibility = "hidden";
+							document.getElementById(id + 'x').style.color = "#A9A9A9";
+							document.getElementById(id + 'w').style.color = "#A9A9A9";
+							document.getElementById(id + 'v').style.color = "#A9A9A9";
+							document.getElementById(id + 'u').style.visibility = "hidden";
+							document.getElementById(id + 't').style.visibility = "hidden";
+							//document.getElementById(id + 'y').style.backgroundColor = "#A9A9A9";
+							
+							
+						} else {
+							document.getElementById(id + 'x').style.color = "darkslateblue";
+							document.getElementById(id + 'w').style.color = "darkslateblue";
+							document.getElementById(id + 'v').style.color = "darkslateblue";
+							document.getElementById(id + 'u').style.visibility = "visible";
+							document.getElementById(id + 't').style.visibility = "visible";
+							//document.getElementById(id + 'y').style.backgroundColor = "darkslateblue";
+							document.getElementById(id + 's').style.visibility = "visible";
+						}
+					}
+
+					function radio_preenchido(nome) {
+						const qtdperg = [[${perg.size()}]];
+						for (var i = 0; i < qtdperg;i++){							
+							var opcoes = document.getElementsByName('satisfacao['+i+']');
+							if(vetor.indexOf(i) >= 0){
+								continue;
+							}
+							var checado = false;
+							for (var j = 0; j < opcoes.length; j++) {																
+								if (opcoes[j].checked) {
+									checado = true;
+									break;
+								}																					
+							}
+							if(!checado){
+								return false;
+							}
+						}
+						return true;
+					}
+					
+					function arrayRemove(arr, value) { 
+					    
+				        return arr.filter(function(ele){ 
+				            return ele != value; 
+				        });
+				    }
+				    
+					
+					
+					function enviadado() {						
+						if(radio_preenchido()){
+							alert('Formulário preenchido com sucesso!');
+							return true;
+						}else{
+							alert('Responda a todas as perguntas!');							
+							return false;
+						}
+					}
+				</script>
+
+				<form method="post" style="border: 0" action="novoFormulario"  onsubmit="return enviadado()">
+					<div class="input-block">
+						<div class="background">
+							<input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
+							<br>
+
+							<table border="0" style="padding: 0px;" class="perguntaid">
+								<tr>
+								<tr th:each="p, iter:${perg}" class="perguntas">
+									<label>
+										<td th:id="${p.id} + v" th:text="${p.textoPergunta}"
+										class="tex" />
+									</label>
+									<td class="tirapadding">
+										<div class="naoAplica">
+											<input type="checkbox" name="naoAplicavel"
+												th:id="${p.id} + l" th:onClick="desabilita([[${p.id}]], [[${iter.index}]]) " />
+											<label>Não aplicável</label>
+										</div>
+										<div th:id="${p.id} + x">
+											<p>Quão importante você considera esse item?</p>
+											<div class="middle">
+												<div class="slider-container" th:id="${p.id} + s">
+													<span class="bar"><span class="fill"
+														th:id="${p.id} + y"></span></span> <input type="range" min="1"
+														max="5" step="1" list="tickmarks"
+														name="nivelImportancia" th:id="${p.id} + y" class="slider" />
+													<datalist id="tickmarks">
+														<option value="1" label="20%">
+														<option value="2" label="40%">
+														<option value="3" label="60%">
+														<option value="4" label="80%">
+														<option value="5" label="100%">
+													</datalist>
+												</div>
+												<p>
+													<div class="numero">
+														<div class="numeros">1</div>
+														<div class="numeros">2</div>
+														<div class="numeros">3</div>
+														<div class="numeros">4</div>
+														<div class="numeros">5</div>
+													</div>
+												</p>
+											</div>
+										</div>
+									</td>
 
 
+									<td>
+										<div th:id="${p.id} + w">
+											<p>Quão satisfeito você está com isso?</p>
+										</div>
+									</td>
+									<td class="emojis" th:id="${p.id} + u"><input type="radio"
+										th:name="'satisfacao['+${iter.index}+']'" th:id="${p.id} + a"
+										th:onClick="habilitacao([[${p.id}]])" value="1" /> <label
+										th:for="${p.id} + a"> <img th:id="${p.id} + m"
+											src="../../imagens/emojis/1.png" width="60" height="60"
+											alt="" style="opacity: 0.6">
+									</label> <input type="radio" th:name="'satisfacao['+${iter.index}+']'"
+										th:id="${p.id} + b" th:onClick="habilitacao([[${p.id}]])"
+										value="2" /> <label th:for="${p.id} + b"> <img
+											th:id="${p.id} + n" src="../../imagens/emojis/2.png"
+											width="60" height="60" alt="" style="opacity: 0.6">
+									</label> <input type="radio" th:name="'satisfacao['+${iter.index}+']'"
+										th:id="${p.id} + c" th:onClick="habilitacao([[${p.id}]])"
+										value="3" /> <label th:for="${p.id} + c"> <img
+											th:id="${p.id} + o" src="../../imagens/emojis/3.png"
+											width="60" height="60" alt="" style="opacity: 0.6">
+									</label> <input type="radio" th:name="'satisfacao['+${iter.index}+']'"
+										th:id="${p.id} + d" th:onClick="habilitacao([[${p.id}]])"
+										value="4" /> <label th:for="${p.id} + d"> <img
+											th:id="${p.id} + p" src="../../imagens/emojis/4.png"
+											width="60" height="60" alt="" style="opacity: 0.6">
+									</label> <input type="radio" th:name="'satisfacao['+${iter.index}+']'"
+										th:id="${p.id} + e" th:onClick="habilitacao([[${p.id}]])"
+										value="5" /> <label th:for="${p.id} + e"> <img
+											th:id="${p.id} + q" src="../../imagens/emojis/5.png"
+											width="60" height="60" alt="" style="opacity: 0.6">
+									</label></td>
 
-    </tbody>
-</table>
+									<td class="comen" id="coments">
+										<div th:id="${p.id} + z" style="display: none">
+											<div th:id="${p.id} + t">
+												<label> Comentário </label>
+												<textarea name="comentario" class="comentindivi"
+													placeholder="Como podemos melhorar? (campo obrigatório)" th:id="${p.id} + h"></textarea>
+
+											</div>
+										</div>
+										<p class="separa">
+											<label>............................................................................................................................................................................................</label>
+										</p>
+									</td>
+
+								</tr>
+								</tr>
+							</table>
+
+							<div class="comentgeral">
+								<label> Comentário geral </label>
+								<textarea name="comentarioGeral" class="inputcoment"
+									placeholder="Fique à vontade para nos mandar sugestões ou elogios neste campo"
+									required></textarea>
+								<p>
+									<button type="submit" class="btn-login">ENVIAR</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<ul class="squares"></ul>
+		<script>
+			// When the user scrolls the page, execute myFunction 
+			window.onscroll = function() {
+				myFunction()
+			};
+
+			function myFunction() {
+				var winScroll = document.body.scrollTop
+						|| document.documentElement.scrollTop;
+				var height = document.documentElement.scrollHeight
+						- document.documentElement.clientHeight;
+				var scrolled = (winScroll / height) * 100;
+				document.getElementById("myBar").style.width = scrolled + "%";
+			}
+		</script>
+		<script>
+		/* background squares */
+		const ulSquares = document.querySelector("ul.squares");
+
+		for (let i = 0; i < 110; i++) {
+		  const li = document.createElement("li");
+
+		  const random = (min, max) => Math.random() * (max - min) + min;
+
+		  const size = Math.floor(random(1, 120));
+		  const position = random(0, 99);
+		  const delay = random(1, 0.1);
+		  const duration = random(10, 12);
+
+		  li.style.width = `${size}px`;
+		  li.style.height = `${size}px`;
+		  li.style.bottom = `-${size}px`;
+
+		  li.style.left = `${position}%`;
+
+		  li.style.animationDelay = `${delay}s`;
+		  li.style.animationDuration = `${duration}s`;
+		  li.style.animationTimingFunction = `cubic-bezier(${Math.random()}, ${Math.random()}, ${Math.random()}, ${Math.random()})`;
+
+		  ulSquares.appendChild(li);
+		}
+		</script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+			integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-
-<form method="post" style="border:2" action="novoFormulario">
-
-
-
-    <input type="hidden" name="pesquisa.id" th:value="${pesq?.id}"></input>
-
-
-
-
-
-    <br>
-    <table border="2" style="padding: 5px;">
-        <tr>
-        <tr th:each="p:${perg}">
-            <td th:text="${p.id}"/>
-            <td>Nivel de importancia - 1 a 5 <input type="int" name="nivelImportancia"/ required> </td>
-            <td th:text="${p.textoPergunta}"/>
-            <td>Nivel de satisfacao - 1 a 5 <input type="int" name="satisfacao" required/></td>
-            <td>Comentario <input type="text" name="comentario"/></td>
-        </tr>
-        </tr>
-    </table>
-
-
-
-    <div>
-        Comentario Geral <input type="text" name="comentarioGeral" required/>
-    </div>
-    <div>
-        <button type="submit">Cadastrar</button>
-    </div>
-</form>
-
-
-
+	</div>
 </body>
 </html>
