@@ -22,7 +22,7 @@
 		<div class="container-fluid">
 			
 			<div>
-				<img class="Logo_kaos "src="../../img/Logo_KAOS.png" alt="">
+				<img class="Logo_kaos "src="../../img/logo-claro.png" alt="">
 			  </div>
 			  
 		  <p class="navbar-brand" style="color: white; font-size:xx-large;" >Lista de Pesquisa</p>
@@ -35,39 +35,60 @@
 			  <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
 			  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			  
-
-			  
+ 
 			</div>
 			<div class="offcanvas-body">
-			  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-				<li class="nav-item">
-				  <a class="nav-link" href="/cadastro">Cadastrar Usuário</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/lista/1">Listar Usuário</a>
-				  </li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/curso">Cadastrar Curso</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/listaCurso/1">Listar Curso</a>
-				  </li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/pergunta/listar/1">Listar Pergunta</a>
-				  </li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
-				</li>
+              <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Usuário
+					  </a>
+					  <ul class="dropdown-menu">
+						  <li><a class="dropdown-item" href="/cadastro">Cadastrar Usuário</a></li>
+						  <li><a class="dropdown-item" href="/lista/1">Listar Usuário</a></li>
+					  </ul>
+					</li>
+					
+              <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+            
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Curso
+					  </a>
+					  <ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/curso">Cadastrar Curso</a></li>
+						<li><a class="dropdown-item"  href="/listaCurso/1">Listar Curso</a></li>
+					  </ul>
+					</li>
+  
+					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+					
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Pergunta
+					  </a>
+					  <ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a></li>
+						<li><a class="dropdown-item" href="/pergunta/listar/1">Listar Pergunta</a></li>
+					  </ul>
+					</li>
+  
+					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+					
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Pesquisa
+					  </a>
+					  <ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a></li>
+						
+					  </ul>
+					</li>
+  
+					<li class="nav-item">
+					  <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
+					</li>
 			  </ul>
 			</div>
 		  </div>
@@ -77,11 +98,11 @@
 	  			<div class="resultado">
 			  
 				  	<div class="resultado-item">
-				  		<p class="item-ok"> = Ok</p>	
+				  		<p class="item-ok"> &ensp; Ok</p>	
 				  	</div>
 				  	
 				  	<div class="resultado-item">
-				  		<p class="item-pendente"> = Pendente</p>	
+				  		<p class="item-pendente"> &ensp; Pendente</p>	
 				  	</div>	  	
 	
 			  </div>
@@ -92,7 +113,7 @@
 		<thead>
 			<tr>
 
-				<th class="id">Id</th>
+				<th class="id">Código </th>
 				<th class="th-height">Curso</th>
 				<th class="th-height">Turma</th>
 				<th class="th-height">Data Vencimento</th>
@@ -108,17 +129,23 @@
 				<td th:text="${ps.id}"></td>
 				<td th:text="${ps.curso?.descCurso}"/>
 				<td th:text="${ps.turma}"/>
-				<td th:text="${#dates.format(ps.dataVencimento, 'dd/MM/yyyy')}"></td>
-				<td th:text="${ps.justificativa ? 'justificativa pendente, acesse a lista de respostas para responder' : 'nenhuma justificativa pendente'}"/>
-				<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}" style="color:black !important ; text-decoration: none"><b>Lista de Resposta </b></a></td>
-					<td th:style="${ps.justificativa} ? 'background-color: yellow' : 'background-color: blue'" />
+				<td th:text="${#dates.format(ps.dataVencimento, 'dd/MM/yyyy')}" th:style="${ps.dataVencimento.after(#dates.createNow())} ? 'color: black' : 'color: red'" ></td>
+				<td id="italico" th:text="${ps.justificativa ? 'Justificativa pendente, acesse a lista de respostas para responder' : 'Nenhuma pendência'}"/>
+				<td><a th:if="${ps.listaResposta.size() > 0}" th:text="${ps.listaResposta.size() > 0 ? 'Lista de Respostas' : 'NN'}" type="button" class="btn btn-outline-dark" th:href="@{/pesquisa/listarResposta(id=${ps.id})}" style=" text-decoration: none">Lista de Resposta</a></td>
+					<td th:style="${ps.justificativa} ? 'background-color: #d55d92' : 'background-color: #3745a4'" />
+
 
 
 			</tr>
 
 		</tbody>
 	</table>
-
+	<div th:if="${pesq.empty}"
+	th:style="'margin-left: auto'; margin ">
+	<p
+		th:style="'font-size:150%; -webkit-margin-before: 0.67em; -webkit-margin-after: 0.67em; -webkit-margin-start: 0px;-webkit-margin-end: 0px; font-weight: 500; max-width: 100px; text-align: center '"
+		th:unlees="${pesq.empty}">Ops! Não há nada nessa lista.</p>
+</div>
 
 	<nav class="pagination">
 		<ul class="pagination">
