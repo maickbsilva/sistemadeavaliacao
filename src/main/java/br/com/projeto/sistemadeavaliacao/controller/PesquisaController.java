@@ -79,7 +79,8 @@ public class PesquisaController {
 	@DiretorAnnotation
 	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
 	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
-
+		
+		
 		Date data = new Date();
 		List<Usuario> l = pesquisa.getListaDocentes();
 
@@ -91,6 +92,9 @@ public class PesquisaController {
 					l.remove(i);
 				}
 			}
+			
+			String p = pesquisa.getTurma().toUpperCase();
+			pesquisa.setTurma(p);
 			pesquisaRepository.save(pesquisa);
 			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
 		}
