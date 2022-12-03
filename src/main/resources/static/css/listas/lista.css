@@ -1,3 +1,11 @@
+html, body{
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+
+}
+
+
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -43,10 +51,6 @@ color: #360568;
 
 }
 
-
-.container-fluid{
-
-}
 .navbar-brand {
 width: 17% !important;
 
@@ -91,7 +95,7 @@ width: 17% !important;
   background: rgb(149,29,179);
 background: linear-gradient(90deg, rgba(149,29,179,1) 0%, rgba(123,22,195,1) 36%, rgba(56,56,187,1) 65%, rgba(8,1,125,1) 93%)!important;
   bottom: 0;
-  position: fixed;
+  flex-shrink: 0;
   width: 100%;
   text-align: center;
   height: 80px; 
@@ -128,12 +132,21 @@ p {
   color: black !important;
 }
 
+.resultadoP{
 
-.resultado{
-
-display: flex;
+  display: flex;
   position: absolute;
-  top: 10%;
+  top: 15%;
+  left: 37%;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+.resultadoU{
+
+  display: flex;
+  position: absolute;
+  top: 15%;
   left: 41%;
   font-family: Arial, Helvetica, sans-serif;
   
@@ -155,6 +168,9 @@ display: flex;
 }
 .item-inativo{
   border-left: 30px solid #d55d92;
+}
+.item-atrasado{
+  border-left: 30px solid #c32f27;
 }
 #italico {
   font-style: italic;
