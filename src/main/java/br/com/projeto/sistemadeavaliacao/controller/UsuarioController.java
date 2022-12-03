@@ -124,10 +124,11 @@ public class UsuarioController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("desativar")
-	public String desativar(Long userId) {
+	public String desativar(Long userId, RedirectAttributes attr) {
 		Usuario u = repository.findById(userId).get();
 		u.setAtivo(false);
 		repository.save(u);
+		attr.addFlashAttribute("desativa", u.isAtivo());
 		return "redirect:lista/1";
 	}
 
