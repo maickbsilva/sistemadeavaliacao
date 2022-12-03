@@ -65,9 +65,15 @@
 				<div class="offcanvas-body">
 				  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-					<li class="nav-item dropdown">
-						<button class="dropdown-item" aria-current="page" onclick='history.go(-1)'>Home</button>
-					  </li>
+					<li th:if="${session.docenciaLogado} " class="nav-item dropdown">
+						<button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialDocencia'"><i class="material-icons" style="color:white;">home</i></button>
+					</li>
+					 <li th:if="${session.diretoriaLogado} " class="nav-item dropdown">
+						  <button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialDiretor'"><i class="material-icons" style="color:white;">home</i></button>
+					 </li>
+					 <li th:if="${session.secretariaLogado} " class="nav-item dropdown">
+						  <button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialSecretaria'"><i class="material-icons" style="color:white;">home</i></button>
+					 </li>
 
 					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
 					
@@ -175,6 +181,15 @@
 		</tbody>
 		</table>
 
+		<nav class="pagination">
+			<ul class="pagination">
+			  <li class="page-item" th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a class="page-link" th:href="${pagAtual > 1 ? pagAtual - 1 : '#' }">Anterior</a></li>
+			  <li class="page-item" th:class="${pagAtual == p ? 'active purple' : 'waves-effect'}" th:each="p:${numPag}"><a class="page-link" th:href="${p}"><span th:text="${p}"></span></a></li>
+			  
+			  <li class="page-item" th:class="${pagAtual == totalPages ? 'disabled' : 'waves-effect'}"><a class="page-link" th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}">Próximo</a></li>
+			</ul>
+		  </nav>
+
 		<div class="alert alert-success collapse" role="alert" id="myAlert" style="
 										position: fixed;
 										top: 0;
@@ -188,16 +203,7 @@
 			<h4 class="alert-heading" style="margin-top: 50px">Usuário desativado com sucesso!</h4>
 		</div>
 
-		<nav class="pagination">
-			<ul class="pagination">
-			  <li class="page-item" th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a class="page-link" th:href="${pagAtual > 1 ? pagAtual - 1 : '#' }">Anterior</a></li>
-			  <li class="page-item" th:class="${pagAtual == p ? 'active purple' : 'waves-effect'}" th:each="p:${numPag}"><a class="page-link" th:href="${p}"><span th:text="${p}"></span></a></li>
-			  
-			  <li class="page-item" th:class="${pagAtual == totalPages ? 'disabled' : 'waves-effect'}"><a class="page-link" th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}">Próximo</a></li>
-			</ul>
-		  </nav>
-
-		  <footer th:replace="fragments/padrao :: rodape"></footer>
+		<footer th:replace="fragments/padrao :: rodape"></footer>
 	
 		<!-- JavaScript Bundle with Popper -->
 

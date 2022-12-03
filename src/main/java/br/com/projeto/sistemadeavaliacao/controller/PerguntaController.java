@@ -83,7 +83,7 @@ public class PerguntaController {
 	@RequestMapping("listar/{page}")
 	public String listaPergunta(Model model, @PathVariable("page") int page) {
 
-		PageRequest pageable = PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "id"));
+		PageRequest pageable = PageRequest.of(page - 1, 20, Sort.by(Sort.Direction.DESC, "id"));
 
 		Page<Pergunta> pagina = repository.findAll(pageable);
 
