@@ -64,7 +64,10 @@ width: 17% !important;
 }
 
 .table{
-  margin:70px ;
+  margin-top: 140px;
+  margin-bottom: 70px;
+  margin-left: 70px;
+  margin-right:70px;
   padding-bottom: 80px;
   width:92% !important;
  
@@ -98,8 +101,9 @@ background: linear-gradient(90deg, rgba(149,29,179,1) 0%, rgba(123,22,195,1) 36%
   flex-shrink: 0;
   width: 100%;
   text-align: center;
-  height: 80px; 
-  
+  height: 80px;
+     left: 0;
+
 }
 .card-text{
   color: white !important;
