@@ -119,8 +119,7 @@
 			  </div>
 			</div>
 		  </nav>
-		  	  			<div class="resultado">
-			  
+			<div class="resultado">
 				  	<div class="resultado-item">
 				  		<p class="item-ativo"> &ensp; Ativo</p>
 							
@@ -129,20 +128,6 @@
 				  	<div class="resultado-item">
 				  		<p class="item-inativo"> &ensp; Inativo</p>	
 				  	</div>
-
-							<div class="alert alert-success collapse" role="alert" id="myAlert" style="
-										position: fixed;
-										top: 0;
-										bottom: 0;
-										left: 0;
-										right: 0;
-										width: 300px;
-										height: 150px;
-										margin: auto;">
-								<button class="btn-close" data-bs-dismiss="alert"></button>
-								<h4 class="alert-heading">Cadastro desativado com sucesso!</h4>
-							</div>
-	
 			  </div>
 
 		<h1>Lista</h1>
@@ -173,10 +158,14 @@
 				<td><a th:href="@{/reseta(userId=${user.userId})}"> <i
       					class="material-icons">autorenew</i></a></td> 		
 						
-			<td><button th:disabled="${!user.isAtivo}" onclick="desativa()">
-						<a th:href="@{/desativar(userId=${user.userId})}"> <i
+			<td>
+				<button th:if="${user.isAtivo == true}" onclick="desativa()">
+
+						<a th:attr="onclick=|return confirm('Deseja desativar: ${user.nome}?')|"
+						   th:href="@{/desativar(userId=${user.userId})}"> <i
 							class="material-icons">delete_forever</i></a>
-					</button></td>
+				</button>
+			</td>
 
 				<td
 					th:style="${user.isAtivo} ? 'background-color: #3745a4' : 'background-color: #d55d92'" />
@@ -186,6 +175,20 @@
 		</tbody>
 		
 		</table>
+
+		<div class="alert alert-success collapse" role="alert" id="myAlert" style="
+										position: fixed;
+										top: 0;
+										bottom: 0;
+										left: 0;
+										right: 0;
+										width: 400px;
+										height: 200px;
+										margin: auto;">
+			<button class="btn-close" data-bs-dismiss="alert"></button>
+			<h4 class="alert-heading" style="margin-top: 50px">Usuário desativado com sucesso!</h4>
+		</div>
+
 
 		<nav class="pagination">
 			<ul class="pagination">
