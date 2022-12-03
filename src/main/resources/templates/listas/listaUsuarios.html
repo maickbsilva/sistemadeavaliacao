@@ -137,11 +137,11 @@
 				<td><a th:href="@{/alterar(userId=${user.userId})}" style="background-color: white;" type="button" class="btn btn-outline-dark"><i
 						class="material-icons">create</i> </a></td>
 
-				<td><a th:href="@{/reseta(userId=${user.userId})}" style="background-color: white;" type="button" class="btn btn-outline-dark"> <i
+				<td><a th:href="@{/reseta(userId=${user.userId})}" style="background-color: white;" type="button" class="btn btn-outline-dark" > <i
       					class="material-icons">autorenew</i></a></td> 		
 						
-			<td><button th:disabled="${!user.isAtivo}" onclick="desativa()" style="background-color: white;" type="button" class="btn btn-outline-dark">
-						<a th:href="@{/desativar(userId=${user.userId})}"> <i
+			<td><a th:disabled="${!user.isAtivo}" onclick="desativa()" style="background-color: white;" type="button" 
+						th:href="@{/desativar(userId=${user.userId})}"  class="btn btn-outline-dark"> <i
 							class="material-icons">delete_forever</i></a>
 					</button></td>
 
