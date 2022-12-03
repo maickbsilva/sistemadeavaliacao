@@ -15,6 +15,33 @@
 		<!-- CSS only -->
 		
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+		<link
+				href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+				rel="stylesheet"
+				integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+				crossorigin="anonymous" />
+		<link
+				href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
+				rel="stylesheet" />
+		<!-- JQuery -->
+		<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		<link
+				href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"
+				rel="stylesheet" />
+
+		<script
+				src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			  rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			  crossorigin="anonymous">
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 		<title>Lista de Usuário</title>
 	  </head>
 	  <body>
@@ -25,7 +52,6 @@
 				<div>
 					<img class="Logo_kaos "src="../../img/logo-claro.png" alt="">
 				  </div>
-				  
 			  <p class="navbar-brand" style="color: white; font-size:xx-large;" >Lista de Usuário</p>
 			  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
 				<span class="navbar-toggler-icon"></span>Menu
@@ -38,6 +64,10 @@
 				</div>
 				<div class="offcanvas-body">
 				  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+					<li class="nav-item dropdown">
+						<button class="dropdown-item" aria-current="page" onclick='history.go(-1)'>Home</button>
+					  </li>
 
 					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
 					
@@ -93,23 +123,20 @@
 			  </div>
 			</div>
 		  </nav>
-		  	  			<div class="resultado">
+		  <div class="resultadoU">
 			  
-				  	<div class="resultado-item">
-				  		<p class="item-ativo"> &ensp; Ativo</p>
-							
-				  	</div>
-				  	
-				  	<div class="resultado-item">
-				  		<p class="item-inativo"> &ensp; Inativo</p>	
-				  	</div>	  	
-	
-			  </div>
+			<div class="resultado-item">
+				<p class="item-ativo"> &ensp; Ativo</p>
+				  
+			</div>
+			
+			<div class="resultado-item">
+				<p class="item-inativo"> &ensp; Inativo</p>	
+			</div>
+			</div>
 
-			  
 		<h1>Lista</h1>
 		<table class="table">
-			
 		<thead>
 		  <tr>
 			<th class="id">ID</th>
@@ -130,16 +157,18 @@
 				<td th:text="${user.nif}" />
 				<td th:text="${user.tipo}" />
 
-				<td><a th:href="@{/alterar(userId=${user.userId})}"><i
+				<td><a th:href="@{/alterar(userId=${user.userId})}" style="background-color: white;" type="button" class="btn btn-outline-dark"><i
 						class="material-icons">create</i> </a></td>
 
-				<td><a th:href="@{/reseta(userId=${user.userId})}"> <i
+				<td><a th:href="@{/reseta(userId=${user.userId})}" style="background-color: white;" type="button" class="btn btn-outline-dark" > <i
       					class="material-icons">autorenew</i></a></td> 		
 						
-			<td><button th:disabled="${!user.isAtivo}" onclick="desativa()">
-						<a th:href="@{/desativar(userId=${user.userId})}"> <i
-							class="material-icons">delete_forever</i></a>
-					</button></td>
+			<td>
+
+						<a th:if="${user.isAtivo == true}" onclick="desativa()" th:attr="onclick=|return confirm('Deseja desativar: ${user.nome}?')|"
+						   th:href="@{/desativar(userId=${user.userId})}" style="background-color: white;" type="button" class="btn btn-outline-dark"> 
+						   <i class="material-icons">delete_forever</i></a>
+			</td>
 
 				<td
 					th:style="${user.isAtivo} ? 'background-color: #3745a4' : 'background-color: #d55d92'" />
@@ -150,6 +179,20 @@
 		
 		</table>
 
+		<div class="alert alert-success collapse" role="alert" id="myAlert" style="
+										position: fixed;
+										top: 0;
+										bottom: 0;
+										left: 0;
+										right: 0;
+										width: 400px;
+										height: 200px;
+										margin: auto;">
+			<button class="btn-close" data-bs-dismiss="alert"></button>
+			<h4 class="alert-heading" style="margin-top: 50px">Usuário desativado com sucesso!</h4>
+		</div>
+
+
 		<nav class="pagination">
 			<ul class="pagination">
 			  <li class="page-item" th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a class="page-link" th:href="${pagAtual > 1 ? pagAtual - 1 : '#' }">Anterior</a></li>
@@ -158,13 +201,25 @@
 			  <li class="page-item" th:class="${pagAtual == totalPages ? 'disabled' : 'waves-effect'}"><a class="page-link" th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}">Próximo</a></li>
 			</ul>
 		  </nav>
-		
-		
 
 		  <footer th:replace="fragments/padrao :: rodape"></footer>
 	
 		<!-- JavaScript Bundle with Popper -->
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-	  </body>
-	</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	var desativa = [[${desativa}]];
+	if(desativa == false){
+		$('#myAlert').show('fade').focus();
+	}
+});
+</script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+	crossorigin="anonymous">
+</script>
+</body>
+</html>
