@@ -24,4 +24,5 @@ public class Resposta {
     private String comentarioGeral;
     @OneToMany(mappedBy = "resposta")
     private List<ItemResposta> listaItem;
+    private boolean pendente = false;
 }
