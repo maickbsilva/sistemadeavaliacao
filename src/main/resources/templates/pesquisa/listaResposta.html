@@ -187,8 +187,8 @@
                        th:href="@{/itemResposta/solicitaJustificativaResposta(id=${li.id})}"
                        th:if="${session.diretoriaLogado}">Solicitar</a>
                 </td>
-                <td th:if="${li.pendente} and ${session.diretoriaLogado}" th:text="${'Justificativa solicitada!'}" style="background-color: red;"></td>
-                <td th:if="${li.pendente} and ${session.docenciaLogado}" th:text="${'Justificativa pendente!'}" style="background-color: red;"></td>
+                <td th:if="${li.pendente} and ${session.diretoriaLogado}" th:text="${'Justificativa solicitada!'}" style="background-color: red; font-style: italic;"></td>
+                <td th:if="${li.pendente} and ${session.docenciaLogado}" th:text="${'Justificativa pendente!'}" style="background-color: red; font-style: italic;"></td>
 
                 </tbody>
             </table>
@@ -233,8 +233,8 @@
                        th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
 
-                <td th:if="${it.pendente} and ${session.diretoriaLogado}" th:text="${'Justificativa solicitada!'}" style="background-color: red;"></td>
-                <td th:if="${it.pendente} and ${session.docenciaLogado}" th:text="${'Justificativa pendente!'}" style="background-color: red;"></td>
+                <td th:if="${it.pendente} and ${session.diretoriaLogado}" th:text="${'Justificativa solicitada!'}" style="background-color: red; font-style: italic;"></td>
+                <td th:if="${it.pendente} and ${session.docenciaLogado}" th:text="${'Justificativa pendente!'}" style="background-color: red; font-style: italic;"></td>
 
 
                 </tbody>
