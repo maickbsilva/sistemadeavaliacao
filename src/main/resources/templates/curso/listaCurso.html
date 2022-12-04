@@ -37,9 +37,15 @@
 			</div>
 			<div class="offcanvas-body">
 				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-					<li class="nav-item dropdown">
-						<button class="dropdown-item" aria-current="page" onclick='history.go(-1)'>Home</button>
-					  </li>
+					<li th:if="${session.docenciaLogado} " class="nav-item dropdown">
+						<button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialDocencia'"><i class="material-icons" style="color:white;">home</i></button>
+					</li>
+					<li th:if="${session.diretoriaLogado} " class="nav-item dropdown">
+						<button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialDiretor'"><i class="material-icons" style="color:white;">home</i></button>
+					</li>
+					<li th:if="${session.secretariaLogado} " class="nav-item dropdown">
+						<button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialSecretaria'"><i class="material-icons" style="color:white;">home</i></button>
+					</li>
 				<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
 				  
 					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

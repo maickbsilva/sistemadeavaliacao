@@ -64,8 +64,10 @@ width: 17% !important;
 }
 
 .table{
-  margin:70px ;
-  padding-bottom: 80px;
+  margin-top: 140px;
+  margin-bottom: 70px;
+  margin-left: 70px;
+  margin-right:70px;
   width:92% !important;
  
 }
@@ -98,8 +100,10 @@ background: linear-gradient(90deg, rgba(149,29,179,1) 0%, rgba(123,22,195,1) 36%
   flex-shrink: 0;
   width: 100%;
   text-align: center;
-  height: 80px; 
-  
+  height: 80px;
+     left: 0;
+     margin-top: auto;
+
 }
 .card-text{
   color: white !important;
@@ -146,7 +150,8 @@ p {
 
   display: flex;
   position: absolute;
-  top: 15%;
+  top: 13%;
+  bottom: 13%;
   left: 41%;
   font-family: Arial, Helvetica, sans-serif;
   
