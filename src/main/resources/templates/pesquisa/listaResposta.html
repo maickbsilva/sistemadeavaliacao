@@ -28,7 +28,8 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
     />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
     <link rel="stylesheet" href="../../css/sections.css"/>
 
     <link
@@ -38,124 +39,146 @@
             crossorigin="anonymous"
     />
     <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
     <title>Lista de Respostas</title>
 </head>
 <body>
-        <nav class="navbar navbar-dark  fixed-top">
-		<div class="container-fluid">
-			<div>
-				<img class="Logo_kaos "src="../../img/logo-claro.png" alt="">
+<nav class="navbar navbar-dark  fixed-top">
+    <div class="container-fluid">
+        <div>
+            <img class="Logo_kaos " src="../../img/logo-claro.png" alt="">
+        </div>
+
+        <p class="navbar-brand" style="color: white; font-size:xx-large;">Lista de Resposta</p>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+                aria-controls="offcanvasDarkNavbar">
+            <span class="navbar-toggler-icon"></span>Menu
+        </button>
+
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+             aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
             </div>
 
-		  <p class="navbar-brand" style="color: white; font-size:xx-large;" >Lista de Resposta</p>
-		  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-			<span class="navbar-toggler-icon"></span>Menu
-		  </button>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-		  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-              <div class="offcanvas-header">
-			  <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
-			  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-			</div>
-			
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item dropdown">
+                        <button class="dropdown-item" aria-current="page" onclick='history.go(-1)'>Home</button>
+                    </li>
 
-              <li class="nav-item dropdown">
-                <button class="dropdown-item" aria-current="page" onclick='history.go(-1)'>Home</button>
-                </li>
+                    <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Usuário
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/cadastro">Cadastrar Usuário</a></li>
+                            <li><a class="dropdown-item" href="/lista/1">Listar Usuário</a></li>
+                        </ul>
+                    </li>
 
-              <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Usuário
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/cadastro">Cadastrar Usuário</a></li>
-                  <li><a class="dropdown-item" href="/lista/1">Listar Usuário</a></li>
-                </ul>
-              </li>
-              
-              <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Curso
-                </a>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/curso">Cadastrar Curso</a></li>
-                <li><a class="dropdown-item"  href="/listaCurso/1">Listar Curso</a></li>
-                </ul>
-              </li>
-      
-              <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Pergunta
-                </a>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a></li>
-                <li><a class="dropdown-item" href="/pergunta/listar/1">Listar Pergunta</a></li>
-                </ul>
-              </li>
-      
-              <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Pesquisa
-                </a>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a></li>
-                
-                </ul>
-              </li>
-      
-              <li class="nav-item">
-                <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
-              </li>
-			  </ul>
-			</div>
-		  </div>
-		</div>
-	  </nav>
-    <p></p>
-        <h1 style="text-align:center">Lista de Respostas</h1>
-        
-        <div class="alert alert-success collapse" style="top:50%; text-align:center;" role="alert" id="myAlert">
-          <button class="btn-close" data-bs-dismiss="alert"></button>
-          <h4 class="alert-heading">Solicitação de justificativa enviada com sucesso!</h4>
-      </div>
-        <div class="mb-3 pdf">
-          <button class="btn btn-primary bt-export" onclick="pdf()">Download PDF</button> 
-         </div> 
+                    <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Curso
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/curso">Cadastrar Curso</a></li>
+                            <li><a class="dropdown-item" href="/listaCurso/1">Listar Curso</a></li>
+                        </ul>
+                    </li>
 
-         
-        <section class="slc">
-          
-        <div class="input-group ipt-cont">         
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="">Avaliações Respondidas</span>
-                </div>
-                <input th:value="${contagem}" disabled class="form-control">
-              </div>
+                    <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Pergunta
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a></li>
+                            <li><a class="dropdown-item" href="/pergunta/listar/1">Listar Pergunta</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Pesquisa
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<p></p>
+<h1 style="text-align:center">Lista de Respostas</h1>
+
+<div class="container main-div">
+    <div class="alert alert-success collapse" style="top:50%; text-align:center;" role="alert" id="myAlert">
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+        <h4 class="alert-heading">Solicitação de justificativa enviada com sucesso!</h4>
+    </div>
+</div>
+
+<div class="mb-3 pdf">
+    <button class="btn btn-primary bt-export" onclick="pdf()">Download PDF</button>
+</div>
+
+
+<section class="slc">
+
+    <div class="input-group ipt-cont">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="">Avaliações Respondidas</span>
+        </div>
+        <input th:value="${contagem}" disabled class="form-control">
+    </div>
     <details th:each="li:${pesq.listaResposta}" id="minhaDiv" open>
-      
-        <summary th:text="${li.ip} +  '|' + ${li.nomeMaquina} + '|' + ${#dates.format(li.dataRealizacao, 'dd/MM/yyyy hh:mm:ss')}" id="maintable"></summary>
+
+        <summary
+                th:text="${li.ip} +  '|' + ${li.nomeMaquina} + '|' + ${#dates.format(li.dataRealizacao, 'dd/MM/yyyy hh:mm:ss')}"
+                id="maintable"></summary>
         <div id="tabela">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                <th>Comentario Geral</th>
-                <th th:if="${session.docenciaLogado}">Justifica</th>
-                <th></th>
-                <th th:if="${session.diretoriaLogado}">Justificativa</th>
+                    <th>Comentario Geral</th>
+                    <th th:if="${session.docenciaLogado}">Justifica</th>
+                    <th></th>
+                    <th th:if="${session.diretoriaLogado}">Justificativa</th>
                 </thead>
                 <tbody class="table-group-divider">
                 <td th:text="${li.comentarioGeral}"></td>
-                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/justificativaResposta(id=${li.id})}" th:if="${session.docenciaLogado}">Justificar</a>
+                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;"
+                       th:href="@{/itemResposta/justificativaResposta(id=${li.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
-                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/solicitaJustificativaResposta(id=${li.id})}"
+                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;"
+                       th:href="@{/itemResposta/solicitaJustificativaResposta(id=${li.id})}"
                        th:if="${session.diretoriaLogado}">Solicitar</a></td>
 
                 </tbody>
@@ -163,59 +186,60 @@
 
             <table class="table table-striped" th:each="it:${li.listaItem}">
                 <thead>
-                <th class="thquest">Pergunta</th>              
+                <th class="thquest">Pergunta</th>
                 <th>Satisfacao</th>
                 <th>Nivel Importancia</th>
                 <th class="stquest">Comentário</th>
                 <th th:if="${session.diretoriaLogado}">Solicita Justificativa</th>
                 <th></th>
                 <th th:if="${session.docenciaLogado}">Justifica</th>
-              
 
 
                 </thead>
                 <tbody class="table-group-divider">
                 <td th:text="${it.pergunta.textoPergunta}"></td>
                 <td th:switch="${it.satisfacao}">
-                        <span th:case="N.A">N.A</span>
-                        <span th:case="'1'">Pessimo</span>
-                        <span th:case="'2'">Ruim</span>
-                        <span th:case="'3'">Regular</span>
-                        <span th:case="'4'">Bom</span>
-                        <span th:case="'5'">Otimo</span>
+                    <span th:case="N.A">N.A</span>
+                    <span th:case="'1'">Pessimo</span>
+                    <span th:case="'2'">Ruim</span>
+                    <span th:case="'3'">Regular</span>
+                    <span th:case="'4'">Bom</span>
+                    <span th:case="'5'">Otimo</span>
                 </td>
                 <td th:switch="${it.nivelImportancia}">
-                        <span th:case="'N.A'">N.A</span>
-                        <span th:case="'1'">Não Aplicavel</span>
-                        <span th:case="'2'">Pouca Importancia</span>
-                        <span th:case="'3'">importante</span>
-                        <span th:case="'4'">importancia média</span>
-                        <span th:case="'5'">importancia alta</span>
+                    <span th:case="'N.A'">N.A</span>
+                    <span th:case="'1'">Não Aplicavel</span>
+                    <span th:case="'2'">Pouca Importancia</span>
+                    <span th:case="'3'">importante</span>
+                    <span th:case="'4'">importancia média</span>
+                    <span th:case="'5'">importancia alta</span>
                 </td>
                 <td th:text="${it.comentario}"></td>
 
 
-
-                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}">Solicitar</a></td>
-                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a>
+                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;"
+                       th:href="@{/itemResposta/solicitaJustificativa(id=${it.id})}" th:if="${session.diretoriaLogado}">Solicitar</a>
                 </td>
-                
+                <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;"
+                       th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a>
+                </td>
 
 
                 </tbody>
             </table>
         </div>
-        
-    </details>
-    
-</section>
 
+    </details>
+
+</section>
 
 
 <!-- JavaScript Bundle with Popper -->
 <script src="../../js/ip.js"></script>
 <script src="../../js/pdf.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
@@ -228,12 +252,14 @@
       $('#myAlert').show('fade');
     }
   });
-  </script>
+
+</script>
 
 <script>
         function pdf(){
         window.print()
 }
+
 </script>
 
 <br>
