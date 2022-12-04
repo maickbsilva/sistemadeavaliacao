@@ -151,7 +151,7 @@
                 <th></th>
                 <th th:if="${session.diretoriaLogado}">Justificativa</th>
                 </thead>
-                <tbody>
+                <tbody class="table-group-divider">
                 <td th:text="${li.comentarioGeral}"></td>
                 <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;" th:href="@{/itemResposta/justificativaResposta(id=${li.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
@@ -177,6 +177,7 @@
                 <tbody class="table-group-divider">
                 <td th:text="${it.pergunta.textoPergunta}"></td>
                 <td th:switch="${it.satisfacao}">
+                        <span th:case="N.A">N.A</span>
                         <span th:case="'1'">Pessimo</span>
                         <span th:case="'2'">Ruim</span>
                         <span th:case="'3'">Regular</span>
@@ -184,6 +185,7 @@
                         <span th:case="'5'">Otimo</span>
                 </td>
                 <td th:switch="${it.nivelImportancia}">
+                        <span th:case="'N.A'">N.A</span>
                         <span th:case="'1'">Não Aplicavel</span>
                         <span th:case="'2'">Pouca Importancia</span>
                         <span th:case="'3'">importante</span>

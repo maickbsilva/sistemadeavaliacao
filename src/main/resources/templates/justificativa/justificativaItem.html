@@ -76,16 +76,16 @@
         -->
     </div>
     <div class="mb-3 dv">
-        <label>Comentario</label>
+        <label>comentário</label>
         <textarea class="form-control" style="height: 100px;" th:text="${item?.comentario}" disabled></textarea>
          <!-- <input type="text" th:value="${item?.comentario}" disabled> -->
     </div>
     <div class="mb-3 dv">
         <label>justifique-se</label>
-        <textarea class="form-control" style="height: 100px;" name="texto"></textarea>
+        <textarea class="form-control" style="height: 100px;" name="texto" maxlength="250"></textarea>
     </div>
 
-    <div>
+    <div class="mb-3 dv">
         <button class="btn btn-primary" type="submit">Cadastrar</button>
     </div>
 </form>

@@ -72,17 +72,17 @@
     
 
     <div class="mb-3 dv">
-        <label>Comentario Geral </label>
+        <label>comentário Geral </label>
         <textarea class="form-control" style="height: 100px" th:text="${resposta?.comentarioGeral}" disabled></textarea>
         <!--
             <input type="text" th:value="${resposta?.comentarioGeral}" disabled>
         -->
     </div>
     
-    <div class="mb-3 form-floating dv">
+    <div class="mb-3 dv">
+        <label >Justifique</label>
+        <textarea class="form-control"  style="height: 100px" name="texto" maxlength="250"></textarea>
         
-        <textarea class="form-control" placeholder="Justifique Aqui" id="floatingTextarea2" style="height: 100px" name="texto" maxlength="250"></textarea>
-        <label for="floatingTextarea2">Justifique</label>
     </div>
     
     <div class="mb-3 dv">
