@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/pesquisa/pesquisa.css" />
-    <link rel="stylesheet" href="../../css/justifica.css" />
+    <link rel="stylesheet" href="../../css/note-response.css" />
     <!-- CSS only -->
 
     <link
@@ -55,10 +55,10 @@
 	</div>
 
     <div class="container main-div">
-    <h4>JUSTIFICATIVA ITEM</h4  >
+    <h4>JUSTIFICATIVA</h4  >
 
     <form method="post" style="border:2" action="novaJustiItem">
-    <div class="alert alert-success collapse" role="alert" id="myAlert">
+    <div class="alert alert-success collapse dv" role="alert" id="myAlert">
         <button class="btn-close" data-bs-dismiss="alert"></button>
         <h4 class="alert-heading">Justificativa registrada com sucesso!</h4>
     </div>
@@ -76,16 +76,16 @@
         -->
     </div>
     <div class="mb-3 dv">
-        <label>Comentario</label>
+        <label>Comentário</label>
         <textarea class="form-control" style="height: 100px;" th:text="${item?.comentario}" disabled></textarea>
          <!-- <input type="text" th:value="${item?.comentario}" disabled> -->
     </div>
     <div class="mb-3 dv">
-        <label>justifique-se</label>
-        <textarea class="form-control" style="height: 100px;" name="texto"></textarea>
+        <label>Justifique-se</label>
+        <textarea class="form-control" style="height: 100px;" name="texto" maxlength="250"></textarea>
     </div>
 
-    <div>
+    <div class="mb-3 dv">
         <button class="btn btn-primary" type="submit">Cadastrar</button>
     </div>
 </form>
