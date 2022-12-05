@@ -22,7 +22,7 @@
 		<div class="container-fluid">
 			
 			<div>
-				<img class="Logo_kaos "src="../../img/Logo_KAOS.png" alt="">
+				<img class="Logo_kaos "src="../../img/logo-claro.png" alt="">
 			  </div>
 			  
 		  <p class="navbar-brand" style="color: white; font-size:xx-large;" >Lista de Pergunta</p>
@@ -37,34 +37,64 @@
 			</div>
 			<div class="offcanvas-body">
 			  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+				  <li th:if="${session.docenciaLogado} " class="nav-item dropdown">
+					  <button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialDocencia'"><i class="material-icons" style="color:white;">home</i></button>
+				  </li>
+				  <li th:if="${session.diretoriaLogado} " class="nav-item dropdown">
+					  <button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialDiretor'"><i class="material-icons" style="color:white;">home</i></button>
+				  </li>
+				  <li th:if="${session.secretariaLogado} " class="nav-item dropdown">
+					  <button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialSecretaria'"><i class="material-icons" style="color:white;">home</i></button>
+				  </li>
+              <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+				
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  Usuário
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/cadastro">Cadastrar Usuário</a></li>
+						<li><a class="dropdown-item" href="/lista/1">Listar Usuário</a></li>
+					</ul>
+				  </li>
+				  
+				  <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
 
-				<li class="nav-item">
-				  <a class="nav-link" href="/cadastro">Cadastrar Usuário</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/lista/1">Listar Usuário</a>
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  Curso
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a class="dropdown-item" href="/curso">Cadastrar Curso</a></li>
+					  <li><a class="dropdown-item"  href="/listaCurso/1">Listar Curso</a></li>
+					</ul>
 				  </li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/curso">Cadastrar Curso</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/listaCurso/1">Listar Curso</a>
+
+				  <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  Pergunta
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a class="dropdown-item" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a></li>
+					</ul>
 				  </li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/pergunta/cadastrar">Cadastrar Nova Pergunta</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/pesquisa/listar/1">Listar Pesquisa</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
-				</li>
+
+				  <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  Pesquisa
+					</a>
+					<ul class="dropdown-menu">
+					  <li><a class="dropdown-item" href="/pesquisa/cadastrar">Cadastrar Pesquisa</a></li>
+					  <li><a class="dropdown-item" href="/pesquisa/listar/1">Listar Pesquisa</a></li>
+					</ul>
+				  </li>
+
+				  <li class="nav-item">
+					<a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
+				  </li>
 			  </ul>
 			</div>
 		  </div>
@@ -75,25 +105,22 @@
 <thead>
   <tr>
 	<th class="id">ID</th>
-	<th class="th-height">Nome</th>
-	<th class="th-height">Tipo de Curso</th>
+	<th class="th-height">Texto Pergunta</th>
 	<th class="th-height">Alterar</th>
 	<th class="th-height">Excluir</th>
   </tr>
 </thead>
 <tbody id="tb-user" class="table-group-divider" >
-  <tr th:each="c:${cursoC}" scope="row">
-	<td th:text="${c.id}" />
-	 <td th:text="${c.descCurso}" />
-	 <td th:text="${c?.tipo}"/>
-	
-	  <td><a th:href="@{/alteraCurso(id=${c.id})}"><i
+  <tr th:each="c:${perg}" scope="row">
+	<tr th:each="p:${perg}">
+		<td th:text="${p.id}"/>
+		<td th:text="${p.textoPergunta}"/>
+		<td><a th:href="@{/pergunta/alterar(id=${p.id})}"><i
 		class="material-icons">create</i> </a></td>
-
-	<td><a th:href="@{/exclueCurso(id=${c.id})}"> <i
-		class="material-icons">delete_forever</i></a></td> 	
+		<td><a th:href="@{/pergunta/excluir(id=${p.id})}"><span class="material-symbols-outlined">
+			delete
+			</span></a></td>	
  </tr>
- 
 </tbody>
 </table>
 

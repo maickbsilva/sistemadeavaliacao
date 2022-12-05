@@ -91,7 +91,7 @@ public class UsuarioController {
 	@RequestMapping("lista/{page}")
 	public String lista(Model model, @PathVariable("page") int page) {
 
-		PageRequest pageble = PageRequest.of(page - 1, 12, Sort.by(Sort.Direction.DESC, "ativo"));
+		PageRequest pageble = PageRequest.of(page - 1, 15, Sort.by(Sort.Direction.DESC, "ativo"));
 
 		Page<Usuario> pagina = repository.findAll(pageble);
 
@@ -125,10 +125,11 @@ public class UsuarioController {
 	@SecretariaAnnotation
 	@DiretorAnnotation
 	@RequestMapping("desativar")
-	public String desativar(Long userId) {
+	public String desativar(Long userId, RedirectAttributes attr) {
 		Usuario u = repository.findById(userId).get();
 		u.setAtivo(false);
 		repository.save(u);
+		attr.addFlashAttribute("desativa", u.isAtivo());
 		return "redirect:lista/1";
 	}
 

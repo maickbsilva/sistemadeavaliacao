@@ -28,106 +28,105 @@ import br.com.projeto.sistemadeavaliacao.repository.UsuarioRepository;
 @RequestMapping("pesquisa/")
 public class PesquisaController {
 
-	@Autowired
-	private PesquisaRepository pesquisaRepository;
+    @Autowired
+    private PesquisaRepository pesquisaRepository;
 
-	@Autowired
-	private CursoRepository cursoRepository;
+    @Autowired
+    private CursoRepository cursoRepository;
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-	@Autowired
-	private ItemRespostaRepository itemRepository;
+    @Autowired
+    private ItemRespostaRepository itemRepository;
 
-	@Autowired
-	private PerguntaRepository perguntaRepository;
+    @Autowired
+    private PerguntaRepository perguntaRepository;
 
-	@Autowired
-	private RespostaRepository respostaRepository;
+    @Autowired
+    private RespostaRepository respostaRepository;
 
-	@SecretariaAnnotation
-	@DiretorAnnotation
-	@RequestMapping("cadastrar")
-	public String cadPesquisa(Model model) {
-		model.addAttribute("cursos", cursoRepository.findAll());
-		model.addAttribute("respostas", respostaRepository.findAll());
-		model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
-		model.addAttribute("pergunta", perguntaRepository.perguntasGerais());
-		return "pesquisa/cadPesquisa";
-	}
+    @SecretariaAnnotation
+    @DiretorAnnotation
+    @RequestMapping("cadastrar")
+    public String cadPesquisa(Model model) {
+        model.addAttribute("cursos", cursoRepository.findAll());
+        model.addAttribute("respostas", respostaRepository.findAll());
+        model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
+        model.addAttribute("pergunta", perguntaRepository.perguntasGerais());
+        return "pesquisa/cadPesquisa";
+    }
 
-	@RequestMapping("buscar")
-	public String buscaPesquisa(Long id, Model model) {
-		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-		return "pesquisa/listaPesquisa";
-	}
+    @RequestMapping("buscar")
+    public String buscaPesquisa(Long id, Model model) {
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+        return "pesquisa/listaPesquisa";
+    }
 
-	@RequestMapping("listarResposta")
-	public String listarRespota(Long id, Model model) {
-		model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-		model.addAttribute("perg", perguntaRepository.findAll());
-		model.addAttribute("item", itemRepository.findAll());
-		model.addAttribute("resposta", respostaRepository.findAll());
-		Long contagem = respostaRepository.contaResposta(id);
-		model.addAttribute("contagem", contagem);
-		return "pesquisa/listaResposta";
+    @RequestMapping("listarResposta")
+    public String listarRespota(Long id, Model model) {
+        model.addAttribute("pesq", pesquisaRepository.findById(id).get());
+        model.addAttribute("perg", perguntaRepository.findAll());
+        model.addAttribute("item", itemRepository.findAll());
+        model.addAttribute("resposta", respostaRepository.findAll());
+        Long contagem = respostaRepository.contaResposta(id);
+        model.addAttribute("contagem", contagem);
+        return "pesquisa/listaResposta";
 
-	}
+    }
 
-	@SecretariaAnnotation
-	@DiretorAnnotation
-	@RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
-	public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
-		
-		
-		Date data = new Date();
-		List<Usuario> l = pesquisa.getListaDocentes();
+    @SecretariaAnnotation
+    @DiretorAnnotation
+    @RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
+    public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
 
-		if (pesquisa.getDataVencimento().before(data)) {
+        Date data = new Date();
+        List<Usuario> l = pesquisa.getListaDocentes();
 
-		} else {
-			for (int i = 0; i < pesquisa.getListaDocentes().size(); i++) {
-				if (l.get(i).getUserId() == pesquisa.getUsuarioDocente().getUserId()) {
-					l.remove(i);
-				}
-			}
-			
-			String p = pesquisa.getTurma().toUpperCase();
-			pesquisa.setTurma(p);
-			pesquisaRepository.save(pesquisa);
-			attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
-		}
+        if (pesquisa.getDataVencimento().before(data)) {
 
-		Long id = pesquisa.getId();
-		String nome = String.valueOf(pesquisa.getUsuarioDocente().getNome());
-		attr.addFlashAttribute("idpesq", id);
-		attr.addFlashAttribute("nomeDocente", nome);
-		return "redirect:cadastrar";
-	}
+        } else {
 
-	@SecretariaAnnotation
-	@DiretorAnnotation
-	@RequestMapping("listar/{page}")
-	public String listaPesquisa(Model model, @PathVariable("page") int page) {
+            if (pesquisa.getListaDocentes() != null) {
+                for (int i = 0; i < pesquisa.getListaDocentes().size(); i++) {
+                    if (l.get(i).getUserId() == pesquisa.getUsuarioDocente().getUserId()) {
+                        l.remove(i);
+                    }
+                }
+            }
+            pesquisaRepository.save(pesquisa);
+            attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
+        }
 
-		PageRequest pageable = PageRequest.of(page - 1, 15, Sort.by(Sort.Direction.DESC, "id"));
+        Long id = pesquisa.getId();
+        String nome = String.valueOf(pesquisa.getUsuarioDocente().getNome());
+        attr.addFlashAttribute("idpesq", id);
+        attr.addFlashAttribute("nomeDocente", nome);
+        return "redirect:cadastrar";
+    }
 
-		Page<Pesquisa> pagina = pesquisaRepository.findAll(pageable);
+    @SecretariaAnnotation
+    @DiretorAnnotation
+    @RequestMapping("listar/{page}")
+    public String listaPesquisa(Model model, @PathVariable("page") int page) {
 
-		model.addAttribute("pesq", pagina.getContent());
+        PageRequest pageable = PageRequest.of(page - 1, 15, Sort.by(Sort.Direction.DESC, "id"));
 
-		int totalPages = pagina.getTotalPages();
+        Page<Pesquisa> pagina = pesquisaRepository.findAll(pageable);
 
-		List<Integer> numPaginas = new ArrayList<Integer>();
+        model.addAttribute("pesq", pagina.getContent());
 
-		for (int i = 1; i <= totalPages; i++) {
-			numPaginas.add(i);
-		}
-		model.addAttribute("numPaginas", numPaginas);
-		model.addAttribute("totalPages", totalPages);
-		model.addAttribute("pagAtual", page);
+        int totalPages = pagina.getTotalPages();
 
-		return "pesquisa/listaPesquisa";
-	}
+        List<Integer> numPaginas = new ArrayList<Integer>();
+
+        for (int i = 1; i <= totalPages; i++) {
+            numPaginas.add(i);
+        }
+        model.addAttribute("numPaginas", numPaginas);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("pagAtual", page);
+
+        return "pesquisa/listaPesquisa";
+    }
 }

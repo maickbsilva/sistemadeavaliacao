@@ -23,8 +23,30 @@
   text-align: center;
 }
 .container{
-  width: 400px!important;
+  width: 600px !important;
+  --bs-gutter-x: 15rem !important;
 }
+.material-symbols-outlined {
+    left: 85% !important;
+    font-size: 35px !important;
+    position: absolute;
+    color: #fff ;
+}
+.link-home{
+    text-decoration: none !important;
+    color: #fff ;
+    border-radius: 7px;  
+    box-shadow: inset 100px 0 0 0 #0c0133;
+
+
+}
+a:hover {
+    box-shadow: inset 100px 0 0 0 #fff;
+    color: #0c0133;
+    color: var(--bs-indigo) !important;
+  }
+
+
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 *{

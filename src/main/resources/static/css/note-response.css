@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+.dv{
+    width: 377px;
+    margin-left: -112%;
+}   
+.bt-return{
+    margin-left: 0%;
+}
+}

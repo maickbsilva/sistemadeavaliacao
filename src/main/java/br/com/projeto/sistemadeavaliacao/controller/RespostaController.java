@@ -102,7 +102,9 @@ public class RespostaController {
             ir.setSatisfacao(satisf);
 
             if (satisf == null){
-                ir.setNivelImportancia(null);
+                ir.setSatisfacao("N.A");
+                ir.setNivelImportancia("N.A");
+                ir.setComentario("N.A");
             }
             itemRespostaRepository.save(ir);
         }

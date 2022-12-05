@@ -62,9 +62,12 @@ td{
   white-space: normal;
   
 }
+th{
+  width: 55%;
+}
 
 .stquest{
-  width: 25%;
+  width: 35%;
 }
 .thquest{
   width: 25%;
@@ -84,10 +87,11 @@ details[open] > summary {
     animation-fill-mode: forwards;
     border-left: 1px solid red;
     border-bottom: 1px solid red;
+    border-right: 1px solid red;
+  
   }
 
-
-
+}
 @keyframes slideDown {
   from {
     opacity: 0;

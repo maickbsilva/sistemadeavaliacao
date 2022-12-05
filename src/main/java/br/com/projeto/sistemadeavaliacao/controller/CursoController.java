@@ -56,7 +56,7 @@ public class CursoController {
 	@RequestMapping("listaCurso/{page}")
 	public String list(Model model, @PathVariable("page") int page) {
 
-		PageRequest pageble = PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.ASC, "descCurso"));
+		PageRequest pageble = PageRequest.of(page - 1, 20, Sort.by(Sort.Direction.ASC, "descCurso"));
 
 		Page<Curso> pagina = cursoRepository.findAll(pageble);
 		model.addAttribute("cursoC", pagina.getContent());
