@@ -95,14 +95,10 @@ width: 17% !important;
 
 .card-body {
   background: rgb(149,29,179);
-background: linear-gradient(90deg, rgba(149,29,179,1) 0%, rgba(123,22,195,1) 36%, rgba(56,56,187,1) 65%, rgba(8,1,125,1) 93%)!important;
-  bottom: 0;
+  background: linear-gradient(90deg, rgba(149,29,179,1) 0%, rgba(123,22,195,1) 36%, rgba(56,56,187,1) 65%, rgba(8,1,125,1) 93%)!important;
   flex-shrink: 0;
   width: 100%;
   text-align: center;
-  height: 80px;
-     left: 0;
-     margin-top: auto;
 
 }
 .card-text{
@@ -141,7 +137,7 @@ p {
   display: flex;
   position: absolute;
   top: 15%;
-  left: 37%;
+  left: 26%;
   font-family: Arial, Helvetica, sans-serif;
   
 }
@@ -150,13 +146,17 @@ p {
 
   display: flex;
   position: absolute;
-  top: 13%;
+  top: 15%;
   bottom: 13%;
   left: 41%;
   font-family: Arial, Helvetica, sans-serif;
   
 }
-.resultado-item{
+.resultado-itemP{
+  margin-left:47px;
+  display: flex;
+}
+.resultado-itemU{
   margin-left:60px;
 }
 
