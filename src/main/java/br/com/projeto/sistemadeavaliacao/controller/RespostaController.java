@@ -2,9 +2,10 @@ package br.com.projeto.sistemadeavaliacao.controller;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -116,10 +117,14 @@ public class RespostaController {
     @RequestMapping("buscar")
     public String buscaPesquisa(Long id, Model model) {
 
+        Optional<Pesquisa> p = pesquisaRepository.findById(id);
+        Date now = new Date();
+
         if (!pesquisaRepository.findById(id).isPresent()){
             return "resposta/pesquisaNaoExiste";
+        } else if (p.get().getDataVencimento().before(now)) {
+            return "resposta/pesquisaVencida";
         }
-
 
         List<Pergunta> perguntas = perguntaRepository.filtroPerguntas(id);
         Pesquisa pesquisa = pesquisaRepository.filtroExclusao(id);
