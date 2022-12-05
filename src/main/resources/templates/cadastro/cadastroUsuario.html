@@ -105,7 +105,7 @@
     </div>
 
     <form action="save" method="post" class="cadForm col s12">
-        <h4>Cadastro de Usuários</h4>
+        <h4 class="dv">Cadastro de Usuários</h4>
         <input type="hidden" name="userId" th:value="${users?.userId}"/>
 
         <div class="dv" th:replace="fragments/mensagem"/>
@@ -160,7 +160,7 @@
         </div>
 
         <div class="mb-3 dv">
-            <button type="submit" class="btn btn-primary btnCad">Cadastrar</button>
+            <button type="submit" class="btn btn-outline-primary btnCad">Cadastrar</button>
         </div>
     </form>
 </div>

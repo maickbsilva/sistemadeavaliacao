@@ -107,7 +107,7 @@
 			<h6 class="mb-0" style="text-align: center;">O código é: </h6><h6 style="background-color: white; text-align: center;">[[${idpesq}]].</h6>
 			<h6 class="mb-0" style="text-align: center;">Informe ao docente: </h6><h6 style="background-color: white; text-align: center;">[[${nomeDocente}]].</h6>
 		</div>
-		<h1 style="text-align:center">Nova Pesquisa</h1>
+		<h2 style="text-align:center; width: 228px; margin-left: -36%;">Nova Pesquisa</h2>
 
 		<form method="post" action="novaPesquisa">
 			<input type="hidden" name="id" id="idpesq" />
@@ -120,7 +120,7 @@
 
 			<!-- Docentes -->
 			<div class="mb-3 dv">
-				<label>Docente Responsavel</label>
+				<label>Docente Responsável</label>
 			</div>
 			<div class="mb-3 dv">
 				<select name="usuarioDocente" class="form-select" required>
@@ -161,7 +161,7 @@
 			</div>
 
 
-			<div class="mb-3 dv">
+			<div class="dv">
 				<label> Data de Vencimento</label> <input type="date"
 					name="dataVencimento" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required />
 			</div>
