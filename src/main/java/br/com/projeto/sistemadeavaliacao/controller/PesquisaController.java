@@ -94,6 +94,8 @@ public class PesquisaController {
                     }
                 }
             }
+            String p = pesquisa.getTurma().toUpperCase();
+            pesquisa.setTurma(p);
             pesquisaRepository.save(pesquisa);
             attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
         }

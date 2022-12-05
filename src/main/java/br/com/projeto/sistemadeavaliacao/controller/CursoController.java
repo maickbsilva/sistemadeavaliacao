@@ -40,6 +40,9 @@ public class CursoController {
 	@DiretorAnnotation
 	@RequestMapping(value = "salvarCurso", method = RequestMethod.POST)
 	public String salvar(Curso cs, RedirectAttributes attr, HttpServletRequest request) {
+		
+		String p = cs.getDescCurso().toUpperCase();
+		cs.setDescCurso(p);
 		cursoRepository.save(cs);
 		Long id = cs.getId();
 		attr.addFlashAttribute("idCurso", id);

@@ -60,8 +60,9 @@ public class UsuarioController {
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String salvarUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr, TipoUsuario tipo,
 			Model model) {
-
-		String nome = usuario.getNome();
+		
+		String nome = usuario.getNome().toUpperCase();
+		usuario.setNome(nome);
 		model.addAttribute("nomeUsuario", nome);
 
 		if (usuario.getSenha().equals(HashUtil.hash(""))) {
