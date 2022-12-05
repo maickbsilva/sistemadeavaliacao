@@ -198,20 +198,23 @@ public class UsuarioController {
 	return"login/login";
 
 	}
+	
 
+    @DiretorAnnotation
+    @SecretariaAnnotation
 	@RequestMapping(value = "buscarUser", method = RequestMethod.GET)
     public String buscar(String buscar, Model model) {
         model.addAttribute("users", repository.Buscar(buscar));
         return "listas/listaBuscaUsuario";
     }
-
+	@PublicoAnnotation
 	@RequestMapping("logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "login/login";
 
     }
-
+	@PublicoAnnotation
 	@RequestMapping("/")
     public String acesso() {
         return "login/login";
@@ -232,6 +235,9 @@ public class UsuarioController {
 	}
 
 	// --//--//
+	@DocenteAnnotation
+    @DiretorAnnotation
+    @SecretariaAnnotation
 	@RequestMapping(value = "alteraSenha", method = RequestMethod.POST)
 	private String formularioSenha(Long userId, String senha) {
 		System.out.println(userId + senha);

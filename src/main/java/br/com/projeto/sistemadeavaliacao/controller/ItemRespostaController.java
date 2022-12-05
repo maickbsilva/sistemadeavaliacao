@@ -1,5 +1,8 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
+import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
+import br.com.projeto.sistemadeavaliacao.annotation.DocenteAnnotation;
+import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.*;
 import br.com.projeto.sistemadeavaliacao.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,7 @@ public class ItemRespostaController {
     @Autowired
     private JustificativaRespostaRepository justificativaRespostaRepository;
 
+    @DocenteAnnotation
     @RequestMapping("justificativa")
     public String justificativaItem(ItemResposta itemResposta, Model model) {
 		Long id = itemResposta.getId();
@@ -44,7 +48,7 @@ public class ItemRespostaController {
         return "justificativa/justificativaItem";
     }
 
-
+    @DiretorAnnotation
     @PostMapping("novaJustiItem")
     public String novaJustificativa(JustificativaItemResposta justificativaItemResposta, HttpServletRequest request, RedirectAttributes attr) {
 
@@ -75,6 +79,7 @@ public class ItemRespostaController {
         return "redirect:"+referer;
     }
 
+    @DiretorAnnotation
     @RequestMapping("solicitaJustificativa")
     public String solicitaJustificativa(Long id, HttpServletRequest request, RedirectAttributes attr) {
         Resposta r = (Resposta) itemRespostaRepository.buscaResposta(id);
@@ -90,7 +95,8 @@ public class ItemRespostaController {
 
         return "redirect:"+referer;
     }
-
+    
+    @DocenteAnnotation
     @RequestMapping("justificativaResposta")
     public String justificativaResposta(Resposta resposta, Model model) {
         Long id = resposta.getId();
@@ -100,6 +106,8 @@ public class ItemRespostaController {
         return "justificativa/justificativaResposta";
     }
 
+    @DocenteAnnotation
+    @DiretorAnnotation
     @PostMapping("novaJustiResp")
     public String novaJustificativaResposta(JustificativaResposta justificativaResposta, HttpServletRequest request, RedirectAttributes attr) {
 
@@ -128,6 +136,7 @@ public class ItemRespostaController {
         return "redirect:"+referer;
     }
 
+    @DiretorAnnotation
     @RequestMapping("solicitaJustificativaResposta")
     public String solicitaJustificativaResposta(Long id, HttpServletRequest request, RedirectAttributes attr, Model model) {
         Pesquisa p = respostaRepository.buscaPesquisa(id);

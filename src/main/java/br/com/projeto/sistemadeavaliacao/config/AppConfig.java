@@ -20,16 +20,16 @@ import org.springframework.orm.jpa.vendor.Database;
 public class AppConfig implements WebMvcConfigurer {
 
 	
-	  /*
+	  
 	  @Autowired private AppInterceptor interceptor; 
 	 @Override public void addInterceptors(InterceptorRegistry registry) {
 	 registry.addInterceptor(interceptor); }
-	 */
+	 
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://localhost:3307/sistemadeavaliacao");
+		ds.setUrl("jdbc:mysql://localhost:3306/sistemadeavaliacao");
 		ds.setUsername("root");
 		ds.setPassword("root");
 		return ds;
