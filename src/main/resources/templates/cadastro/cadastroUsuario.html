@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/pesquisa/pesquisa.css" />
+    <link rel="stylesheet" href="../../css/note-response.css">
 
     <!-- CSS only -->
 
@@ -98,18 +99,18 @@
 </div>
 <div class="container main-div">
 
-    <div class="alert alert-success collapse" role="alert" id="myAlert">
+    <div class="alert alert-success collapse dv" role="alert" id="myAlert">
         <button class="btn-close" data-bs-dismiss="alert"></button>
         <h4 class="alert-heading">Cadastro realizado com sucesso!</h4>
     </div>
 
     <form action="save" method="post" class="cadForm col s12">
-        <h4>Cadastro de Usuários</h4>
+        <h4 class="dv">Cadastro de Usuários</h4>
         <input type="hidden" name="userId" th:value="${users?.userId}"/>
 
-        <div th:replace="fragments/mensagem"/>
+        <div class="dv" th:replace="fragments/mensagem"/>
 
-        <div class="mb-3">
+        <div class="mb-3 dv">
             <label class="form-label">Nome</label>
             <input
                     type="text"
@@ -120,7 +121,7 @@
                     style="text-transform:uppercase"
             />
         </div>
-        <div class="mb-3">
+        <div class="mb-3 dv">
             <label class="form-label">NIF</label>
             <input
                     name="nif"
@@ -135,7 +136,7 @@
                     maxlength = "10"
             />
         </div>
-        <div class="mb-3">
+        <div class="mb-3 dv">
             <label class="form-label">Senha</label>
             <input
                     type="password"
@@ -145,7 +146,7 @@
                     required
             />
         </div>
-        <div class="mb-3">
+        <div class="mb-3 dv">
             <label class="form-label">Tipo de Usuário</label>
             <select name="tipo" class="form-select" required>
                 <option value="" disabled selected>Selecione uma Opção:</option>
@@ -158,8 +159,8 @@
             </select>
         </div>
 
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary btnCad">Cadastrar</button>
+        <div class="mb-3 dv">
+            <button type="submit" class="btn btn-outline-primary btnCad">Cadastrar</button>
         </div>
     </form>
 </div>

@@ -74,6 +74,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/resposta/codigoPesquisa">Formulário</a>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9">Média</a>
                     </li>
@@ -105,6 +106,7 @@
     <div class="alert alert-success collapse dv" role="alert" id="myAlert">
         <button class="btn-close" data-bs-dismiss="alert"></button>
         <h4 class="alert-heading">Justificativa registrada com sucesso!</h4>
+        <button class="btn btn-primary bt-return" onclick="history.go(-2)">Retorne para a lista de resposta clicando aqui!</button>
     </div>
 
     <input type="hidden" name="id"/>
@@ -129,8 +131,10 @@
 
     <div class="mb-3 dv">
         <button class="btn btn-primary" type="submit">Cadastrar</button>
+       
     </div>
 </form>
+
 </div>
 <!--<script>-->
 <!--    function enviaJust() {-->

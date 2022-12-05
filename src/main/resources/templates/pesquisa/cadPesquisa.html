@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../../css/pesquisa/pesquisa.css" />
+<link rel="stylesheet" href="../../css/note-response.css" />
 
 <!-- CSS only -->
 
@@ -99,39 +100,39 @@
 		</ul>
 	</div>
 	<div class="container main-div">
-		<div class="alert alert-success collapse" role="alert" id="myAlert">
+		<div class="alert alert-success collapse dv" role="alert" id="myAlert">
 			<button class="btn-close" data-bs-dismiss="alert"></button>
 			<h4 class="alert-heading">Pesquisa cadastrada com sucesso!</h4>
 			<hr>
 			<h6 class="mb-0" style="text-align: center;">O código é: </h6><h6 style="background-color: white; text-align: center;">[[${idpesq}]].</h6>
 			<h6 class="mb-0" style="text-align: center;">Informe ao docente: </h6><h6 style="background-color: white; text-align: center;">[[${nomeDocente}]].</h6>
 		</div>
-		<h1 style="text-align:center">Nova Pesquisa</h1>
+		<h2 style="text-align:center; width: 228px; margin-left: -36%;">Nova Pesquisa</h2>
 
 		<form method="post" action="novaPesquisa">
 			<input type="hidden" name="id" id="idpesq" />
 
-			<div class="mb-3">
+			<div class="mb-3 dv">
 				<label class="form-label">Turma</label>
 				<input type="text" class="form-control" name="turma" placeholder="EX: EXCEL AVANÇADO (EANOITE)" required
 					style="text-transform:uppercase" />
 			</div>
 
 			<!-- Docentes -->
-			<div class="mb-3">
-				<label>Docente Responsavel</label>
+			<div class="mb-3 dv">
+				<label>Docente Responsável</label>
 			</div>
-			<div class="mb-3">
+			<div class="mb-3 dv">
 				<select name="usuarioDocente" class="form-select" required>
 					<option disabled="disabled" selected hidden value="">Selecione um docente</option>
 					<option th:each="u:${usuario}" th:text="${u.nome}" th:value="${u.userId}"/>
 				</select>
 			</div>
 
-			<div class="mb-3">
+			<div class="mb-3 dv">
 				<label for="idSelect2"> Docentes Complementares <i>(opcional)</i> </label>
 			</div>
-			<div class="mb-3">
+			<div class="mb-3 dv">
 				<select name="listaDocentes"
 					class="select2 form-control js-example-responsive" multiple>
 					<option disabled="disabled">Selecione um ou mais docentes</option>
@@ -141,7 +142,7 @@
 			</div>
 
 			<!-- Retirar pergunta-->
-			<div class="mb-3">
+			<div class="mb-3 dv">
 				<label>Retirar Pergunta Padrão <i>(opcional)</i></label>
 				<select name="perguntaExclusao" class="select2 form-control" id="idSelect2" multiple>
 					<option disabled="disabled">Selecione uma ou mais perguntas</option>
@@ -151,7 +152,7 @@
 			</div>
 
 			<!-- Cursos -->
-			<div class="mb-3">
+			<div class="mb-3 dv">
 				<label>Curso</label>
 				<select class="form-select" name="curso.id" required>
 					<option disabled selected hidden value="">Selecione um curso</option>
@@ -160,12 +161,12 @@
 			</div>
 
 
-			<div>
+			<div class="dv">
 				<label> Data de Vencimento</label> <input type="date"
 					name="dataVencimento" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required />
 			</div>
 			<p>
-			<div>
+			<div class="dv">
 				<button class="btn btn-outline-primary" type="submit">Cadastrar</button>
 			</div>
 
