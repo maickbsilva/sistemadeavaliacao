@@ -83,8 +83,9 @@
         </div>
     </div>
 </nav>
+
     <div class="area">
-		<ul class="circles">
+        <ul class="circles">
 			<li></li>
 			<li></li>
 			<li></li>
@@ -99,7 +100,8 @@
 	</div>
 
     <div class="container main-div">
-    <h4>JUSTIFICATIVA</h4  >
+
+        <h4>JUSTIFICATIVA</h4  >
 
     <form method="post" style="border:2" action="novaJustiItem">
     <div class="alert alert-success collapse dv" role="alert" id="myAlert">
@@ -126,14 +128,15 @@
     </div>
     <div class="mb-3 dv">
         <label>Justifique-se</label>
-        <textarea class="form-control" style="height: 100px;" name="texto" maxlength="250"></textarea>
+        <textarea class="form-control" style="height: 100px;" name="texto" maxlength="250" required></textarea>
     </div>
 
     <div class="mb-3 dv">
         <button class="btn btn-primary" type="submit">Cadastrar</button>
     </div>
-</form>
-</div>
+
+    </form>
+    </div>
 <script type="text/javascript">
 $(document).ready(function () {
 	var idjust = [[${idjust}]];

@@ -75,8 +75,14 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-                    <li class="nav-item dropdown">
-                        <button class="dropdown-item" aria-current="page" onclick='history.go(-1)'>Home</button>
+                    <li th:if="${session.docenciaLogado} " class="nav-item dropdown">
+                        <button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialDocencia'"><i class="material-icons" style="color:white;">home</i></button>
+                    </li>
+                    <li th:if="${session.diretoriaLogado} " class="nav-item dropdown">
+                        <button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialDiretor'"><i class="material-icons" style="color:white;">home</i></button>
+                    </li>
+                    <li th:if="${session.secretariaLogado} " class="nav-item dropdown">
+                        <button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialSecretaria'"><i class="material-icons" style="color:white;">home</i></button>
                     </li>
 
                     <li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
@@ -167,8 +173,8 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Comentario Geral</th>
-                    <th th:if="${session.docenciaLogado}">Justifica</th>
+                    <th>Comentário Geral</th>
+                    <th th:if="${session.docenciaLogado}">Justificar</th>
                     <th></th>
                     <th th:if="${session.diretoriaLogado}">Justificativa</th>
                 </thead>
@@ -179,7 +185,10 @@
                 </td>
                 <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;"
                        th:href="@{/itemResposta/solicitaJustificativaResposta(id=${li.id})}"
-                       th:if="${session.diretoriaLogado}">Solicitar</a></td>
+                       th:if="${session.diretoriaLogado}">Solicitar</a>
+                </td>
+                <td th:if="${li.pendente} and ${session.diretoriaLogado}" th:text="${'Justificativa solicitada!'}" style="background-color: red; font-style: italic; text-align: center;"></td>
+                <td th:if="${li.pendente} and ${session.docenciaLogado}" th:text="${'Justificativa pendente!'}" style="background-color: red; font-style: italic; text-align: center;"></td>
 
                 </tbody>
             </table>
@@ -187,12 +196,12 @@
             <table class="table table-striped" th:each="it:${li.listaItem}">
                 <thead>
                 <th class="thquest">Pergunta</th>
-                <th>Satisfacao</th>
-                <th>Nivel Importancia</th>
+                <th>Satisfação</th>
+                <th>Nivel Importância</th>
                 <th class="stquest">Comentário</th>
                 <th th:if="${session.diretoriaLogado}">Solicita Justificativa</th>
                 <th></th>
-                <th th:if="${session.docenciaLogado}">Justifica</th>
+                <th th:if="${session.docenciaLogado}">Justificar</th>
 
 
                 </thead>
@@ -200,19 +209,19 @@
                 <td th:text="${it.pergunta.textoPergunta}"></td>
                 <td th:switch="${it.satisfacao}">
                     <span th:case="N.A">N.A</span>
-                    <span th:case="'1'">Pessimo</span>
+                    <span th:case="'1'">Péssimo</span>
                     <span th:case="'2'">Ruim</span>
                     <span th:case="'3'">Regular</span>
                     <span th:case="'4'">Bom</span>
-                    <span th:case="'5'">Otimo</span>
+                    <span th:case="'5'">Ótimo</span>
                 </td>
                 <td th:switch="${it.nivelImportancia}">
                     <span th:case="'N.A'">N.A</span>
-                    <span th:case="'1'">Não Aplicavel</span>
-                    <span th:case="'2'">Pouca Importancia</span>
-                    <span th:case="'3'">importante</span>
-                    <span th:case="'4'">importancia média</span>
-                    <span th:case="'5'">importancia alta</span>
+                    <span th:case="'1'">Não Importante</span>
+                    <span th:case="'2'">Pouco Importante</span>
+                    <span th:case="'3'">Importante</span>
+                    <span th:case="'4'">Muito Importante</span>
+                    <span th:case="'5'">Extremamente Importante</span>
                 </td>
                 <td th:text="${it.comentario}"></td>
 
@@ -223,6 +232,9 @@
                 <td><a type="button" class="btn btn-outline-dark" style="text-decoration: none;"
                        th:href="@{/itemResposta/justificativa(id=${it.id})}" th:if="${session.docenciaLogado}">Justificar</a>
                 </td>
+
+                <td th:if="${it.pendente} and ${session.diretoriaLogado}" th:text="${'Justificativa solicitada!'}" style="background-color: red; font-style: italic; text-align: center;"></td>
+                <td th:if="${it.pendente} and ${session.docenciaLogado}" th:text="${'Justificativa pendente!'}" style="background-color: red; font-style: italic; text-align: center;"></td>
 
 
                 </tbody>
