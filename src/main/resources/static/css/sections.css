@@ -27,6 +27,17 @@ section {
   position: absolute;
 }
 
+.download{
+  margin-left: 259px;
+}
+
+.cont{
+  margin-left: 64%;
+}
+.ipcont{
+  text-align: center;
+}
+
 .ipt-cont{
   margin-top: 10%;
   width: 330px!important;
