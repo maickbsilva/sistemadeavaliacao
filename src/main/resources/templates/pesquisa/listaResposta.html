@@ -151,18 +151,21 @@
     </div>
 </div>
 
-<div class="mb-3 pdf">
-    <button class="btn btn-primary bt-export" onclick="pdf()">Download PDF</button>
-</div>
+
 
 
 <section class="slc">
-
+    
     <div class="input-group ipt-cont">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="">Avaliações Respondidas</span>
+        <div class="mb-3">
+            <button class="btn btn-primary" onclick="pdf()">Download PDF</button>
         </div>
-        <input th:value="${contagem}" disabled class="form-control">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Avaliações Respondidas</span>
+        </div>
+        <div class="mb-3">
+            <input th:value="${contagem}" disabled class="form-control">
+        </div>
     </div>
     <details th:each="li:${pesq.listaResposta}" id="minhaDiv" open>
 
