@@ -5,6 +5,7 @@
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	  <link rel="stylesheet" href="../../css/pesquisa/pesquisa.css" />
+	  <link rel="stylesheet" href="../../css/note-response.css" />
 
 	  <!-- CSS only -->
 
@@ -99,13 +100,13 @@
 	<div class="container main-div">
 		<form action="salvarCurso" method="post">
 
-			<div class="alert alert-success collapse" role="alert" id="myAlert">
+			<div class="alert alert-success collapse dv" role="alert" id="myAlert">
 				<button class="btn-close" data-bs-dismiss="alert"></button>
 				<h4 class="alert-heading">Curso cadastrado com sucesso!</h4>
 			</div>
 
 		  <input type="hidden" name="id" th:value="${cs?.id}" />
-		  <div class="mb-3">
+		  <div class="mb-3 dv">
 			<h4>Cadastro de Cursos</h4>
 			<input
 			  type="text"
@@ -118,7 +119,7 @@
 			/>
 		  </div>
       
-		  <div class="mb-3">
+		  <div class="mb-3 dv">
 			<select
 			  name="tipo"
 			  class="form-select"
