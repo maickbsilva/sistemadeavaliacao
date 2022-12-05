@@ -64,6 +64,10 @@ public class ItemRespostaController {
         p.setJustificativa(false);
         pesquisaRepository.save(p);
 
+        Optional<ItemResposta> it = itemRespostaRepository.findById(idItem);
+        it.get().setPendente(false);
+        itemRespostaRepository.save(it.get());
+
         Long id = justificativaItemResposta.getId();
         attr.addFlashAttribute("idjust", id);
         String referer = request.getHeader("Referer");
@@ -77,6 +81,10 @@ public class ItemRespostaController {
         Pesquisa p = respostaRepository.buscaPesquisa(r.getId());
         p.setJustificativa(true);
         pesquisaRepository.save(p);
+
+        Optional<ItemResposta> it = itemRespostaRepository.findById(id);
+        it.get().setPendente(true);
+        itemRespostaRepository.save(it.get());
         attr.addFlashAttribute("idVerifica", id);
         String referer = request.getHeader("Referer");
 
@@ -107,6 +115,8 @@ public class ItemRespostaController {
 
         Long idResp = justificativaResposta.getResposta().getId();
         Optional<Resposta> r = respostaRepository.findById(idResp);
+        r.get().setPendente(false);
+        respostaRepository.save(r.get());
         Pesquisa p = respostaRepository.buscaPesquisa(r.get().getId());
         p.setJustificativa(false);
         pesquisaRepository.save(p);
@@ -123,6 +133,9 @@ public class ItemRespostaController {
         Pesquisa p = respostaRepository.buscaPesquisa(id);
         p.setJustificativa(true);
         pesquisaRepository.save(p);
+        Optional<Resposta> r = respostaRepository.findById(id);
+        r.get().setPendente(true);
+        respostaRepository.save(r.get());
         attr.addFlashAttribute("idVerifica", id);
         String referer = request.getHeader("Referer");
 

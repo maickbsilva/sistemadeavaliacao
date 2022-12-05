@@ -18,4 +18,5 @@ public class ItemResposta {
     private String satisfacao;
     @ManyToOne
     private Pergunta pergunta;
+    private boolean pendente = false;
 }
