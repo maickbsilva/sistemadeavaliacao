@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
+import br.com.projeto.sistemadeavaliacao.annotation.DocenteAnnotation;
 import br.com.projeto.sistemadeavaliacao.annotation.SecretariaAnnotation;
 import br.com.projeto.sistemadeavaliacao.model.Pesquisa;
 import br.com.projeto.sistemadeavaliacao.repository.CursoRepository;
@@ -57,12 +58,17 @@ public class PesquisaController {
         return "pesquisa/cadPesquisa";
     }
 
+    @SecretariaAnnotation
+    @DiretorAnnotation
     @RequestMapping("buscar")
     public String buscaPesquisa(Long id, Model model) {
         model.addAttribute("pesq", pesquisaRepository.findById(id).get());
         return "pesquisa/listaPesquisa";
     }
 
+    @SecretariaAnnotation
+    @DiretorAnnotation
+    @DocenteAnnotation
     @RequestMapping("listarResposta")
     public String listarRespota(Long id, Model model) {
         model.addAttribute("pesq", pesquisaRepository.findById(id).get());

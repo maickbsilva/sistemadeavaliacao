@@ -164,7 +164,9 @@
 				<td><a th:href="@{/alterar(userId=${user.userId})}" style="background-color: white;" type="button" class="btn btn-outline-dark"><i
 						class="material-icons">create</i> </a></td>
 
-				<td><a th:href="@{/reseta(userId=${user.userId})}" style="background-color: white;" type="button" class="btn btn-outline-dark" > <i
+				<td><a th:href="@{/reseta(userId=${user.userId})}" style="background-color: white;" onclick="reseta()"
+					   th:attr="onclick=|return confirm('Deseja resetar a senha do usuário: ${user.nome}?')|"
+					   type="button" class="btn btn-outline-dark" > <i
       					class="material-icons">autorenew</i></a></td> 		
 						
 			<td>
@@ -214,6 +216,12 @@ $(document).ready(function () {
 	if(desativa == false){
 		$('#myAlert').show('fade').focus();
 	}
+});
+</script>
+<script type="text/javascript">
+$(document).ready(reseta () {
+	var reseta = [[${reseta}]];
+		$('#myAlert').show('fade').focus();
 });
 </script>
 
