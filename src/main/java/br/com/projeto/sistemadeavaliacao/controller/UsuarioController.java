@@ -154,6 +154,8 @@ public class UsuarioController {
 
 	@PublicoAnnotation
 	@DocenteAnnotation
+	@DiretorAnnotation
+	@SecretariaAnnotation
     @PostMapping("login")
     public String login(Usuario admLogin, RedirectAttributes attr, HttpSession session, Model model) {
 
@@ -228,6 +230,7 @@ public class UsuarioController {
     @DiretorAnnotation
     @SecretariaAnnotation
 	@DocenteAnnotation
+	@PublicoAnnotation
 	@RequestMapping(value = "alteraSenha", method = RequestMethod.POST)
 	private String formularioSenha(Long userId, String senha) {
 		Usuario oldUsuario = repository.findById(userId).get(); // Erro id Null
@@ -240,6 +243,11 @@ public class UsuarioController {
 	@RequestMapping("/acessoNegado")
 	public String acessoNegado() {
 		return "acessoNegado";
+	}
+	@PublicoAnnotation
+	@RequestMapping("/util/Model")
+	public String model() {
+		return "util/Model";
 	}
 
 }
