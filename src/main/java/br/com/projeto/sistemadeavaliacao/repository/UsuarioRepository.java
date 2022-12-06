@@ -21,17 +21,16 @@ import br.com.projeto.sistemadeavaliacao.model.Usuario;
 @Repository
 public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, Long> {
 
-	
 	public Usuario findByNifAndSenha(String nif, String senha);
-	
+
 	@Query("SELECT c FROM Usuario c WHERE c.nome LIKE %:t%")
 	public List<Usuario> Buscar(@Param("t") String tudo);
 
-	@Query("SELECT u FROM Usuario u WHERE u.tipo = 1")
+	@Query("SELECT u FROM Usuario u WHERE u.tipo = 1 order by u.nome")
 	public List<Usuario> BuscarDocentes();
-		
+
 	@Query("SELECT c FROM Usuario c ORDER BY c.ativo")
 	public Page<Usuario> ListarOrdem(PageRequest pageble);
-	
+
 	public Page<Usuario> findByOrderByAtivo(PageRequest pageble);
 }
