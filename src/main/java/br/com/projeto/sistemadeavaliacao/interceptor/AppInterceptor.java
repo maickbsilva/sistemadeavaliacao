@@ -33,7 +33,7 @@ public class AppInterceptor implements HandlerInterceptor {
 
 		
 		/* if para Funcionalidade geral com interceptor */
-		if (uri.endsWith("loginForm") || uri.endsWith("efetuaLogin") || uri.endsWith(".css") || uri.endsWith(".png")
+		if (uri.endsWith("loginForm") || uri.endsWith("efetuaLogin") || uri.endsWith(".css") ||  uri.endsWith(".js") || uri.endsWith(".png")
 				|| uri.endsWith(".gif") || uri.endsWith(".jpg")) {
 			return true;
 		}
@@ -105,4 +105,5 @@ public class AppInterceptor implements HandlerInterceptor {
 		return false;
 
 	}
+	
 }
