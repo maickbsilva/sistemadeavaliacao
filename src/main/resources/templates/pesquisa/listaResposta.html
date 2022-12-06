@@ -141,6 +141,8 @@
         </div>
     </div>
 </nav>
+
+
 <p></p>
 <h1 style="text-align:center">Lista de Respostas</h1>
 
@@ -151,18 +153,18 @@
     </div>
 </div>
 
-<div class="mb-3 pdf">
-    <button class="btn btn-primary bt-export" onclick="pdf()">Download PDF</button>
-</div>
-
 
 <section class="slc">
-
-    <div class="input-group ipt-cont">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="">Avaliações Respondidas</span>
+    
+    <div class="ipt-cont">
+        <div class="mb-3 download">
+            <button class="btn btn-primary" onclick="pdf()">Download PDF</button>
         </div>
-        <input th:value="${contagem}" disabled class="form-control">
+        <div class="input-group mb-3 cont">
+            <span class="input-group-text">Avaliações Respondidas</span>
+            <input th:value="${contagem}" class="form-control ipcont" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+        </div>
+
     </div>
     <details th:each="li:${pesq.listaResposta}" id="minhaDiv" open>
 
@@ -269,6 +271,7 @@
 
 <script>
         function pdf(){
+
         window.print()
 }
 

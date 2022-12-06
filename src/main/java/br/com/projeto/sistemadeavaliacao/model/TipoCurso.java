@@ -2,16 +2,17 @@ package br.com.projeto.sistemadeavaliacao.model;
 
 public enum TipoCurso {
 
-	FIC("Fic"), CURSO_REGULARES("Curso_Regulares");
-	
+	FIC("FIC"), CURSO_REGULAR("Curso Regular");
+
 	String TipoCr;
-	TipoCurso(String string){
+
+	TipoCurso(String string) {
 		this.TipoCr = string;
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+
+		return TipoCr;
 	}
 }
