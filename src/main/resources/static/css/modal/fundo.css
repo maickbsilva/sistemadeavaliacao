@@ -12,15 +12,15 @@ body{
 
 .context {
     width: 100%;
-    position: absolute;
+    position: relative;
     top:50vh;
     
 }
 
-.context h1{
+.context h2{
     text-align: center;
     color: #fff;
-    font-size: 50px;
+    font-size: 35px;
 }
 
 

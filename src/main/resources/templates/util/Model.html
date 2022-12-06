@@ -11,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../css/modal/modal.css" />
-    <link rel="stylesheet" href="../../css/modal/fundo.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
@@ -36,10 +35,10 @@
   </div >
   
     <div class="context">
-      <div class="container main-div">
+      <div class="container">
         <form>
           <!-- [[${usuario.nome}]] metodo  -->
-          <h1 style="text-align: center">Altere sua senha [[${usuario.nome}]]</h1>
+          <h2 style="text-align: center">Altere sua senha [[${usuario.nome}]]</h2>
   
           <button
             type="button"
@@ -52,10 +51,10 @@
         </form>
   
         <!-- Modal -->
-        <div class="modal" id="myModal" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal mdal" id="myModal" tabindex="-1" role="dialog" data-backdrop="static">
           <div class="modal-dialog">
             <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content md-content">
               <div class="modal-header">
               </div>
               <div class="modal-body">
