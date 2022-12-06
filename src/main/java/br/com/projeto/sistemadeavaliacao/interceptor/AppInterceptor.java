@@ -26,7 +26,6 @@ public class AppInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
 
         if (uri.startsWith("/error")) {
-            System.out.println("URI");
             return true;
         }
 

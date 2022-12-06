@@ -158,10 +158,7 @@ public class UsuarioController {
     public String login(Usuario admLogin, RedirectAttributes attr, HttpSession session, Model model) {
 
         Usuario user = repository.findByNifAndSenha(admLogin.getNif(), admLogin.getSenha());
-       
-        
-        System.out.println(user);
-        
+
         if (user == null) {
             attr.addFlashAttribute("mensagemErro", "NIF e/ou senha incorreto(s).");
             return "redirect:/";
@@ -223,8 +220,6 @@ public class UsuarioController {
 		String sistema = "sistema";
 		usuario.setSenha(sistema);
 		repository.save(usuario);
-		System.out.println(usuario.getSenha() + "Senha alterada");
-		// alert senha redefinida...
 
 		// redirecionar mensagem senha de usuario alterada
 		return "redirect:lista/1";
@@ -235,13 +230,10 @@ public class UsuarioController {
 	@DocenteAnnotation
 	@RequestMapping(value = "alteraSenha", method = RequestMethod.POST)
 	private String formularioSenha(Long userId, String senha) {
-		System.out.println(userId + senha);
-
 		Usuario oldUsuario = repository.findById(userId).get(); // Erro id Null
-
 		oldUsuario.setSenha(senha);
-
 		repository.save(oldUsuario);
+
 		return "login/login";
 	}
 	@PublicoAnnotation
