@@ -2,7 +2,7 @@ package br.com.projeto.sistemadeavaliacao.model;
 
 public enum TipoCurso {
 
-	FIC("Fic"), CURSO_REGULAR("Curso Regular");
+	FIC("FIC"), CURSO_REGULAR("Curso Regular");
 
 	String TipoCr;
 
