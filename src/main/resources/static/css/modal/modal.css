@@ -20,3 +20,21 @@
   font-size: 20px;
   margin-left: 15%;
 }
+
+.mdal{
+  display: block;
+  margin-top: 19%;
+}
+.md-content{
+  height: 40%;
+}
+
+@media (min-width: 768px) {
+  .mdal{
+    display: block;
+    margin-top: 19%;
+  }
+  .md-content{
+    height: 65%;
+  }
+}
