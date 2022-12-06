@@ -208,10 +208,15 @@ public class UsuarioController {
         return "login/login";
     }
 	@PublicoAnnotation
-	@RequestMapping("/")
+	@RequestMapping("/login")
     public String acesso() {
         return "login/login";
     }
+	@PublicoAnnotation
+	@RequestMapping("/")
+	public String form() {
+		return "resposta/codigoPesquisa";
+	}
 
 	@DiretorAnnotation
 	@SecretariaAnnotation
