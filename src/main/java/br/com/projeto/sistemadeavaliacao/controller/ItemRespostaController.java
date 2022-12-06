@@ -49,6 +49,7 @@ public class ItemRespostaController {
     }
 
     @DiretorAnnotation
+    @DocenteAnnotation
     @PostMapping("novaJustiItem")
     public String novaJustificativa(JustificativaItemResposta justificativaItemResposta, HttpServletRequest request, RedirectAttributes attr) {
 

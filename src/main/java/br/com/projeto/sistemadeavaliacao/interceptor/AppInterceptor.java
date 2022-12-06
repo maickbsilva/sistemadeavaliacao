@@ -17,93 +17,52 @@ import br.com.projeto.sistemadeavaliacao.model.TipoUsuario;
 
 @Component
 public class AppInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+        String uri = request.getRequestURI();
 
-		String uri = request.getRequestURI();
+        HttpSession session = request.getSession();
 
-		HttpSession session = request.getSession();
+        if (uri.startsWith("/error")) {
+            System.out.println("URI");
+            return true;
+        }
 
-		if (uri.startsWith("/error")) {
-			System.out.println("URI");
-			return true;
-		}
+        /* if para Funcionalidade geral com interceptor */
+        if (uri.endsWith("loginForm") || uri.endsWith("efetuaLogin") || uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".png")
+                || uri.endsWith(".gif") || uri.endsWith(".jpg")) {
+            return true;
+        }
 
-		
-		/* if para Funcionalidade geral com interceptor */
-		if (uri.endsWith("loginForm") || uri.endsWith("efetuaLogin") || uri.endsWith(".css") ||  uri.endsWith(".js") || uri.endsWith(".png")
-				|| uri.endsWith(".gif") || uri.endsWith(".jpg")) {
-			return true;
-		}
-		
-		if (handler instanceof HandlerMethod) {
-			HandlerMethod metodo = (HandlerMethod) handler;
-			if (uri.startsWith("/")) {
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod metodo = (HandlerMethod) handler;
 
-				if (metodo.getMethodAnnotation(SecretariaAnnotation.class) != null) {
+            if (metodo.getMethodAnnotation(DiretorAnnotation.class) != null && session.getAttribute("diretoriaLogado") != null) {
+                return true;
+            }
 
-					if (session.getAttribute("nivel") == TipoUsuario.SECRETARIA) {
+            if (metodo.getMethodAnnotation(SecretariaAnnotation.class) != null && session.getAttribute("secretariaLogado") != null) {
+                return true;
+            }
 
-						return true;
-					}
+            if (metodo.getMethodAnnotation(DocenteAnnotation.class) != null && session.getAttribute("docenciaLogado") != null) {
+                return true;
+            }
 
-					if (TipoUsuario.SECRETARIA == null) {
-						response.sendError(HttpStatus.UNAUTHORIZED.value());
-					} else {
-						response.sendError(HttpStatus.FORBIDDEN.value());
-					}
-					return false;
+            if (metodo.getMethodAnnotation(PublicoAnnotation.class) != null) {
+                return true;
+            }
 
-				} else if (metodo.getMethodAnnotation(DocenteAnnotation.class) != null) {
+            // redireciona para a pagina inicial
+            response.sendRedirect("/acessoNegado");
+            return false;
 
-					if (session.getAttribute("nivel") == TipoUsuario.DOCENCIA) {
+        }
 
-						return true;
-					}
+        return true;
 
-					if (TipoUsuario.DOCENCIA == null) {
-						response.sendError(HttpStatus.UNAUTHORIZED.value());
-					} else {
-						response.sendError(HttpStatus.FORBIDDEN.value());
-					}
-					return false;
+    }
 
-				} else if (metodo.getMethodAnnotation(DiretorAnnotation.class) != null) {
-
-					if (session.getAttribute("nivel") == TipoUsuario.DIRETOR) {
-
-						return true;
-					}
-
-					if (TipoUsuario.DIRETOR == null) {
-						response.sendError(HttpStatus.UNAUTHORIZED.value());
-					} else {
-						response.sendError(HttpStatus.FORBIDDEN.value());
-					}
-					return false;
-
-				}
-
-				return true;
-
-			} else {
-
-				if (metodo.getMethodAnnotation(PublicoAnnotation.class) != null) {
-					return true;
-				}
-				if (session.getAttribute("usuarioLogado") != null) {
-					return true;
-				}
-				response.sendRedirect("/");
-				return false;
-
-			}
-
-		}
-		return false;
-
-	}
-	
 }

@@ -35,7 +35,6 @@ import br.com.projeto.sistemadeavaliacao.util.HashUtil;
 
 @Controller
 public class UsuarioController {
-
 	@Autowired
 	private UsuarioRepository repository;
 
@@ -47,16 +46,15 @@ public class UsuarioController {
 
 	@Autowired
 	private JustificativaRespostaRepository justificativaRespostaRepository;
-
-	@SecretariaAnnotation
 	@DiretorAnnotation
+	@SecretariaAnnotation
 	@RequestMapping("cadastro")
 	private String formularioCadastro(Model model) {
 		return "cadastro/cadastroUsuario";
 	}
-
-	@SecretariaAnnotation
 	@DiretorAnnotation
+	@SecretariaAnnotation
+	@DocenteAnnotation
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String salvarUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr, TipoUsuario tipo,
 			Model model) {
@@ -85,9 +83,8 @@ public class UsuarioController {
 
 
 	}
-
-	@SecretariaAnnotation
 	@DiretorAnnotation
+	@SecretariaAnnotation
 	@RequestMapping("lista/{page}")
 	public String lista(Model model, @PathVariable("page") int page) {
 
@@ -113,17 +110,16 @@ public class UsuarioController {
 
 	}
 
-	@SecretariaAnnotation
 	@DiretorAnnotation
+	@SecretariaAnnotation
 	@RequestMapping("alterar")
 	public String alterar(Long userId, Model model) {
 		Usuario usuario = repository.findById(userId).get();
 		model.addAttribute("users", usuario);
 		return "forward:cadastro";
 	}
-
-	@SecretariaAnnotation
 	@DiretorAnnotation
+	@SecretariaAnnotation
 	@RequestMapping("desativar")
 	public String desativar(Long userId, RedirectAttributes attr) {
 		Usuario u = repository.findById(userId).get();
@@ -157,6 +153,7 @@ public class UsuarioController {
 	}
 
 	@PublicoAnnotation
+	@DocenteAnnotation
     @PostMapping("login")
     public String login(Usuario admLogin, RedirectAttributes attr, HttpSession session, Model model) {
 
@@ -198,8 +195,6 @@ public class UsuarioController {
 	return"login/login";
 
 	}
-	
-
     @DiretorAnnotation
     @SecretariaAnnotation
 	@RequestMapping(value = "buscarUser", method = RequestMethod.GET)
@@ -212,7 +207,6 @@ public class UsuarioController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "login/login";
-
     }
 	@PublicoAnnotation
 	@RequestMapping("/")
@@ -220,7 +214,9 @@ public class UsuarioController {
         return "login/login";
     }
 
+	@DiretorAnnotation
 	@SecretariaAnnotation
+	@DocenteAnnotation
 	@RequestMapping("reseta")
 	public String reseta(Long userId, Model model) {
 		Usuario usuario = repository.findById(userId).get();
@@ -234,10 +230,9 @@ public class UsuarioController {
 		return "redirect:lista/1";
 	}
 
-	// --//--//
-	@DocenteAnnotation
     @DiretorAnnotation
     @SecretariaAnnotation
+	@DocenteAnnotation
 	@RequestMapping(value = "alteraSenha", method = RequestMethod.POST)
 	private String formularioSenha(Long userId, String senha) {
 		System.out.println(userId + senha);
@@ -248,6 +243,11 @@ public class UsuarioController {
 
 		repository.save(oldUsuario);
 		return "login/login";
+	}
+	@PublicoAnnotation
+	@RequestMapping("/acessoNegado")
+	public String acessoNegado() {
+		return "acessoNegado";
 	}
 
 }
