@@ -107,8 +107,8 @@
 	<th class="id">ID</th>
 	<th class="th-height">Nome</th>
 	<th class="th-height">Tipo de Curso</th>
-	<th class="th-height">Alterar</th>
-	<th class="th-height">Excluir</th>
+	<th class="th-heightC">Alterar</th>
+	<th class="th-heightC">Excluir</th>
   </tr>
 </thead>
 <tbody id="tb-user" class="table-group-divider" >
@@ -117,10 +117,10 @@
 	 <td th:text="${c.descCurso}" />
 	 <td th:text="${c?.tipo}"/>
 	
-	  <td><a th:href="@{/alteraCurso(id=${c.id})}"><i
+	  <td><a type="button" class="btn btn-outline-dark" th:href="@{/alteraCurso(id=${c.id})}"><i
 		class="material-icons">create</i> </a></td>
 
-	<td><a th:href="@{/exclueCurso(id=${c.id})}"> <i
+	<td><a type="button" class="btn btn-outline-dark" th:href="@{/exclueCurso(id=${c.id})}"> <i
 		class="material-icons">delete_forever</i></a></td> 	
  </tr>
  

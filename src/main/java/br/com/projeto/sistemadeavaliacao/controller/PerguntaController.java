@@ -104,13 +104,6 @@ public class PerguntaController {
 		return "pergunta/listaPergunta";
 	}
 
-	@SecretariaAnnotation
-	@DiretorAnnotation
-	@RequestMapping("excluir")
-	public String excluir(Long id) {
-		repository.deleteById(id);
-		return "redirect:listar";
-	}
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
