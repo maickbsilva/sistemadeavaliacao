@@ -27,17 +27,33 @@ section {
   position: absolute;
 }
 
+.download{
+  margin-left: 259px;
+}
+
+.cont{
+  margin-left: 64%;
+}
+.ipcont{
+  text-align: center;
+}
+
 .ipt-cont{
-  margin: 30px 300px;
   margin-top: 10%;
   width: 330px!important;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
 summary {
   display: block;
   cursor: pointer;
   padding: 10px;
+  margin-left: -11%;
   font-family: "Space Mono", monospace;
   font-size: 22px;
   transition: .3s;
@@ -55,6 +71,7 @@ details > div {
   padding: 0 20px;
   font-family: "Karla", sans-serif;
   line-height: 1.5;
+  margin-left: -11%;
 }
 td{
   word-break: keep-all;
