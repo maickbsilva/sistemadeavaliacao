@@ -18,37 +18,38 @@ import org.springframework.orm.jpa.vendor.Database;
 
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
+    @Autowired
+    private AppInterceptor interceptor;
 
-	
-	  
-	  @Autowired private AppInterceptor interceptor; 
-	 @Override public void addInterceptors(InterceptorRegistry registry) {
-	 registry.addInterceptor(interceptor); }
-	 
-	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://localhost:3307/sistemadeavaliacao");
-		ds.setUsername("root");
-		ds.setPassword("root");
-		return ds;
-	}
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(interceptor);
+    }
 
-	@Bean
-	public JpaVendorAdapter jpaVendorAdapter() {
-		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		adapter.setDatabase(Database.MYSQL);
-		adapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
-		adapter.setPrepareConnection(true);
-		adapter.setGenerateDdl(true);
-		adapter.setShowSql(true);
-		return adapter;
-	}
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource ds = new DriverManagerDataSource();
+        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        ds.setUrl("jdbc:mysql://localhost:3307/sistemadeavaliacao");
+        ds.setUsername("root");
+        ds.setPassword("root");
+        return ds;
+    }
 
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**");
-	}
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setDatabase(Database.MYSQL);
+        adapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
+        adapter.setPrepareConnection(true);
+        adapter.setGenerateDdl(true);
+        adapter.setShowSql(true);
+        return adapter;
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
 
 }
