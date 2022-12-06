@@ -62,6 +62,12 @@ width: 17% !important;
 .th-height {
   width: 30%;
 }
+.th-heightP {
+  width: 10%;
+}
+.th-heightC {
+  width: 5%;
+}
 
 .table{
   margin-top: 140px;
@@ -71,7 +77,6 @@ width: 17% !important;
   width:92% !important;
  
 }
-
 
 .pagination{
   margin-left: 45.5%;
@@ -137,7 +142,7 @@ p {
   display: flex;
   position: absolute;
   top: 15%;
-  left: 26%;
+  left: 30%;
   font-family: Arial, Helvetica, sans-serif;
   
 }

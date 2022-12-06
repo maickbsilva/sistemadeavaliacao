@@ -106,8 +106,7 @@
   <tr>
 	<th class="id">ID</th>
 	<th class="th-height">Texto Pergunta</th>
-	<th class="th-height">Alterar</th>
-	<th class="th-height">Excluir</th>
+	<th class="th-heightP">Alterar</th>
   </tr>
 </thead>
 <tbody id="tb-user" class="table-group-divider" >
@@ -115,10 +114,8 @@
 	<tr th:each="p:${perg}">
 		<td th:text="${p.id}"/>
 		<td th:text="${p.textoPergunta}"/>
-		<td><a th:href="@{/pergunta/alterar(id=${p.id})}"><i
+		<td><a type="button" class="btn btn-outline-dark" th:href="@{/pergunta/alterar(id=${p.id})}"><i
 		class="material-icons">create</i> </a></td>
-		<td><a th:href="@{/pergunta/excluir(id=${p.id})}"><span class="material-symbols-outlined">
-			delete
 			</span></a></td>	
  </tr>
 </tbody>
