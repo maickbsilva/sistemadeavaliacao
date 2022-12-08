@@ -61,36 +61,49 @@
 			</div>
 		</div>
 	</div>
-	<h1 id="pesquisa" class="text">LISTA - PESQUISA</h1>
+	<h1 id="pesquisa" class="text" style="padding: 30px">LISTA -
+		PESQUISA</h1>
 
+	<div class="resultadoP" >
+		<div class="resultado-itemP" style="padding-left:30%">
+			<h6><p>Justificativa: &emsp;&emsp;</p></h6>
+			<h6><p class="item-ok">&ensp; Ok</p></h6>
+		</div>
 
+		<div class="resultado-itemP">
+			<h6><p class="item-pendente">&ensp; Pendente</p></h6>
+		</div>
+
+		<div class="resultado-itemP">
+			<h6><p>Data:&emsp;&emsp;</p></h6>
+			<h6><p class="item-atrasado">&ensp; Encerrada</p></h6>
+		</div>
+	</div>
 
 	<table class="tabelas" id="customers">
 		<thead>
 			<tr>
-
-				<th class="id">ID</th>
-				<th class="th-height">CURSO</th>
-				<th class="th-height">TURMA</th>
-				<th class="th-height">DATA VENCIMENTO</th>
-				<th class="th-height">JUSTIFICATIVA</th>
-				<th class="">RESPOSTAS</th>
+				<th class="id" style="text-align: center">CÓDIGO</th>
+				<th class="th-height" style="text-align: center">CURSO</th>
+				<th class="th-height" style="text-align: center">TURMA</th>
+				<th class="th-height" style="text-align: center">DATA
+					VENCIMENTO</th>
+				<th class="th-height" style="text-align: center">JUSTIFICATIVA</th>
+				<th class="" style="text-align: center">RESPOSTAS</th>
 				<th class=""></th>
-
 			</tr>
 		</thead>
 
 		<tbody id="tb-user">
 			<tr th:each="ps:${pesq}">
-
 				<td th:text="${ps.id}"></td>
 				<td th:text="${ps.curso.descCurso}" />
 				<td th:text="${ps.turma}" />
-				<td th:text="${ps.dataVencimento}" />
-				<td
-					th:text="${ps.justificativa ? 'justificativa pendente, acesse a lista de respostas para responder' : 'nenhuma justificativa pendente'}" />
-				<td><a th:href="@{/pesquisa/listarResposta(id=${ps.id})}">Lista
-						de Respostas</a></td>
+				<td th:text="${#dates.format(ps.dataVencimento, 'dd/MM/yyyy')}"/>
+				<td th:text="${ps.justificativa ? 'justificativa pendente, acesse a lista de respostas para responder' : 'nenhuma justificativa pendente'}" />
+				<td><a type="button" class="btn btn-outline-dark"
+					th:href="@{/pesquisa/listarResposta(id=${ps.id})}"
+					style="text-decoration: none">Lista de Respostas</a></td>
 				<td
 					th:style="${ps.justificativa} ? 'background-color: #d55d92' : 'background-color: #3745a4'" />
 
@@ -98,14 +111,14 @@
 
 		</tbody>
 	</table>
-	
-	  <div th:if="${pesq.empty}"
-        style="margin-left: auto; margin-right: auto; ">
-        <p
-            th:style="'font-size:150%; -webkit-margin-before: 0.67em; -webkit-margin-after: 0.67em; -webkit-margin-start: 0px;-webkit-margin-end: 0px; font-weight: 500; max-width: 100px; text-align: center;margin-left: auto; margin-right: auto; '"
-            >Ops! Não há nada nessa lista.</p>
-    </div>
-	
+
+	<div th:if="${pesq.empty}"
+		style="margin-left: auto; margin-right: auto;">
+		<p
+			th:style="'font-size:150%; -webkit-margin-before: 0.67em; -webkit-margin-after: 0.67em; -webkit-margin-start: 0px;-webkit-margin-end: 0px; font-weight: 500; max-width: 100px; text-align: center;margin-left: auto; margin-right: auto; '">Ops!
+			Não há nada nessa lista.</p>
+	</div>
+
 
 	<nav class="pagination">
 		<ul class="pagination">
@@ -135,7 +148,7 @@
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 		crossorigin="anonymous"></script>
 </body>
-	
+
 
 </html>
 

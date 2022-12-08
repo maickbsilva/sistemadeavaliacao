@@ -40,7 +40,9 @@ body {
   font-family: 'Exo', sans-serif;
 }
 
-
+thead {
+	align-itens: center;
+}
 .context {
   width: 100%;
   position: absolute;
@@ -256,6 +258,7 @@ p{
 #customers th {
   border: 1px solid #ddd;
   padding: 8px;
+  text-align: center;
 }
 
 #customers tr:nth-child(even) {
@@ -314,6 +317,7 @@ width: 17% !important;
   font-size: small;
   text-align: center;
   padding-top: 20px;
+  text-align: center;
 }
 
 table {
@@ -419,4 +423,34 @@ display: flex;
 }
 .item-inativo{
   border-left: 30px solid red;
+}
+
+.resultadoP{
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.resultadoU{
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+.resultado-itemP{
+  margin-left:47px;
+  display: flex;
+}
+.resultado-itemU{
+  margin-left:60px;
+}
+.item-atrasado{
+  border-left: 30px solid #c32f27;
+}
+.item-ok{
+  border-left: 30px solid #3745a4;
+  
+}
+.limit {
+  max-width: 5.8ch;
+  overflow: hidden;
+  white-space: nowrap;
 }
