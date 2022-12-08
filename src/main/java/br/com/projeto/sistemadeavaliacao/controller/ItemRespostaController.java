@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,7 +40,7 @@ public class ItemRespostaController {
     @DocenteAnnotation
     @RequestMapping("justificativa")
     public String justificativaItem(ItemResposta itemResposta, Model model) {
-		Long id = itemResposta.getId();
+        Long id = itemResposta.getId();
         model.addAttribute("itemResposta", id);
         Pergunta idPerg = itemRespostaRepository.findPergunta(id);
         model.addAttribute("item", itemRespostaRepository.findById(id).get());
@@ -66,8 +67,6 @@ public class ItemRespostaController {
         Long idItem = justificativaItemResposta.getItemResposta().getId();
         Resposta r = (Resposta) itemRespostaRepository.buscaResposta(idItem);
         Pesquisa p = respostaRepository.buscaPesquisa(r.getId());
-        p.setJustificativa(false);
-        pesquisaRepository.save(p);
 
         Optional<ItemResposta> it = itemRespostaRepository.findById(idItem);
         it.get().setPendente(false);
@@ -77,7 +76,18 @@ public class ItemRespostaController {
         attr.addFlashAttribute("idjust", id);
         String referer = request.getHeader("Referer");
 
-        return "redirect:"+referer;
+        List<Boolean> listaItensPendentes = itemRespostaRepository.buscaPendencias(r.getId());
+
+        List<Boolean> listaRespostasPendentes = respostaRepository.listaPendentes(p.getId());
+
+        if (listaItensPendentes.contains(true) || listaRespostasPendentes.contains(true)) {
+            return "redirect:" + referer;
+        }
+
+        p.setJustificativa(false);
+        pesquisaRepository.save(p);
+
+        return "redirect:" + referer;
     }
 
     @DiretorAnnotation
@@ -94,9 +104,9 @@ public class ItemRespostaController {
         attr.addFlashAttribute("idVerifica", id);
         String referer = request.getHeader("Referer");
 
-        return "redirect:"+referer;
+        return "redirect:" + referer;
     }
-    
+
     @DocenteAnnotation
     @RequestMapping("justificativaResposta")
     public String justificativaResposta(Resposta resposta, Model model) {
@@ -126,15 +136,25 @@ public class ItemRespostaController {
         Optional<Resposta> r = respostaRepository.findById(idResp);
         r.get().setPendente(false);
         respostaRepository.save(r.get());
+
         Pesquisa p = respostaRepository.buscaPesquisa(r.get().getId());
+
+        String referer = request.getHeader("Referer");
+        Long id = justificativaResposta.getId();
+        attr.addFlashAttribute("idjust", id);
+
+        List<Boolean> listaItensPendentes = itemRespostaRepository.buscaPendencias(idResp);
+
+        List<Boolean> listaRespostasPendentes = respostaRepository.listaPendentes(p.getId());
+
+        if (listaItensPendentes.contains(true) || listaRespostasPendentes.contains(true)) {
+            return "redirect:" + referer;
+        }
+
         p.setJustificativa(false);
         pesquisaRepository.save(p);
 
-        Long id = justificativaResposta.getId();
-        attr.addFlashAttribute("idjust", id);
-        String referer = request.getHeader("Referer");
-
-        return "redirect:"+referer;
+        return "redirect:" + referer;
     }
 
     @DiretorAnnotation
@@ -149,7 +169,7 @@ public class ItemRespostaController {
         attr.addFlashAttribute("idVerifica", id);
         String referer = request.getHeader("Referer");
 
-        return "redirect:"+referer;
+        return "redirect:" + referer;
     }
 
 }
