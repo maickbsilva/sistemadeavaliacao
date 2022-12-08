@@ -328,6 +328,7 @@ table {
 .tabelas{
   text-align: center;
   padding-top: 50px;
+  
 }
 .ultima{
   text-align: center;
@@ -338,7 +339,11 @@ table {
   margin-right: 70%; 
   padding: 35px;
   
-  
+}
+.scroll{
+	height:500px;
+  	overflow: scroll;
+  	overflow-x: hidden;
 }
 .Logo_kaos{
   max-width: 200px !important;

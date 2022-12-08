@@ -28,7 +28,11 @@
 .container {
     width: 500px !important;
 }
-
+.scroll{
+	height:500px;
+  	overflow: scroll;
+  	overflow-x: hidden;
+}
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 * {

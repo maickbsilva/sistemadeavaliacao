@@ -79,7 +79,7 @@
 			<h6><p class="item-atrasado">&ensp; Encerrada</p></h6>
 		</div>
 	</div>
-
+<div class="scroll">
 	<table class="tabelas" id="customers">
 		<thead>
 			<tr>
@@ -111,6 +111,7 @@
 
 		</tbody>
 	</table>
+	</div>
 
 	<div th:if="${pesq.empty}"
 		style="margin-left: auto; margin-right: auto;">
@@ -120,7 +121,7 @@
 	</div>
 
 
-	<nav class="pagination">
+	<!--  <nav class="pagination">
 		<ul class="pagination">
 			<li class="page-item"
 				th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a
@@ -134,7 +135,7 @@
 				class="page-link"
 				th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}">Próximo</a></li>
 		</ul>
-	</nav>
+	</nav>-->
 
 
 	<div class="ultima">
