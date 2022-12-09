@@ -2,188 +2,204 @@
 <html lang="pt-br" xmlns:th="http://thymeleaf.org">
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- Favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-	<link rel="stylesheet" href="../../css/page/curso.css" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
-	<title>Início Diretoria</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+    <link rel="stylesheet" href="../../css/page/curso.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
+    <title>Início Diretoria</title>
 </head>
 
 <body>
 <div class="area" id="primeiro">
-		<ul class="circles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
-	<div class="container main-div">
-
-		<nav>
-			<a href="/logout" class="text"> Logout</a>
-		</nav>
-
-
-		<div class="mb-3">
-			<h2>Bem vindo!</h2>
-
-			<h5 class="text">USUÁRIO</h5>
-			<div class="borda">
-
-				<div class="div1">
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/cadastro'" class="btn-login">Cadastrar
-						Usuário</button>
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/lista/1'" class="btn-login">Listar Usuário</button>
-					<div class="espaco"></div>
-				</div>
-			</div>
-
-			<h5 class="text">PERGUNTA</h5>
-			<div class="borda">
-
-				<div class="div1">
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/pergunta/cadastrar'" class="btn-login">Cadastrar Nova
-						Pergunta</button>
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/pergunta/listar/1'" class="btn-login">Listar
-						Perguntas</button>
-					<div class="espaco"></div>
-				</div>
-			</div>
-
-			<h5 class="text">PESQUISA</h5>
-			<div class="borda">
-
-				<div class="div1">
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/pesquisa/cadastrar'" class="btn-login">Cadastrar
-						Pesquisa</button>
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/pesquisa/listar/1'" class="btn-login">Listar
-						Pesquisa</button>
-					<div class="espaco"></div>
-				</div>
-			</div>
-
-			<h5 class="text">FORMULÁRIO E RELATÓRIO</h5>
-			<div class="borda">
-
-				<div class="div1">
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/resposta/codigoPesquisa'"
-						class="btn-login">Formulário</button>
-					<div class="espaco"></div>
-					<button type="button"
-						onclick="location.href='https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9'"
-						class="btn-login">Gerar Relatório</button>
-					<div class="espaco"></div>
-				</div>
-			</div>
-
-			<h5 class="text">CURSO</h5>
-			<div class="borda">
-
-				<div class="div1">
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/curso'" class="btn-login">Cadastrar Curso</button>
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='/listaCurso/1'" class="btn-login">Listar
-						Curso</button>
-					<div class="espaco"></div>
-				</div>
-			</div>
-			<h5 class="text">COMENTÁRIOS JUSTIFICADOS</h5>
-			<div class="borda">
-				<div class="div1">
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='#comuns'" class="btn-login">Comuns</button>
-					<div class="espaco"></div>
-					<button type="button" onclick="location.href='#gerais'" class="btn-login">Gerais</button>
-					<div class="espaco"></div>
-				</div>
-			</div>
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
 </div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-			crossorigin="anonymous"></script>
-<div class="scroll">
-	<div class="tabelas" id="comuns">
-		<table id="customers" border="1">
-			<h5 class="text">ÚLTIMOS COMENTÁRIOS COMUNS JUSTIFICADOS</h5>
-			<thead>
-				<th>DATA</th>
-				<th>PERGUNTA</th>
-				<th>COMENTÁRIO</th>
-				<th>RESPOSTA COMENTÁRIO</th>
-				<th>DOCENTE</th>
+<div class="container main-div">
 
-			</thead>
+    <nav>
+        <a href="/logout" class="text"> Logout</a>
+    </nav>
 
-			<tbody>
-				<tr th:each="j:${justItem}">
-					<td th:text="${#dates.format(j?.data, 'dd/MM/yyyy')}" />
-					<td th:text="${j?.itemResposta?.pergunta?.textoPergunta}" />
-					<td th:text="${j?.itemResposta?.comentario}" />
-					<td th:text="${j?.texto}" />
-					<td th:text="${j?.usuario?.nome}" />
-				</tr>
 
-			</tbody>
-		</table>
-	</div></div>
-<div class="espa"></div>
-	<div class="scroll">
-	<div class="tabelas" id="gerais">
+    <div class="mb-3">
+        <h2>Bem vindo!</h2>
 
-		<br>
-		<br>
-		<table id="customers1" border="1">
-			<h5 class="text">ÚLTIMOS COMENTÁRIOS GERAIS JUSTIFICADOS</h5>
-			<thead>
-				<th>DATA</th>
-				<th>COMENTÁRIO GERAL</th>
-				<th>RESPOSTA COMENTÁRIO</th>
-				<th>DOCENTE</th>
+        <h5 class="text">USUÁRIO</h5>
+        <div class="borda">
 
-			</thead>
+            <div class="div1">
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/cadastro'" class="btn-login">Cadastrar
+                    Usuário
+                </button>
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/lista/1'" class="btn-login">Listar Usuário</button>
+                <div class="espaco"></div>
+            </div>
+        </div>
 
-			<tbody>
-				<tr th:each="jr:${justResp}">
-					<td th:text="${#dates.format(jr?.data, 'dd/MM/yyyy')}" />
-					<td th:text="${jr?.resposta?.comentarioGeral}" />
-					<td th:text="${jr?.texto}" />
-					<td th:text="${jr?.usuario?.nome}" />
-				</tr>
+        <h5 class="text">PERGUNTA</h5>
+        <div class="borda">
 
-			</tbody>
-		</table>
-	</div></div>
-	
-	<div class="ultima">
-		<button type="button" onclick="location.href='#primeiro'" class="btn-login">Voltar para o topo</button>
-	</div>
-	
-	<div th:if="${justItem.empty}"
-        style="margin-left: auto; margin-right: auto; ">
-        <p
-            th:style="'font-size:150%; -webkit-margin-before: 0.67em; -webkit-margin-after: 0.67em; -webkit-margin-start: 0px;-webkit-margin-end: 0px; font-weight: 500; max-width: 100px; text-align: center;margin-left: auto; margin-right: auto; '"
-            >Ops! Não há nada nessa lista.</p>
+            <div class="div1">
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/pergunta/cadastrar'" class="btn-login">Cadastrar Nova
+                    Pergunta
+                </button>
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/pergunta/listar/1'" class="btn-login">Listar
+                    Perguntas
+                </button>
+                <div class="espaco"></div>
+            </div>
+        </div>
+
+        <h5 class="text">PESQUISA</h5>
+        <div class="borda">
+
+            <div class="div1">
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/pesquisa/cadastrar'" class="btn-login">Cadastrar
+                    Pesquisa
+                </button>
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/pesquisa/listar/1'" class="btn-login">Listar
+                    Pesquisa
+                </button>
+                <div class="espaco"></div>
+            </div>
+        </div>
+
+        <h5 class="text">FORMULÁRIO E RELATÓRIO</h5>
+        <div class="borda">
+
+            <div class="div1">
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/resposta/codigoPesquisa'"
+                        class="btn-login">Formulário
+                </button>
+                <div class="espaco"></div>
+                <button type="button"
+                        onclick="location.href='https://app.powerbi.com/view?r=eyJrIjoiMDk3M2UwYmYtYzNiYi00YzgyLTg2ZjUtYTMwYWUwNmVkZTZhIiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9'"
+                        class="btn-login">Gerar Relatório
+                </button>
+                <div class="espaco"></div>
+            </div>
+        </div>
+
+        <h5 class="text">CURSO</h5>
+        <div class="borda">
+
+            <div class="div1">
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/curso'" class="btn-login">Cadastrar Curso</button>
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='/listaCurso/1'" class="btn-login">Listar
+                    Curso
+                </button>
+                <div class="espaco"></div>
+            </div>
+        </div>
+        <h5 class="text">COMENTÁRIOS JUSTIFICADOS</h5>
+        <div class="borda">
+            <div class="div1">
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='#comuns'" class="btn-login">Comuns</button>
+                <div class="espaco"></div>
+                <button type="button" onclick="location.href='#gerais'" class="btn-login">Gerais</button>
+                <div class="espaco"></div>
+            </div>
+        </div>
     </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+<div class="scroll">
+    <div class="tabelas" id="comuns">
+        <table id="customers" border="1">
+            <h5 class="text">ÚLTIMOS COMENTÁRIOS COMUNS JUSTIFICADOS</h5>
+            <thead>
+            <th>DATA</th>
+            <th>PERGUNTA</th>
+            <th>COMENTÁRIO</th>
+            <th>RESPOSTA COMENTÁRIO</th>
+            <th>DOCENTE</th>
+
+            </thead>
+
+            <tbody>
+            <tr th:each="j:${justItem}">
+                <td th:text="${#dates.format(j?.data, 'dd/MM/yyyy')}"/>
+                <td th:text="${j?.itemResposta?.pergunta?.textoPergunta}"/>
+                <td th:text="${j?.itemResposta?.comentario}"/>
+                <td th:text="${j?.texto}"/>
+                <td th:text="${j?.usuario?.nome}"/>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${justItem.empty}"
+         style="margin-left: auto; margin-right: auto; ">
+        <p th:style="'font-size:150%; -webkit-margin-before: 0.67em; -webkit-margin-after: 0.67em; -webkit-margin-start: 0px;-webkit-margin-end: 0px; font-weight: 500; max-width: 100px; text-align: center;margin-left: auto; margin-right: auto; '"
+        >Ops! Não há nada nessa lista.</p>
+    </div>
+
+</div>
+<div class="espa"></div>
+<div class="scroll">
+    <div class="tabelas" id="gerais">
+
+        <br>
+        <br>
+        <table id="customers1" border="1">
+            <h5 class="text">ÚLTIMOS COMENTÁRIOS GERAIS JUSTIFICADOS</h5>
+            <thead>
+            <th>DATA</th>
+            <th>COMENTÁRIO GERAL</th>
+            <th>RESPOSTA COMENTÁRIO</th>
+            <th>DOCENTE</th>
+
+            </thead>
+
+            <tbody>
+            <tr th:each="jr:${justResp}">
+                <td th:text="${#dates.format(jr?.data, 'dd/MM/yyyy')}"/>
+                <td th:text="${jr?.resposta?.comentarioGeral}"/>
+                <td th:text="${jr?.texto}"/>
+                <td th:text="${jr?.usuario?.nome}"/>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:if="${justResp.empty}"
+     style="margin-left: auto; margin-right: auto; ">
+    <p th:style="'font-size:150%; -webkit-margin-before: 0.67em; -webkit-margin-after: 0.67em; -webkit-margin-start: 0px;-webkit-margin-end: 0px; font-weight: 500; max-width: 100px; text-align: center;margin-left: auto; margin-right: auto; '"
+    >Ops! Não há nada nessa lista.</p>
+</div>
+
+<div class="ultima">
+    <button type="button" onclick="location.href='#primeiro'" class="btn-login">Voltar para o topo</button>
+</div>
+
+
 </body>
 </html>
