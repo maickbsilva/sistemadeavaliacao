@@ -166,15 +166,12 @@
 			<select
 			  name="tipo"
 			  class="form-select"
-			  aria-label="Default select example"
-			>
-			  <option selected>Selecione o Tipo do Curso</option>
-			  <option
-				th:each="tipo : ${T(br.com.projeto.sistemadeavaliacao.model.TipoCurso).values()}"
+			  aria-label="Default select example" required="required">
+			  <option value="">Selecione o Tipo do Curso</option>
+			  <option th:each="tipo : ${T(br.com.projeto.sistemadeavaliacao.model.TipoCurso).values()}"
 				th:value="${tipo}"
 				th:text="${tipo}"
-				th:selected="${tipo.toString() == cs?.tipo?.toString()}"
-			  ></option>
+				th:selected="${tipo.toString() == cs?.tipo?.toString()}"></option>
 			</select>
 		  </div>
 		  <div class="mb-3 dv">
