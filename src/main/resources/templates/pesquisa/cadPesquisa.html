@@ -157,7 +157,7 @@
 
 			<div class="mb-3 dv">
 				<label class="form-label">Turma</label>
-				<input type="text" class="form-control" name="turma" placeholder="EX: EXCEL AVANÇADO (EANOITE)" required
+				<input type="text" class="form-control" name="turma" placeholder="EX: DEV SISTEMAS 2022/2" required
 					style="text-transform:uppercase" />
 			</div>
 
@@ -205,7 +205,7 @@
 
 			<div class="dv">
 				<label> Data de Vencimento</label> <input type="date"
-					name="dataVencimento" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required />
+					name="dataVencimento" th:attr="min=${#dates.format(tomorrow, 'yyyy-MM-dd')}" required />
 			</div>
 			<p>
 			<div class="dv">
