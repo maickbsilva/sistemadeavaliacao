@@ -1,6 +1,10 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -55,6 +59,13 @@ public class PesquisaController {
         model.addAttribute("respostas", respostaRepository.findAll());
         model.addAttribute("usuario", usuarioRepository.BuscarDocentes());
         model.addAttribute("pergunta", perguntaRepository.perguntasGerais());
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, 1);
+        dt = c.getTime();
+        model.addAttribute("tomorrow", dt);
+
         return "pesquisa/cadPesquisa";
     }
 
@@ -85,26 +96,18 @@ public class PesquisaController {
     @DiretorAnnotation
     @RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
     public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
-
-        Date data = new Date();
         List<Usuario> l = pesquisa.getListaDocentes();
-
-        if (pesquisa.getDataVencimento().before(data)) {
-
-        } else {
-
-            if (pesquisa.getListaDocentes() != null) {
-                for (int i = 0; i < pesquisa.getListaDocentes().size(); i++) {
-                    if (l.get(i).getUserId() == pesquisa.getUsuarioDocente().getUserId()) {
-                        l.remove(i);
-                    }
+        if (pesquisa.getListaDocentes() != null) {
+            for (int i = 0; i < pesquisa.getListaDocentes().size(); i++) {
+                if (l.get(i).getUserId() == pesquisa.getUsuarioDocente().getUserId()) {
+                    l.remove(i);
                 }
             }
-            String p = pesquisa.getTurma().toUpperCase();
-            pesquisa.setTurma(p);
-            pesquisaRepository.save(pesquisa);
-            attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
         }
+        String p = pesquisa.getTurma().toUpperCase();
+        pesquisa.setTurma(p);
+        pesquisaRepository.save(pesquisa);
+        attr.addFlashAttribute("msgSucess", "O Codigo da Nova Pesquisa é:" + pesquisa.getId());
 
         Long id = pesquisa.getId();
         String nome = String.valueOf(pesquisa.getUsuarioDocente().getNome());

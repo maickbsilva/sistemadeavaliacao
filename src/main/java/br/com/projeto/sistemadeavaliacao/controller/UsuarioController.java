@@ -166,10 +166,10 @@ public class UsuarioController {
 
         if (user == null) {
             attr.addFlashAttribute("mensagemErro", "NIF e/ou senha incorreto(s).");
-            return "redirect:/";
+            return "redirect:/login";
         } else if (!user.isAtivo()) {
             attr.addFlashAttribute("mensagemErro", "Esse usuario foi desativado, entre em contato com o administrador");
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         //trocando a senha caso usuario esteja com a senha padrao
@@ -195,7 +195,6 @@ public class UsuarioController {
         }
 
         return "login/login";
-
     }
 
     @DiretorAnnotation

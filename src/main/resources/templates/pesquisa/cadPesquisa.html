@@ -142,6 +142,7 @@
 		</ul>
 	</div>
 	<div class="container main-div">
+		<div th:replace="fragments/dataInvalida"></div>
 		<div class="alert alert-success collapse dv" role="alert" id="myAlert">
 			<button class="btn-close" data-bs-dismiss="alert"></button>
 			<h4 class="alert-heading">Pesquisa cadastrada com sucesso!</h4>
@@ -156,7 +157,7 @@
 
 			<div class="mb-3 dv">
 				<label class="form-label">Turma</label>
-				<input type="text" class="form-control" name="turma" placeholder="EX: EXCEL AVANÇADO (EANOITE)" required
+				<input type="text" class="form-control" name="turma" placeholder="EX: DEV SISTEMAS 2022/2" required
 					style="text-transform:uppercase" />
 			</div>
 
@@ -202,10 +203,9 @@
 				</select>
 			</div>
 
-
 			<div class="dv">
 				<label> Data de Vencimento</label> <input type="date"
-					name="dataVencimento" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required />
+					name="dataVencimento" th:attr="min=${#dates.format(tomorrow, 'yyyy-MM-dd')}" required />
 			</div>
 			<p>
 			<div class="dv">
