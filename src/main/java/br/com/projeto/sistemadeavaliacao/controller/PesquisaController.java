@@ -1,6 +1,10 @@
 package br.com.projeto.sistemadeavaliacao.controller;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -86,11 +90,20 @@ public class PesquisaController {
     @RequestMapping(value = "novaPesquisa", method = RequestMethod.POST)
     public String novaPesquisa(Pesquisa pesquisa, String listaDocentes, RedirectAttributes attr, Model model) {
 
+
         Date data = new Date();
+        //colocar yyyy-MM-dd nessa data
+//        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+//        Calendar dataAtual = Calendar.getInstance();
+//        data.setTime(formato.parse(start));
+
         List<Usuario> l = pesquisa.getListaDocentes();
 
-        if (pesquisa.getDataVencimento().before(data)) {
-
+        if (pesquisa.getDataVencimento().equals(data)){
+//            attr.addFlashAttribute("mensagemErro", "Ops, a pesquisa precisa ter um prazo de pelo menos 24 horas.");
+            return "redirect:/pesquisa/cadastrar";
+//            Instant tomorrowDate = data.toInstant().plus(1, ChronoUnit.DAYS);
+//            pesquisa.setDataVencimento(Date.from(tomorrowDate));
         } else {
 
             if (pesquisa.getListaDocentes() != null) {

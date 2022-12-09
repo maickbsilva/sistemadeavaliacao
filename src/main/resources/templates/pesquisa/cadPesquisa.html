@@ -142,6 +142,7 @@
 		</ul>
 	</div>
 	<div class="container main-div">
+		<div th:replace="fragments/dataInvalida"></div>
 		<div class="alert alert-success collapse dv" role="alert" id="myAlert">
 			<button class="btn-close" data-bs-dismiss="alert"></button>
 			<h4 class="alert-heading">Pesquisa cadastrada com sucesso!</h4>
@@ -201,7 +202,6 @@
 					<option th:each="c: ${cursos}" th:text="${c.descCurso}" th:value="${c.id}"/>
 				</select>
 			</div>
-
 
 			<div class="dv">
 				<label> Data de Vencimento</label> <input type="date"

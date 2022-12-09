@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://tymeleaf.org">
+<body>
+<div class="erro"
+     th:if="${not #strings.isEmpty(mensagemErro)}">
+    <span th:text="${mensagemErro}"></span>
+
+</div>
+</body>
+
+<style>
+.erro{
+	color: red;
+	text-align: center;
+	margin-bottom: 10dp;
+	border-radius: 5em;
+	margin-top: 8%;
+	font-size: 20px;
+}
+</style>
+</html>
