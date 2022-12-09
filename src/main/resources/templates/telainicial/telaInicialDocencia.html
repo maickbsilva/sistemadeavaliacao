@@ -100,7 +100,7 @@
 				<td th:text="${ps.curso.descCurso}" />
 				<td th:text="${ps.turma}" />
 				<td th:text="${#dates.format(ps.dataVencimento, 'dd/MM/yyyy')}"/>
-				<td th:text="${ps.justificativa ? 'justificativa pendente, acesse a lista de respostas para responder' : 'nenhuma justificativa pendente'}" />
+				<td style="font-style: italic;" th:text="${ps.justificativa ? 'justificativa pendente, acesse a lista de respostas para responder' : 'nenhuma justificativa pendente'}" />
 				<td><a type="button" class="btn btn-outline-dark"
 					th:href="@{/pesquisa/listarResposta(id=${ps.id})}"
 					style="text-decoration: none">Lista de Respostas</a></td>

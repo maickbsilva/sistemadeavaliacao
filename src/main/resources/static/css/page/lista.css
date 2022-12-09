@@ -345,6 +345,9 @@ table {
   	overflow: scroll;
   	overflow-x: hidden;
 }
+#lista{
+	font-style: italic;
+}
 .Logo_kaos{
   max-width: 200px !important;
 }

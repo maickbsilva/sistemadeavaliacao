@@ -29,10 +29,14 @@
     width: 500px !important;
 }
 .scroll{
-	height:500px;
+	height:400px;
   	overflow: scroll;
   	overflow-x: hidden;
 }
+.espa{
+	height: 100px;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 * {
