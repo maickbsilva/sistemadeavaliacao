@@ -140,4 +140,13 @@ public class PesquisaController {
 
         return "pesquisa/listaPesquisa";
     }
+
+    @DiretorAnnotation
+    @SecretariaAnnotation
+    @GetMapping("buscaPesquisa")
+    public String buscar(String turma, Model model) {
+        model.addAttribute("pesq", pesquisaRepository.buscar(turma));
+
+        return "pesquisa/buscaPesquisa";
+    }
 }

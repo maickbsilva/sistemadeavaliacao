@@ -17,10 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.projeto.sistemadeavaliacao.annotation.DiretorAnnotation;
@@ -199,10 +196,11 @@ public class UsuarioController {
 
     @DiretorAnnotation
     @SecretariaAnnotation
-    @RequestMapping(value = "buscarUser", method = RequestMethod.GET)
-    public String buscar(String buscar, Model model) {
-        model.addAttribute("users", repository.Buscar(buscar));
-        return "listas/listaBuscaUsuario";
+    @GetMapping("buscarUser")
+    public String buscar(String nome, Model model) {
+        model.addAttribute("users", repository.Buscar(nome));
+
+        return "listas/buscarUser";
     }
 
     @PublicoAnnotation

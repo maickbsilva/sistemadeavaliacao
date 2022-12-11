@@ -46,7 +46,7 @@
 					<li th:if="${session.secretariaLogado} " class="nav-item dropdown">
 						<button class="dropdown-item" aria-current="page" onclick="javascript:location.href='/telaInicialSecretaria'"><i class="material-icons" style="color:white;">home</i></button>
 					</li>
-				<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
+					<li class="nav-item dropdown" th:if="${session.docenciaLogado == null} ">
 				  
 					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Usuário
@@ -101,6 +101,16 @@
 		</div>
 	  </nav>
 <h1>Lista de Curso</h1>
+
+	<div style="margin-top:5%">
+		<form action="/buscaCurso">
+			<div>
+				<i class=" prefix material-icons ">search</i>
+				<input id="icon_prefix" type="text" name="busca" class="validate" placeholder="Buscar por nome">
+			</div>
+		</form>
+	</div>
+
 <table class="table">
 <thead>
   <tr>

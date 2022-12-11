@@ -140,11 +140,8 @@
 		  </div>
 		  <br>
 		<div style="margin-top:5%">
-			<form action="/buscarUser">
-				<div>
-					<i class=" prefix material-icons ">search</i>
-					<input id="icon_prefix" type="text" name="nome" class="validate" placeholder="Buscar por nome">
-				</div>
+			<form>
+				<input type="button" value="Voltar para a lista completa" onclick="history.back()">
 			</form>
 		</div>
 		
@@ -162,7 +159,7 @@
 		  </tr>
 		</thead>
 		<tbody id="tb-user" class="table-group-divider" >
-			<tr th:each="user:${usuario}" scope="row">
+			<tr th:each="user:${users}" scope="row">
 
 				<td th:text="${user.userId}" />
 				<td th:text="${user.nome}" />
@@ -191,15 +188,6 @@
 		</tbody>
 		</table>
 
-		<nav class="pagination">
-			<ul class="pagination">
-			  <li class="page-item" th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect' }"><a class="page-link" th:href="${pagAtual > 1 ? pagAtual - 1 : '#' }">Anterior</a></li>
-			  <li class="page-item" th:class="${pagAtual == p ? 'active purple' : 'waves-effect'}" th:each="p:${numPag}"><a class="page-link" th:href="${p}"><span th:text="${p}"></span></a></li>
-			  
-			  <li class="page-item" th:class="${pagAtual == totalPages ? 'disabled' : 'waves-effect'}"><a class="page-link" th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}">Próximo</a></li>
-			</ul>
-		  </nav>
-
 		<div class="alert alert-success collapse" role="alert" id="myAlert" style="
 										position: fixed;
 										top: 0;
@@ -213,8 +201,12 @@
 			<h4 class="alert-heading" style="margin-top: 50px">Usuário desativado com sucesso!</h4>
 		</div>
 
-		<footer th:replace="fragments/padrao :: rodape"></footer>
-	
+		<div th:if="${users.empty}"
+			 style="margin-left: auto; margin-right: auto; ">
+			<p th:style="'font-size:150%; -webkit-margin-before: 0.67em; -webkit-margin-after: 0.67em; -webkit-margin-start: 0px;-webkit-margin-end: 0px; font-weight: 500; max-width: 100px; text-align: center;margin-left: auto; margin-right: auto; '"
+			>Ops! Nada foi encontrado. Tente fazer uma busca diferente.</p>
+		</div>
+
 		<!-- JavaScript Bundle with Popper -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
