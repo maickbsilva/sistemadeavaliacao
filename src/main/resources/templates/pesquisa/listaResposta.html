@@ -47,6 +47,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/mensagem-pdf.css">
 
 
     <title>Lista de Respostas</title>
@@ -155,10 +156,25 @@
 
 
 <section class="slc">
-    
+   <!--
+     <section>
+        <details>
+            <summary style="font-size: 15px; font-weight: 500;">Instruções de Download clicando aqui</i></summary>
+            <p><i>Você pode editar pdf em mais definições ao clicar no botão.</i></p>
+            <p><i>Pode alterar o tamanho do papel.</i></p>
+            <p><i>Pode alterar paginas por folha.</i></p>
+            <p><i>Pode alterar margens.</i></p>
+            <p><i>Pode alterar escala.</i></p>
+        </details>
+     </section>
+   -->
     <div class="ipt-cont">
         <div class="mb-3 download">
-            <button class="btn btn-primary" onclick="pdf()">Download PDF</button>
+            <button class="btn btn-primary tooltips" 
+                    onclick="pdf()"
+                    data-tooltip="Edite o PDF se necessário em mais definições">Download PDF
+                </button>
+        
         </div>
         <div class="input-group mb-3 cont">
             <span class="input-group-text">Avaliações Respondidas</span>
@@ -249,8 +265,7 @@
 
 
 <!-- JavaScript Bundle with Popper -->
-<script src="../../js/ip.js"></script>
-<script src="../../js/pdf.js"></script>
+<script src="../../js/tooltips.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
         integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

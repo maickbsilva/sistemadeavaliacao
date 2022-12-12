@@ -9,6 +9,7 @@
 			<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
 			<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
 		<link rel="stylesheet" href="../../css/listas/lista.css" />  
+		<link rel="stylesheet" href="../../css/nada-encontrado.css" />  
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -139,7 +140,7 @@
 			</div>
 		  </div>
 		  <br>
-		<div style="margin-top:4%; margin-left: 1%;">
+		<div style="margin-top:5%; margin-left: 1%;">
 			<form>
 				<input type="button" class="btn btn-primary" value="Voltar para a lista completa" onclick="history.back()">
 			</form>
@@ -201,10 +202,9 @@
 			<h4 class="alert-heading" style="margin-top: 50px">Usuário desativado com sucesso!</h4>
 		</div>
 
-		<div th:if="${users.empty}"
-			 style="margin-left: auto; margin-right: auto; ">
-			<p th:style="'font-size:150%; -webkit-margin-before: 0.67em; -webkit-margin-after: 0.67em; -webkit-margin-start: 0px;-webkit-margin-end: 0px; font-weight: 500; max-width: 100px; text-align: center;margin-left: auto; margin-right: auto; '"
-			>Ops! Nada foi encontrado. Tente fazer uma busca diferente.</p>
+		<div class="nada-encontrado" th:if="${users.empty}">
+			<p class="p">Ops! Nada foi encontrado.</p> 
+			<p class="p">Tente fazer uma busca diferente.</p>
 		</div>
 
 		<!-- JavaScript Bundle with Popper -->
