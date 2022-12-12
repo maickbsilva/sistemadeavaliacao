@@ -19,4 +19,7 @@ public interface PesquisaRepository extends PagingAndSortingRepository<Pesquisa,
     @Query("SELECT l FROM Pesquisa l where l.usuarioDocente.userId = :user order by l.id DESC")
     public List<Pesquisa> listaPesquisaPorDocente(@Param("user") Long user);
 
+    @Query("SELECT p FROM Pesquisa p WHERE p.turma LIKE %:b%")
+    public List<Pesquisa> buscar(@Param("b") String turma);
+
 }

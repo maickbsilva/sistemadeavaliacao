@@ -83,7 +83,7 @@ public class PesquisaController {
     @RequestMapping("listarResposta")
     public String listarRespota(Long id, Model model) {
         model.addAttribute("pesq", pesquisaRepository.findById(id).get());
-        model.addAttribute("perg", perguntaRepository.findAll());
+        model.addAttribute("perg", perguntaRepository.perguntasGerais());
         model.addAttribute("item", itemRepository.findAll());
         model.addAttribute("resposta", respostaRepository.findAll());
         Long contagem = respostaRepository.contaResposta(id);
@@ -139,5 +139,14 @@ public class PesquisaController {
         model.addAttribute("pagAtual", page);
 
         return "pesquisa/listaPesquisa";
+    }
+
+    @DiretorAnnotation
+    @SecretariaAnnotation
+    @GetMapping("buscaPesquisa")
+    public String buscar(String turma, Model model) {
+        model.addAttribute("pesq", pesquisaRepository.buscar(turma));
+
+        return "pesquisa/buscaPesquisa";
     }
 }

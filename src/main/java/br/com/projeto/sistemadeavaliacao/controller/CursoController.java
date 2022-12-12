@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -95,11 +96,11 @@ public class CursoController {
 
 	@SecretariaAnnotation
 	@DiretorAnnotation
-	@RequestMapping(value = "buscarCurso", method = RequestMethod.GET)
-	public String buscar(String buscar, Model model) {
-		model.addAttribute("curso", cursoRepository.buscarCurso(buscar));
+	@GetMapping("buscaCurso")
+	public String buscar(String busca, Model model) {
+		model.addAttribute("curso", cursoRepository.buscarCurso(busca));
 
-		return "curso/listaBuscarCurso";
+		return "curso/listaBuscaCurso";
 	}
 
 }

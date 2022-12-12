@@ -23,8 +23,8 @@ public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, L
 
 	public Usuario findByNifAndSenha(String nif, String senha);
 
-	@Query("SELECT c FROM Usuario c WHERE c.nome LIKE %:t%")
-	public List<Usuario> Buscar(@Param("t") String tudo);
+	@Query("SELECT u FROM Usuario u WHERE u.nome LIKE %:t%")
+	public List<Usuario> Buscar(@Param("t") String nome);
 
 	@Query("SELECT u FROM Usuario u WHERE u.tipo = 1 order by u.nome")
 	public List<Usuario> BuscarDocentes();

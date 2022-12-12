@@ -121,6 +121,16 @@
 	<br>
 	<br>
 	<br>
+	<div style="margin-top:3%; margin-left:1%;">
+		<form action="/pesquisa/buscaPesquisa">
+			<div class="input-group">
+				<span class="input-group-text" id="inputGroup-sizing-default"><i class=" prefix material-icons ">search</i></span>
+				<input id="icon_prefix" type="text" name="turma" class="validate" placeholder="Buscar por turma">
+				<input type="submit" value="Buscar" class="btn btn-primary">
+			</div>
+		</form>
+	</div>
+
 	<table class="table" >
 		<thead>
 			<tr>
@@ -128,6 +138,7 @@
 				<th class="id">Código </th>
 				<th class="th-height">Curso</th>
 				<th class="th-height">Turma</th>
+				<th class="th-height">Docente</th>
 				<th class="th-height">Data Vencimento</th>
 				<th class="th-height" th:if="${session.docenciaLogado} or ${session.diretoriaLogado}">Pendências</th>
 				<th class="th-height">Respostas</th>
@@ -141,6 +152,7 @@
 				<td th:text="${ps.id}"></td>
 				<td th:text="${ps.curso?.descCurso}"/>
 				<td th:text="${ps.turma}"/>
+				<td th:text="${ps.usuarioDocente.nome}"/>
 				<td th:text="${#dates.format(ps.dataVencimento, 'dd/MM/yyyy')}" th:style="${ps.dataVencimento.after(#dates.createNow())} ? 'color: black' : 'color: #c32f27'" ></td>
 				<td th:if="${session.docenciaLogado}" id="italico" th:text="${ps.justificativa ? 'Justificativa pendente, verifique as respostas' : 'Nenhuma pendência'}"/>
 				<td th:if="${session.diretoriaLogado}" th:text="${ps.justificativa ? 'Contém justificativas solicitadas' : 'Nenhuma pendência'}" style="font-style: italic;"/>
