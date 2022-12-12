@@ -3,17 +3,7 @@
   margin-top: 18%;
   margin-left: 39%;
 }
-#pass {
-  padding-right: 20px;
-}
 
-.olho{
-  cursor: pointer;
-  left: 90%;
-  top: 5%;
-  position: absolute;
-  width: 40px;
-}
 
 .btn-mod{
   border-radius: 13px;
@@ -35,6 +25,6 @@
     margin-top: 19%;
   }
   .md-content{
-    height: 65%;
+    height: 35%;
   }
 }
