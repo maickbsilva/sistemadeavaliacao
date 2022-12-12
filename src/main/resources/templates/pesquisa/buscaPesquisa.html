@@ -127,13 +127,12 @@
 			<input type="button" class="btn btn-primary" value="Voltar para a lista completa" onclick="history.back()">
 		</form>
 	</div>
-	<table class="table" >
+	<table class="table">
 		<thead>
 			<tr>
-
 				<th class="id">Código </th>
 				<th class="th-height">Curso</th>
-				<th class="th-height">Turma</th>\
+				<th class="th-height">Turma</th>
 				<th class="th-height">Docente</th>
 				<th class="th-height">Data Vencimento</th>
 				<th class="th-height" th:if="${session.docenciaLogado} or ${session.diretoriaLogado}">Pendências</th>
