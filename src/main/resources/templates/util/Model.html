@@ -36,19 +36,7 @@
   
     <div class="context">
       <div class="container">
-        <form>
-          <!-- [[${usuario.nome}]] metodo  -->
-          <h2 style="text-align: center">Altere sua senha [[${usuario.nome}]]</h2>
-  
-          <button
-            type="button"
-            class="btn btn-info btn-lg btn-mod"
-            data-toggle="modal"
-            data-target="#myModal"
-          >
-            Click para alterar senha
-          </button>
-        </form>
+
   
         <!-- Modal -->
         <div class="modal mdal" id="myModal" tabindex="-1" role="dialog" data-backdrop="static">
@@ -56,6 +44,7 @@
             <!-- Modal content-->
             <div class="modal-content md-content">
               <div class="modal-header">
+
               </div>
               <div class="modal-body">
                 <form
@@ -68,37 +57,29 @@
                     name="userId"
                     th:value="${usuario?.userId}"
                   />
-                  <div class="form-group" id="input">
-                    <img src="../../img/visibility.png" id="olho" class="olho" />
+                  <div class="form-group" >
+
                     <input
                       type="password"
                       name="senha"
                       placeholder="Nova Senha"
                       class="form-control input-lg"
-                      id="pass"
+
                       required
                       maxlength="20"
                     />
                   </div>
                   <div class="form-group">
                     <button
-                      class="btn btn-primary btn-lg btn-block"
-                      type="submit"
-                    >
+                            class="btn btn-primary btn-lg btn-block"
+                            type="submit"
+                            th:onclick="'javascript:alert(\'Senha alterada com sucesso!\');'">
                       Enviar
                     </button>
                   </div>
                 </form>
               </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-info"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
+
             </div>
           </div>
         </div>

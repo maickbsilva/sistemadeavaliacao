@@ -423,7 +423,7 @@ display: flex;
   
 }
 .item-pendente{
-  border-left: 30px solid orange;
+  border-left: 30px solid #d55d92;
 }
 
 .item-ativo{
